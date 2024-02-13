@@ -1,0 +1,35 @@
+.group {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input {
+    height: 35px;
+    width: 200px;
+    padding-left: 1em;
+    border: 1px solid #7471723a;
+    border-radius: 8px;
+    outline: none;
+    background-color: #fff;
+    color: #747172;
+    transition: .3s ease;
+}
+
+.input::placeholder {
+    color: #747172;
+}
+
+.input:focus,
+.input:hover {
+    outline: none;
+}
+
+.icon {
+    position: absolute;
+    left: 1rem;
+    fill: #000;
+    width: 1rem;
+    height: 1rem;
+    margin: 80%;
+}
