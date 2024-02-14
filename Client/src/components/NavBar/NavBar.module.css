@@ -1,6 +1,54 @@
 .container{
     display: flex;
-    width: 100vw;
+    justify-content: space-between;
+    align-items: center;
     height: 10vh;
-    border-bottom: 1px solid black;
+}
+
+.linkContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.img{
+    width: 35px;
+    height: 35px;
+    margin-left: 1em;
+}
+
+.title{
+    color: #000;
+    text-decoration: none;
+    font-size: 1em;
+    padding-left: .5em;
+    font-weight: bold;
+}
+
+.link{
+    color: #747172;
+    text-decoration: none;
+    padding-left: 1em;
+}
+
+.carContainer{
+    display: flex;
+    margin-right: 1em;
+}
+
+.button{
+    background-color: #000;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.car{
+    cursor: pointer;
+    width: 4em;
+    height: 2em;
+    fill: #000;
 }
