@@ -1,6 +1,182 @@
-.container{
+.nav{
     display: flex;
-    width: 100vw;
-    height: 10vh;
-    border-bottom: 1px solid black;
+    align-items: center;
+    height: 8vh;
+    padding-top: .5em;
+}
+
+.mainContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1em;
+    height: 80%;
+    width: 100%;
+}
+
+.mobileButtonClose, .mobileButtonOpen{
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.5em;
+    border: 1px solid #7471723a;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.mobileButtonOpen{
+    font-size: 1em;
+}
+
+.mobileButtonClose{
+    margin-top: 1em;
+}
+
+.linkContainer{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.img{
+    width: 35px;
+    height: 35px;
+    margin-left: 1em;
+}
+
+.title{
+    color: #000;
+    text-decoration: none;
+    font-size: .9em;
+    padding-left: .5em;
+    font-weight: bold;
+}
+
+.linkDesk{
+    display: none;
+}
+
+.linkContentMobile{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.searchMobileContent{
+    margin: 1em 0;
+    width: 100%;
+}
+
+.link{
+    color: #000;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding-top: 1em;
+}
+
+.searchDeskContent{
+    display: none;
+}
+
+.buttonContainerDesk{
+    display: none;
+}
+
+.cartButton{
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    border: 1px solid #7471723a;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.cartSvg{
+    cursor: pointer;
+    height: 1.5em;
+    fill: #000;
+}
+
+.linkContentMobile.hidden {
+    display: none;
+}
+
+.svgMobile{
+    height: 1.5em;
+    fill: #000;
+}
+
+.buttonContainerMobile{
+    margin-top: 2em;
+}
+
+.buttonLog, .buttonSign{
+    border: none;
+    border-radius: 5px;
+    margin-right: 1em;
+    cursor: pointer;
+    height: 2.5em;
+    font-size: 1.1em;
+    background-color: #000;
+    color: #fff;
+}
+
+@media screen and (min-width: 768px){
+    .mobileButtonContent{
+        display: none;
+    }
+
+    .linkContentMobile{
+        display: none;
+    }
+
+    .linkDesk{
+        display: block;
+        text-decoration: none;
+        margin-left: 1em;
+        color: #747172;
+        font-size: .9em;
+    }
+
+    .linkDesk:hover{
+        color: #000;
+        border-bottom: 1px solid #000;
+    }
+
+    .searchDeskContent{
+        display: block;
+        width: 400px;
+    }
+
+    .buttonContainerDesk{
+        display: block;
+    }
+    
+    .cartContainer{
+        display: flex;
+        align-items: center;
+    }
+
+    .buttonLog, .buttonSign{
+        font-size: .9em;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .title{
+        display: none;
+    }
+
+    .searchDeskContent{
+        width: 280px;
+    }
 }
