@@ -2,11 +2,11 @@ import imageIpad from './assets/ipad-dorso-anverso.svg';
 import imageAmazon from './assets/tablet-amazon.svg';
 import imageGoogle from './assets/tablet-google.svg';
 import imageHuawei from './assets/tablet-huawei.svg';
-import imageLenovo from './assets/tablet-levono.svg';
+import imageLenovo from './assets/tablet-lenovo.svg';
 import imageMicrosoft from './assets/tablet-microsoft.svg';
-import imageSamsung from './assets/tablet-samsung.svg';
+import imageSamsung from './assets/tablet-samsung-anverso-dorso.svg';
 
-export const data = [
+const data = [
   {
     id: 1,
     category: "tablet",
@@ -1209,3 +1209,4 @@ export const data = [
         wireless_range: "22 meters"
     }
   ];
+ export default data; 

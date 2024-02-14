@@ -1,36 +1,32 @@
 import style from './Detail.module.css'
-
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import data from '../../data'
 
 const Detail = () => {
+  const { id } = useParams()
+  console.log(id)
+  let products;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(data); // Ahora data es el array de objetos
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
     return(
         <>
-         <style>
-        {`
-        .columna{
-          color: white;
-          font-size: 25px;
-          background-color: #05077b;
-          border: 5px solid white
-        }
-        .row{
-          background-color: orange;
-          border: 3px solid rgb(110,73,5);
-          padding: 5px;
-          margin: 10px
-        }
-        .image{
-          background-color: #b82e2e;
-        }
-        `}
-      </style>
-        <div className='container'>
-            <div className='row'>
-                <div className='col'>
-
-                </div>
-            </div>
-            
+       <section>
+        <div>
+          <img src='' alt="" />
         </div>
+       </section>
         </>
     )
 }
