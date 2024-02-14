@@ -2,11 +2,11 @@
     display: flex;
     align-items: center;
     position: relative;
+    height: 100%;
 }
-
 .input {
     height: 35px;
-    width: 200px;
+    width: 100%;
     padding-left: 1em;
     border: 1px solid #7471723a;
     border-radius: 8px;
@@ -27,9 +27,9 @@
 
 .icon {
     position: absolute;
-    left: 1rem;
+    right: 0;
     fill: #000;
     width: 1rem;
     height: 1rem;
-    margin: 80%;
+    margin-right: 1em;
 }
