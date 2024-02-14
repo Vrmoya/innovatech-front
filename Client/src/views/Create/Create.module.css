@@ -13,7 +13,7 @@
     /* width: 50vw;
     height: 85vh; */
 
-    width: 70vw;
+    width: 50vw;
     height: 100vh;
 
     display: flex;
@@ -47,22 +47,30 @@
 
 .text{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-direction: row;
     align-items: center;
     /* justify-content: flex-start; */
     font-family: 'Public Sans', sans-serif;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #ffffff;
  
 }
 .titulo{
     display: flex;
-    background-color: rgba(0, 0, 0, 0.534);
+    width: 50vw;
+    height: 10vh;
+    background-color: #000000;
     border-radius: 5px;
+    border-color: #2563eb;
+    border-style:ridge;
+    border-width: 1px;
     font-family: 'Public Sans', sans-serif;
+    font-weight: lighter;
     color: white;
     justify-content: center;
     box-shadow: #0103018a 0 3px 15px;
+    align-items: center;
 }
 
 
