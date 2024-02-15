@@ -30,6 +30,7 @@ const Detail = () => {
     <div className={styles.detailContainer}>
     <img src={imageIpad} alt={product.name} className={styles.productImage} /> 
     <div className={styles.productInfo}>
+    <h1 className={styles.productName}>{product.model}</h1>
     </div>
     </div>
   )
