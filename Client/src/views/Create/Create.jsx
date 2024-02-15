@@ -138,7 +138,7 @@ const handleSubmitForm = (e) => {
                     value= {input.price}
                     name= "price"
                     
-                    />
+                    />{errors.price && <p className={style.error}>{errors.price}</p>}
                 </div>
                 <hr />
                 
@@ -151,7 +151,7 @@ const handleSubmitForm = (e) => {
                     value= {input.description}
                     name= "description"
                     
-                    />
+                    />{errors.description && <p className={style.error}>{errors.description}</p>}
                 </div>
 <hr />
                 <div className={style.text}>Update Image Product</div>
@@ -164,7 +164,7 @@ const handleSubmitForm = (e) => {
                     // value= {input.image}
                     name= "image"
                     
-                    />
+                    />{errors.image && <p className={style.error}>{errors.image}</p>}
                 </div>
 <hr />
 

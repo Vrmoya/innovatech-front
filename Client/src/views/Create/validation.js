@@ -22,8 +22,15 @@ const formValidator = (data) => {
    
     }
   
+    if (!data.description.trim()){
+        errors.description = '⚠Ingresa una descripción para el producto';
+    }
 
-
+ //validación precio
+ if (isNaN(data.price)) {
+    errors.price = '⚠ Ingresa un precio válido para el producto.';
+}
+  
         //validación imágen
         if (!data.image.trim()) {
             errors.image = '⚠ Ingresa una imágen para el producto.';
