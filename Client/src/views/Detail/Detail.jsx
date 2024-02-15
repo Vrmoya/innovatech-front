@@ -28,10 +28,12 @@ const Detail = () => {
 
   return (
     <div className={styles.detailContainer}>
-    <img src={imageIpad} alt={product.name} className={styles.productImage} /> 
-    <div className={styles.productInfo}>
-    <h1 className={styles.productName}>{product.model}</h1>
-    </div>
+      <img src={imageIpad} alt={product.name} className={styles.productImage} />
+      <div className={styles.productInfo}> 
+      <h1 className={styles.productName}>{product.model}</h1>
+      <p className={styles.productPrice}>{product.price}</p>
+      <hr />
+        </div> 
     </div>
   )
 };
