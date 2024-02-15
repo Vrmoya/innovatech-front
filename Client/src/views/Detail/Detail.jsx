@@ -31,12 +31,15 @@ const Detail = () => {
     <div className='container-fluid contenedor'>
     <div className={styles.detailContainer}>
       <img src={imageIpad} alt={product.name} className={styles.productImage} />
+     
       <div className={styles.productInfo}> 
       <h1 className={styles.productTittle}>{product.model}</h1>
       <p className={styles.productPrice}>{product.price}</p>
       <hr />
       <p className={styles.productDescription}>{product.description}</p>
-      <button>Add to card</button>
+      <button className={styles.buttonCart}>Add to Cart</button>
+
+      {/* <a href="#" className="btn btn-primary active" role="button" data-bs-toggle="button" aria-pressed="true">Add to card</a> */}
         </div> 
     </div>
     </div>
