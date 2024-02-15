@@ -56,9 +56,35 @@ const handlePriceChange = (e) => {
 // }
 
 // //Manejo del Submit Form
-// const handleSubmitForm = (e)=>{
+const handleSubmitForm = (e) => {
+    e.preventDefault();
 
-// }
+    // Validar el formulario
+    const formErrors = formValidator(input);
+
+    if (Object.keys(formErrors).length === 0) {
+        // Si no hay errores, enviar el formulario al backend
+        console.log("Enviando formulario:", input);
+
+        // Realizar la llamada al backend para enviar los datos utilizando fetch o axios
+
+        // Una vez que los datos se han enviado exitosamente mostrar alert
+        alert("¡Producto agregado con éxito!");
+
+        // Luego, reiniciar form
+        setInput({
+            category: "",
+            model: "",
+            price: 0,
+            description: "",
+            image: ""
+        });
+    } else {
+        // Si hay errores, mostrarlos al usuario
+        console.log("Formulario no enviado debido a errores:", formErrors);
+        alert("Corrija los errores antes de enviar el formulario.");
+    }
+};
 
     return(
         <div className= {style.container}>
@@ -155,13 +181,13 @@ const handlePriceChange = (e) => {
 
             </form>
 
-
+           
 
 
 
 
            </div>
-
+           <button onClick={handleSubmitForm}>Enviar Form</button>
 
 
 
