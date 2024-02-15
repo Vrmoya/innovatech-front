@@ -12,6 +12,7 @@
     margin: 0 1em;
     height: 80%;
     width: 100%;
+    margin-top: 1em;
 }
 
 .mobileButtonClose, .mobileButtonOpen{
@@ -21,7 +22,7 @@
     border-radius: 8px;
     font-size: 1.5em;
     border: 1px solid #7471723a;
-    background-color: #fff;
+    background-color: transparent;
     cursor: pointer;
 }
 
@@ -42,7 +43,6 @@
 .img{
     width: 35px;
     height: 35px;
-    margin-left: 1em;
 }
 
 .title{
@@ -68,6 +68,7 @@
     left: 0;
     bottom: 0;
     right: 0;
+    z-index: 2;
 }
 
 .searchMobileContent{
@@ -96,7 +97,7 @@
     border: none;
     border-radius: 8px;
     border: 1px solid #7471723a;
-    background-color: #fff;
+    background-color: transparent;
     cursor: pointer;
 }
 
@@ -131,6 +132,11 @@
 }
 
 @media screen and (min-width: 768px){
+    .mainContent{
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
     .mobileButtonContent{
         display: none;
     }
@@ -171,12 +177,12 @@
     }
 }
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) and (min-width: 768px){
     .title{
         display: none;
     }
 
     .searchDeskContent{
-        width: 280px;
+        width: 250px;
     }
 }

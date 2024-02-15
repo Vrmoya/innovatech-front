@@ -1,10 +1,10 @@
 const PATHROUTES = {
-    HOME: '/',
-    PRODUCTS: '/products',
+    LANDING: '/',
+    HOME: '/home',
     DETAIL: '/detail/:id',
     CREATE: '/create',
     ABOUT: '/about',
     ERROR: '*'
 }
 
-export default PATHROUTES
+export default PATHROUTES;

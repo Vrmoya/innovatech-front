@@ -19,21 +19,21 @@ const NavBar = () => {
                     <button className={style.mobileButtonOpen} onClick={toggleNav}>☰</button>
                 </div>
                 <div className={style.linkContainer}>
-                    <Link to={PATHROURES.HOME}>
+                    <Link to={PATHROURES.LANDING}>
                         <img src={logo} alt="" className={style.img} />
                     </Link>
-                    <Link to={PATHROURES.HOME} className={style.title}>INNOVA TECH</Link>
-                    <Link to={PATHROURES.PRODUCTS} className={style.linkDesk} onClick={toggleNav}>All</Link>
-                    <Link to={PATHROURES.PRODUCTS} className={style.linkDesk} onClick={toggleNav}>Laptops</Link>
-                    <Link to={PATHROURES.PRODUCTS} className={style.linkDesk} onClick={toggleNav}>Smartphones</Link>
+                    <Link to={PATHROURES.LANDING} className={style.title}>INNOVA TECH</Link>
+                    <Link to={PATHROURES.HOME} className={style.linkDesk} onClick={toggleNav}>All</Link>
+                    <Link to={PATHROURES.HOME} className={style.linkDesk} onClick={toggleNav}>Laptops</Link>
+                    <Link to={PATHROURES.HOME} className={style.linkDesk} onClick={toggleNav}>Smartphones</Link>
                     <div className={`${style.linkContentMobile} ${!showNav && style.hidden}`}>
                         <button className={style.mobileButtonClose} onClick={toggleNav}>✘</button>
                         <div className={style.searchMobileContent}>
                             <SearchBar></SearchBar>
                         </div>
-                        <Link to={PATHROURES.PRODUCTS} className={style.link} onClick={toggleNav}>All</Link>
-                        <Link to={PATHROURES.PRODUCTS} className={style.link} onClick={toggleNav}>Laptops</Link>
-                        <Link to={PATHROURES.PRODUCTS} className={style.link} onClick={toggleNav}>Smartphones</Link>
+                        <Link to={PATHROURES.HOME} className={style.link} onClick={toggleNav}>All</Link>
+                        <Link to={PATHROURES.HOME} className={style.link} onClick={toggleNav}>Laptops</Link>
+                        <Link to={PATHROURES.HOME} className={style.link} onClick={toggleNav}>Smartphones</Link>
                         <div className={style.buttonContainerMobile}>
                             <button className={style.buttonLog}>Log In</button>
                             <button className={style.buttonSign}>Sign Up</button>

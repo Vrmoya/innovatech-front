@@ -1,11 +1,11 @@
 import style from './Home.module.css'
 
-const Home = () => {
-    return (
-        <div className={style.container}>
-          <h1>Home Page</h1>
+const Products = () => {
+    return(
+        <div>
+            Products Page
         </div>
     )
 }
 
-export default Home;
+export default Products;
