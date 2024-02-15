@@ -7,7 +7,7 @@ const formValidator = (data) => {
       errors.model = '⚠Ingresa un nombre para el producto.';
    
     }  else if (data.model.length < 3 || data.model.length > 15) {
-        errors.name = '⚠ El nombre debe tener entre 3 y 15 caracteres.';
+        errors.model = '⚠ El nombre debe tener entre 3 y 15 caracteres.';
       }
 
     

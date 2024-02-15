@@ -123,7 +123,7 @@ const handleSubmitForm = (e) => {
                     value= {input.model}
                     name= "model"
                     
-                    />
+                    />{errors.model && <p className={style.error}>{errors.model}</p>}
                 </div>
 
                 <hr />
