@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background-color: #fafafa;
+  background-color: fafafa;
   border: 1px solid rgba(128, 128, 128, 0.959);
 }
 
@@ -44,6 +44,7 @@
   font-size: 1.2rem;
   margin-bottom: 2rem;
   font-family: "Public Sans", sans-serif;
+  color: #747172;
 }
 .buttonCart {
   display: flex;
