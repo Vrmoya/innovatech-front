@@ -1,15 +1,13 @@
 import style from './Create.module.css'
 import { Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
-
+import formValidator from './validation';
 
 
 
 const Create = () => {
 
-    //para manejo de redux
-    // const dispatch= useDispatch()
-
+    
 
 
     //estado local para el manejo de errores
@@ -27,8 +25,9 @@ const Create = () => {
 
     });
 
-
+//Handler que maneja el change de los input "text-type"
      function handleChange (e){
+        setErrors(formValidator({...input, [e.target.name]: e.target.value}))
         setInput ({
             ...input,
             [e.target.name]: e.target.value
@@ -36,7 +35,7 @@ const Create = () => {
         console.log (input)
 
      }
-    // Manejar cambios en el campo "price" (ellos esperan un FLOAT)
+    // Manejar cambios en el campo "price" (el back espera un datatype FLOAT)
 const handlePriceChange = (e) => {
     const value = e.target.value;
     
@@ -46,8 +45,20 @@ const handlePriceChange = (e) => {
     });
 };
 
+// //Manejo del select de  la propiedad "category"
+// const handleSelect = (e) =>{
 
+// }
 
+// //Manejo del select Image
+// const handleSelectImage = (e)=>{
+
+// }
+
+// //Manejo del Submit Form
+// const handleSubmitForm = (e)=>{
+
+// }
 
     return(
         <div className= {style.container}>
@@ -121,9 +132,10 @@ const handlePriceChange = (e) => {
                 
                 <div  className={style.option} >
                     <input 
+                    // onChange= {HandleSelectImage}
                     className={style.input}
                     type="file" 
-                    // value= {input.model}
+                    // value= {input.image}
                     name= "image"
                     
                     />
