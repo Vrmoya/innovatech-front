@@ -37,7 +37,10 @@ const Detail = () => {
       <p className={styles.productPrice}>{product.price}</p>
       <hr />
       <p className={styles.productDescription}>{product.description}</p>
-      <button className={styles.buttonCart}>Add to Cart</button>
+      <button className={styles.buttonCart}>
+      <i className="bi bi-plus"></i>
+        Add to Cart
+        </button>
         </div> 
     </div>
     

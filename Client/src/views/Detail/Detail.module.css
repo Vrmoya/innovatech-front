@@ -58,5 +58,8 @@
   align-items: center;
   justify-content: center;
   text-align: center; 
-}
 
+}
+.buttonCart:hover {
+  background-color: #5184f1;
+}
