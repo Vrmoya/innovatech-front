@@ -28,15 +28,16 @@
 }
 
 .productTittle {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 35px;
   font-family: "Public Sans", sans-serif;
+  margin-bottom: 15px;
+  
 }
 
 .productPrice {
-  font-size: 2rem;
+  font-size: 25px;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1px;
 }
 
 .productDescription {
