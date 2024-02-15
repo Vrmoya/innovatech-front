@@ -28,7 +28,7 @@ const Detail = () => {
 
   return (
     <div className={styles.detailContainer}>
-    
+    <img src={imageIpad} alt={product.name} className={styles.productImage} />
     </div>
   )
 };
