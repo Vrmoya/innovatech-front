@@ -1,34 +1,36 @@
-import style from './Detail.module.css'
+import styles from './Detail.module.css';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import data from '../../data'
+import products from '../../data'
+import imageIpad from '../../assets/ipad-dorso-anverso.svg'
 
 const Detail = () => {
-  const { id } = useParams()
-  console.log(id)
-  let products;
+  const product = {
+    category: "tablet",
+    model: "iPad Pro",
+    processor: "Apple M1",
+    screen: "12.9 inches",
+    hardcore: "256GB",
+    "use-type": "Tablet",
+    Ram: "8GB",
+    "video-card": "Apple M1",
+    price: "$1099",
+    "operating-sistem": "iPadOS",
+    dimensions: "28.06 x 21.49 x 0.59 cm",
+    weight: "682 grams",
+    "battery-life": "Up to 10 hours",
+    connectivity: "Wi-Fi, Bluetooth",
+    warranty: "12 months",
+    description: "The iPad Pro offers a seamless user experience with its sleek design and intuitive interface. Its large 12.9-inch display provides vibrant visuals, while the powerful M1 processor ensures smooth performance for all tasks. With up to 10 hours of battery life, it's perfect for work or entertainment on the go.",
+    image: imageIpad
+  };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log(data); // Ahora data es el array de objetos
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
-
-    return(
-        <>
-       <section>
-        <div>
-          <img src='' alt="" />
-        </div>
-       </section>
-        </>
-    )
-}
+  return (
+    <div className={styles.detailContainer}>
+    
+    </div>
+  )
+};
 
 export default Detail;
