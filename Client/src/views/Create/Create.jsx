@@ -7,10 +7,9 @@ import formValidator from './validation';
 
 const Create = () => {
 
-    
-
-
-    //estado local para el manejo de errores
+//estado local para el select de imágenes
+    const [selectedImage, setSelectedImage] = useState(null);
+//estado local para el manejo de errores
     const [errors, setErrors] = useState ({})
 
 //guardo el form en un estado local
@@ -25,37 +24,53 @@ const Create = () => {
 
     });
 
-//Handler que maneja el change de los input "text-type"
-     function handleChange (e){
-        setErrors(formValidator({...input, [e.target.name]: e.target.value}))
-        setInput ({
-            ...input,
-            [e.target.name]: e.target.value
-        })
-        console.log (input)
+// Handler que maneja el change de los input "text-type"
+ function handleChange (e){
+    setErrors(formValidator({...input, [e.target.name]: e.target.value}))
+    setInput ({
+        ...input,
+        [e.target.name]: e.target.value
+    })
+    console.log (input)
 
-     }
+ }
     // Manejar cambios en el campo "price" (el back espera un datatype FLOAT)
 const handlePriceChange = (e) => {
     const value = e.target.value;
-    
+    const fieldErrors = formValidator({ ...input, price: value });
+
+     // Actualizar el estado de los errores
+     setErrors({ ...errors, ...fieldErrors });
     setInput({
         ...input,
         price: parseFloat(value)
     });
 };
 
-// //Manejo del select de  la propiedad "category"
-// const handleSelect = (e) =>{
+//Manejo del select de  la propiedad "category"
+const handleSelect = (e) =>{
+    const value= e.target.value;
+     // Validar el campo de selección utilizando el validador
+     const fieldErrors = formValidator({ ...input, category: value });
 
-// }
+     // Actualizar el estado de los errores
+     setErrors({ ...errors, ...fieldErrors });
+ 
+    setInput ({
+        ...input,
+        category: value,
+})
 
-// //Manejo del select Image
-// const handleSelectImage = (e)=>{
+}
 
-// }
+//Manejo del select Image
+const handleSelectImage = (e)=>{
+    const file = e.target.files[0];
+    setSelectedImage(file);
+    setInput({ ...input, image: file }); // Guarda el archivo en el estado
+}
 
-// //Manejo del Submit Form
+//Manejo del Submit Form
 const handleSubmitForm = (e) => {
     e.preventDefault();
 
@@ -88,9 +103,9 @@ const handleSubmitForm = (e) => {
 
     return(
         <div className= {style.container}>
-             <Link to= '/home'><button className={style.button}>Go Home!</button></Link>
+             
              <h1 className={style.titulo}> Add products to Innova Tech Stock </h1>
-           Form
+           
            <div className={style.formContainer}>
             <form >
                 
@@ -98,6 +113,7 @@ const handleSubmitForm = (e) => {
                 <div  className={style.option} >
                     <select
                     className={style.input}
+                    onChange={(e)=>handleSelect(e)}
                     >
                 <option disabled defaultValue>Select category</option>
                 <option value="laptop">Laptop</option>
@@ -108,7 +124,7 @@ const handleSubmitForm = (e) => {
                 
                 <option value= "newCategory">New Category</option>
                     
-                    </select>
+                    </select>{errors.category && <p className={style.error}>{errors.category}</p>}
                 </div>
                 <hr />
 
@@ -158,13 +174,21 @@ const handleSubmitForm = (e) => {
                 
                 <div  className={style.option} >
                     <input 
-                    // onChange= {HandleSelectImage}
+                    onChange= {handleSelectImage}
                     className={style.input}
                     type="file" 
                     // value= {input.image}
                     name= "image"
-                    
-                    />{errors.image && <p className={style.error}>{errors.image}</p>}
+                
+                />{errors.image && <p className={style.error}>{errors.image}</p>}
+                {/* Visualizar la imagen seleccionada (opcional) */}
+            {selectedImage && (
+                <div>
+                    <p>Imagen seleccionada:</p>
+                    <img src={URL.createObjectURL(selectedImage)} alt="Selected" style={{ maxWidth: '200px' }} />
+                </div>
+            )}
+                
                 </div>
 <hr />
 

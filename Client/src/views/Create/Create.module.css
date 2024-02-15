@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 .container {
+    /* margin-top: 10px; */
     width: 100vw;
     height: 100vh;
     background-color: #747172;
@@ -12,7 +13,6 @@
 .formContainer {
     /* width: 50vw;
     height: 85vh; */
-
     width: 50vw;
     height: 100vh;
 
@@ -24,7 +24,7 @@
     box-shadow: #0103018a 0 3px 15px;
     border-radius: 0.5rem;
     
-    border-color: #2563eb;
+    border-color: white;
     border-style:ridge;
     border-width: 1px;
     
@@ -63,7 +63,7 @@
     height: 10vh;
     background-color: #000000;
     border-radius: 5px;
-    border-color: #2563eb;
+    border-color: white;
     border-style:ridge;
     border-width: 1px;
     font-family: 'Public Sans', sans-serif;
@@ -72,6 +72,7 @@
     justify-content: center;
     box-shadow: #0103018a 0 3px 15px;
     align-items: center;
+    margin-top: 50px;
 }
 
 

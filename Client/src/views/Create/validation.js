@@ -32,7 +32,7 @@ const formValidator = (data) => {
 }
   
         //validación imágen
-        if (!data.image.trim()) {
+        if (!data.image ===null) {
             errors.image = '⚠ Ingresa una imágen para el producto.';
          
           }
