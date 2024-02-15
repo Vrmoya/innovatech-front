@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  background-color: #fafafa;
 }
 
 .productImage {
@@ -19,7 +20,7 @@
   font-family: "Public Sans", sans-serif;
 }
 
-.productName {
+.productTittle {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   font-family: "Public Sans", sans-serif;
@@ -27,5 +28,6 @@
 
 .productPrice {
   font-size: 2rem;
-
+  font-weight: bold;
+  margin-bottom: 1rem;
 }

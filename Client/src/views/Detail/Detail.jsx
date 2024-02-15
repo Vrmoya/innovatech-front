@@ -27,14 +27,18 @@ const Detail = () => {
   };
 
   return (
+    <>
+    <div className='container'>
     <div className={styles.detailContainer}>
       <img src={imageIpad} alt={product.name} className={styles.productImage} />
       <div className={styles.productInfo}> 
-      <h1 className={styles.productName}>{product.model}</h1>
+      <h1 className={styles.productTittle}>{product.model}</h1>
       <p className={styles.productPrice}>{product.price}</p>
       <hr />
         </div> 
     </div>
+    </div>
+    </>
   )
 };
 
