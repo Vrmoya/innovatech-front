@@ -38,10 +38,9 @@ const Detail = () => {
       <hr />
       <p className={styles.productDescription}>{product.description}</p>
       <button className={styles.buttonCart}>Add to Cart</button>
-
-      {/* <a href="#" className="btn btn-primary active" role="button" data-bs-toggle="button" aria-pressed="true">Add to card</a> */}
         </div> 
     </div>
+    
     </div>
     </>
   )
