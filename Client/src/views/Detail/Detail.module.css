@@ -1,3 +1,9 @@
+.container-fluid .contenedor{
+  border-radius: 50px;
+  padding-top: 20px;
+}
+
+
 .detailContainer {
   display: flex;
   flex-wrap: wrap;
@@ -5,6 +11,7 @@
   justify-content: center;
   padding: 2rem;
   background-color: #fafafa;
+  border: 1px solid rgba(128, 128, 128, 0.959);
 }
 
 .productImage {
@@ -30,4 +37,10 @@
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
+}
+
+.productDescription {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-family: "Public Sans", sans-serif;
 }
