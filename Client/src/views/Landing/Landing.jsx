@@ -2,6 +2,7 @@ import style from './Landing.module.css'
 import one from '../../../public/MacBook-Pro-M1.png'
 import two from '../../../public/MacBook-Pro-M1-2.png'
 import three from '../../../public/MacBook-Pro-M1-3.png'
+import Carousel from '../../components/Carousel/Carousel'
 
 const Home = () => {
   return (
@@ -30,6 +31,9 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={style.carouselContent}>
+        <Carousel></Carousel>
       </div>
     </div>
   )

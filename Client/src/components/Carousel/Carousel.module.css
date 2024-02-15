@@ -1,0 +1,44 @@
+.slider{
+    height: 300px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+.slideTrack{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.slide{
+    height: 250px;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin: 1em 1em;
+    border: 1px solid #7471723a;
+    border-radius: 8px;
+    cursor: pointer;
+    animation: scroll 150s linear infinite;
+}
+
+.slide:hover{
+    border: 1px solid #2563eb;
+}
+
+.img{
+    object-fit: cover;
+    width: 100%;
+}
+
+@keyframes scroll {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(calc(-500px * 4));
+    }
+}
