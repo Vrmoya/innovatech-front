@@ -140,7 +140,7 @@ const CarouselDetail = () => {
   return (
     <>
       <div className={style.contenedor}>
-        <h1 className={style.tittle}>Productos destacados</h1>
+        <h1 className={style.tittle}>Related Products</h1>
         <Carousel responsive={responsive}>
           {productosCategoria &&
             productosCategoria.map((product) => (
@@ -150,12 +150,11 @@ const CarouselDetail = () => {
                     <img
                       src={product.image}
                       className={style.productImage}
-                      alt=""
+                      alt="Imagen producto de tecnologia"
                     />
                   </div>
-                  <h2>{product.model}</h2>
-                  <p className={style.price}>{product.price}</p>
-
+                  <h3>{product.model}</h3>
+                  <p className={style.price}>{product.price} USD</p>
                   <button className={style.addToCart}>Add to Cart</button>
                 </div>
               </section>

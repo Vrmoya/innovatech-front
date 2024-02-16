@@ -43,7 +43,7 @@ const Detail = () => {
                 <hr />
                 <div className="container">
                   <div>
-                    <ul className={styles.productSpecs}>
+                    <ul className={`${styles.productSpecs} ${styles.circleList}`}>
                       <li>
                         <strong>Processor:</strong> {productRender.processor}
                       </li>
@@ -68,11 +68,11 @@ const Detail = () => {
                         {productRender.operatingSistem}
                       </li>
                       <li>
-                        <strong>Dimensions:</strong> 
+                        <strong>Dimensions: </strong> 
                         {productRender.dimensions}
                       </li>
                       <li>
-                        <strong>Weight:</strong> 
+                        <strong>Weight: </strong> 
                         {productRender.weight}
                       </li>
                       <li>
@@ -84,7 +84,7 @@ const Detail = () => {
                         {productRender.connectivity}
                       </li>
                       <li>
-                        <strong>Warranty:</strong> 
+                        <strong>Warranty: </strong> 
                         {productRender.warranty}
                       </li>
                     </ul>
@@ -98,7 +98,9 @@ const Detail = () => {
             </>
           )}
         </div>
+        <div className={styles.contenedorCarousel}>
         <CarouselDetail />
+        </div>
       </div>
     </>
   )

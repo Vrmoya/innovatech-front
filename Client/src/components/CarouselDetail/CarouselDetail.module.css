@@ -12,6 +12,11 @@
     height: auto;
     border-radius: 5px;
   }
+  .modelName{
+    font-size: 1px;
+    
+
+  }
   
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -25,7 +30,8 @@
   }
   
 .price {
-    font-size: 22px;
+    font-size: 15px;
+    font-weight: bold;
 }
   
 .addToCart{
@@ -51,4 +57,8 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
+    
+}
+.tittle{
+  padding-bottom: 15px;
 }
