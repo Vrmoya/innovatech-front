@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 .container {
+   
     /* margin-top: 10px; */
     width: 100vw;
-    height: 100vh;
-    background-color: #747172;
+    height: auto;
+    /* background-color: #747172; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,8 +14,9 @@
 .formContainer {
     /* width: 50vw;
     height: 85vh; */
-    width: 50vw;
-    height: 100vh;
+    
+    width: 40vw;
+    height: auto;
 
     display: flex;
     align-content: center;
@@ -37,7 +39,7 @@
 }
 
 .option {
-    padding-top: 2px;
+    padding-top: 5px;
     height: 7vh;
     display: flex;
     flex-direction: column;
@@ -47,6 +49,7 @@
 }
 
 .text{
+    margin-top: 20px;
     display: flex;
     /* flex-direction: column; */
     flex-direction: row;
@@ -59,7 +62,7 @@
 }
 .titulo{
     display: flex;
-    width: 50vw;
+    width: 40vw;
     height: 10vh;
     background-color: #000000;
     border-radius: 5px;

@@ -12,17 +12,45 @@ const Create = () => {
 //estado local para el manejo de errores
     const [errors, setErrors] = useState ({})
 
+//estado local para select category y renderizado condicional de propiedades
+const [category, setCategory]= useState('')
+
 //guardo el form en un estado local
     const [input, setInput] = useState ({
         category: "",
         model: "",
         price: 0,
         description: "",
+        warranty: "",
+        battery_life: "",
         image: "", //será un "string" que corresponde a una URL de Cloudinary
+        screen: "",
+        ram: "",
+        operating_sistem: "",
+        video_card: "",
+
 
 
 
     });
+
+
+//Manejo del select de  la propiedad "category"
+const handleChangeCategory = (e) =>{
+    const value= e.target.value;
+     // Validar el campo de selección utilizando el validador
+     const fieldErrors = formValidator({ ...input, category: value });
+     setCategory(value)
+
+     // Actualizar el estado de los errores
+     setErrors({ ...errors, ...fieldErrors });
+ 
+    setInput ({
+        ...input,
+        category: value,
+})
+
+}
 
 // Handler que maneja el change de los input "text-type"
  function handleChange (e){
@@ -47,21 +75,7 @@ const handlePriceChange = (e) => {
     });
 };
 
-//Manejo del select de  la propiedad "category"
-const handleSelect = (e) =>{
-    const value= e.target.value;
-     // Validar el campo de selección utilizando el validador
-     const fieldErrors = formValidator({ ...input, category: value });
 
-     // Actualizar el estado de los errores
-     setErrors({ ...errors, ...fieldErrors });
- 
-    setInput ({
-        ...input,
-        category: value,
-})
-
-}
 
 //Manejo del select Image
 const handleSelectImage = (e)=>{
@@ -106,16 +120,18 @@ const handleSubmitForm = (e) => {
              
              <h1 className={style.titulo}> Add products to Innova Tech Stock </h1>
            
+           
            <div className={style.formContainer}>
+            
             <form >
                 
                 <div className={style.text}>Category</div>
                 <div  className={style.option} >
                     <select
                     className={style.input}
-                    onChange={(e)=>handleSelect(e)}
+                    onChange={(e)=>handleChangeCategory(e)}
                     >
-                <option disabled defaultValue>Select category</option>
+                <option value="">Select category</option>
                 <option value="laptop">Laptop</option>
                 <option value="smartphone">Smartphone</option>
                 <option value="tablet">Tablet</option>
@@ -170,6 +186,31 @@ const handleSubmitForm = (e) => {
                     />{errors.description && <p className={style.error}>{errors.description}</p>}
                 </div>
 <hr />
+
+<div className={style.text}>Warranty</div>
+                <div  className={style.option} >
+                    <input 
+                    onChange= {handleChange}
+                    className={style.input}
+                    type="text" 
+                    value= {input.warranty}
+                    name= "warranty"
+                    
+                    />{errors.description && <p className={style.error}>{errors.description}</p>}
+                </div>
+<hr />
+<div className={style.text}>Battery Life</div>
+                <div  className={style.option} >
+                    <input 
+                    onChange= {handleChange}
+                    className={style.input}
+                    type="text" 
+                    value= {input.battery_life}
+                    name= "battery_life"
+                    
+                    />{errors.description && <p className={style.error}>{errors.description}</p>}
+                </div>
+<hr />
                 <div className={style.text}>Update Image Product</div>
                 
                 <div  className={style.option} >
@@ -185,12 +226,94 @@ const handleSubmitForm = (e) => {
             {selectedImage && (
                 <div>
                     <p>Imagen seleccionada:</p>
-                    <img src={URL.createObjectURL(selectedImage)} alt="Selected" style={{ maxWidth: '200px' }} />
+                    <img src={URL.createObjectURL(selectedImage)} alt="Selected" style={{ maxWidth: '100px' }} />
                 </div>
             )}
                 
                 </div>
 <hr />
+
+{(category === "laptop" || category==="smartphone" || category === "tablet" )&& 
+(   <div>
+      <div className={style.text}>Screen</div>
+                <div  className={style.option} >
+                    <input 
+                    onChange= {handleChange}
+                    className={style.input}
+                    type="text" 
+                    value= {input.screen}
+                    name= "screen"
+                    
+                    />{errors.screen && <p className={style.error}>{errors.screen}</p>}
+                </div>
+                
+<hr />
+<div >
+<div className={style.text}>Ram</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.ram}
+              name= "ram"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+
+          <hr />
+
+          <div >
+<div className={style.text}>Processor</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.processor}
+              name= "processor"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+          <div >
+<div className={style.text}>Operating sistem</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.operating_sistem}
+              name= "operating_sistem"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+<hr />
+          <div >
+<div className={style.text}>Video Card</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.video_card}
+              name= "video_card"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+
+
+          </div>
+          
+
+)
+
+}
 
 
 

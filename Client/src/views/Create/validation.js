@@ -3,6 +3,7 @@
 const formValidator = (data) => {
     let errors = {};
   
+    //errores en el campo "model"
     if (!data.model.trim()) {
       errors.model = '⚠Ingresa un nombre para el producto.';
    
@@ -11,7 +12,7 @@ const formValidator = (data) => {
       }
 
     
-  
+  //errores en el campo "category"
     if (!data.category.trim()) {
       errors.category = '⚠Ingresa una categoría para el producto';
      }
@@ -21,22 +22,36 @@ const formValidator = (data) => {
    
    
     }
+
+    //errores en el campo "description"
   
     if (!data.description.trim()){
         errors.description = '⚠Ingresa una descripción para el producto';
     }
 
- //validación precio
+ //errores en el campo precio
  if (isNaN(data.price)) {
     errors.price = '⚠ Ingresa un precio válido para el producto.';
 }
   
-        //validación imágen
+        
+//errores en el campo imágen
         if (!data.image ===null) {
             errors.image = '⚠ Ingresa una imágen para el producto.';
          
           }
   
+
+//errores en el campo screen
+if (!data.screen.trim()) {
+  errors.screen = '⚠ Completa el campo "screen".'
+}
+
+
+if (!data.ram.trim()){
+  errors.ram='⚠ Completa el campo "ram".'
+}
+
     return errors;
   };
   
