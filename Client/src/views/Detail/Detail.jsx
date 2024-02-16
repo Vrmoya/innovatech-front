@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import products from "../../data";
 import { useState } from "react";
+import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
 
 const Detail = () => {
   const { id } = useParams();
@@ -17,9 +18,9 @@ const Detail = () => {
       setProductRender(filteredProduct[0]);
     };
     if (id) {
-      searchProduct();
+      searchProduct()
     }
-  }, [id]);
+  }, [id])
 
   return (
     <>
@@ -59,17 +60,20 @@ const Detail = () => {
                         <strong>RAM:</strong> {productRender.Ram}
                       </li>
                       <li>
-                        <strong>Video Card:</strong> {productRender.videoCard}
+                        <strong>Video Card:</strong> 
+                        {productRender.videoCard}
                       </li>
                       <li>
                         <strong>Operating System:</strong>{" "}
                         {productRender.operatingSistem}
                       </li>
                       <li>
-                        <strong>Dimensions:</strong> {productRender.dimensions}
+                        <strong>Dimensions:</strong> 
+                        {productRender.dimensions}
                       </li>
                       <li>
-                        <strong>Weight:</strong> {productRender.weight}
+                        <strong>Weight:</strong> 
+                        {productRender.weight}
                       </li>
                       <li>
                         <strong>Battery Life:</strong>{" "}
@@ -80,7 +84,8 @@ const Detail = () => {
                         {productRender.connectivity}
                       </li>
                       <li>
-                        <strong>Warranty:</strong> {productRender.warranty}
+                        <strong>Warranty:</strong> 
+                        {productRender.warranty}
                       </li>
                     </ul>
                   </div>
@@ -93,9 +98,10 @@ const Detail = () => {
             </>
           )}
         </div>
+        <CarouselDetail />
       </div>
     </>
-  );
+  )
 };
 
 export default Detail;
