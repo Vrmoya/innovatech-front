@@ -35,7 +35,7 @@ const Detail = () => {
               />
               <div className={styles.productInfo}>
                 <h1 className={styles.productTittle}>{productRender.model}</h1>
-                <p className={styles.productPrice}>{productRender.price} USD</p>
+                <button className={styles.productPrice}>{productRender.price} USD</button>
                 <hr />
                 <p className={styles.productDescription}>
                   {productRender.description}

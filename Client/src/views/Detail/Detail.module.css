@@ -91,11 +91,14 @@
   margin-bottom: 0.5rem;
 }
 
-.product-price {
+.productPrice {
+  border: none;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #2563eb;
+  background-color: #2563eb;
+  color: white;
   margin-bottom: 1rem;
+  border-radius: 20px;
 }
 
 .productSpecs {
@@ -124,11 +127,8 @@
   font-weight: bold;
   
 }
-ul {
-  list-style-type: disc; /* o circle para un círculo hueco */
-}
 .circleList {
-  list-style-type: disc; /* o circle para un círculo hueco */
+  list-style-type: disc; 
 }
 
 .contenedorCarousel{
@@ -136,3 +136,4 @@ ul {
   flex-direction: row;
   justify-content: space-between;
 }
+

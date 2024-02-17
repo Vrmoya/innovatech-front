@@ -25,8 +25,9 @@
     text-align: center;
     cursor: pointer;
     font-family: "Public Sans", sans-serif;
-    border-radius: 20px;
     overflow: hidden;
+    border: 1px solid grey;
+    border-radius: 7px;
   }
   
 .price {
