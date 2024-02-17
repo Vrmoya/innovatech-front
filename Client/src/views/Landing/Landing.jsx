@@ -5,6 +5,7 @@ import three from '../../../public/MacBook-Pro-M1-3.png'
 import Carousel from '../../components/Carousel/Carousel'
 
 const Home = () => {
+
   return (
     <div className={style.container}>
       <div className={style.section}>
