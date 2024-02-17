@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 import formValidator from './validation';
 import axios from 'axios';
-
+import {useDispatch} from 'react-redux';
 
 
 const Create = () => {
@@ -12,7 +12,8 @@ const Create = () => {
     const [urlImage, setUrlImage] = useState(null);
 //estado local para el manejo de errores
     const [errors, setErrors] = useState ({})
-
+//para despachar el post en la ruta
+    const dispatch = useDispatch()
 //estado local para select category y renderizado condicional de propiedades
 const [category, setCategory]= useState('')
 
@@ -116,7 +117,7 @@ const handleSubmitForm = (e) => {
     if (Object.keys(formErrors).length === 0) {
         // Si no hay errores, enviar el formulario al backend
         console.log("Enviando formulario:", input);
-
+        dispatch(postForm(input))
         // Realizar la llamada al backend para enviar los datos utilizando fetch o axios
 
         // Una vez que los datos se han enviado exitosamente mostrar alert
@@ -354,11 +355,6 @@ const handleSubmitForm = (e) => {
 
 
             </form>
-
-           
-
-
-
 
            </div>
            
