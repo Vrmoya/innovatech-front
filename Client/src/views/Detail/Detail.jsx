@@ -5,12 +5,18 @@ import { useParams } from "react-router-dom";
 import products from "../../data";
 import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
+import { getProductById } from "../../redux/actions";
+import { useDispatch, useSelector } from 'react-redux';
 
 const Detail = () => {
   const { id } = useParams();
+  console.log(id)
   const [productRender, setProductRender] = useState(null);
+  const dispatch = useDispatch()
+  const productById = useSelector((state) => state.getProductById)
 
   useEffect(() => {
+    // dispatch(getProductById(id))
     const searchProduct = async () => {
       const filteredProduct = await products?.filter(
         (product) => product.id === Number(id)
@@ -20,90 +26,72 @@ const Detail = () => {
     if (id) {
       searchProduct()
     }
-  }, [id])
+  }, [id]) // Agregar productRender como dependencia
+
+  let productoFiltrado;
+  if(productRender){
+   productoFiltrado = Object.fromEntries(
+      Object.entries(productRender).filter(
+        ([key, value]) =>
+          value !== null &&
+          key !== "createdAt" &&
+          key !== "updatedAt" &&
+          key !== "isActive"
+      )
+    );
+  }
 
   return (
     <>
-      <div className="container-fluid contenedor">
-        <div className={styles.detailContainer}>
-          {productRender && (
-            <>
-              <img
-                src={productRender.image}
-                alt={productRender.name}
-                className={styles.productImage}
-              />
-              <div className={styles.productInfo}>
-                <h1 className={styles.productTittle}>{productRender.model}</h1>
-                <button className={styles.productPrice}>{productRender.price} USD</button>
-                <hr />
-                <p className={styles.productDescription}>
-                  {productRender.description}
-                </p>
-                <hr />
-                <div className="container">
-                  <div>
-                    <ul className={`${styles.productSpecs} ${styles.circleList}`}>
-                      <li>
-                        <strong>Processor:</strong> {productRender.processor}
-                      </li>
-                      <li>
-                        <strong>Screen:</strong> {productRender.screen}
-                      </li>
-                      <li>
-                        <strong>Hardcore:</strong> {productRender.hardcore}
-                      </li>
-                      <li>
-                        <strong>Use Type:</strong> {productRender.useType}
-                      </li>
-                      <li>
-                        <strong>RAM:</strong> {productRender.Ram}
-                      </li>
-                      <li>
-                        <strong>Video Card:</strong> 
-                        {productRender.videoCard}
-                      </li>
-                      <li>
-                        <strong>Operating System:</strong>{" "}
-                        {productRender.operatingSistem}
-                      </li>
-                      <li>
-                        <strong>Dimensions: </strong> 
-                        {productRender.dimensions}
-                      </li>
-                      <li>
-                        <strong>Weight: </strong> 
-                        {productRender.weight}
-                      </li>
-                      <li>
-                        <strong>Battery Life:</strong>{" "}
-                        {productRender.batteryLife}
-                      </li>
-                      <li>
-                        <strong>Connectivity:</strong>{" "}
-                        {productRender.connectivity}
-                      </li>
-                      <li>
-                        <strong>Warranty: </strong> 
-                        {productRender.warranty}
-                      </li>
-                    </ul>
+    <div className="container-fluid contenedor">
+      <div className={styles.detailContainer}>
+        {productoFiltrado && (
+          <>
+            {Object.entries(productoFiltrado).map(([key, value]) => (
+              <>
+                {key === "image" && (
+                  <img src={value} alt="Product Image" className={styles.productImage} />
+                )}
+                <div className={styles.productInfo}></div>
+                {key === "model" && (
+                  <h1 className={styles.productTittle}>{value}</h1>
+                )}
+                {key === "price" && (
+                  <button className={styles.productPrice}>{value} USD</button>
+                )}
+                {key === "description" && (
+                  <>
+                    <hr />
+                    <p className={styles.productDescription}>{value}</p>
+                    <hr />
+                  </>
+                )}
+                {key !== "id" && key !== "image" && key !== "model" && key !== "price" && key !== "description" && (
+                   <div className="container">
+                   <div>
+                   <ul className={`${styles.productSpecs} ${styles.circleList}`}>
+                  <li className={styles.productSpec}>
+                    <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                  </li>
+                  </ul>
                   </div>
-                </div>
-                <button className={styles.buttonCart}>
-                  <i className="bi bi-plus"></i>
-                  Add to Cart
-                </button>
-              </div>
-            </>
-          )}
-        </div>
-        <div className={styles.contenedorCarousel}>
-        <CarouselDetail />
-        </div>
+                  </div>
+                )}
+              </>
+            ))}
+            <hr />
+            <button className={styles.buttonCart}>
+              <i className="bi bi-plus"></i>
+              Add to Cart
+            </button>
+          </>
+        )}
       </div>
-    </>
-  )
-};
+      <div className={styles.contenedorCarousel}>
+        <CarouselDetail />
+      </div>
+    </div>
+  </>
+)}
 
-export default Detail;
+export default Detail
