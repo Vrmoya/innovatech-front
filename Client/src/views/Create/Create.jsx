@@ -2,13 +2,14 @@ import style from './Create.module.css'
 import { Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 import formValidator from './validation';
+import axios from 'axios';
 
 
 
 const Create = () => {
 
-//estado local para el select de imágenes
-    const [selectedImage, setSelectedImage] = useState(null);
+//estado local para el select de imágenes renderiza la URL de Cloudinary
+    const [urlImage, setUrlImage] = useState(null);
 //estado local para el manejo de errores
     const [errors, setErrors] = useState ({})
 
@@ -23,7 +24,7 @@ const [category, setCategory]= useState('')
         description: "",
         warranty: "",
         battery_life: "",
-        image: "", //será un "string" que corresponde a una URL de Cloudinary
+        image: [], //será un "array" que corresponde a una lista de URL de Cloudinary
         screen: "",
         ram: "",
         operating_sistem: "",
@@ -78,10 +79,31 @@ const handlePriceChange = (e) => {
 
 
 //Manejo del select Image
-const handleSelectImage = (e)=>{
-    const file = e.target.files[0];
-    setSelectedImage(file);
-    setInput({ ...input, image: file }); // Guarda el archivo en el estado
+const handleSelectImage = async (event)=>{
+    const files = event.target.files;
+    setUrlImage(files);
+const newImages= [...input.image];
+
+for (let i=0; i<files.length;i++){
+    const file = files [i];
+    
+//enviar imágen a Cloudinary
+const data = new FormData();
+data.append ('file', file);
+data.append ('upload_preset', 'innova_tech');
+
+try {
+    const response= await axios.post('https://api.cloudinary.com/v1_1/dfhk5g0yv/image/upload', data)
+newImages.push(response.data.secure_url);
+
+}catch (error){
+    console.error('Error al enviar la imagen a Cloudinary:', error);
+}
+
+}
+
+ // Actualizar el estado con las nuevas imágenes
+ setInput({ ...input, image: newImages });
 }
 
 //Manejo del Submit Form
@@ -123,7 +145,7 @@ const handleSubmitForm = (e) => {
            
            <div className={style.formContainer}>
             
-            <form >
+            <form onSubmit={(e)=>handleSubmitForm(e)}>
                 
                 <div className={style.text}>Category</div>
                 <div  className={style.option} >
@@ -218,17 +240,20 @@ const handleSubmitForm = (e) => {
                     onChange= {handleSelectImage}
                     className={style.input}
                     type="file" 
+                    accept="image/*"
                     // value= {input.image}
-                    name= "image"
+                    name= "file"
                 
-                />{errors.image && <p className={style.error}>{errors.image}</p>}
+                />
+                 
+                    {errors.image && <p className={style.error}>{errors.image}</p>}
                 {/* Visualizar la imagen seleccionada (opcional) */}
-            {selectedImage && (
+            {/* {selectedImage && (
                 <div>
                     <p>Imagen seleccionada:</p>
                     <img src={URL.createObjectURL(selectedImage)} alt="Selected" style={{ maxWidth: '100px' }} />
                 </div>
-            )}
+            )} */}
                 
                 </div>
 <hr />
@@ -323,7 +348,9 @@ const handleSubmitForm = (e) => {
 
 
 
-
+<div className={style.button}>
+          <button type='submit'
+          >Create Product</button></div>
 
 
             </form>
@@ -334,7 +361,7 @@ const handleSubmitForm = (e) => {
 
 
            </div>
-           <button onClick={handleSubmitForm}>Enviar Form</button>
+           
 
 
 
