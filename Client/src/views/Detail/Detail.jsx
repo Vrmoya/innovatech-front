@@ -46,7 +46,7 @@ const Detail = () => {
   return (
     <>
       {productoFiltrado && (
-        <div className="contenedor">
+        <div className={styles.contenedor}>
           <div className={styles.detailContainer}>
             <div className={styles.contenedorGallery}>
             <CarouselDetailImages/>

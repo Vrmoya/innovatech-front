@@ -2,6 +2,7 @@ import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 import styles from './../CarouselDetailImages/CarouselDetailImages.module.css';
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
 
 
 const data = [
@@ -18,9 +19,26 @@ const data = [
 ]
 
 const CarouselDetailImages = () => {
+    const getProductById = useSelector((state) => state.getProductById)
+
+    const productImages = () => {
+        const images = getProductById.images.split()
+    }
+
+    useEffect(() => {
+
+
+
+    },[getProductById])
+    
+
     return(
         <div>
-            <ImageGallery items={data} showPlayButton={false} showFullscreenButton={false}/>
+            <ImageGallery 
+            items={data} 
+            showPlayButton={false} 
+            showFullscreenButton={false}
+            />
         </div>
     )
 }
