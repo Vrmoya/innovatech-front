@@ -7,6 +7,7 @@ import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
 import { getProductById } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 
 const Detail = () => {
   const { id } = useParams();
@@ -47,11 +48,9 @@ const Detail = () => {
       {productoFiltrado && (
         <div className="contenedor">
           <div className={styles.detailContainer}>
-            <img
-              src={productoFiltrado.image}
-              alt={productoFiltrado.model}
-              className={styles.productImage}
-            />
+            <div className={styles.contenedorGallery}>
+            <CarouselDetailImages/>
+            </div>
             <div className={styles.productInfo}>
               <h1 className={styles.productTittle}>{productoFiltrado.model}</h1>
               <button className={styles.productPrice}>
