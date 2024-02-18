@@ -1,9 +1,4 @@
-.slider {
-    display: flex;
-    overflow: auto;
-}
-
-.slide {
+.container{
     display: flex;
     align-items: end;
     height: 300px;
@@ -18,14 +13,15 @@
     overflow: hidden;
     color: #000;
     text-decoration: none;
+    float: left;
 }
 
-.slide:hover {
+.container:hover {
     border-color: #2563eb;
-    
 }
 
-.img {
+
+.img{
     object-fit: contain;
     width: 300px;
     height: 100%;
@@ -40,6 +36,7 @@
     border-radius: 30px;
     background-color: rgba(255, 255, 255, 0.7);
     margin: 1em;
+    max-width: 270px; /* Limita el ancho máximo */
 }
 
 .button {
@@ -53,22 +50,14 @@
 }
 
 .p {
+    font-size: .7em;
+    font-weight: bold;
     margin: 5px;
     padding: 5px;
 }
 
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-450%);
-    }
-}
-
 @media screen and (min-width: 768px){
-    .slide:hover .img{
+    .container:hover .img{
         transition: .5s;
         transform: scale(1.05);
     }

@@ -7,18 +7,19 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
-    switch (action.type){
+    switch (action.type) {
         case GET_PRODUCTS:
-            return {...state, products: action.payload}
-            case GET_PRODUCT_BY_ID:
-                return {
-                    ...state,
-                    getProductById: action.payload,
-                    productDetailExist: true
-                }
+            return { ...state, products: action.payload }
+            
+        case GET_PRODUCT_BY_ID:
+            return {
+                ...state,
+                getProductById: action.payload,
+                productDetailExist: true
+            }
 
         default:
-            return {...state}
+            return { ...state }
     }
 }
 
