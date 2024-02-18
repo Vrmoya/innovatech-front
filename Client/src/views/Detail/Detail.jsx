@@ -1,3 +1,4 @@
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./Detail.module.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -6,7 +7,6 @@ import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
 import { getProductById } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Detail = () => {
   const { id } = useParams();
@@ -45,7 +45,7 @@ const Detail = () => {
   return (
     <>
       {productoFiltrado && (
-        <div className="container-fluid contenedor">
+        <div className="contenedor">
           <div className={styles.detailContainer}>
             <img
               src={productoFiltrado.image}
