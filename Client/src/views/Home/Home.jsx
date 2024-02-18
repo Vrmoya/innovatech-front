@@ -3,6 +3,8 @@ import CardsContainer from '../../components/CardsContainer/CardsContainer';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getProducts } from '../../redux/actions';
+import Filter from '../../components/Filter/Filter'
+import Order from '../../components/Order/Order'
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -10,10 +12,18 @@ const Home = () => {
     useEffect(() => {
         dispatch(getProducts())
     }, [])
-    
-    return(
-        <div>
-            <CardsContainer></CardsContainer>
+
+    return (
+        <div className={style.container}>
+            <div>
+                <Filter></Filter>
+            </div>
+            <div>
+                <CardsContainer></CardsContainer>
+            </div>
+            <div>
+                <Order></Order>
+            </div>
         </div>
     )
 }
