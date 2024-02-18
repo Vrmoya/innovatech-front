@@ -14,6 +14,7 @@ export function postForm(payload){
 };
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
 
 export const getProducts = () => {
     return async function (dispatch) {
@@ -37,5 +38,12 @@ export const getProductById = (id) => {
         }catch(err) {
             console.log(err)
         }
+    }
+}
+
+export const cleanProductById = () => {
+    return{
+        type: CLEAN_PRODUCT_BY_ID,
+        payload: {}
     }
 }

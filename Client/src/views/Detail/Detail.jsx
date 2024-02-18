@@ -2,10 +2,9 @@
 import styles from "./Detail.module.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import products from "../../data";
 import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
-import { getProductById } from "../../redux/actions";
+import { getProductById, cleanProductById } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 
@@ -18,7 +17,9 @@ const Detail = () => {
   useEffect(() => {
     dispatch(getProductById(id))
 
-    
+    return () => {
+      dispatch(cleanProductById())
+    }
   }, [id]); 
 
   let productoFiltrado;
@@ -40,12 +41,12 @@ const Detail = () => {
       const data = imagenes.map(img => ({
           original: img,
           thumbnail: img,
-      }));
+      }))
       if (data.length > 0) {
-        setImages(data);
+        setImages(data)
       }
     }
-  }, [productById]);
+  }, [productById])
   return (
     <>
       {productoFiltrado  && images && (
