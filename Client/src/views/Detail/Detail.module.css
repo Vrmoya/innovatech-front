@@ -1,0 +1,139 @@
+.container-fluid .contenedor{
+  border-radius: 50px;
+  padding-top: 20px;
+}
+
+.detailContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px solid rgba(128, 128, 128, 0.959);
+  height: auto;
+}
+
+.productImage {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.productInfo {
+  flex: 1;
+  margin-left: 2rem;
+  font-family: "Public Sans", sans-serif;
+}
+
+.productTittle {
+  font-size: 35px;
+  font-family: "Public Sans", sans-serif;
+  margin-bottom: 15px;
+  
+}
+
+.productPrice {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 1px;
+}
+
+.productDescription {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-family: "Public Sans", sans-serif;
+  color: #747172;
+  padding-top: 10px;
+}
+.buttonCart {
+  display: flex;
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Public Sans", sans-serif;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  margin-top: 20px;
+}
+.buttonCart:hover {
+  opacity: 0.7;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.product-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-name {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.productPrice {
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #2563eb;
+  color: white;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+}
+
+.productSpecs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-left: 7px;
+}
+.contenedor{
+  border: 1px solid rgba(128, 128, 128, 0.959);
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  padding-left: 70px;
+}
+
+.product-specs li {
+  font-size: 1rem;
+}
+
+.product-specs strong {
+  font-weight: bold;
+  
+}
+.circleList {
+  list-style-type: disc; 
+}
+
+.contenedorCarousel {
+  display: flex;
+  flex-direction: column; /* Cambiamos la dirección a columna para dispositivos móviles */
+  justify-content: space-between;
+}
+
+
