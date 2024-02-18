@@ -116,7 +116,6 @@
   justify-content: left;
   flex-direction: column;
   padding-left: 70px;
-
 }
 
 .product-specs li {
@@ -131,9 +130,10 @@
   list-style-type: disc; 
 }
 
-.contenedorCarousel{
+.contenedorCarousel {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* Cambiamos la dirección a columna para dispositivos móviles */
   justify-content: space-between;
 }
+
 
