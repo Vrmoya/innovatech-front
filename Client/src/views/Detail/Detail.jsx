@@ -11,28 +11,20 @@ import CarouselDetailImages from "../../components/CarouselDetailImages/Carousel
 
 const Detail = () => {
   const { id } = useParams();
-  console.log(id);
-  const [productRender, setProductRender] = useState(null);
+  const [images, setImages] = useState('');
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
 
   useEffect(() => {
-    // dispatch(getProductById(id))
-    const searchProduct = async () => {
-      const filteredProduct = await products?.filter(
-        (product) => product.id === Number(id)
-      );
-      setProductRender(filteredProduct[0]);
-    };
-    if (id) {
-      searchProduct();
-    }
-  }, []); // Agregar productRender como dependencia
+    dispatch(getProductById(id))
+
+    
+  }, [id]); 
 
   let productoFiltrado;
-  if (productRender) {
+  if (productById) {
     productoFiltrado = Object.fromEntries(
-      Object.entries(productRender).filter(
+      Object.entries(productById).filter(
         ([key, value]) =>
           value !== null &&
           key !== "createdAt" &&
@@ -41,15 +33,26 @@ const Detail = () => {
       )
     );
   }
-  console.log(productoFiltrado);
 
+  useEffect(() => {
+    if (productoFiltrado && productoFiltrado.image && Array.isArray(productoFiltrado.image)) {
+      const imagenes = productoFiltrado.image;
+      const data = imagenes.map(img => ({
+          original: img,
+          thumbnail: img,
+      }));
+      if (data.length > 0) {
+        setImages(data);
+      }
+    }
+  }, [productById]);
   return (
     <>
-      {productoFiltrado && (
+      {productoFiltrado  && images && (
         <div className={styles.contenedor}>
           <div className={styles.detailContainer}>
             <div className={styles.contenedorGallery}>
-            <CarouselDetailImages/>
+              <CarouselDetailImages images={images} />
             </div>
             <div className={styles.productInfo}>
               <h1 className={styles.productTittle}>{productoFiltrado.model}</h1>
@@ -98,3 +101,12 @@ const Detail = () => {
 };
 
 export default Detail;
+ // const searchProduct = async () => {
+    //   const filteredProduct = await products?.filter(
+    //     (product) => product.id === Number(id)
+    //   );
+    //   setProductRender(filteredProduct[0]);
+    // };
+    // if (id) {
+    //   searchProduct();
+    // }
