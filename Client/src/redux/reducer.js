@@ -3,7 +3,6 @@ import { CLEAN_PRODUCT_BY_ID, GET_PRODUCTS, GET_PRODUCT_BY_ID, FILTER_BY_MODEL }
 const initialState = {
     products: [],
     getProductById: {},
-    productFiltered: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -32,7 +31,7 @@ const rootReducer = (state = initialState, action) => {
                     case FILTER_BY_MODEL:
                         return{
                             ...state,
-                            productFiltered: action.payload
+                            products: action.payload
                         }
         default:
             return { ...state }

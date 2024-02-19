@@ -68,8 +68,8 @@ const Detail = () => {
                 {productoFiltrado.description}
               </p>
               <hr />
-              <div className="container">
-                <div>
+              <div className={styles.containerSpecs}>
+               
                 <ul className={`${styles.productSpecs} ${styles.circleList}`}>
                   {Object.entries(productoFiltrado).map(
                     ([key, value]) =>
@@ -87,11 +87,11 @@ const Detail = () => {
                       )
                   )}
                 </ul>
-                </div>
+             
               </div>
               <button className={styles.buttonCart}>
                       <i className="bi bi-plus"></i>
-                      Add to Cart
+                      Add To Cart
                     </button>
             </div>
           </div>

@@ -3,12 +3,11 @@ import { useSelector } from "react-redux"
 import Card from "../Card/Card";
 
 const CardsContainer = () => {
-    const productsData = useSelector(state => state.products.data)
-    const productFiltered = useSelector((state) => state.productFiltered)
+    const productsData = useSelector(state => state.products)
 
     return (
         <div className={style.container}>
-            {productFiltered?.map(product => {
+            {productsData?.map(product => {
                 return <Card
                     key={product?.id}
                     id={product?.id}
