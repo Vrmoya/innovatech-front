@@ -20,6 +20,7 @@ const [category, setCategory]= useState('')
 //guardo el form en un estado local
     const [input, setInput] = useState ({
         category: "",
+        categories: [], // Ajustamos el objeto input para incluir categories
         model: "",
         price: 0,
         description: "",
@@ -37,22 +38,17 @@ const [category, setCategory]= useState('')
     });
 
 
-//Manejo del select de  la propiedad "category"
-const handleChangeCategory = (e) =>{
-    const value= e.target.value;
-     // Validar el campo de selección utilizando el validador
-     const fieldErrors = formValidator({ ...input, category: value });
-     setCategory(value)
 
-     // Actualizar el estado de los errores
-     setErrors({ ...errors, ...fieldErrors });
- 
-    setInput ({
+
+// Manejo del select de la propiedad "category"
+const handleChangeCategory = (event) => {
+    const value = event.target.value;
+    setCategory(value); // Actualizamos el estado local category
+    setInput({
         ...input,
-        category: value,
-})
-
-}
+        categories: [{ name: value }]
+    });
+};
 
 // Handler que maneja el change de los input "text-type"
  function handleChange (e){
@@ -108,29 +104,39 @@ newImages.push(response.data.secure_url);
 }
 
 //Manejo del Submit Form
-const handleSubmitForm = (e) => {
+const handleSubmitForm = async(e) => {
     e.preventDefault();
 
     // Validar el formulario
     const formErrors = formValidator(input);
 
     if (Object.keys(formErrors).length === 0) {
-        // Si no hay errores, enviar el formulario al backend
-        console.log("Enviando formulario:", input);
-        dispatch(postForm(input))
-        // Realizar la llamada al backend para enviar los datos utilizando fetch o axios
-
-        // Una vez que los datos se han enviado exitosamente mostrar alert
-        alert("¡Producto agregado con éxito!");
-
-        // Luego, reiniciar form
-        setInput({
-            category: "",
-            model: "",
-            price: 0,
-            description: "",
-            image: ""
-        });
+        if (input.categories.length === 0) {
+            // Si no hay categorías seleccionadas, muestra un error y no envíes el formulario
+            alert("Seleccione una categoría antes de enviar el formulario.");
+            return;
+        }
+        try {
+            // Realizar la llamada al backend para enviar los datos utilizando axios
+            const response = await axios.post('http://localhost:3001/products', input);
+            
+            // Una vez que los datos se han enviado exitosamente, mostrar una alerta
+            alert("¡Producto agregado con éxito!");
+            
+            // Luego, reiniciar form
+            setInput({
+                category: "",
+                categories: [], // Reiniciamos las categorías
+                model: "",
+                price: 0,
+                description: "",
+                image: []
+            });
+        } catch (error) {
+            // Si hay un error al enviar los datos, mostrar un mensaje de error
+            console.error("Error al enviar el formulario:", error);
+            alert("Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.");
+        }
     } else {
         // Si hay errores, mostrarlos al usuario
         console.log("Formulario no enviado debido a errores:", formErrors);
@@ -158,8 +164,8 @@ const handleSubmitForm = (e) => {
                 <option value="laptop">Laptop</option>
                 <option value="smartphone">Smartphone</option>
                 <option value="tablet">Tablet</option>
-                <option value="headphones">Headphones</option>
-                <option value="keyboards">Keyboards</option>
+                <option value="headphone">Headphones</option>
+                <option value="keyboard">Keyboards</option>
                 
                 <option value= "newCategory">New Category</option>
                     
