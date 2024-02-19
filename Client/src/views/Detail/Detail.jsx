@@ -2,36 +2,31 @@
 import styles from "./Detail.module.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import products from "../../data";
 import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
-import { getProductById } from "../../redux/actions";
+import { getProductById, cleanProductById } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 
 const Detail = () => {
   const { id } = useParams();
-  console.log(id);
-  const [productRender, setProductRender] = useState(null);
+  const [images, setImages] = useState('');
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
+  const products = useSelector((state) => state.products)
 
   useEffect(() => {
-    // dispatch(getProductById(id))
-    const searchProduct = async () => {
-      const filteredProduct = await products?.filter(
-        (product) => product.id === Number(id)
-      );
-      setProductRender(filteredProduct[0]);
-    };
-    if (id) {
-      searchProduct();
+    dispatch(getProductById(id))
+
+    return () => {
+      dispatch(cleanProductById())
     }
-  }, []); // Agregar productRender como dependencia
+  }, [id]); 
 
   let productoFiltrado;
-  if (productRender) {
+  if (productById) {
     productoFiltrado = Object.fromEntries(
-      Object.entries(productRender).filter(
+      Object.entries(productById).filter(
         ([key, value]) =>
           value !== null &&
           key !== "createdAt" &&
@@ -40,18 +35,29 @@ const Detail = () => {
       )
     );
   }
-  console.log(productoFiltrado);
+
+  useEffect(() => {
+    if (productoFiltrado && productoFiltrado.image && Array.isArray(productoFiltrado.image)) {
+      const imagenes = productoFiltrado.image;
+      const data = imagenes.map(img => ({
+          original: img,
+          thumbnail: img,
+      }))
+      if (data.length > 0) {
+        setImages(data)
+      }
+    }
+  }, [productById])
+
 
   return (
     <>
-      {productoFiltrado && (
-        <div className="contenedor">
+      {productoFiltrado  && images && (
+        <div className={styles.contenedor}>
           <div className={styles.detailContainer}>
-            <img
-              src={productoFiltrado.image}
-              alt={productoFiltrado.model}
-              className={styles.productImage}
-            />
+            <div className={styles.contenedorGallery}>
+              <CarouselDetailImages images={images} />
+            </div>
             <div className={styles.productInfo}>
               <h1 className={styles.productTittle}>{productoFiltrado.model}</h1>
               <button className={styles.productPrice}>
@@ -62,8 +68,8 @@ const Detail = () => {
                 {productoFiltrado.description}
               </p>
               <hr />
-              <div className="container">
-                <div>
+              <div className={styles.containerSpecs}>
+               
                 <ul className={`${styles.productSpecs} ${styles.circleList}`}>
                   {Object.entries(productoFiltrado).map(
                     ([key, value]) =>
@@ -81,11 +87,11 @@ const Detail = () => {
                       )
                   )}
                 </ul>
-                </div>
+             
               </div>
               <button className={styles.buttonCart}>
                       <i className="bi bi-plus"></i>
-                      Add to Cart
+                      Add To Cart
                     </button>
             </div>
           </div>

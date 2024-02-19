@@ -9,8 +9,9 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  border: 1px solid rgba(128, 128, 128, 0.959);
+  border: 1px solid #e5e7eb;
   height: auto;
+  border-radius: 10px;
 }
 
 .productImage {
@@ -29,29 +30,27 @@
 .productTittle {
   font-size: 35px;
   font-family: "Public Sans", sans-serif;
-  margin-bottom: 15px;
-  
+  margin-bottom: 5px;
+
 }
 
 .productPrice {
   font-size: 25px;
-  font-weight: bold;
   margin-bottom: 1px;
 }
 
 .productDescription {
   font-size: 1.2rem;
-  margin-bottom: 2rem;
   font-family: "Public Sans", sans-serif;
   color: #747172;
-  padding-top: 10px;
+  padding-top: 5px;
+
 }
 .buttonCart {
   display: flex;
   width: 100%;
   background-color: #2563eb;
   color: white;
-  padding: 10px 20px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -60,6 +59,14 @@
   justify-content: center;
   text-align: center; 
   margin-top: 20px;
+  height: 50px;
+  font-size: 20px;
+}
+@media screen and (max-width: 744px) {
+  .buttonCart{
+    height: 40px;
+    font-size: 15px;
+  }
 }
 .buttonCart:hover {
   opacity: 0.7;
@@ -93,12 +100,17 @@
 
 .productPrice {
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   background-color: #2563eb;
   color: white;
   margin-bottom: 1rem;
   border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+
 }
 
 .productSpecs {
@@ -111,29 +123,53 @@
   padding-left: 7px;
 }
 .contenedor{
-  border: 1px solid rgba(128, 128, 128, 0.959);
   display: flex;
   justify-content: left;
   flex-direction: column;
-  padding-left: 70px;
+  width: 100% auto;
+  margin-right: 30px;
+  margin-left: 30px;
 }
 
-.product-specs li {
+.productSpecs {
   font-size: 1rem;
+  padding-left: 20px;
+
 }
 
-.product-specs strong {
+.productSpec strong {
   font-weight: bold;
-  
+  padding-left: 2px;
+}
+.productSpec{
+  padding-bottom: 4px;
+  padding-top: 4px;
+  font-size: 1.1rem;
 }
 .circleList {
-  list-style-type: disc; 
+  list-style-type: disc; /* Establecer el tipo de marcador de lista como puntos */
 }
+
 
 .contenedorCarousel {
   display: flex;
   flex-direction: column; /* Cambiamos la dirección a columna para dispositivos móviles */
   justify-content: space-between;
 }
+.contenedorGallery {
+  width: 50vw;
+}
 
+@media screen and (max-width: 744) {
+  .contenedorGallery{
+      width: 100vw;
+  }
+}
+.productInfo hr{
+  border: none; 
+  border-top: 1px solid #e5e7eb;
+}
 
+.containerSpecs{
+  padding-top: 15px;
+}
