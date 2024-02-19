@@ -8,8 +8,11 @@ const Order = ({category}) => {
 
   const handleOrder = (order) => {
     // console.log("Order:", order);
-    dispatch(getProducts(category, order));
+    dispatch(getProducts("", order));
   };
+
+  console.log(category);
+  
   return (
     <div className={style.container}>
       <h3 className={style.title}>Sort by</h3>

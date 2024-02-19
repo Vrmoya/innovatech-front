@@ -7,9 +7,9 @@ const Filter = () => {
   const dispatch = useDispatch()
 
   const handleFilter = (category) => {
-  dispatch(getProducts(category))
+    dispatch(getProducts(category))
   };
-  
+
   return (
 
     <div className={style.container}>
