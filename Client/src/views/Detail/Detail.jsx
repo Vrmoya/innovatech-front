@@ -13,6 +13,7 @@ const Detail = () => {
   const [images, setImages] = useState('');
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
+  const products = useSelector((state) => state.products)
 
   useEffect(() => {
     dispatch(getProductById(id))
@@ -47,6 +48,8 @@ const Detail = () => {
       }
     }
   }, [productById])
+
+
   return (
     <>
       {productoFiltrado  && images && (
@@ -102,12 +105,3 @@ const Detail = () => {
 };
 
 export default Detail;
- // const searchProduct = async () => {
-    //   const filteredProduct = await products?.filter(
-    //     (product) => product.id === Number(id)
-    //   );
-    //   setProductRender(filteredProduct[0]);
-    // };
-    // if (id) {
-    //   searchProduct();
-    // }
