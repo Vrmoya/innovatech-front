@@ -6,7 +6,7 @@ const CardsContainer = () => {
     const productsData = useSelector(state => state.products.data)
 
     return (
-        <div>
+        <div className={style.container}>
             {productsData?.map(product => {
                 return <Card
                     id={product?.id}

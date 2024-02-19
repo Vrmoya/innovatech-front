@@ -15,17 +15,42 @@ export function postForm(payload){
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 
-export const getProducts = () => {
+// export const getProducts = () => {
+//     return async function (dispatch) {
+//         try {
+//             const productsData = await axios.get('http://localhost:3001/products');
+
+//             const products = productsData.data;
+//             dispatch({type: GET_PRODUCTS, payload: products})
+//         } catch (error) {
+//             console.log(error);
+//         }
+       
+//     }
+// }
+
+export const getProducts = (category, order, page, items) => {
     return async function (dispatch) {
         try {
-            const productsData = await axios.get('http://localhost:3001/products');
+            let url = 'http://localhost:3001/products';
+            if (category || order || page || items) {
+                url += '?';
+                if (category) url += `category=${category}&`;
+                if (order) url += `order=${order}&`;
+                if (page) url += `page=${page}&`;
+                if (items) url += `items=${items}&`;
+
+                url = url.replace(/&$/, '');
+            }
+            console.log("URL:", url);
+            const productsData = await axios.get(url);
 
             const products = productsData.data;
+            // console.log("Products:", products);
             dispatch({type: GET_PRODUCTS, payload: products})
         } catch (error) {
             console.log(error);
         }
-       
     }
 }
 
