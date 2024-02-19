@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import Card from "../Card/Card";
 
 const CardsContainer = () => {
-    const productsData = useSelector(state => state.products.data)
+    const productsData = useSelector(state => state.products)
 
     return (
         <div className={style.container}>
