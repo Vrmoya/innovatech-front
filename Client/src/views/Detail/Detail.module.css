@@ -42,10 +42,11 @@
 
 .productDescription {
   font-size: 1.2rem;
-  margin-bottom: 2rem;
   font-family: "Public Sans", sans-serif;
   color: #747172;
   padding-top: 10px;
+  padding-bottom: 10px;
+
 }
 .buttonCart {
   display: flex;
@@ -140,7 +141,11 @@
 
 .productSpec strong {
   font-weight: bold;
-  padding-left: 2px
+  padding-left: 2px;
+}
+.productSpec{
+  padding-bottom: 5px;
+  font-size: 1rem;
 }
 .circleList {
   list-style-type: disc; /* Establecer el tipo de marcador de lista como puntos */
@@ -166,3 +171,6 @@
   border-top: 1px solid #e5e7eb;
 }
 
+.containerSpecs{
+  padding-top: 15px;
+}
