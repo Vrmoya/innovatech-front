@@ -13,15 +13,11 @@ const formValidator = (data) => {
 
     
   //errores en el campo "category"
-    if (!data.category.trim()) {
-      errors.category = '⚠Ingresa una categoría para el producto';
-     }
+    // if (!data.category.trim()) {
+    //   errors.category = '⚠Ingresa una categoría para el producto';
+    //  }
 
-     else if (!/^[a-zA-Z\s]+$/.test(data.category)) {
-        errors.category = '⚠ El nombre de la categoría del producto debe contener solo letras.';
-   
-   
-    }
+     
 
     //errores en el campo "description"
   
@@ -42,15 +38,15 @@ const formValidator = (data) => {
           }
   
 
-//errores en el campo screen
-if (!data.screen.trim()) {
-  errors.screen = '⚠ Completa el campo "screen".'
-}
+// errores en el campo screen
+// if (!data.screen.trim()) {
+//   errors.screen = '⚠ Completa el campo "screen".'
+// }
 
 
-if (!data.ram.trim()){
-  errors.ram='⚠ Completa el campo "ram".'
-}
+// if (!data.ram.trim()){
+//   errors.ram='⚠ Completa el campo "ram".'
+// }
 
     return errors;
   };
