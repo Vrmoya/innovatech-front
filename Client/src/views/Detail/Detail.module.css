@@ -31,7 +31,6 @@
   font-size: 35px;
   font-family: "Public Sans", sans-serif;
   margin-bottom: 5px;
-
 }
 
 .productPrice {
@@ -172,4 +171,10 @@
 
 .containerSpecs{
   padding-top: 15px;
+}
+
+@media screen and (max-width: 744px) {
+  .divButtonCart{
+    margin-right: 20px;
+  }
 }
