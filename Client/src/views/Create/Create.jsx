@@ -52,6 +52,7 @@ const [category, setCategory]= useState('')
 
 // Manejo del select de la propiedad "category"
 const handleChangeCategory = (event) => {
+    
     const value = event.target.value;
     setCategory(value); // Actualizamos el estado local category
     setInput({
@@ -113,6 +114,26 @@ newImages.push(response.data.secure_url);
  // Actualizar el estado con las nuevas imágenes
  setInput({ ...input, image: newImages });
 }
+
+
+    // Función para eliminar una imagen seleccionada
+    const handleDeleteImage = async (index) => {
+        const newImages = [...input.image];
+        const removedImage = newImages.splice(index, 1)[0]; // Eliminar la imagen del array
+    
+        // Eliminar la imagen de Cloudinary
+        // try {
+        //     await axios.delete(`https://api.cloudinary.com/v1_1/dfhk5g0yv/image/destroy/${removedImage.public_id}`);
+        // } catch (error) {
+        //     console.error('Error al eliminar la imagen de Cloudinary:', error);
+        // }
+
+        // Actualizar el estado de input con las imágenes restantes
+        setInput({ ...input, image: newImages });
+
+        // Actualizar el estado local de las imágenes seleccionadas
+        setSelectedImages(selectedImages.filter((_, i) => i !== index));
+    };
 
 //Manejo del Submit Form
 const handleSubmitForm = async(e) => {
@@ -269,14 +290,7 @@ const handleSubmitForm = async(e) => {
                
                 
                 </div>
-                <div className={style.containerImages}> 
-                {selectedImages.map((image, index) => (
-    <div key={index}className={style.imageContainer}>
-        {/* <p>Imagen seleccionada {index + 1}:</p> */}
-        <img src={URL.createObjectURL(image)} alt={`Selected ${index + 1}`} style={{ maxWidth: '100px' }} />
-    </div>
-    
-))} </div>
+                
 <hr />
 
 {(category==="keyboard")&&
@@ -580,17 +594,27 @@ const handleSubmitForm = async(e) => {
 
 
 
-<div className={style.button}>
-          <button type='submit'
+<div className={style.containerbutton}>
+          <button className={style.buttoncreate} type='submit'
           >Create Product</button></div>
 
 
             </form>
 
+            
+
            </div>
            
 
-
+           <div className={style.containerImages}> 
+                {selectedImages.map((image, index) => (
+    <div key={index}className={style.imageContainer}>
+        {/* <p>Imagen seleccionada {index + 1}:</p> */}
+        <img className={style.img}src={URL.createObjectURL(image)} alt={`Selected ${index + 1}`}  />
+        <button className={style.button}onClick={() => handleDeleteImage(index)}>Eliminar</button>
+    </div>
+    
+))} </div>
 
         </div>
     )
