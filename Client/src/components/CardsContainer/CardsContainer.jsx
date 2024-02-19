@@ -5,7 +5,7 @@ import Card from "../Card/Card";
 const CardsContainer = () => {
     const productsData = useSelector(state => state.products)
 
-    console.log(productsData);
+    // console.log(productsData);
 
     return (
         <div className={style.container}>

@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { getProducts } from '../../redux/actions';
 import Filter from '../../components/Filter/Filter'
 import Order from '../../components/Order/Order'
+import Paginated from '../../components/Paginated/Paginated'
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -15,9 +16,15 @@ const Home = () => {
 
     return (
         <div className={style.container}>
+            <div className={style.mainContent}>
                 <Filter></Filter>
                 <CardsContainer></CardsContainer>
                 <Order></Order>
+            </div>
+            <div className={style.paginated}>
+                <Paginated></Paginated>
+            </div>
+
         </div>
     )
 }

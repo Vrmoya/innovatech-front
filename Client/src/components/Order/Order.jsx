@@ -7,7 +7,7 @@ const Order = ({category}) => {
   const dispatch = useDispatch()
 
   const handleOrder = (order) => {
-    console.log("Order:", order);
+    // console.log("Order:", order);
     dispatch(getProducts(category, order));
   };
   return (
