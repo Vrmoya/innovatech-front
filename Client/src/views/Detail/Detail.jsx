@@ -2,10 +2,9 @@
 import styles from "./Detail.module.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import products from "../../data";
 import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
-import { getProductById } from "../../redux/actions";
+import { getProductById, cleanProductById } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 
@@ -14,11 +13,14 @@ const Detail = () => {
   const [images, setImages] = useState('');
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
+  const products = useSelector((state) => state.products)
 
   useEffect(() => {
     dispatch(getProductById(id))
 
-    
+    return () => {
+      dispatch(cleanProductById())
+    }
   }, [id]); 
 
   let productoFiltrado;
@@ -40,12 +42,14 @@ const Detail = () => {
       const data = imagenes.map(img => ({
           original: img,
           thumbnail: img,
-      }));
+      }))
       if (data.length > 0) {
-        setImages(data);
+        setImages(data)
       }
     }
-  }, [productById]);
+  }, [productById])
+
+
   return (
     <>
       {productoFiltrado  && images && (
@@ -64,8 +68,8 @@ const Detail = () => {
                 {productoFiltrado.description}
               </p>
               <hr />
-              <div className="container">
-                <div>
+              <div className={styles.containerSpecs}>
+               
                 <ul className={`${styles.productSpecs} ${styles.circleList}`}>
                   {Object.entries(productoFiltrado).map(
                     ([key, value]) =>
@@ -83,11 +87,11 @@ const Detail = () => {
                       )
                   )}
                 </ul>
-                </div>
+             
               </div>
               <button className={styles.buttonCart}>
                       <i className="bi bi-plus"></i>
-                      Add to Cart
+                      Add To Cart
                     </button>
             </div>
           </div>
@@ -101,12 +105,3 @@ const Detail = () => {
 };
 
 export default Detail;
- // const searchProduct = async () => {
-    //   const filteredProduct = await products?.filter(
-    //     (product) => product.id === Number(id)
-    //   );
-    //   setProductRender(filteredProduct[0]);
-    // };
-    // if (id) {
-    //   searchProduct();
-    // }

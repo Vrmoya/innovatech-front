@@ -10,16 +10,19 @@ const Create = () => {
 
 //estado local para el select de imágenes renderiza la URL de Cloudinary
     const [urlImage, setUrlImage] = useState(null);
+    const [selectedImages, setSelectedImages]= useState ([])
 //estado local para el manejo de errores
     const [errors, setErrors] = useState ({})
 //para despachar el post en la ruta
     const dispatch = useDispatch()
+
 //estado local para select category y renderizado condicional de propiedades
 const [category, setCategory]= useState('')
 
 //guardo el form en un estado local
     const [input, setInput] = useState ({
         category: "",
+        categories: [], // Ajustamos el objeto input para incluir categories
         model: "",
         price: 0,
         description: "",
@@ -30,29 +33,32 @@ const [category, setCategory]= useState('')
         ram: "",
         operating_sistem: "",
         video_card: "",
-
-
-
+        compatibility: "",
+        connectivity: "",
+        extraFunctions: "",
+        waterproof: "",
+        touchControl: "",
+        sound: "",
+        microphone: "",
+        lights: "",
+        mediaKeys: "",
+        wirelessRange: "",
+        dimensions: ""
 
     });
 
 
-//Manejo del select de  la propiedad "category"
-const handleChangeCategory = (e) =>{
-    const value= e.target.value;
-     // Validar el campo de selección utilizando el validador
-     const fieldErrors = formValidator({ ...input, category: value });
-     setCategory(value)
 
-     // Actualizar el estado de los errores
-     setErrors({ ...errors, ...fieldErrors });
- 
-    setInput ({
+
+// Manejo del select de la propiedad "category"
+const handleChangeCategory = (event) => {
+    const value = event.target.value;
+    setCategory(value); // Actualizamos el estado local category
+    setInput({
         ...input,
-        category: value,
-})
-
-}
+        categories: [{ name: value }]
+    });
+};
 
 // Handler que maneja el change de los input "text-type"
  function handleChange (e){
@@ -83,6 +89,7 @@ const handlePriceChange = (e) => {
 const handleSelectImage = async (event)=>{
     const files = event.target.files;
     setUrlImage(files);
+    setSelectedImages([...selectedImages,...files]);
 const newImages= [...input.image];
 
 for (let i=0; i<files.length;i++){
@@ -108,29 +115,39 @@ newImages.push(response.data.secure_url);
 }
 
 //Manejo del Submit Form
-const handleSubmitForm = (e) => {
+const handleSubmitForm = async(e) => {
     e.preventDefault();
 
     // Validar el formulario
     const formErrors = formValidator(input);
 
     if (Object.keys(formErrors).length === 0) {
-        // Si no hay errores, enviar el formulario al backend
-        console.log("Enviando formulario:", input);
-        dispatch(postForm(input))
-        // Realizar la llamada al backend para enviar los datos utilizando fetch o axios
-
-        // Una vez que los datos se han enviado exitosamente mostrar alert
-        alert("¡Producto agregado con éxito!");
-
-        // Luego, reiniciar form
-        setInput({
-            category: "",
-            model: "",
-            price: 0,
-            description: "",
-            image: ""
-        });
+        if (input.categories.length === 0) {
+            // Si no hay categorías seleccionadas, muestra un error y no envíes el formulario
+            alert("Seleccione una categoría antes de enviar el formulario.");
+            return;
+        }
+        try {
+            // Realizar la llamada al backend para enviar los datos utilizando axios
+            const response = await axios.post('http://localhost:3001/products', input);
+            
+            // Una vez que los datos se han enviado exitosamente, mostrar una alerta
+            alert("¡Producto agregado con éxito!");
+            
+            // Luego, reiniciar form
+            setInput({
+                category: "",
+                categories: [], // Reiniciamos las categorías
+                model: "",
+                price: 0,
+                description: "",
+                image: []
+            });
+        } catch (error) {
+            // Si hay un error al enviar los datos, mostrar un mensaje de error
+            console.error("Error al enviar el formulario:", error);
+            alert("Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.");
+        }
     } else {
         // Si hay errores, mostrarlos al usuario
         console.log("Formulario no enviado debido a errores:", formErrors);
@@ -158,8 +175,8 @@ const handleSubmitForm = (e) => {
                 <option value="laptop">Laptop</option>
                 <option value="smartphone">Smartphone</option>
                 <option value="tablet">Tablet</option>
-                <option value="headphones">Headphones</option>
-                <option value="keyboards">Keyboards</option>
+                <option value="headphone">Headphone</option>
+                <option value="keyboard">Keyboard</option>
                 
                 <option value= "newCategory">New Category</option>
                     
@@ -249,15 +266,229 @@ const handleSubmitForm = (e) => {
                  
                     {errors.image && <p className={style.error}>{errors.image}</p>}
                 {/* Visualizar la imagen seleccionada (opcional) */}
-            {/* {selectedImage && (
-                <div>
-                    <p>Imagen seleccionada:</p>
-                    <img src={URL.createObjectURL(selectedImage)} alt="Selected" style={{ maxWidth: '100px' }} />
-                </div>
-            )} */}
+               
                 
                 </div>
+                <div className={style.containerImages}> 
+                {selectedImages.map((image, index) => (
+    <div key={index}className={style.imageContainer}>
+        {/* <p>Imagen seleccionada {index + 1}:</p> */}
+        <img src={URL.createObjectURL(image)} alt={`Selected ${index + 1}`} style={{ maxWidth: '100px' }} />
+    </div>
+    
+))} </div>
 <hr />
+
+{(category==="keyboard")&&
+(
+
+<div>
+
+<div >
+<div className={style.text}>Lights</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.lights}
+              name= "lights"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+
+</div>
+<div >
+<div className={style.text}>Media Keys</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.mediaKeys}
+              name= "mediaKeys"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+
+</div>
+    
+<div >
+<div className={style.text}>Wireless Range</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.wirelessRange}
+              name= "wirelessRange"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+
+</div>
+
+
+<div >
+<div className={style.text}>Dimensions</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.dimensions}
+              name= "dimensions"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div ></div>
+
+
+
+</div>
+    
+)
+
+
+}
+
+
+{(category === "headphone")&& 
+( <div>
+
+
+<div >
+<div className={style.text}>Sound</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.sound}
+              name= "sound"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+
+</div>
+
+<div >
+<div className={style.text}>Microphone</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.microphone}
+              name= "microphone"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div ></div>
+
+</div>)}
+
+
+
+{(category === "headphone" || category==="keyboard" )&& 
+( <div>
+
+
+
+<div >
+<div className={style.text}>Compatibility</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.compatibility}
+              name= "compatibility"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+<div className={style.text}>Connectivity</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.connectivity}
+              name= "connectivity"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+        
+    <div className={style.text}>Extra Functions</div>
+              <div  className={style.option} >
+                  <input 
+                  onChange= {handleChange}
+                  className={style.input}
+                  type="text" 
+                  value= {input.extraFunctions}
+                  name= "extraFunctions"
+                  
+                  />{errors.screen && <p className={style.error}>{errors.screen}</p>}
+              </div>
+              
+<hr />
+
+<div >
+<div className={style.text}>Waterproof</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.waterproof}
+              name= "waterproof"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+
+          <hr />
+
+          <div >
+<div className={style.text}>Touch Control</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.touchControl}
+              name= "touchControl"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+          </div>
+          
+
+          )} 
+
 
 {(category === "laptop" || category==="smartphone" || category === "tablet" )&& 
 (   <div>

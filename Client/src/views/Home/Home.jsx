@@ -15,15 +15,9 @@ const Home = () => {
 
     return (
         <div className={style.container}>
-            <div>
                 <Filter></Filter>
-            </div>
-            <div>
                 <CardsContainer></CardsContainer>
-            </div>
-            <div>
                 <Order></Order>
-            </div>
         </div>
     )
 }
