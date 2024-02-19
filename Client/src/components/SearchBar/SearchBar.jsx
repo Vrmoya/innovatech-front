@@ -16,7 +16,7 @@ const SearchBar = () => {
   };
   const handleSubmit = () => {
     dispatch(filterByModel(model));
-    setModel("");
+    // setModel("");
     navigate('/home');
   };
   const handleKeyDown = (event) => {
