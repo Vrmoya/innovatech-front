@@ -131,17 +131,19 @@
   margin-left: 30px;
 }
 
-.product-specs li {
+.productSpecs li {
   font-size: 1rem;
+ 
 }
 
-.product-specs strong {
+.productSpec strong {
   font-weight: bold;
   
 }
 .circleList {
-  list-style-type: disc; 
+  list-style-type: disc; /* Establecer el tipo de marcador de lista como puntos */
 }
+
 
 .contenedorCarousel {
   display: flex;
@@ -156,4 +158,8 @@
   .contenedorGallery{
       width: 100vw;
   }
+}
+.productInfo hr{
+  border: none; 
+  border-top: 1px solid #e5e7eb;
 }
