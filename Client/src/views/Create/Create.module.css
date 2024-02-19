@@ -144,15 +144,15 @@ padding-top: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 10vw;
-    height: 20vh;
+    width: 7vw;
+    height: 10vh;
 }
 
 .img{
     display: flex;
     justify-content: center;
-    width: 8vw;
-    height: 10vh;
+    width: 7vw;
+    height: 9vh;
 }
 .button {
     
@@ -174,7 +174,7 @@ padding-top: 0px;
     border-radius: 10px;
     border-style: solid;
     border-width: 3px;
-    border-color: rgb(38, 0, 255);
+   
     
     
 }
