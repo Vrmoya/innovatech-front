@@ -134,12 +134,12 @@
 .productSpecs {
   font-size: 1rem;
   padding-left: 20px;
- 
+
 }
 
 .productSpec strong {
   font-weight: bold;
-  padding-left: 2px;
+  padding-left: 2px
 }
 .circleList {
   list-style-type: disc; /* Establecer el tipo de marcador de lista como puntos */
@@ -165,6 +165,3 @@
   border-top: 1px solid #e5e7eb;
 }
 
-.containerSpecs{
-  padding-left: 50px;
-}

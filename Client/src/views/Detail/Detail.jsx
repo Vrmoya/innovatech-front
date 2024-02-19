@@ -68,7 +68,7 @@ const Detail = () => {
                 {productoFiltrado.description}
               </p>
               <hr />
-              <div className="container">
+              <div className={styles.containerSpecs}>
                
                 <ul className={`${styles.productSpecs} ${styles.circleList}`}>
                   {Object.entries(productoFiltrado).map(
@@ -91,7 +91,7 @@ const Detail = () => {
               </div>
               <button className={styles.buttonCart}>
                       <i className="bi bi-plus"></i>
-                      Add to Cart
+                      Add To Cart
                     </button>
             </div>
           </div>
