@@ -32,9 +32,17 @@ const [category, setCategory]= useState('')
         ram: "",
         operating_sistem: "",
         video_card: "",
-
-
-
+        compatibility: "",
+        connectivity: "",
+        extraFunctions: "",
+        waterproof: "",
+        touchControl: "",
+        sound: "",
+        microphone: "",
+        lights: "",
+        mediaKeys: "",
+        wirelessRange: "",
+        dimensions: ""
 
     });
 
@@ -165,8 +173,8 @@ const handleSubmitForm = async(e) => {
                 <option value="laptop">Laptop</option>
                 <option value="smartphone">Smartphone</option>
                 <option value="tablet">Tablet</option>
-                <option value="headphone">Headphones</option>
-                <option value="keyboard">Keyboards</option>
+                <option value="headphone">Headphone</option>
+                <option value="keyboard">Keyboard</option>
                 
                 <option value= "newCategory">New Category</option>
                     
@@ -265,6 +273,134 @@ const handleSubmitForm = async(e) => {
                 
                 </div>
 <hr />
+
+{(category==="keyboard")&&
+(
+
+<div>
+
+<div >
+<div className={style.text}>Lights</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.lights}
+              name= "lights"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+
+</div>
+<div >
+<div className={style.text}>Media Keys</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.mediaKeys}
+              name= "mediaKeys"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+
+</div>
+    
+<div >
+<div className={style.text}>Wireless Range</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.wirelessRange}
+              name= "wirelessRange"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+
+</div>
+
+
+<div >
+<div className={style.text}>Dimensions</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.dimensions}
+              name= "dimensions"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div ></div>
+
+
+
+</div>
+    
+)
+
+
+}
+
+
+{(category === "headphone")&& 
+( <div>
+
+
+<div >
+<div className={style.text}>Sound</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.sound}
+              name= "sound"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+
+</div>
+
+<div >
+<div className={style.text}>Microphone</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.microphone}
+              name= "microphone"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div ></div>
+
+</div>)}
+
+
+
 {(category === "headphone" || category==="keyboard" )&& 
 ( <div>
 
