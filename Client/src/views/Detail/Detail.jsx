@@ -89,10 +89,12 @@ const Detail = () => {
                 </ul>
              
               </div>
+              <div className={styles.divButtonCart}>
               <button className={styles.buttonCart}>
                       <i className="bi bi-plus"></i>
                       Add To Cart
                     </button>
+                    </div>
             </div>
           </div>
           <div>
