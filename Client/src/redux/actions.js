@@ -17,21 +17,7 @@ export function postForm(payload){
 }
 };
 
-// export const getProducts = () => {
-//     return async function (dispatch) {
-//         try {
-//             const productsData = await axios.get('http://localhost:3001/products');
-
-//             const products = productsData.data;
-//             dispatch({type: GET_PRODUCTS, payload: products})
-//         } catch (error) {
-//             console.log(error);
-//         }
-       
-//     }
-// }
-
-export const getProducts = (category, order, page, items) => {
+export const getProducts = (category, order, page, items="6") => {
     return async function (dispatch) {
         try {
             let url = 'http://localhost:3001/products';
@@ -48,7 +34,7 @@ export const getProducts = (category, order, page, items) => {
             const productsData = await axios.get(url);
 
             const products = productsData.data.data;
-            // console.log("Products:", products);
+            console.log("Products:", products);
             dispatch({type: GET_PRODUCTS, payload: products})
         } catch (error) {
             console.log(error);

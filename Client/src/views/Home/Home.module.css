@@ -1,5 +1,17 @@
 .container{
     display: flex;
+    flex-direction: column;
+    
+}
+
+.mainContent{
+    display: flex;
     justify-content: space-around;
     margin: 1em;
+}
+
+.paginated{
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
 }
