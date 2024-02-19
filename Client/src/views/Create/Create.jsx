@@ -10,6 +10,7 @@ const Create = () => {
 
 //estado local para el select de imágenes renderiza la URL de Cloudinary
     const [urlImage, setUrlImage] = useState(null);
+    const [selectedImages, setSelectedImages]= useState ([])
 //estado local para el manejo de errores
     const [errors, setErrors] = useState ({})
 //para despachar el post en la ruta
@@ -88,6 +89,7 @@ const handlePriceChange = (e) => {
 const handleSelectImage = async (event)=>{
     const files = event.target.files;
     setUrlImage(files);
+    setSelectedImages([...selectedImages,...files]);
 const newImages= [...input.image];
 
 for (let i=0; i<files.length;i++){
@@ -264,14 +266,17 @@ const handleSubmitForm = async(e) => {
                  
                     {errors.image && <p className={style.error}>{errors.image}</p>}
                 {/* Visualizar la imagen seleccionada (opcional) */}
-            {/* {selectedImage && (
-                <div>
-                    <p>Imagen seleccionada:</p>
-                    <img src={URL.createObjectURL(selectedImage)} alt="Selected" style={{ maxWidth: '100px' }} />
-                </div>
-            )} */}
+               
                 
                 </div>
+                <div className={style.containerImages}> 
+                {selectedImages.map((image, index) => (
+    <div key={index}className={style.imageContainer}>
+        {/* <p>Imagen seleccionada {index + 1}:</p> */}
+        <img src={URL.createObjectURL(image)} alt={`Selected ${index + 1}`} style={{ maxWidth: '100px' }} />
+    </div>
+    
+))} </div>
 <hr />
 
 {(category==="keyboard")&&
