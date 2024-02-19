@@ -44,11 +44,11 @@ export const getProducts = (category, order, page, items) => {
 
                 url = url.replace(/&$/, '');
             }
-            console.log("URL:", url);
+            // console.log("URL:", url);
             const productsData = await axios.get(url);
 
             const products = productsData.data.data;
-            console.log("Products:", products);
+            // console.log("Products:", products);
             dispatch({type: GET_PRODUCTS, payload: products})
         } catch (error) {
             console.log(error);

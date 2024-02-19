@@ -11,11 +11,10 @@ const Filter = () => {
     if(category === ""){
       dispatch(getProducts(category, '', '', ''))
     } else{
-      dispatch(getProducts(category, 'asc', '1', '20'));
+      dispatch(getProducts(category, '', '', ''));
     }
-
-    
   };
+  
   return (
 
     <div className={style.container}>
