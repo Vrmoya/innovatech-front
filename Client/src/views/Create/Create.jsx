@@ -14,6 +14,7 @@ const Create = () => {
     const [errors, setErrors] = useState ({})
 //para despachar el post en la ruta
     const dispatch = useDispatch()
+
 //estado local para select category y renderizado condicional de propiedades
 const [category, setCategory]= useState('')
 
@@ -264,6 +265,89 @@ const handleSubmitForm = async(e) => {
                 
                 </div>
 <hr />
+{(category === "headphone" || category==="keyboard" )&& 
+( <div>
+
+
+
+<div >
+<div className={style.text}>Compatibility</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.compatibility}
+              name= "compatibility"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+<div >
+<div className={style.text}>Connectivity</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.connectivity}
+              name= "connectivity"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+        
+    <div className={style.text}>Extra Functions</div>
+              <div  className={style.option} >
+                  <input 
+                  onChange= {handleChange}
+                  className={style.input}
+                  type="text" 
+                  value= {input.extraFunctions}
+                  name= "extraFunctions"
+                  
+                  />{errors.screen && <p className={style.error}>{errors.screen}</p>}
+              </div>
+              
+<hr />
+
+<div >
+<div className={style.text}>Waterproof</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.waterproof}
+              name= "waterproof"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+
+          <hr />
+
+          <div >
+<div className={style.text}>Touch Control</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.touchControl}
+              name= "touchControl"
+              
+              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+          </div>
+          </div>
+          <hr />
+          </div>
+          
+
+          )} 
+
 
 {(category === "laptop" || category==="smartphone" || category === "tablet" )&& 
 (   <div>
