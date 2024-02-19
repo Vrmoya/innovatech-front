@@ -18,10 +18,15 @@ export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
 
 export const getProducts = () => {
     return async function (dispatch) {
-        const productsData = await axios.get('http://localhost:3001/products');
+        try {
+            const productsData = await axios.get('http://localhost:3001/products');
 
-        const products = productsData.data;
-        dispatch({type: GET_PRODUCTS, payload: products})
+            const products = productsData.data;
+            dispatch({type: GET_PRODUCTS, payload: products})
+        } catch (error) {
+            console.log(error);
+        }
+       
     }
 }
 

@@ -21,6 +21,8 @@
     border: 1px solid #7471723a;
     cursor: pointer;
     overflow: hidden;
+    text-decoration: none;
+    color: #000;
 }
 
 .products, .productsFirst {
@@ -29,6 +31,7 @@
     max-width: 100%;
     height: auto;
     transition: .5s;
+    margin: 0 auto;
 }
 
 .info{
@@ -68,8 +71,8 @@
         width: 65%;
     }
 
-    .productsFirst{
-        margin: 0 auto;
+    .productsFirst {
+        
         width: 80%;
     }
 
@@ -78,8 +81,8 @@
     }
     
     .firstInfo{
-        margin-left: 7em;
-        bottom: 200px;
+        margin-left: 1em;
+        bottom: 310px;
     }
 
     .productOne:hover,
