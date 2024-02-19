@@ -1,7 +1,6 @@
 import style from "./CarouselDetail.module.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
 import imageIpad from './../../assets/ipad-dorso-anverso.svg'
 import imageAmazon from './../../assets/tablet-amazon.svg';
 import imageGoogle from './../../assets/tablet-google.svg';
@@ -9,6 +8,7 @@ import imageHuawei from './../../assets/tablet-huawei.svg';
 import imageLenovo from './../../assets/tablet-lenovo.svg';
 import imageMicrosoft from './../../assets/tablet-microsoft.svg';
 import imageSamsung from './../../assets/tablet-samsung-anverso-dorso.svg';
+import { Link } from "react-router-dom";
 
 const productosCategoria = [
   {
@@ -145,6 +145,7 @@ const CarouselDetail = () => {
           {productosCategoria &&
             productosCategoria.map((product) => (
               <section key={product.id} className={style.sectionContainer}>
+                <Link to={`/detail/${product.id}`} className={style.linkDetail}>
                 <div className={style.card}>
                   <div className={style.divImage}>
                     <img
@@ -157,6 +158,7 @@ const CarouselDetail = () => {
                   <p className={style.price}>{product.price} USD</p>
                   <button className={style.addToCart}>Add to Cart</button>
                 </div>
+                </Link>
               </section>
             ))}
         </Carousel>

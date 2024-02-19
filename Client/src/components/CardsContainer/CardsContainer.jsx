@@ -9,6 +9,7 @@ const CardsContainer = () => {
         <div className={style.container}>
             {productsData?.map(product => {
                 return <Card
+                key={product?.id}
                     id={product?.id}
                     model={product?.model}
                     price={product?.price}

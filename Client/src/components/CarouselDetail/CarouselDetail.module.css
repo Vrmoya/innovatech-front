@@ -4,9 +4,6 @@
     padding: 2rem;
     text-align: center;
   }
-  
-
-  
 .productImage {
     width: 100%;
     height: auto;
@@ -14,8 +11,6 @@
   }
   .modelName{
     font-size: 1px;
-    
-
   }
   
 .card {
@@ -52,11 +47,8 @@
     cursor: pointer;
     font-family: "Public Sans", sans-serif;
     font-weight: bold;
-    margin-bottom: 20px;
-  
+    margin-bottom: 20px; 
 }
-  
-
   
 .addToCart:hover {
     opacity: 0.7;
@@ -66,8 +58,11 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-    
 }
 .tittle{
   padding-bottom: 15px;
+}
+.linkDetail{
+  text-decoration: none;
+  color: inherit;
 }

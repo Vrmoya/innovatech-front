@@ -1,4 +1,8 @@
 import axios from 'axios';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
+export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
 
 export function postForm(payload){
     return async function (dispatch){
@@ -12,8 +16,6 @@ export function postForm(payload){
     }
 }
 };
-export const GET_PRODUCTS = 'GET_PRODUCTS';
-export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 
 // export const getProducts = () => {
 //     return async function (dispatch) {
@@ -69,3 +71,25 @@ export const getProductById = (id) => {
         }
     }
 }
+
+export const cleanProductById = () => {
+    return{
+        type: CLEAN_PRODUCT_BY_ID,
+        payload: {}
+    }
+}
+export const filterByModel = (model) => {
+    console.log(model)
+    return async (dispatch) => {
+        try{
+            const { data } = await axios.get(`http://localhost:3001/model?model=${model}`)
+            console.log(data)
+            return dispatch({
+                type: FILTER_BY_MODEL,
+                payload: data
+            })
+        }catch(err) {
+            console.log(err)
+        };
+    };
+};
