@@ -144,8 +144,9 @@
   padding-left: 2px;
 }
 .productSpec{
-  padding-bottom: 5px;
-  font-size: 1rem;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  font-size: 1.1rem;
 }
 .circleList {
   list-style-type: disc; /* Establecer el tipo de marcador de lista como puntos */
