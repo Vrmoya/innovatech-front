@@ -27,23 +27,24 @@ const [category, setCategory]= useState('')
         price: 0,
         description: "",
         warranty: "",
-        battery_life: "",
+        batteryLife: "",
         image: [], //será un "array" que corresponde a una lista de URL de Cloudinary
-        screen: "",
-        ram: "",
-        operating_sistem: "",
-        video_card: "",
-        compatibility: "",
-        connectivity: "",
-        extraFunctions: "",
-        waterproof: "",
-        touchControl: "",
-        sound: "",
-        microphone: "",
-        lights: "",
-        mediaKeys: "",
-        wirelessRange: "",
-        dimensions: ""
+        screen: null,
+        Ram: null,
+        operatingSystem: null,
+        videoCard: null,
+        compatibility: null,
+        connectivity: null,
+        extrafunctions: null,
+        waterproof: null,
+        touchControl: null,
+        sound: null,
+        microphone: null,
+        lights: null,
+        mediaKeys: null,
+        wirelessRange: null,
+        dimensions: null,
+        weight: null,
 
     });
 
@@ -162,7 +163,24 @@ const handleSubmitForm = async(e) => {
                 model: "",
                 price: 0,
                 description: "",
-                image: []
+                image: [],
+                screen: null,
+                Ram: null,
+                operatingSystem: null,
+                videoCard: null,
+                compatibility: null,
+                connectivity: null,
+                extrafunctions: null,
+                waterproof: null,
+                touchControl: null,
+                sound: null,
+                microphone: null,
+                lights: null,
+                mediaKeys: null,
+                wirelessRange: null,
+                dimensions: null,
+                weight: null,
+                
             });
         } catch (error) {
             // Si hay un error al enviar los datos, mostrar un mensaje de error
@@ -199,7 +217,7 @@ const handleSubmitForm = async(e) => {
                 <option value="headphone">Headphone</option>
                 <option value="keyboard">Keyboard</option>
                 
-                <option value= "newCategory">New Category</option>
+                
                     
                     </select>{errors.category && <p className={style.error}>{errors.category}</p>}
                 </div>
@@ -266,32 +284,31 @@ const handleSubmitForm = async(e) => {
                     onChange= {handleChange}
                     className={style.input}
                     type="text" 
-                    value= {input.battery_life}
-                    name= "battery_life"
+                    value= {input.batteryLife}
+                    name= "batteryLife"
                     
                     />{errors.description && <p className={style.error}>{errors.description}</p>}
                 </div>
-<hr />
-                <div className={style.text}>Update Image Product</div>
-                
-                <div  className={style.option} >
-                    <input 
-                    onChange= {handleSelectImage}
-                    className={style.input}
-                    type="file" 
-                    accept="image/*"
-                    // value= {input.image}
-                    name= "file"
-                
-                />
-                 
-                    {errors.image && <p className={style.error}>{errors.image}</p>}
-                {/* Visualizar la imagen seleccionada (opcional) */}
-               
-                
-                </div>
+
                 
 <hr />
+
+<div >
+<div className={style.text}>Weight</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.weight}
+              name= "weight"
+              
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
+          </div>
+          </div>
+          <hr />
+       
+<div ></div>
 
 {(category==="keyboard")&&
 (
@@ -308,7 +325,7 @@ const handleSubmitForm = async(e) => {
               value= {input.lights}
               name= "lights"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
@@ -325,7 +342,7 @@ const handleSubmitForm = async(e) => {
               value= {input.mediaKeys}
               name= "mediaKeys"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
@@ -343,7 +360,7 @@ const handleSubmitForm = async(e) => {
               value= {input.wirelessRange}
               name= "wirelessRange"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
@@ -362,10 +379,11 @@ const handleSubmitForm = async(e) => {
               value= {input.dimensions}
               name= "dimensions"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
+       
 <div ></div>
 
 
@@ -392,7 +410,7 @@ const handleSubmitForm = async(e) => {
               value= {input.sound}
               name= "sound"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
@@ -410,7 +428,7 @@ const handleSubmitForm = async(e) => {
               value= {input.microphone}
               name= "microphone"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
@@ -426,6 +444,8 @@ const handleSubmitForm = async(e) => {
 
 
 <div >
+
+
 <div className={style.text}>Compatibility</div>
           <div  className={style.option} >
               <input 
@@ -435,7 +455,7 @@ const handleSubmitForm = async(e) => {
               value= {input.compatibility}
               name= "compatibility"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
@@ -449,7 +469,7 @@ const handleSubmitForm = async(e) => {
               value= {input.connectivity}
               name= "connectivity"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
@@ -460,10 +480,10 @@ const handleSubmitForm = async(e) => {
                   onChange= {handleChange}
                   className={style.input}
                   type="text" 
-                  value= {input.extraFunctions}
-                  name= "extraFunctions"
+                  value= {input.extrafunctions}
+                  name= "extrafunctions"
                   
-                  />{errors.screen && <p className={style.error}>{errors.screen}</p>}
+                  />{errors.description && <p className={style.error}>{errors.description}</p>}
               </div>
               
 <hr />
@@ -478,7 +498,7 @@ const handleSubmitForm = async(e) => {
               value= {input.waterproof}
               name= "waterproof"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
 
@@ -494,7 +514,7 @@ const handleSubmitForm = async(e) => {
               value= {input.touchControl}
               name= "touchControl"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
@@ -526,8 +546,8 @@ const handleSubmitForm = async(e) => {
               onChange= {handleChange}
               className={style.input}
               type="text" 
-              value= {input.ram}
-              name= "ram"
+              value= {input.Ram}
+              name= "Ram"
               
               />{errors.ram && <p className={style.error}>{errors.ram}</p>}
           </div>
@@ -545,21 +565,21 @@ const handleSubmitForm = async(e) => {
               value= {input.processor}
               name= "processor"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
           <hr />
           <div >
-<div className={style.text}>Operating sistem</div>
+<div className={style.text}>Operating system</div>
           <div  className={style.option} >
               <input 
               onChange= {handleChange}
               className={style.input}
               type="text" 
-              value= {input.operating_sistem}
-              name= "operating_sistem"
+              value= {input.operatingSystem}
+              name= "operatingSystem"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
 <hr />
@@ -570,21 +590,57 @@ const handleSubmitForm = async(e) => {
               onChange= {handleChange}
               className={style.input}
               type="text" 
-              value= {input.video_card}
-              name= "video_card"
+              value= {input.videoCard}
+              name= "videoCard"
               
-              />{errors.ram && <p className={style.error}>{errors.ram}</p>}
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
+          
           <hr />
 
-
+          <div >
+<div className={style.text}>Dimensions</div>
+          <div  className={style.option} >
+              <input 
+              onChange= {handleChange}
+              className={style.input}
+              type="text" 
+              value= {input.dimensions}
+              name= "dimensions"
+              
+              />{errors.description && <p className={style.error}>{errors.description}</p>}
+          </div>
+          </div>
+          
+          <hr />
+                
           </div>
           
 
 )
 
 }
+
+<div className={style.text}>Update Image Product</div>
+                
+                <div  className={style.option} >
+                    <input 
+                    onChange= {handleSelectImage}
+                    className={style.input}
+                    type="file" 
+                    accept="image/*"
+                    // value= {input.image}
+                    name= "file"
+                
+                />
+                 
+                    {errors.image && <p className={style.error}>{errors.image}</p>}
+                {/* Visualizar la imagen seleccionada (opcional) */}
+               
+                
+                </div>
+
 
 
 
