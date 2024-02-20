@@ -4,17 +4,17 @@ export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
 export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
 
-export function postForm(payload){
-    return async function (dispatch){
-    try{
-        const response= await axios.post("http://localhost:3001/create", payload); //corregir ésto!!!!!!!!!!!!!
-      
-        console.log(response)
-        return response;     
-    }catch (error) {
-        console.log(error)
+export function postForm(payload) {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post("http://localhost:3001/create", payload);
+
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
 };
 
 // export const getProducts = () => {
@@ -27,7 +27,7 @@ export function postForm(payload){
 //         } catch (error) {
 //             console.log(error);
 //         }
-       
+
 //     }
 // }
 
@@ -49,7 +49,7 @@ export const getProducts = (category, order, page, items) => {
 
             const products = productsData.data.data;
             console.log("Products:", products);
-            dispatch({type: GET_PRODUCTS, payload: products})
+            dispatch({ type: GET_PRODUCTS, payload: products })
         } catch (error) {
             console.log(error);
         }
@@ -59,21 +59,21 @@ export const getProducts = (category, order, page, items) => {
 export const getProductById = (id) => {
     console.log(id)
     return async (dispatch) => {
-        try{
+        try {
             const { data } = await axios.get(`http://localhost:3001/products/${id}`)
             console.log(data)
             return dispatch({
                 type: GET_PRODUCT_BY_ID,
                 payload: data
             })
-        }catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
 }
 
 export const cleanProductById = () => {
-    return{
+    return {
         type: CLEAN_PRODUCT_BY_ID,
         payload: {}
     }
@@ -81,14 +81,14 @@ export const cleanProductById = () => {
 export const filterByModel = (model) => {
     console.log(model)
     return async (dispatch) => {
-        try{
+        try {
             const { data } = await axios.get(`http://localhost:3001/model?model=${model}`)
             console.log(data)
             return dispatch({
                 type: FILTER_BY_MODEL,
                 payload: data
             })
-        }catch(err) {
+        } catch (err) {
             console.log(err)
         };
     };
