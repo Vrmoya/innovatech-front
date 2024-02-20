@@ -9,13 +9,11 @@ const Paginated = () => {
     const order = useSelector(state => state.order)
     const products = useSelector((state) => state.products)
     const [disableButtonNext, setdisableButtonNext] = useState(false)
-    const noRenderizar = useSelector((state) => state.noRender)
 
     const [input, setInput] = useState("1")
 
     const handlePaginated = (event) => {
         const value = event.target.value;
-
         setInput(value)
         dispatch(getProducts(categories, order, value))
     }
@@ -34,11 +32,6 @@ const Paginated = () => {
     setInput('1')
    }, [categories, order])
 
-//    useEffect(() => {
-//     if(noRenderizar === true) {
-//         setdisableButtonNext(false)
-//     }
-//    },[noRenderizar])
 
 
     const prev = () => {

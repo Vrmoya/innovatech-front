@@ -19,7 +19,7 @@ export function postForm(payload){
 }
 };
 
-export const getProducts = (category, order, page="1", items="6") => {
+export const getProducts = (category, order, page, items="6") => {
     return async function (dispatch) {
         try {
             let url = 'http://localhost:3001/products';
@@ -36,9 +36,10 @@ export const getProducts = (category, order, page="1", items="6") => {
             const productsData = await axios.get(url);
             const products = productsData.data.data;
             console.log(products)
-
             // console.log("Products:", products);
-            dispatch({type: GET_PRODUCTS, payload: products})
+            dispatch({
+                type: GET_PRODUCTS, 
+                payload: products})
         } catch (error) {
             console.log(error);
         }
