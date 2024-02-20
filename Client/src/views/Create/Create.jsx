@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react';
 import formValidator from './validation';
 import axios from 'axios';
 import {useDispatch} from 'react-redux';
+import swal from 'sweetalert';
 
 
 const Create = () => {
@@ -154,7 +155,9 @@ const handleSubmitForm = async(e) => {
             const response = await axios.post('http://localhost:3001/products', input);
             
             // Una vez que los datos se han enviado exitosamente, mostrar una alerta
-            alert("¡Producto agregado con éxito!");
+            // alert("¡Producto agregado con éxito!");
+            swal("Success Created!", "Click in the OK button to continue!", "success");
+
             
             // Luego, reiniciar form
             setInput({
@@ -266,7 +269,7 @@ const handleSubmitForm = async(e) => {
                 </div>
 <hr />
 
-<div className={style.text}>Warranty</div>
+<div className={style.text}>{`Warranty (in month)`}</div>
                 <div  className={style.option} >
                     <input 
                     onChange= {handleChange}
@@ -278,7 +281,7 @@ const handleSubmitForm = async(e) => {
                     />{errors.description && <p className={style.error}>{errors.description}</p>}
                 </div>
 <hr />
-<div className={style.text}>Battery Life</div>
+<div className={style.text}>{`Battery Life (in hour's)`}</div>
                 <div  className={style.option} >
                     <input 
                     onChange= {handleChange}
@@ -294,7 +297,7 @@ const handleSubmitForm = async(e) => {
 <hr />
 
 <div >
-<div className={style.text}>Weight</div>
+<div className={style.text}>{`Weight (in grams)`}</div>
           <div  className={style.option} >
               <input 
               onChange= {handleChange}
@@ -608,7 +611,7 @@ const handleSubmitForm = async(e) => {
               type="text" 
               value= {input.dimensions}
               name= "dimensions"
-              
+              placeholder='30cm 50cm 15cm'
               />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>

@@ -22,7 +22,7 @@ const formValidator = (data) => {
     //errores en el campo "description"
   
     if (!data.description.trim()){
-        errors.description = '⚠Ingresa una descripción para el producto';
+        errors.description = '⚠Complete the field';
     }
 
 
