@@ -7,24 +7,24 @@ import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
 import { getProductById, cleanProductById } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
+import { PiPlusBold } from "react-icons/pi";
 
 const Detail = () => {
   const { id } = useParams();
-  const [images, setImages] = useState('');
-  const [ relatedProducts, setRelatedProducts ] = useState([]);
+  const [images, setImages] = useState("");
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
-  const products = useSelector((state) => state.products)
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getProductById(id))
+    dispatch(getProductById(id));
 
     return () => {
-      dispatch(cleanProductById())
-    }
-  }, [id]); 
+      dispatch(cleanProductById());
+    };
+  }, [id]);
 
   let productoFiltrado;
   if (productById) {
@@ -42,33 +42,36 @@ const Detail = () => {
   useEffect(() => {
     if (productById && productById.image && Array.isArray(productById.image)) {
       const imagenes = productById.image;
-      const data = imagenes.map(img => ({
-          original: img,
-          thumbnail: img,
-      }))
+      const data = imagenes.map((img) => ({
+        original: img,
+        thumbnail: img,
+      }));
       if (data.length > 0) {
-        console.log(productById)
-        setImages(data)
+        console.log(productById);
+        setImages(data);
       }
     }
-  }, [productById])
-  
+  }, [productById]);
 
   useEffect(() => {
-    if(productById && Array.isArray(productById.categories) && productById.categories.length > 0) {
+    if (
+      productById &&
+      Array.isArray(productById.categories) &&
+      productById.categories.length > 0
+    ) {
       const category = productById.categories[0].name;
-      console.log(productById)
+      console.log(productById);
       //   const productsFiltered = products.filter((product) => product.categories[0].name === category)
       //   if(productsFiltered.length > 0){
       //     console.log(productsFiltered)
       //     setRelatedProducts(productsFiltered)
       // }
     }
-  },[productById])
+  }, [productById]);
 
   return (
     <>
-      {productoFiltrado  && images && (
+      {productoFiltrado && images && (
         <div className={styles.contenedor}>
           <div className={styles.detailContainer}>
             <div className={styles.contenedorGallery}>
@@ -85,7 +88,6 @@ const Detail = () => {
               </p>
               <hr />
               <div className={styles.containerSpecs}>
-               
                 <ul className={`${styles.productSpecs} ${styles.circleList}`}>
                   {Object.entries(productoFiltrado).map(
                     ([key, value]) =>
@@ -103,19 +105,20 @@ const Detail = () => {
                       )
                   )}
                 </ul>
-             
               </div>
               <div className={styles.divButtonCart}>
-              <button className={styles.buttonCart}>
-                      <i className="bi bi-plus"></i>
-                      Add To Cart
-                    </button>
-                    </div>
+                <button className={styles.buttonCart}>
+                  <div className={styles.iconPlus}>
+                    <PiPlusBold />
+                  </div>
+                  Add To Cart
+                </button>
+              </div>
             </div>
           </div>
           <div>
             <CarouselDetail />
-            </div>
+          </div>
         </div>
       )}
     </>

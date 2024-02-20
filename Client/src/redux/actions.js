@@ -3,6 +3,8 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
 export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_ORDER = 'GET_ORDER'
 
 export function postForm(payload){
     return async function (dispatch){
@@ -17,7 +19,7 @@ export function postForm(payload){
 }
 };
 
-export const getProducts = (category, order, page, items="6") => {
+export const getProducts = (category, order, page="1", items="6") => {
     return async function (dispatch) {
         try {
             let url = 'http://localhost:3001/products';
@@ -32,13 +34,27 @@ export const getProducts = (category, order, page, items="6") => {
             }
             console.log("URL:", url);
             const productsData = await axios.get(url);
-
             const products = productsData.data.data;
+
             // console.log("Products:", products);
             dispatch({type: GET_PRODUCTS, payload: products})
         } catch (error) {
             console.log(error);
         }
+    }
+}
+
+export const getCategories = (categories) => {
+    return{
+        type: GET_CATEGORIES,
+        payload: categories
+    }
+}
+
+export const getOrder = (order) => {
+    return{
+        type: GET_ORDER,
+        payload: order
     }
 }
 
