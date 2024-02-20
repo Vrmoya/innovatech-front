@@ -11,9 +11,12 @@ import CarouselDetailImages from "../../components/CarouselDetailImages/Carousel
 const Detail = () => {
   const { id } = useParams();
   const [images, setImages] = useState('');
+  const [ relatedProducts, setRelatedProducts ] = useState([]);
+
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
   const products = useSelector((state) => state.products)
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 
   useEffect(() => {
     dispatch(getProductById(id))
@@ -37,18 +40,31 @@ const Detail = () => {
   }
 
   useEffect(() => {
-    if (productoFiltrado && productoFiltrado.image && Array.isArray(productoFiltrado.image)) {
-      const imagenes = productoFiltrado.image;
+    if (productById && productById.image && Array.isArray(productById.image)) {
+      const imagenes = productById.image;
       const data = imagenes.map(img => ({
           original: img,
           thumbnail: img,
       }))
       if (data.length > 0) {
+        console.log(productById)
         setImages(data)
       }
     }
   }, [productById])
+  
 
+  useEffect(() => {
+    if(productById && Array.isArray(productById.categories) && productById.categories.length > 0) {
+      const category = productById.categories[0].name;
+      console.log(productById)
+      //   const productsFiltered = products.filter((product) => product.categories[0].name === category)
+      //   if(productsFiltered.length > 0){
+      //     console.log(productsFiltered)
+      //     setRelatedProducts(productsFiltered)
+      // }
+    }
+  },[productById])
 
   return (
     <>
