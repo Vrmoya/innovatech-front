@@ -193,7 +193,8 @@ const handleSubmitForm = async(e) => {
     } else {
         // Si hay errores, mostrarlos al usuario
         console.log("Formulario no enviado debido a errores:", formErrors);
-        alert("Corrija los errores antes de enviar el formulario.");
+        // alert("Corrija los errores antes de enviar el formulario.");
+        swal("Error", "Complete all fields and try again", "error");
     }
 };
 
@@ -228,7 +229,7 @@ const handleSubmitForm = async(e) => {
 
 
 
-                <div className={style.text}>Name Model Product</div>
+                <div className={style.text}>Name Model Product *</div>
                 <div  className={style.option} >
                     <input 
                     onChange={handleChange}
@@ -243,7 +244,7 @@ const handleSubmitForm = async(e) => {
                 <hr />
 
 
-                <div className={style.text}>Price</div>
+                <div className={style.text}>Price *</div>
                 <div  className={style.option} >
                     <input 
                     onChange={handlePriceChange}
@@ -256,7 +257,7 @@ const handleSubmitForm = async(e) => {
                 </div>
                 <hr />
                 
-                <div className={style.text}>Description of the item</div>
+                <div className={style.text}>Description of the item *</div>
                 <div  className={style.option} >
                     <input 
                     onChange= {handleChange}
@@ -611,7 +612,6 @@ const handleSubmitForm = async(e) => {
               type="text" 
               value= {input.dimensions}
               name= "dimensions"
-              placeholder='30cm 50cm 15cm'
               />{errors.description && <p className={style.error}>{errors.description}</p>}
           </div>
           </div>
