@@ -137,6 +137,11 @@ const CarouselDetail = () => {
       items: 1,
     },
   };
+
+  const scroll = () => {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <>
       <div className={style.contenedor}>
@@ -145,7 +150,7 @@ const CarouselDetail = () => {
           {productosCategoria &&
             productosCategoria.map((product) => (
               <section key={product.id} className={style.sectionContainer}>
-                <Link to={`/detail/${product.id}`} className={style.linkDetail}>
+                <Link to={`/detail/${product.id}`} className={style.linkDetail} onClick={scroll}>
                 <div className={style.card}>
                   <div className={style.divImage}>
                     <img

@@ -1,17 +1,16 @@
 import React from 'react'
 import style from './Order.module.css'
-import { useDispatch } from "react-redux";
-import { getProducts } from '../../redux/actions';
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts, getOrder } from '../../redux/actions';
 
-const Order = ({category}) => {
+const Order = () => {
   const dispatch = useDispatch()
+  const categories = useSelector(state => state.categories)
 
   const handleOrder = (order) => {
-    // console.log("Order:", order);
-    dispatch(getProducts("", order));
+    dispatch(getProducts(categories, order));
+    dispatch(getOrder(order))
   };
-
-  console.log(category);
   
   return (
     <div className={style.container}>
