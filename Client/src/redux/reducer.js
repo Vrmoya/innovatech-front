@@ -4,25 +4,34 @@ const initialState = {
     products: [],
     getProductById: {},
     categories: null,
-    order: null
+    order: null,
+    noRender: false
 }
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_PRODUCTS:
-            return {
-                ...state,
-                products: action.payload,
-             }
+            if(action.payload === action.payload.length === 0){
+                return{
+                    ...state,
+                    noRender: true
+                }
+
+            } else{
+                return {
+                    ...state,
+                    products: action.payload,
+                 }
+            }
         case GET_CATEGORIES:
             return{
                 ...state,
-                categories: action.payload,
+                categories: action.payload, // laptop, smarthphone, 
             }
         case GET_ORDER:
             return{
                 ...state,
-                order: action.payload
+                order: action.payload // none // Price: Low to high // Price: High to low
             }
             
         case GET_PRODUCT_BY_ID:

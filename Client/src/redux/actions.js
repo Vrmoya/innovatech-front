@@ -35,6 +35,7 @@ export const getProducts = (category, order, page="1", items="6") => {
             console.log("URL:", url);
             const productsData = await axios.get(url);
             const products = productsData.data.data;
+            console.log(products)
 
             // console.log("Products:", products);
             dispatch({type: GET_PRODUCTS, payload: products})
