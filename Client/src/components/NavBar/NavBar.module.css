@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+
 .nav{
     display: flex;
     align-items: center;
@@ -51,6 +53,7 @@
     font-size: .9em;
     padding-left: .5em;
     font-weight: bold;
+    font-family: "Anta", sans-serif;
 }
 
 .linkDesk{

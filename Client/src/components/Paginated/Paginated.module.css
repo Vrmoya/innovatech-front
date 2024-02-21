@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #7471723a;
+    margin: 0 3em;
+}
+
+.button[disabled] {
+    cursor: not-allowed;
+}
+
+.svgPrev,
+.svgNext {
+    width: 12px;
+    transition-duration: 0.3s;
+
+}
+
+.svgPrev {
+    transform: rotate(-90deg);
+}
+
+.svgNext {
+    transform: rotate(90deg);
+}
+
+.path {
+    fill: #000;
+}
+
+/* .input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    font-weight: 900;
+    border: 1px solid #7471723a;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #292929;
+} */
+
+.input{
+    display: none;
+}

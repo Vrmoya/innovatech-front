@@ -3,6 +3,9 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
 export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_ORDER = 'GET_ORDER'
+export const GET_PRODUCTS_BY_CATEGORIES = 'GET_PRODUCTS_BY_CATEGORIES';
 
 export function postForm(payload) {
     return async function (dispatch) {
@@ -17,21 +20,34 @@ export function postForm(payload) {
     }
 };
 
-// export const getProducts = () => {
-//     return async function (dispatch) {
-//         try {
-//             const productsData = await axios.get('http://localhost:3001/products');
+export const getProductsByCategories = (category, order, page, items) => {
+    return async function (dispatch){
+        try{
+            let url = 'http://localhost:3001/products';
+            if (category || order || page || items) {
+                url += '?';
+                if (category) url += `category=${category}&`;
+                if (order) url += `order=${order}&`;
+                if (page) url += `page=${page}&`;
+                if (items) url += `items=${items}&`;
+                url = url.replace(/&$/, '');
+            }
+            console.log("URL:", url);
+            const productsData = await axios.get(url);
+            const products = productsData.data.data;
+            console.log('melina', products)
+            dispatch({
+                type: GET_PRODUCTS_BY_CATEGORIES, 
+                payload: products})
 
-//             const products = productsData.data;
-//             dispatch({type: GET_PRODUCTS, payload: products})
-//         } catch (error) {
-//             console.log(error);
-//         }
+        }catch(err){
+            console.log(err);
+        }
+    }
 
-//     }
-// }
+}
 
-export const getProducts = (category, order, page, items) => {
+export const getProducts = (category, order, page='1', items="6") => {
     return async function (dispatch) {
         try {
             let url = 'http://localhost:3001/products';
@@ -46,13 +62,31 @@ export const getProducts = (category, order, page, items) => {
             }
             console.log("URL:", url);
             const productsData = await axios.get(url);
-
             const products = productsData.data.data;
-            console.log("Products:", products);
-            dispatch({ type: GET_PRODUCTS, payload: products })
+
+            console.log(products)
+            // console.log("Products:", products);
+            dispatch({
+                type: GET_PRODUCTS, 
+                payload: products})
+
         } catch (error) {
             console.log(error);
         }
+    }
+}
+
+export const getCategories = (categories) => {
+    return{
+        type: GET_CATEGORIES,
+        payload: categories
+    }
+}
+
+export const getOrder = (order) => {
+    return{
+        type: GET_ORDER,
+        payload: order
     }
 }
 
