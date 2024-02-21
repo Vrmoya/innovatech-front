@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import style from './NavBar.module.css'
 import logo from '../../../public/logo.png'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PATHROURES from '../../helpers/PathRoutes';
 import SearchBar from '../SearchBar/SearchBar';
 
 const NavBar = () => {
     const [showNav, setShowNav] = useState(null);
+    const location = useLocation()
+
+    if(location.pathname === PATHROURES.CREATE){
+        return null
+    }
 
     const toggleNav = () => {
         setShowNav(!showNav);
     };
+
+
 
     return (
         <nav className={style.nav}>
