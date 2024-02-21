@@ -1,16 +1,9 @@
-import style from './Create.module.css'
-import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import style from './FormDashboard.module.css'
+import React, { useState } from 'react';
 import formValidator from './validation';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
-import form from '../../assets/form.svg'
-import users from '../../assets/users.svg'
-import home from '../../assets/home.svg'
-import products from '../../assets/products.svg'
-
-
 
 const Create = () => {
 
@@ -199,27 +192,8 @@ const Create = () => {
 
     return (
         <div className={style.container}>
+            <div className={style.mainContent}>
 
-            {/* <h1 className={style.titulo}> Add products to Innova Tech Stock </h1> */}
-            <div className={style.sideNav}>
-                <div className={style.navContent}>
-                    <div className={style.menuTitle}>
-                        <img src={home} alt="" className={style.svgMenu} />
-                        <h1 className={style.menu}>Menu</h1>
-                    </div>
-                    <button className={style.buttonNav}>
-                        <img src={form} alt="" className={style.svg} />
-                        <span className={style.span}>Create Product</span>
-                    </button>
-                    <button className={style.buttonNav}>
-                        <img src={products} alt="" className={style.svg} />
-                        <span className={style.span}>Products</span>
-                    </button>
-                    <button className={style.buttonNav}>
-                        <img src={users} alt="" className={style.svg} />
-                        <span className={style.span}>Users</span>
-                    </button>
-                </div>
 
             </div>
 

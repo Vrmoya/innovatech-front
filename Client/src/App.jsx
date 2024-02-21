@@ -1,6 +1,6 @@
 import PATHROUTES from "./helpers/PathRoutes";
 import { Routes, Route } from 'react-router-dom';
-import {About, Create, Detail, Error, Home, Landing} from './views'
+import {About, Dashboard, Detail, Error, Home, Landing} from './views'
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path={PATHROUTES.ABOUT} element={<About />}/>
-        <Route path={PATHROUTES.CREATE} element={<Create />}/>
+        <Route path={PATHROUTES.DASHBOARD} element={<Dashboard />}/>
         <Route path={PATHROUTES.DETAIL} element={<Detail />}/>
         <Route path={PATHROUTES.ERROR} element={<Error />}/>
         <Route path={PATHROUTES.HOME} element={<Home />}/>
