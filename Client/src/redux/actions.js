@@ -20,7 +20,7 @@ export function postForm(payload){
 }
 };
 
-export const getProductsByCategories = (category, order, page, items="6") => {
+export const getProductsByCategories = (category, order, page, items) => {
     return async function (dispatch){
         try{
             let url = 'http://localhost:3001/products';
@@ -30,7 +30,6 @@ export const getProductsByCategories = (category, order, page, items="6") => {
                 if (order) url += `order=${order}&`;
                 if (page) url += `page=${page}&`;
                 if (items) url += `items=${items}&`;
-
                 url = url.replace(/&$/, '');
             }
             console.log("URL:", url);
@@ -43,7 +42,6 @@ export const getProductsByCategories = (category, order, page, items="6") => {
 
         }catch(err){
             console.log(err);
-
         }
     }
 
@@ -65,7 +63,7 @@ export const getProducts = (category, order, page='1', items="6") => {
             console.log("URL:", url);
             const productsData = await axios.get(url);
             const products = productsData.data.data;
-            console.log('matias',products)
+            console.log(products)
             // console.log("Products:", products);
             dispatch({
                 type: GET_PRODUCTS, 
