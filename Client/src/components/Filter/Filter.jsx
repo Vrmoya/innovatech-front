@@ -1,14 +1,14 @@
 import React from 'react'
 import style from './Filter.module.css'
 import { useDispatch } from "react-redux";
-import { getCategories, getProducts } from '../../redux/actions';
+import { getCategories, getProducts, getProductsByCategories } from '../../redux/actions';
 
 const Filter = () => {
   const dispatch = useDispatch()
 
   const handleFilter = (category) => {
     dispatch(getCategories(category))
-    dispatch(getProducts(category))
+    dispatch(getProducts(category)) && dispatch(getProductsByCategories(category))
   };
 
   return (

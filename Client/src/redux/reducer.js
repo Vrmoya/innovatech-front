@@ -5,6 +5,7 @@ import {
   FILTER_BY_MODEL,
   GET_CATEGORIES,
   GET_ORDER,
+  GET_PRODUCTS_BY_CATEGORIES,
 } from "./actions";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   getProductById: {},
   categories: null,
   order: null,
+  filterByCategories: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -21,6 +23,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
+      case GET_PRODUCTS_BY_CATEGORIES:
+        return{
+          ...state,
+          filterByCategories: action.payload
+        }
 
     case GET_CATEGORIES:
       return {
