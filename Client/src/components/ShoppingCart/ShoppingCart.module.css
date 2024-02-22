@@ -1,0 +1,38 @@
+.cartContainer{
+    margin-top: 15px;
+}
+
+.buyCart {
+    position: absolute;
+    z-index: 9999;
+    width: 400px;
+    height: 100%;
+    right: 0;
+    background-color: #fff;
+    margin-top: 15px;
+    margin-right: 27px;
+    border-radius: 10px;
+    border: 2px solid #e5e7eb;
+  }
+ 
+
+  .navCard {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e7eb;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+.navCard li {
+    list-style: none;
+    
+}
+.buttonCleanCart{
+    width: 90%;
+    padding: 1rem;
+    margin:10px auto; 
+    background-color: transparent;
+}
+
