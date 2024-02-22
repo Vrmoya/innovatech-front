@@ -13,7 +13,8 @@ const initialState = {
   getProductById: {},
   categories: null,
   order: null,
-  filterByCategories: []
+  filterByCategories: [],
+  filterByModel: []
 };
 
 const rootReducer = (state = initialState, action) => {
