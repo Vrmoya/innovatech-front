@@ -7,7 +7,7 @@ const formValidator = (data) => {
     if (!data.model.trim()) {
       errors.model = '⚠Ingresa un nombre para el producto.';
    
-    }  else if (data.model.length < 3 || data.model.length > 15) {
+    }  else if (data.model.length < 3 || data.model.length > 25) {
         errors.model = '⚠ El nombre debe tener entre 3 y 15 caracteres.';
       }
 
@@ -22,8 +22,13 @@ const formValidator = (data) => {
     //errores en el campo "description"
   
     if (!data.description.trim()){
-        errors.description = '⚠Ingresa una descripción para el producto';
+        errors.description = '⚠Complete the field';
     }
+
+
+
+
+
 
  //errores en el campo precio
  if (isNaN(data.price)) {
@@ -44,9 +49,7 @@ const formValidator = (data) => {
 // }
 
 
-// if (!data.ram.trim()){
-//   errors.ram='⚠ Completa el campo "ram".'
-// }
+
 
     return errors;
   };
