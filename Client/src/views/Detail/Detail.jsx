@@ -108,8 +108,8 @@ const Detail = () => {
               </div>
               <div className={styles.divButtonCart}>
                 <button className={styles.buttonCart}>
-                  <div className={styles.iconPlus}>
-                    <PiPlusBold />
+                  <div>
+                    <PiPlusBold  className={styles.iconPlus}/>
                   </div>
                   Add To Cart
                 </button>
@@ -126,4 +126,3 @@ const Detail = () => {
 };
 
 export default Detail;
-///aaaaaa
