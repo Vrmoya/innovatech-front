@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     
-width: 50vw;
+width: 30vw;
 height: 50vh;
 background-color: transparent;
 backdrop-filter: blur(3px);
@@ -42,9 +42,19 @@ align-items: center;
 
 }
 
+.option{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 15vw;
+
+
+}
+
 .containerButton{
     background-color: transparent;
-    width: 30vw;
+    width: 20vw;
     height: 20vh;
     display: flex;
     flex-direction: row;
@@ -54,5 +64,16 @@ align-items: center;
 
 .button {
 
-    background-color: #747172;
+    background-color: transparent;
+    border-radius: 30px;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    
 }
+
+
+    .svg{
+        width: 30px;
+        height: 30px;
+    }
