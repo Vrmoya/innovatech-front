@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 .nav{
     display: flex;
     align-items: center;
     height: 10vh;
-    padding-top: 1em;
+    padding-top: .5em;
     margin-bottom: 1em;
 }
 
@@ -58,6 +59,7 @@
 
 .linkDesk{
     display: none;
+    border-bottom: 1px solid transparent;
 }
 
 .linkContentMobile{
@@ -102,6 +104,7 @@
     border: 1px solid #7471723a;
     background-color: transparent;
     cursor: pointer;
+    background-color: #fff;
 }
 
 .cartSvg{
@@ -132,12 +135,22 @@
     font-size: 1.1em;
     background-color: #000;
     color: #fff;
+    font-family: "Public Sans", sans-serif;
+    transition: .5s;
+    border: 1px solid transparent;
+}
+
+.buttonLog:hover,
+.buttonSign:hover{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #7471723a;
 }
 
 @media screen and (min-width: 768px){
     .mainContent{
-        margin-left: 2em;
-        margin-right: 2em;
+        margin-left: 1.5em;
+        margin-right: 1.5em;
     }
 
     .mobileButtonContent{
@@ -151,9 +164,10 @@
     .linkDesk{
         display: block;
         text-decoration: none;
-        margin-left: 1em;
+        margin-left: 1.5em;
         color: #747172;
         font-size: .9em;
+        font-weight: 600;
     }
 
     .linkDesk:hover{
