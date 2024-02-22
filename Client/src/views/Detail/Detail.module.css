@@ -79,9 +79,8 @@
 
 .iconPlus{
   position: absolute;
-  right: 0;
+  left: 0;
   margin-left: 20px;
-
 }
 .product-container {
   display: flex;

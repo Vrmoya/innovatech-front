@@ -108,9 +108,7 @@ const Detail = () => {
               </div>
               <div className={styles.divButtonCart}>
                 <button className={styles.buttonCart}>
-                  <div>
                     <PiPlusBold  className={styles.iconPlus}/>
-                  </div>
                   Add To Cart
                 </button>
               </div>
