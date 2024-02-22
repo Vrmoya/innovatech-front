@@ -47,7 +47,7 @@ export const getProductsByCategories = (category, order, page, items) => {
 
 }
 
-export const getProducts = (category, order, page='1', items="6") => {
+export const getProducts = (category, order, page='1', items="6",model) => {
     return async function (dispatch) {
         try {
             let url = 'http://localhost:3001/products';
@@ -57,6 +57,7 @@ export const getProducts = (category, order, page='1', items="6") => {
                 if (order) url += `order=${order}&`;
                 if (page) url += `page=${page}&`;
                 if (items) url += `items=${items}&`;
+                if (model) url += `model=${model}&`;
 
                 url = url.replace(/&$/, '');
             }
@@ -64,8 +65,8 @@ export const getProducts = (category, order, page='1', items="6") => {
             const productsData = await axios.get(url);
             const products = productsData.data.data;
 
-            console.log(products)
             // console.log("Products:", products);
+            dispatch({type:'TOTAL_PAGES',payload:productsData.data.totalPages})
             dispatch({
                 type: GET_PRODUCTS, 
                 payload: products})

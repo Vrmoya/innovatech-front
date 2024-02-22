@@ -1,10 +1,21 @@
 import style from './CardsContainer.module.css'
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import Card from "../Card/Card";
+import {getProducts } from "../../redux/actions";
+import { useEffect } from 'react';
 
 const CardsContainer = () => {
+    const dispatch = useDispatch();
     const productsData = useSelector(state => state.products)
 
+    const categories = useSelector(state => state.categories)
+    const order = useSelector(state => state.order)
+    const model = useSelector(state => state.model)
+    const pagenumber = useSelector(state=> state.pagenumber)
+    useEffect(() => {
+        dispatch(getProducts(categories, order, pagenumber, "6",model));
+      }, [model,categories,order,pagenumber]);
+    
     // console.log(productsData);
 
     return (

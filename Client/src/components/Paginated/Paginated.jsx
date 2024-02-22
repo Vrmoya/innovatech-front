@@ -1,6 +1,5 @@
 import style from './Paginated.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from '../../redux/actions';
 import { useEffect, useState } from 'react';
 
 const Paginated = () => {
@@ -8,6 +7,8 @@ const Paginated = () => {
     const categories = useSelector(state => state.categories)
     const order = useSelector(state => state.order)
     const products = useSelector((state) => state.products)
+    const totalpages = useSelector((state) => state.totalpages)
+    console.log('hola soy el total de paginas', totalpages);
     const productsByCategoriesLength = useSelector((state) => state.filterByCategories)
     const [disableButtonNext, setdisableButtonNext] = useState(null)
     const productsPerPage = 6;
@@ -18,20 +19,21 @@ const Paginated = () => {
     const handlePaginated = (event) => {
         const value = event.target.value;
         setInput(value)
-        dispatch(getProducts(categories, order, value))
+        // dispatch(getProducts(categories, order, value))
+        dispatch({ type: 'SET_PAGE', payload: value })
     }
 
     useEffect(() => {
-        if(productsByCategoriesLength.length > 0 && Array.isArray(productsByCategoriesLength)){
-            const totalPages = Math.ceil(productsByCategoriesLength.length/productsPerPage)
-            console.log('N° de paginas',totalPages)
+        if (productsByCategoriesLength.length > 0 && Array.isArray(productsByCategoriesLength)) {
+            const totalPages = Math.ceil(productsByCategoriesLength.length / productsPerPage)
+            console.log('N° de paginas', totalPages)
             setdisableButtonNext(totalPages)
         }
-    },[productsByCategoriesLength, products])
+    }, [productsByCategoriesLength, products])
 
-   useEffect(() => {
-    setInput('1')
-   }, [categories, order])
+    useEffect(() => {
+        setInput('1')
+    }, [categories, order])
 
 
 
@@ -40,7 +42,8 @@ const Paginated = () => {
         const prevValue = parseInt(input) - 1;
         if (prevValue > 0) {
             setInput(prevValue.toString());
-            dispatch(getProducts(categories, order, prevValue.toString())); // Aquí pasamos las categorías y el orden actuales
+            // dispatch(getProducts(categories, order, prevValue.toString())); // Aquí pasamos las categorías y el orden actuales
+            dispatch({ type: 'SET_PAGE', payload: prevValue.toString() })
         } else {
             setInput("-1");
         }
@@ -49,13 +52,19 @@ const Paginated = () => {
     const next = () => {
         scroll()
         const nextValue = parseInt(input) + 1;
-        setInput(nextValue.toString());
-        dispatch(getProducts(categories, order, nextValue.toString())); // Aquí pasamos las categorías y el orden actuales
+        if (nextValue <= totalpages) {
+            setInput(nextValue.toString());
+            // dispatch(getProducts(categories, order, nextValue.toString())); // Aquí pasamos las categorías y el orden actuales
+            dispatch({ type: 'SET_PAGE', payload: nextValue.toString() })
+        }
+        else {
+            console.log('Max page reached :(');
+        }
     };
 
     const scroll = () => {
         window.scrollTo(0, 0);
-      }
+    }
 
     return (
         <div className={style.container}>

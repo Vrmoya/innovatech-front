@@ -1,20 +1,8 @@
 import style from './Landing.module.css'
 import Carousel from '../../components/Carousel/Carousel'
-import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { getProducts } from '../../redux/actions'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
-
-  const products = useSelector(state => state.products)
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProducts())
-  }, [])
 
   const scroll = () => {
     window.scrollTo(0, 0);
