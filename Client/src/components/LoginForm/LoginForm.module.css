@@ -1,0 +1,58 @@
+
+.containerLoginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+width: 50vw;
+height: 50vh;
+background-color: transparent;
+backdrop-filter: blur(3px);
+  /* bordes  */
+  border-style: solid;
+  border-width: 3px;
+ 
+  border-radius: 10px;
+  border-color: #747172;
+
+}
+
+
+.title{
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.form{
+    background-color: transparent;
+width: 50vw;
+height: 20vh;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+
+
+}
+
+.containerButton{
+    background-color: transparent;
+    width: 30vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button {
+
+    background-color: #747172;
+}
