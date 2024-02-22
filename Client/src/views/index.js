@@ -1,8 +1,8 @@
 import About from './About/About'
-import Create from './Create/Create'
+import Dashboard from './Dashboard/Dashboard'
 import Detail from './Detail/Detail'
 import Error from './Error/Error'
 import Home from './Home/Home'
 import Landing from './Landing/Landing'
 
-export {About, Create, Detail, Error, Home, Landing}
+export {About, Dashboard, Detail, Error, Home, Landing}

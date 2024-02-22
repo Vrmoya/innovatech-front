@@ -9,7 +9,7 @@ const NavBar = () => {
     const [showNav, setShowNav] = useState(null);
     const location = useLocation()
 
-    if(location.pathname === PATHROURES.CREATE){
+    if(location.pathname === PATHROURES.DASHBOARD){
         return null
     }
 
