@@ -1,13 +1,15 @@
 import style from "./SearchBar.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { filterByModel } from "../../redux/actions";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { filterByModel, getProducts } from "../../redux/actions";
 import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
   const [model, setModel] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const categories = useSelector(state => state.categories)
+  const order = useSelector(state => state.order)
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -15,7 +17,7 @@ const SearchBar = () => {
     setModel(event.target.value);
   };
   const handleSubmit = () => {
-    dispatch(filterByModel(model));
+    dispatch({type:'CHANGE_MODEL',payload:model});
     // setModel("");
     navigate('/home');
   };
