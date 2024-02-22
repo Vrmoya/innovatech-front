@@ -9,19 +9,24 @@ const LoginForm = () => {
   return (
     <div className={style.containerLoginForm}>
 
-      <h1 className={style.title}>"Sign Up"</h1>
+      <h1 className={style.title}>Sign Up</h1>
+      <hr className={style.hr}/>
+      
 
       <form className= {style.form}>
+    
         <div className={style.option}>
       <img src={user2} alt="" className={style.svg}/>
-        <input type="text" 
+        <input className={style.input}type="text" 
         placeholder='User'/>
         </div>
     
     <div className={style.option}>
         <img src={mail2} alt="" className={style.svg}/>
 
-        <input type="text" 
+        <input 
+        className={style.input}
+        type="text" 
         placeholder='E-Mail'/>
 
 </div>
@@ -29,7 +34,9 @@ const LoginForm = () => {
 <div className={style.option}>
         <img src={password2} alt="" className={style.svg}/>
 
-        <input type="text" 
+        <input 
+        className={style.input}
+        type="text" 
         placeholder='Password'/>
         </div>
        
