@@ -1,7 +1,6 @@
 import style from './FormDashboard.module.css'
 import React, { useState } from 'react';
 import formValidator from './validation';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
 
@@ -191,271 +190,206 @@ const Create = () => {
     };
 
     return (
-        <div className={style.container}>
-            <div className={style.mainContent}>
-
-
+        <form className={style.container}>
+            <div className={style.categories}>
+                <h1 className={style.typeTitle}>Product Type</h1>
+                <select className={style.select} onChange={(e) => handleChangeCategory(e)}>
+                    <option className={style.option} value="">Select category</option>
+                    <option className={style.option} value="laptop">Laptop</option>
+                    <option className={style.option} value="smartphone">Smartphone</option>
+                    <option className={style.option} value="tablet">Tablet</option>
+                    <option className={style.option} value="headphone">Headphone</option>
+                    <option className={style.option} value="keyboard">Keyboard</option>
+                </select>{errors.category && <label className={style.error}>{errors.category}</label>}
             </div>
-
-            <div className={style.formContainer}>
-
-                <form onSubmit={(e) => handleSubmitForm(e)}>
-
-                    <div className={style.text}>Category</div>
-                    <div className={style.option} >
-                        <select
-                            className={style.input}
-                            onChange={(e) => handleChangeCategory(e)}
-                        >
-                            <option value="">Select category</option>
-                            <option value="laptop">Laptop</option>
-                            <option value="smartphone">Smartphone</option>
-                            <option value="tablet">Tablet</option>
-                            <option value="headphone">Headphone</option>
-                            <option value="keyboard">Keyboard</option>
-
-                        </select>{errors.category && <p className={style.error}>{errors.category}</p>}
-                    </div>
-                    <hr />
-
-                    <div className={style.text}>Name Model Product *</div>
-                    <div className={style.option} >
+            <div className={style.detailContainer}>
+                <div>
+                    <h1 className={style.typeTitle}>Product Detail</h1>
+                </div>
+                <div className={style.inputContainer}>
+                    <div className={style.inputContent}>
+                        <h3 className={style.detail}>Product Name</h3>
                         <input
                             onChange={handleChange}
                             className={style.input}
                             type="text"
                             value={input.model}
                             name="model"
-
-                        />{errors.model && <p className={style.error}>{errors.model}</p>}
+                            placeholder='Product Name *'
+                        />
+                        {errors.model && <p className={style.error}>{errors.model}</p>}
                     </div>
 
-                    <hr />
-
-                    <div className={style.text}>Price *</div>
-                    <div className={style.option} >
+                    <div className={style.inputContent}>
+                        <h3 className={style.detail}>Product Price</h3>
                         <input
                             onChange={handlePriceChange}
                             className={style.input}
                             type="number"
                             value={input.price}
                             name="price"
-
-                        />{errors.price && <p className={style.error}>{errors.price}</p>}
+                        />
+                        {errors.price && <p className={style.error}>{errors.price}</p>}
                     </div>
 
-                    <hr />
-
-                    <div className={style.text}>Description of the item *</div>
-                    <div className={style.option} >
+                    <div className={style.inputContent}>
+                        <h3 className={style.detail}>Product Description</h3>
                         <input
                             onChange={handleChange}
                             className={style.input}
                             type="text"
                             value={input.description}
                             name="description"
-
+                            placeholder='Product Description *'
                         />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
-                    <hr />
 
-                    <div className={style.text}>{`Warranty (in month)`}</div>
-                    <div className={style.option} >
+                    <div className={style.inputContent}>
+                        <h3 className={style.detail}>Warranty</h3>
                         <input
                             onChange={handleChange}
                             className={style.input}
                             type="text"
                             value={input.warranty}
                             name="warranty"
-
+                            placeholder='Warranty'
                         />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
-                    <hr />
-                    <div className={style.text}>{`Battery Life (in hour's)`}</div>
-                    <div className={style.option} >
+
+                    <div className={style.inputContent}>
+                        <h3 className={style.detail}>Battery Life</h3>
                         <input
                             onChange={handleChange}
                             className={style.input}
                             type="text"
                             value={input.batteryLife}
                             name="batteryLife"
-
+                            placeholder='Battery Life'
                         />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
 
-                    <hr />
-
-                    <div >
-                        <div className={style.text}>{`Weight (in grams)`}</div>
-                        <div className={style.option} >
-                            <input
-                                onChange={handleChange}
-                                className={style.input}
-                                type="text"
-                                value={input.weight}
-                                name="weight"
-
-                            />{errors.description && <p className={style.error}>{errors.description}</p>}
-                        </div>
+                    <div className={style.inputContent}>
+                        <h3 className={style.detail}>Weight</h3>
+                        <input
+                            onChange={handleChange}
+                            className={style.input}
+                            type="text"
+                            value={input.weight}
+                            name="weight"
+                            placeholder='Weight'
+                        />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
-                    <hr />
-
-                    <div ></div>
 
                     {(category === "keyboard") &&
                         (
-
-                            <div>
-
-                                <div >
-                                    <div className={style.text}>Lights</div>
-                                    <div className={style.option} >
-                                        <input
-                                            onChange={handleChange}
-                                            className={style.input}
-                                            type="text"
-                                            value={input.lights}
-                                            name="lights"
-
-                                        />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div >
-
-                                </div>
-                                <div >
-                                    <div className={style.text}>Media Keys</div>
-                                    <div className={style.option} >
-                                        <input
-                                            onChange={handleChange}
-                                            className={style.input}
-                                            type="text"
-                                            value={input.mediaKeys}
-                                            name="mediaKeys"
-
-                                        />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div >
-
+                            <>
+                                <div className={style.inputContent}>
+                                    <h3 className={style.detail}>Lights</h3>
+                                    <input
+                                        onChange={handleChange}
+                                        className={style.input}
+                                        type="text"
+                                        value={input.lights}
+                                        name="lights"
+                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
                                 </div>
 
-                                <div >
-                                    <div className={style.text}>Wireless Range</div>
-                                    <div className={style.option} >
-                                        <input
-                                            onChange={handleChange}
-                                            className={style.input}
-                                            type="text"
-                                            value={input.wirelessRange}
-                                            name="wirelessRange"
+                                <div className={style.inputContent}>
+                                    <h3 className={style.detail}>Media Keys</h3>
+                                    <input
+                                        onChange={handleChange}
+                                        className={style.input}
+                                        type="text"
+                                        value={input.mediaKeys}
+                                        name="mediaKeys"
 
-                                        />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div >
-
+                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
                                 </div>
 
-
-                                <div >
-                                    <div className={style.text}>Dimensions</div>
-                                    <div className={style.option} >
-                                        <input
-                                            onChange={handleChange}
-                                            className={style.input}
-                                            type="text"
-                                            value={input.dimensions}
-                                            name="dimensions"
-
-                                        />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                    </div>
+                                <div className={style.inputContent}>
+                                    <h3 className={style.detail}>Wireless Range</h3>
+                                    <input
+                                        onChange={handleChange}
+                                        className={style.input}
+                                        type="text"
+                                        value={input.wirelessRange}
+                                        name="wirelessRange"
+                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
                                 </div>
-                                <hr />
 
-                                <div ></div>
+                                <div className={style.inputContent}>
+                                    <h3 className={style.detail}>Dimensions</h3>
+                                    <input
+                                        onChange={handleChange}
+                                        className={style.input}
+                                        type="text"
+                                        value={input.dimensions}
+                                        name="dimensions"
 
-                            </div>
+                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
+                                </div>
+                            </>
                         )
                     }
 
+
                     {(category === "headphone") &&
-                        (<div>
+                        (<>
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Sound</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.sound}
+                                    name="sound"
 
-
-                            <div >
-                                <div className={style.text}>Sound</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.sound}
-                                        name="sound"
-
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
-                            </div>
-                            <hr />
-                            <div >
-
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
 
-                            <div >
-                                <div className={style.text}>Microphone</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.microphone}
-                                        name="microphone"
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Microphone</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.microphone}
+                                    name="microphone"
 
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
-                            <hr />
-                            <div ></div>
-
-                        </div>)}
+                        </>
+                        )
+                    }
 
                     {(category === "headphone" || category === "keyboard") &&
-                        (<div>
+                        (<>
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Compatibility</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.compatibility}
+                                    name="compatibility"
 
-                            <div>
-                                <div className={style.text}>Compatibility</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.compatibility}
-                                        name="compatibility"
-
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
-                            <hr />
-                            <div >
-                                <div className={style.text}>Connectivity</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.connectivity}
-                                        name="connectivity"
 
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Connectivity</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.connectivity}
+                                    name="connectivity"
+
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
-                            <hr />
 
-                            <div className={style.text}>Extra Functions</div>
-                            <div className={style.option} >
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Extra Functions</h3>
                                 <input
                                     onChange={handleChange}
                                     className={style.input}
@@ -466,170 +400,137 @@ const Create = () => {
                                 />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
 
-                            <hr />
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Waterproof</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.waterproof}
+                                    name="waterproof"
 
-                            <div >
-                                <div className={style.text}>Waterproof</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.waterproof}
-                                        name="waterproof"
-
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
 
-                            <hr />
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Touch Control</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.touchControl}
+                                    name="touchControl"
 
-                            <div >
-                                <div className={style.text}>Touch Control</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.touchControl}
-                                        name="touchControl"
-
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
-                            <hr />
-                        </div>
-
+                        </>
                         )}
 
                     {(category === "laptop" || category === "smartphone" || category === "tablet") &&
-                        (<div>
-                            <div className={style.text}>Screen</div>
-                            <div className={style.option} >
+                        (<>
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Screen</h3>
                                 <input
                                     onChange={handleChange}
                                     className={style.input}
                                     type="text"
                                     value={input.screen}
                                     name="screen"
-
                                 />{errors.screen && <p className={style.error}>{errors.screen}</p>}
                             </div>
 
-                            <hr />
-                            <div >
-                                <div className={style.text}>Ram</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.Ram}
-                                        name="Ram"
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Ram</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.Ram}
+                                    name="Ram"
 
-                                    />{errors.ram && <p className={style.error}>{errors.ram}</p>}
-                                </div>
+                                />{errors.ram && <p className={style.error}>{errors.ram}</p>}
                             </div>
 
-                            <hr />
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Processor</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.processor}
+                                    name="processor"
 
-                            <div >
-                                <div className={style.text}>Processor</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.processor}
-                                        name="processor"
-
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
-                            </div>
-                            <hr />
-                            <div >
-                                <div className={style.text}>Operating system</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.operatingSystem}
-                                        name="operatingSystem"
-
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
-                            </div>
-                            <hr />
-                            <div >
-                                <div className={style.text}>Video Card</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.videoCard}
-                                        name="videoCard"
-
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
 
-                            <hr />
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Operating System</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.operatingSystem}
+                                    name="operatingSystem"
 
-                            <div >
-                                <div className={style.text}>Dimensions</div>
-                                <div className={style.option} >
-                                    <input
-                                        onChange={handleChange}
-                                        className={style.input}
-                                        type="text"
-                                        value={input.dimensions}
-                                        name="dimensions"
-                                    />{errors.description && <p className={style.error}>{errors.description}</p>}
-                                </div>
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
                             </div>
 
-                            <hr />
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Video Card</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.videoCard}
+                                    name="videoCard"
 
-                        </div>
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
+                            </div>
+
+                            <div className={style.inputContent}>
+                                <h3 className={style.detail}>Dimensions</h3>
+                                <input
+                                    onChange={handleChange}
+                                    className={style.input}
+                                    type="text"
+                                    value={input.dimensions}
+                                    name="dimensions"
+                                />{errors.description && <p className={style.error}>{errors.description}</p>}
+                            </div>
+                        </>
                         )
                     }
 
-                    <div className={style.text}>Update Image Product</div>
-
-                    <div className={style.option} >
-                        <input
-                            onChange={handleSelectImage}
-                            className={style.input}
-                            type="file"
-                            accept="image/*"
-                            // value= {input.image}
-                            name="file"
-
-                        />
-                        {errors.image && <p className={style.error}>{errors.image}</p>}
-                        {/* Visualizar la imagen seleccionada (opcional) */}
-
-                    </div>
-
-                    <div className={style.containerbutton}>
-                        <button className={style.buttoncreate} type='submit'
-                        >Create Product</button></div>
-                </form>
-
+                </div>
             </div>
+            <div className={style.imageSection}>
+                <div className={style.selectImg} >
+                    <input
+                        onChange={handleSelectImage}
+                        className={style.inputSelect}
+                        type="file"
+                        accept="image/*"
+                        // value= {input.image}
+                        name="file"
+                    />
+                    {errors.image && <p className={style.error}>{errors.image}</p>}
+                </div>
+                <div className={style.containerImages}>
+                    {selectedImages.map((image, index) => (
+                        <div key={index} className={style.imageContainer}>
+                            {/* <p>Imagen seleccionada {index + 1}:</p> */}
+                            <img className={style.img} src={URL.createObjectURL(image)} alt={`Selected ${index + 1}`} />
+                            <button className={style.buttonDelete} onClick={() => handleDeleteImage(index)}>X</button>
+                        </div>
 
-            <div className={style.containerImages}>
-                {selectedImages.map((image, index) => (
-                    <div key={index} className={style.imageContainer}>
-                        {/* <p>Imagen seleccionada {index + 1}:</p> */}
-                        <img className={style.img} src={URL.createObjectURL(image)} alt={`Selected ${index + 1}`} />
-                        <button className={style.button} onClick={() => handleDeleteImage(index)}>Eliminar</button>
-                    </div>
-
-                ))} </div>
-        </div>
+                    ))}
+                </div>
+                <div className={style.buttonContent}>
+                    <button className={style.buttonCreate} type='submit'>Create</button>
+                </div>
+                
+            </div>
+        </form>
     )
 }
 
