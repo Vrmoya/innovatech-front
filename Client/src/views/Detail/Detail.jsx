@@ -126,3 +126,4 @@ const Detail = () => {
 };
 
 export default Detail;
+///aaaaaa
