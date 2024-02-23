@@ -13,10 +13,14 @@ const Home = () => {
                 <CardsContainer></CardsContainer>
                 <Order></Order>
             </div>
+            <div className={style.mobileContent}>
+                <Filter></Filter>
+                <Order></Order>
+                <CardsContainer></CardsContainer>
+            </div>
             <div className={style.paginated}>
                 <Paginated></Paginated>
             </div>
-
         </div>
     )
 }
