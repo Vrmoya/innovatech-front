@@ -51,7 +51,7 @@ const SearchBar = () => {
      
       {model && (
         <button className={style.clearButton} onClick={handleClear}>
-          X
+          ✘
         </button>
       )}
       </div>

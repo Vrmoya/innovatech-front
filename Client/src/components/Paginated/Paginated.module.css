@@ -4,6 +4,9 @@
 }
 
 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
     border-radius: 8px;
@@ -20,7 +23,7 @@
 
 .svgPrev,
 .svgNext {
-    width: 12px;
+    width: 16px;
     transition-duration: 0.3s;
 
 }
