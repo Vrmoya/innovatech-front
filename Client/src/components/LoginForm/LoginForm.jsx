@@ -18,11 +18,23 @@ const LoginForm = () => {
     password: "",
   });
 
-  const handleChange =(e)=>{
-    setErrors (loginValidator({...userData, [e.target.name]: e.target.value}))
-    setUserData({...userData, [e.target.name]: e.target.value})
-  }
-
+  // const handleChange =(e)=>{
+  //   setErrors (loginValidator({...userData, [e.target.name]: e.target.value}))
+  //   setUserData({...userData, [e.target.name]: e.target.value})
+  // }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+  
+    // Actualizar el estado de userData
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [name]: value,
+    }));
+  
+    // Calcular los nuevos errores utilizando el valor actualizado de userData
+    setErrors(loginValidator({ ...userData, [name]: value }));
+    console.log (userData)
+  };
   //Submit
 
   const handleSubmit = (e) => {
@@ -85,6 +97,7 @@ const LoginForm = () => {
         <input 
         className={style.input}
         type="text" 
+        value={userData.email}
         placeholder='E-Mail'
         name= "email"
         onChange={(e)=>handleChange(e)}/>
@@ -101,7 +114,8 @@ const LoginForm = () => {
 
         <input 
         className={style.input}
-        type="text" 
+        type="password" 
+        value={userData.password}
         placeholder='Password'
         name= "password"
         onChange={(e)=>handleChange(e)}/>
