@@ -11,7 +11,7 @@ const Order = () => {
     setSelected(order)
     dispatch(getOrder(order))
   };
-  
+
   return (
     <div className={style.container}>
       <h3 className={style.title}>Sort by</h3>
@@ -19,8 +19,10 @@ const Order = () => {
       <button className={`${style.button} ${selected === 'asc' && style.selected}`} onClick={() => handleOrder("asc")}>Price: Low to high</button>
       <button className={`${style.button} ${selected === 'desc' && style.selected}`} onClick={() => handleOrder("desc")}>Price: High to low</button>
     </div>
-
-  )
-}
+  );
+};
 
 export default Order;
+
+
+

@@ -13,7 +13,6 @@ const Filter = () => {
   };
 
   return (
-
     <div className={style.container}>
       <h3 className={style.title}>Collections</h3>
       <button className={`${style.button} ${selected === '' && style.selected}`} onClick={() => handleFilter("")}>All</button>
@@ -23,7 +22,8 @@ const Filter = () => {
       <button className={`${style.button} ${selected === 'headphone' && style.selected}`} onClick={() => handleFilter("headphone")}>Headphones</button>
       <button className={`${style.button} ${selected === 'keyboard' && style.selected}`} onClick={() => handleFilter("keyboard")}>Keyboards</button>
     </div>
-  )
-}
+  );
+};
 
 export default Filter;
+

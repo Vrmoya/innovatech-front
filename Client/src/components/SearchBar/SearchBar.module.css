@@ -33,3 +33,12 @@
     height: 1rem;
     margin-right: 1em;
 }
+
+.clearButton{
+    position: absolute;
+    width: 1.5rem;
+    height: 1.3rem;
+    right: 0;
+    fill: #000;
+    margin-right: 3em;
+}
