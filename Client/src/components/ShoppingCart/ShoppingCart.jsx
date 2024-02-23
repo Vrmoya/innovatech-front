@@ -6,7 +6,7 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
       <div className={style.cartContainer}>
         <div className={style.buyCart}>
           <div className={style.firstSection}>
-            <p>My Cart</p>
+            <p className={style.tittleCart}>My Cart</p>
             <button className={style.buttonX} onClick={() => setShowShoppingCart(false)}>
               <div className={style.divContainerFirstSection}>
                 <svg
@@ -42,11 +42,3 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
   );
 };
 export default ShoppingCart;
-{
-  /* <ul className={style.navCard}>
-<li>Image</li>
-<li>Name</li>
-<li>Price</li>
-<li>Cantidad</li>
-</ul> */
-}
