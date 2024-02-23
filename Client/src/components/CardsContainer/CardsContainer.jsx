@@ -20,16 +20,19 @@ const CardsContainer = () => {
 
     return (
         <div className={style.container}>
-            {productsData?.map(product => {
-                return <Card
-                    key={product?.id}
-                    id={product?.id}
-                    model={product?.model}
-                    price={product?.price}
-                    // images={product.image}
-                    image={product?.image?.[0]}
-                />
-            })}
+            {productsData.length === 0 ? (
+                <p>There are no products that match</p>
+            ) : (
+                productsData.map(product => (
+                    <Card
+                        key={product.id}
+                        id={product.id}
+                        model={product.model}
+                        price={product.price}
+                        image={product.image?.[0]}
+                    />
+                ))
+            )}
         </div>
     )
 }

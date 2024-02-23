@@ -17,8 +17,6 @@ const NavBar = () => {
         setShowNav(!showNav);
     };
 
-
-
     return (
         <nav className={style.nav}>
             <div className={style.mainContent}>
