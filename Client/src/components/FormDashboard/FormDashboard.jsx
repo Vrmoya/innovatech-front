@@ -273,7 +273,6 @@ const Create = () => {
                             type="text"
                             value={input.weight}
                             name="weight"
-                            placeholder='Weight'
                         />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
 
