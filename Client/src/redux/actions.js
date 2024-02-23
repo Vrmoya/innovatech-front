@@ -6,6 +6,26 @@ export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_ORDER = 'GET_ORDER'
 export const GET_PRODUCTS_BY_CATEGORIES = 'GET_PRODUCTS_BY_CATEGORIES';
+export const PAYMENT_ID = 'PAYMENT_ID';
+
+export function paymentGateway() {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post("http://localhost:3001/create_preference", {
+                title: "Camiseta",
+                price: 500,
+                quantity: 1,
+                // currency_id: 'ARS'
+            })
+            console.log(response);
+            const { id } = response.data;
+            console.log(id);
+            dispatch({ type: PAYMENT_ID, payload: id })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 
 export function postForm(payload) {
     return async function (dispatch) {
@@ -21,8 +41,8 @@ export function postForm(payload) {
 };
 
 export const getProductsByCategories = (category, order, page, items) => {
-    return async function (dispatch){
-        try{
+    return async function (dispatch) {
+        try {
             let url = 'http://localhost:3001/products';
             if (category || order || page || items) {
                 url += '?';
@@ -37,17 +57,18 @@ export const getProductsByCategories = (category, order, page, items) => {
             const products = productsData.data.data;
             console.log('melina', products)
             dispatch({
-                type: GET_PRODUCTS_BY_CATEGORIES, 
-                payload: products})
+                type: GET_PRODUCTS_BY_CATEGORIES,
+                payload: products
+            })
 
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
     }
 
 }
 
-export const getProducts = (category, order, page='1', items="6",model) => {
+export const getProducts = (category, order, page = '1', items = "6", model) => {
     return async function (dispatch) {
         try {
             let url = 'http://localhost:3001/products';
@@ -66,10 +87,11 @@ export const getProducts = (category, order, page='1', items="6",model) => {
             const products = productsData.data.data;
 
             // console.log("Products:", products);
-            dispatch({type:'TOTAL_PAGES',payload:productsData.data.totalPages})
+            dispatch({ type: 'TOTAL_PAGES', payload: productsData.data.totalPages })
             dispatch({
-                type: GET_PRODUCTS, 
-                payload: products})
+                type: GET_PRODUCTS,
+                payload: products
+            })
 
         } catch (error) {
             console.log(error);
@@ -78,14 +100,14 @@ export const getProducts = (category, order, page='1', items="6",model) => {
 }
 
 export const getCategories = (categories) => {
-    return{
+    return {
         type: GET_CATEGORIES,
         payload: categories
     }
 }
 
 export const getOrder = (order) => {
-    return{
+    return {
         type: GET_ORDER,
         payload: order
     }
