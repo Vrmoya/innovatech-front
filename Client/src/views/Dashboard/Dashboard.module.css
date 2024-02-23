@@ -1,11 +1,22 @@
 .container{
     display: flex;
-    background-color: #1f1f1f;    
+    background-color: #1f1f1f;
+}
+
+.navContent{
+    margin-right: 2em;
+}
+
+.sideNavContent{
+    min-width: 17vw;
 }
 
 .mainContent{
-    width: 73vw;
-    height: 85vh;
+    display: flex;
+    flex-grow: 1;
+    margin-right: 2em;
+    min-height: 85vh;
     background-color: #fafafa;
     border-radius: 8px;
 }
+

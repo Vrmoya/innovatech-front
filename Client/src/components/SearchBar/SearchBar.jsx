@@ -25,12 +25,12 @@ const SearchBar = () => {
 
   const handleSubmit = () => {
     dispatch({ type: 'CHANGE_MODEL', payload: model });
-    navigate('/home');
   };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSubmit();
+      navigate('/home');
     }
   };
 

@@ -6,6 +6,7 @@ import {
   GET_CATEGORIES,
   GET_ORDER,
   GET_PRODUCTS_BY_CATEGORIES,
+  PAYMENT_ID,
 } from "./actions";
 
 const initialState = {
@@ -18,11 +19,18 @@ const initialState = {
   pagenumber: '1',
   //******* */
   getProductById: {},
-  filterByCategories: []
+  filterByCategories: [],
+  paymentID: null
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case PAYMENT_ID:
+      return {
+        ...state,
+        paymentID: action.payload
+      }
+
     case GET_PRODUCTS:
       return {
         ...state,

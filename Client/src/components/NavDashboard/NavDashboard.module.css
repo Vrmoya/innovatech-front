@@ -1,5 +1,13 @@
 .nav{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
     height: 12vh;
+}
+
+.svg{
+    cursor: pointer;
+    width: 35px;
+    filter: brightness(0) invert(1)
 }

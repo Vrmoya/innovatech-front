@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import formValidator from './validation';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
+import axios from 'axios'
 
 const Create = () => {
 
@@ -190,7 +191,7 @@ const Create = () => {
     };
 
     return (
-        <form className={style.container}>
+        <form className={style.container} onSubmit={(e) => handleSubmitForm(e)}>
             <div className={style.categories}>
                 <h1 className={style.typeTitle}>Product Type</h1>
                 <select className={style.select} onChange={(e) => handleChangeCategory(e)}>
@@ -208,20 +209,19 @@ const Create = () => {
                 </div>
                 <div className={style.inputContainer}>
                     <div className={style.inputContent}>
-                        <h3 className={style.detail}>Product Name</h3>
+                        <h3 className={style.detail}>Product Name *</h3>
                         <input
                             onChange={handleChange}
                             className={style.input}
                             type="text"
                             value={input.model}
                             name="model"
-                            placeholder='Product Name *'
                         />
                         {errors.model && <p className={style.error}>{errors.model}</p>}
                     </div>
 
                     <div className={style.inputContent}>
-                        <h3 className={style.detail}>Product Price</h3>
+                        <h3 className={style.detail}>Product Price *</h3>
                         <input
                             onChange={handlePriceChange}
                             className={style.input}
@@ -233,14 +233,13 @@ const Create = () => {
                     </div>
 
                     <div className={style.inputContent}>
-                        <h3 className={style.detail}>Product Description</h3>
+                        <h3 className={style.detail}>Product Description *</h3>
                         <input
                             onChange={handleChange}
                             className={style.input}
                             type="text"
                             value={input.description}
                             name="description"
-                            placeholder='Product Description *'
                         />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
 
@@ -252,7 +251,6 @@ const Create = () => {
                             type="text"
                             value={input.warranty}
                             name="warranty"
-                            placeholder='Warranty'
                         />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
 
@@ -264,7 +262,6 @@ const Create = () => {
                             type="text"
                             value={input.batteryLife}
                             name="batteryLife"
-                            placeholder='Battery Life'
                         />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
 
@@ -276,7 +273,6 @@ const Create = () => {
                             type="text"
                             value={input.weight}
                             name="weight"
-                            placeholder='Weight'
                         />{errors.description && <p className={style.error}>{errors.description}</p>}
                     </div>
 
