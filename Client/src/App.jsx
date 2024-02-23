@@ -17,7 +17,7 @@ function App() {
         <Route path={PATHROUTES.HOME} element={<Home />}/>
         <Route path={PATHROUTES.LANDING} element={<Landing />}/>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

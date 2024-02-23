@@ -15,8 +15,8 @@ const Footer = () => {
                 <Link to={PATHROURES.LANDING} className={style.title}>INNOVA TECH</Link>
 
                 <nav className={style.nav}>
-                    <Link to={PATHROURES.HOME} className={style.link}  >Home</Link>
-                    <Link to={PATHROURES.ABOUT} className={style.link} >About</Link>
+                    <Link to={PATHROURES.HOME} className={style.link}>Home</Link>
+                    <Link to={PATHROURES.ABOUT} className={style.link}>About</Link>
                 </nav>
 
             </div>
