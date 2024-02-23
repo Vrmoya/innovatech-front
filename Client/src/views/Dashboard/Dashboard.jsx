@@ -6,11 +6,11 @@ import SideNavDashboard from '../../components/SideNavDashboard/SideNavDashboard
 const Dashboard = () => {
     return (
         <div className={style.container}>
-            <div>
+            <div className={style.sideNavContent}>
                 <SideNavDashboard />
             </div>
             <div>
-                <div>
+                <div className={style.navContent}>
                     <NavDashboard />
                 </div>
                 <div className={style.mainContent}>

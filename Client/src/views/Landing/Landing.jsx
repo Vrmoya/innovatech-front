@@ -1,13 +1,11 @@
 import style from './Landing.module.css'
 import Carousel from '../../components/Carousel/Carousel'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { useDispatch, useSelector } from 'react-redux';
 import { paymentGateway } from '../../redux/actions'
 
 const Home = () => {
-  const [preferenceId, setPreferenceId] = useState(null);
   const dispatch = useDispatch()
   const paymentID = useSelector(state => state.paymentID)
 
