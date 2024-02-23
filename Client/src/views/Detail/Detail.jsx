@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
-import { getProductById, cleanProductById } from "../../redux/actions";
+import { getProductById, cleanProductById, addToCart } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
@@ -53,22 +53,27 @@ const Detail = () => {
     }
   }, [productById]);
 
-  useEffect(() => {
-    if (
-      productById &&
-      Array.isArray(productById.categories) &&
-      productById.categories.length > 0
-    ) {
-      const category = productById.categories[0].name;
-      console.log(productById);
-      //   const productsFiltered = products.filter((product) => product.categories[0].name === category)
-      //   if(productsFiltered.length > 0){
-      //     console.log(productsFiltered)
-      //     setRelatedProducts(productsFiltered)
-      // }
-    }
-  }, [productById]);
+  // useEffect(() => {
+  //   if (
+  //     productById &&
+  //     Array.isArray(productById.categories) &&
+  //     productById.categories.length > 0
+  //   ) {
+  //     const category = productById.categories[0].name;
+  //     console.log(productById);
+  //     //   const productsFiltered = products.filter((product) => product.categories[0].name === category)
+  //     //   if(productsFiltered.length > 0){
+  //     //     console.log(productsFiltered)
+  //     //     setRelatedProducts(productsFiltered)
+  //     // }
+  //   }
+  // }, [productById]);
 
+  const handleAddToCart = () => {
+    if (productById && productById.id) {
+      dispatch(addToCart({ id: productById.id }));
+    }
+  }
   return (
     <>
       {productoFiltrado && images && (
@@ -107,8 +112,8 @@ const Detail = () => {
                 </ul>
               </div>
               <div className={styles.divButtonCart}>
-                <button className={styles.buttonCart}>
-                    <PiPlusBold  className={styles.iconPlus}/>
+                <button className={styles.buttonCart} onClick={handleAddToCart}>
+                    <PiPlusBold className={styles.iconPlus}/>
                   Add To Cart
                 </button>
               </div>

@@ -6,6 +6,10 @@ import {
   GET_CATEGORIES,
   GET_ORDER,
   GET_PRODUCTS_BY_CATEGORIES,
+  ADD_TO_CART,
+  REMOVE_ONE_FROM_CART,
+  REMOVE_ALL_FROM_CART,
+  CLEAR_CART
 } from "./actions";
 
 const initialState = {
@@ -18,7 +22,8 @@ const initialState = {
   pagenumber: '1',
   //******* */
   getProductById: {},
-  filterByCategories: []
+  filterByCategories: [],
+  productAddToCart: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -81,6 +86,24 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         totalpages: action.payload
       }
+      case ADD_TO_CART: 
+      return{
+        ...state,
+        productAddToCart: action.payload
+      }
+      case REMOVE_ONE_FROM_CART:
+        return{
+
+        }
+        case REMOVE_ALL_FROM_CART:
+          return{
+
+          }
+          case CLEAR_CART:
+            return{
+
+            }
+
     default:
       return { ...state };
   }

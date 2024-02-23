@@ -119,7 +119,7 @@ const NavBar = () => {
               </g>
             </svg>
           </button>
-          {showShoppingCart && <ShoppingCart></ShoppingCart>}
+          {showShoppingCart && <ShoppingCart showShoppingCart={showShoppingCart} setShowShoppingCart={setShowShoppingCart}/>}
         </div>
       </div>
     </nav>
