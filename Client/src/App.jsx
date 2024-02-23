@@ -2,6 +2,7 @@ import PATHROUTES from "./helpers/PathRoutes";
 import { Routes, Route } from 'react-router-dom';
 import {About, Dashboard, Detail, Error, Home, Landing} from './views'
 import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path={PATHROUTES.HOME} element={<Home />}/>
         <Route path={PATHROUTES.LANDING} element={<Landing />}/>
       </Routes>
+      <Footer />
     </div>
   )
 }
