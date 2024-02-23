@@ -5,8 +5,8 @@
     justify-content: center;
     align-items: center;
     
-width: 35vw;
-height: 50vh;
+width: 30vw;
+height: 60vh;
 background-color: #000000;
 /* backdrop-filter: blur(3px); */
   /* bordes  */
@@ -43,11 +43,12 @@ height: 3vh;
 
 
 .form{
+    
     font-family: "Public Sans", sans-serif;
     margin-top: 20px;
-    background-color: transparent;
-width: 50vw;
-height: 20vh;
+    /* background-color: blue; */
+width: 30vw;
+height:50vh;
 display: flex;
 flex-direction: column;
 justify-content: space-around;
@@ -56,15 +57,26 @@ align-items: center;
 
 }
 
-.option{
+.group{
+    /* background-color: red; */
     display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    
+    width: 30vw;
+    height: 8vh;
+
+
+}
+
+.option{
+    /* background-color: green; */
+    width: 15vw;
+    display:flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 15vw;
-    height: 10vh;
-
-
 }
 
 .input{
@@ -74,9 +86,10 @@ align-items: center;
 }
 
 .containerButton{
-    background-color: transparent;
+
+    /* background-color: blue; */
     width: 25vw;
-    height: 25vh;
+    height: 20vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -103,4 +116,20 @@ align-items: center;
         width: 30px;
         height: 30px;
         filter: brightness(0) invert(1)
+    }
+
+
+    
+        .error{
+            /* background-color: aqua; */
+            display: flex;
+            
+            width: 35vw;
+            justify-content: center;
+            align-items:flex-start;
+        
+            height: 3vh;
+            font-size: 12px;
+            
+            color: white;
     }

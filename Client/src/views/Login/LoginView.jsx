@@ -9,7 +9,7 @@ const LoginView = () => {
     <div className={style.containerView}>
 
         <LoginForm/>
-        LoginView
+        
         
         
         </div>
