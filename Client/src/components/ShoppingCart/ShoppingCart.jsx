@@ -2,6 +2,7 @@ import style from "../ShoppingCart/ShoppingCart.module.css";
 import ItemShoppingCart from "../ItemShoppingCart/ItemShoppingCart";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { IoMdCart } from "react-icons/io";
 
 const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
   const cart = useSelector((state) => state.cart);
@@ -38,10 +39,15 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
           </div>
           <div className={style.secondSection}>
             {cart.length === 0 ? (
-              <h2>Cart is empty</h2>
+              <>
+              <div className={style.cartEmpty}>
+              <IoMdCart className={style.iconCart} />
+              <h2>Your cart is empty</h2>
+              </div>
+              </>
             ) : (
               <>
-                <ItemShoppingCart />
+                <ItemShoppingCart/>
                 <button className={style.buttonCleanCart}>
                   Proceed to Checkout
                 </button>

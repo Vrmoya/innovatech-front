@@ -8,7 +8,6 @@
   margin-top: 0 auto;
   border: 2px solid #e5e7eb;
   background-color: #fff;
-  
 }
 @media screen and (max-width: 744px) {
   .cartContainer {
@@ -139,4 +138,16 @@
   box-sizing: border-box;
   border: 0 solid #e5e7eb;
   border-radius: 10px;
+}
+.iconCart {
+  width: 4rem;
+  height: 4rem;
+}
+.cartEmpty {
+  margin-top: 5rem;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
