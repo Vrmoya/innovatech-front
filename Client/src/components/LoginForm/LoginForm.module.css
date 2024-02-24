@@ -119,6 +119,13 @@ align-items: center;
     }
 
 
+    .forgotpassword{
+
+        color: #ffffff;
+        font-size: small;
+    }
+
+
     
         .error{
             /* background-color: aqua; */

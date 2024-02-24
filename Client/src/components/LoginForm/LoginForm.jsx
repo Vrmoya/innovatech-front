@@ -4,7 +4,7 @@ import mail2 from '../../assets/mail2.svg'
 import password2 from '../../assets/password2.svg'
 import user2 from '../../assets/user2.svg'
 import loginValidator from './validation';
-
+import { Link } from 'react-router-dom'; 
 
 
 const LoginForm = () => {
@@ -17,6 +17,8 @@ const LoginForm = () => {
     user: "",
     password: "",
   });
+  const [focusedField, setFocusedField] = useState(null); // Estado para el campo enfocado
+
 
   // const handleChange =(e)=>{
   //   setErrors (loginValidator({...userData, [e.target.name]: e.target.value}))
@@ -35,6 +37,21 @@ const LoginForm = () => {
     setErrors(loginValidator({ ...userData, [name]: value }));
     console.log (userData)
   };
+
+ // Actualizar el campo enfocado cuando se enfoca o se desenfoca un campo
+ const handleFocus = (fieldName) => {
+  setFocusedField(fieldName);
+};
+
+const handleBlur = () => {
+  setFocusedField(null);
+};
+
+
+  
+  
+  
+
   //Submit
 
   const handleSubmit = (e) => {
@@ -58,6 +75,8 @@ const LoginForm = () => {
         password: "",
 
       })
+      const [focusedField, setFocusedField] = useState(null); // Estado para el campo enfocado
+
   
   } else {
     console.log("Formulario no enviado debido a errores:", formErrors);
@@ -85,9 +104,15 @@ const LoginForm = () => {
         name= "user"
         onChange={(e)=>handleChange(e)}
         placeholder='User'
+        onFocus={() => handleFocus('user')}
+              onBlur={handleBlur}
         /></div>
-       {errors.u1 && <p className={style.error}>{errors.u1}</p>}
-  {errors.u2 && <p className={style.error}>{errors.u2}</p>}
+        {focusedField === 'user' && errors.u1 && (
+            <p className={style.error}>{errors.u1}</p>
+          )}
+          {focusedField === 'user' && errors.u2 && (
+            <p className={style.error}>{errors.u2}</p>
+          )}
     
         </div> 
     <div className={style.group}>
@@ -100,11 +125,19 @@ const LoginForm = () => {
         value={userData.email}
         placeholder='E-Mail'
         name= "email"
-        onChange={(e)=>handleChange(e)}/>
+        onChange={(e)=>handleChange(e)}
+        onFocus={() => handleFocus('email')}
+              onBlur={handleBlur}/>
         </div>
-        {errors.e1 && <p className={style.error}>{errors.e1}</p>}
-  {errors.e2 && <p className={style.error}>{errors.e2}</p>}
-  {errors.e3 && <p className={style.error}>{errors.e3}</p>}
+        {focusedField === 'email' && errors.e1 && (
+            <p className={style.error}>{errors.e1}</p>
+          )}
+          {focusedField === 'email' && errors.e2 && (
+            <p className={style.error}>{errors.e2}</p>
+          )}
+          {focusedField === 'email' && errors.e3 && (
+            <p className={style.error}>{errors.e3}</p>
+          )}
 
 </div>
 
@@ -118,17 +151,25 @@ const LoginForm = () => {
         value={userData.password}
         placeholder='Password'
         name= "password"
-        onChange={(e)=>handleChange(e)}/>
+        onChange={(e)=>handleChange(e)}
+        onFocus={() => handleFocus('password')}
+              onBlur={handleBlur}/>
         </div>
-        {errors.p1 && <p className={style.error}>{errors.p1}</p>}
-  {errors.p2 && <p className={style.error}>{errors.p2}</p>}
+        {focusedField === 'password' && errors.p1 && (
+            <p className={style.error}>{errors.p1}</p>
+          )}
+          {focusedField === 'password' && errors.p2 && (
+            <p className={style.error}>{errors.p2}</p>
+          )}
         </div>
        
 
       </form>
 
+<div className={style.forgotpassword}>Lost Password? <span>Click Here</span></div>
 <div className={style.containerButton}>
-  <button className={style.button}>Login</button>
+  <button className={style.button}
+  onClick={() => window.location.href = '/auth/google'}>Login</button>
   <button className={style.button}>Sign Up</button>
 
 </div>
