@@ -90,7 +90,7 @@ const Detail = () => {
             <div className={styles.productInfo}>
               <h1 className={styles.productTittle}>{productoFiltrado.model}</h1>
               <button className={styles.productPrice}>
-                ${productoFiltrado.price} USD
+                ${productoFiltrado.price}.00 USD
               </button>
               <hr />
               <p className={styles.productDescription}>

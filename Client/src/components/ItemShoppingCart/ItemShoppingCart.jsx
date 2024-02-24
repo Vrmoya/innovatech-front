@@ -8,7 +8,7 @@ const ItemShoppingCart = () => {
   const itemProduct = [
     {
       id: 1,
-      price: 1099,
+      price: '$1099',
       isActive: true,
       category: null,
       model: "iPad Pro",
@@ -73,7 +73,7 @@ const ItemShoppingCart = () => {
           {itemProduct?.map((product) => (
             <>
               <li className={style.listLi}>
-                <div className={style.detailProduct}>
+                <div className={style.divProduct}>
                   <div>
                     <form action="">
                       <button className={style.removeProduct}>
@@ -97,15 +97,16 @@ const ItemShoppingCart = () => {
                   </div>
                     <div className={style.divImageProduct}>
                       <img className={style.imgProduct} src={imageIpad} alt=""  />
-
                     </div>
+                    <div className={style.detailProduct}>
+                      <span>{product.model}</span>
+                    </div>
+                    <div className={style.priceProduct}>
+                      <p>{product.price},00USD</p>
+                      <div>
 
-                  <h4>{product.name}</h4>
-                  <h5>{`${product.price}.00`}</h5>
-                  <br />
-                  <button>Eliminar uno</button>
-                  <br />
-                  <button>Eliminar todos</button>
+                      </div>
+                    </div>
                 </div>
               </li>
               <hr />
