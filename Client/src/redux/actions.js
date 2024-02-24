@@ -158,7 +158,13 @@ export const filterByModel = (model) => {
 //         }
 //       };
 //     };
-export const addToCart = ({id}) => ({type: ADD_TO_CART, payload:id})
+export const addToCart = ({id}) => {
+  console.log(id)
+  return{
+    type: ADD_TO_CART,
+    payload: id
+  }
+}
 
 export const removeFromCart = (id, all = false) =>
   all

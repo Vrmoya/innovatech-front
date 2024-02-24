@@ -134,4 +134,83 @@
   align-items: center;
   border-radius: 9999px;
   border-width: 1px;
+  align-items: center;
+}
+.buttonNegative {
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  text-transform: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: none;
+  margin-left: auto;
+  display: flex;
+  height: 100%;
+  min-width: 36px;
+  max-width: 36px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transition-property: all;
+  transition-duration: 0.2s;
+  border: none;
+  border: 1px solid #e5e7eb;
+}
+
+.iconNegative {
+  height: 1rem;
+  width: 1rem;
+}
+.counterProduct {
+  margin: 0;
+  width: 1.5rem;
+  text-align: center;
+}
+.counterProduct span {
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.buttonPlus {
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  text-transform: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: none;
+  display: flex;
+  height: 100%;
+  min-width: 36px;
+  max-width: 36px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transition-property: all;
+  transition-duration: 0.2s;
+  border: none;
+  border: 1px solid #e5e7eb;
+}
+.iconPlus {
+  height: 1rem; 
+  width: 1rem; 
 }

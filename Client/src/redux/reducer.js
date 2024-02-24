@@ -23,7 +23,7 @@ const initialState = {
   //******* */
   getProductById: {},
   filterByCategories: [],
-  productAddToCart: {}
+  cart: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -87,11 +87,11 @@ const rootReducer = (state = initialState, action) => {
         totalpages: action.payload
       }
       case ADD_TO_CART: 
-      const productFiltered = products.filter((product) => product.id == action.payload)
-      return{
+      const productToAdd = state.products.find((product) => product.id === action.payload);
+      return {
         ...state,
-        productAddToCart: productFiltered
-      }
+        cart: [...state.cart, productToAdd]
+      };
       case REMOVE_ONE_FROM_CART:
         return{
 
