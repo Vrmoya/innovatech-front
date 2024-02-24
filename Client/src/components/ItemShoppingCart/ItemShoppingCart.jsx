@@ -3,24 +3,32 @@ import style from "../ItemShoppingCart/ItemShoppingCart.module.css";
 import imageIpad from "../../assets/ipad-dorso-anverso.svg";
 import imageSamsung from "../../assets/tablet-samsung-anverso-dorso.svg";
 import { useEffect } from "react";
+import { removeFromCart } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const ItemShoppingCart = () => {
   const itemProduct = useSelector((state) => state.cart)
+
   useEffect(() => {
 
   },[itemProduct])
-
+  const dispatch = useDispatch()
+  
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id))
+  };
   return (
     <>
       <div className={style.containerItem}>
         <ul className={style.listUL}>
-          {itemProduct?.map((product,index) => (
+          {itemProduct?.map((product) => (
             <>
-              <li key={index}className={style.listLi}>
+            {console.log(itemProduct)}
+              <li key={product.id}className={style.listLi}>
                 <div className={style.divProduct}>
                   <div>
                     <div>
-                      <button className={style.removeProduct}>
+                      <button className={style.removeProduct} onClick={() => handleRemoveFromCart(product.id)}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -40,13 +48,13 @@ const ItemShoppingCart = () => {
                     </div>
                   </div>
                   <div className={style.divImageProduct}>
-                    <img className={style.imgProduct} src={product.image[0]} alt="" />
+                    <img className={style.imgProduct} src={product.image?.[0]} alt="" />
                   </div>
                   <div className={style.detailProduct}>
                     <span>{product.model}</span>
                   </div>
                   <div className={style.priceProduct}>
-                    <p>{product.price},00USD</p>
+                    <p>${product.price},00USD</p>
                     <div className={style.divCounterProduct}>
                       <div>
                         <button className={style.buttonNegative}>

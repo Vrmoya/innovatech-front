@@ -1,7 +1,12 @@
 import style from "../ShoppingCart/ShoppingCart.module.css";
 import ItemShoppingCart from "../ItemShoppingCart/ItemShoppingCart";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
+  const cart = useSelector((state) => state.cart);
+  useEffect(() => {}, [cart]);
+
   return (
     <>
       <div className={style.cartContainer}>
@@ -32,11 +37,16 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
             </button>
           </div>
           <div className={style.secondSection}>
-                <ItemShoppingCart></ItemShoppingCart>
-
-            <button className={style.buttonCleanCart}>
-              Proceed to Checkout
-            </button>
+            {cart.length === 0 ? (
+              <h2>Cart is empty</h2>
+            ) : (
+              <>
+                <ItemShoppingCart />
+                <button className={style.buttonCleanCart}>
+                  Proceed to Checkout
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

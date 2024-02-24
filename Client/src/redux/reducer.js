@@ -92,18 +92,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: [...state.cart, productToAdd]
       };
-      case REMOVE_ONE_FROM_CART:
-        return{
-
-        }
-        case REMOVE_ALL_FROM_CART:
-          return{
-
-          }
-          case CLEAR_CART:
-            return{
-
-            }
+      case REMOVE_ALL_FROM_CART:
+        const updatedCart = state.cart.filter((product) => product.id !== action.payload);
+        return {
+          ...state,
+          cart: updatedCart
+        };
 
     default:
       return { ...state };

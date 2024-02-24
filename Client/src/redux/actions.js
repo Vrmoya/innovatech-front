@@ -166,9 +166,21 @@ export const addToCart = ({id}) => {
   }
 }
 
-export const removeFromCart = (id, all = false) =>
-  all
-    ? { type: REMOVE_ALL_FROM_CART, payload: id }
-    : { type: REMOVE_ONE_FROM_CART, payload: id };
+export const removeFromCart = (id) => {
+  console.log(id)
+  return{
+    type: REMOVE_ALL_FROM_CART,
+    payload: id
+  }
+}
+
+// export const removeFromCart = (id, all=false) => {
+//   console.log(id.id,all.all)
+  
+// }
 
 export const clearCart = () => ({type: CLEAR_CART}) 
+
+// return all
+    // ? { type: REMOVE_ALL_FROM_CART, payload: id }
+//     : { type: REMOVE_ONE_FROM_CART, payload: id };
