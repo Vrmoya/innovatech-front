@@ -76,6 +76,7 @@ export const getProducts = (
       console.log("URL:", url);
       const productsData = await axios.get(url);
       const products = productsData.data.data;
+      console.log(products)
 
       // console.log("Products:", products);
       dispatch({ type: "TOTAL_PAGES", payload: productsData.data.totalPages });
@@ -142,27 +143,26 @@ export const filterByModel = (model) => {
 };
 
 // export const addToCart = (id) => ({ type: ADD_TO_CART, payload: id });
-export const addToCart = ({id}) => {
-    console.log(id)
-    return async (dispatch) => {
-        try {
-          const { data } = await axios.get(`http://localhost:3001/products/${id}`);
-          console.log(data);
-          return dispatch({
-            type: ADD_TO_CART,
-            payload: data,
-          });
-        } catch (err) {
-          console.log(err);
-        }
-      };
-    };
-
+// export const addToCart = ({id}) => {
+//     console.log(id)
+//     return async (dispatch) => {
+//         try {
+//           const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+//           console.log(data);
+//           return dispatch({
+//             type: ADD_TO_CART,
+//             payload: data,
+//           });
+//         } catch (err) {
+//           console.log(err);
+//         }
+//       };
+//     };
+export const addToCart = ({id}) => ({type: ADD_TO_CART, payload:id})
 
 export const removeFromCart = (id, all = false) =>
   all
     ? { type: REMOVE_ALL_FROM_CART, payload: id }
     : { type: REMOVE_ONE_FROM_CART, payload: id };
-
 
 export const clearCart = () => ({type: CLEAR_CART}) 

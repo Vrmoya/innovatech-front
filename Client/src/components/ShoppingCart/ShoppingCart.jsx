@@ -1,4 +1,5 @@
 import style from "../ShoppingCart/ShoppingCart.module.css";
+import ItemShoppingCart from "../ItemShoppingCart/ItemShoppingCart";
 
 const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
   return (
@@ -7,7 +8,10 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
         <div className={style.buyCart}>
           <div className={style.firstSection}>
             <p className={style.tittleCart}>My Cart</p>
-            <button className={style.buttonX} onClick={() => setShowShoppingCart(false)}>
+            <button
+              className={style.buttonX}
+              onClick={() => setShowShoppingCart(false)}
+            >
               <div className={style.divContainerFirstSection}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -28,10 +32,8 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
             </button>
           </div>
           <div className={style.secondSection}>
-            <ul className={style.listUL}>
+                <ItemShoppingCart></ItemShoppingCart>
 
-            </ul>
-            
             <button className={style.buttonCleanCart}>
               Proceed to Checkout
             </button>

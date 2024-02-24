@@ -13,6 +13,8 @@ const Detail = () => {
   const { id } = useParams();
   const [images, setImages] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+
 
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
@@ -74,6 +76,9 @@ const Detail = () => {
       dispatch(addToCart({ id: productById.id }));
     }
   }
+  const handleAddToCart2 = () => {
+    setShowCart(true);
+  };
   return (
     <>
       {productoFiltrado && images && (
@@ -116,6 +121,7 @@ const Detail = () => {
                     <PiPlusBold className={styles.iconPlus}/>
                   Add To Cart
                 </button>
+                {showCart && <ShoppingCart />}
               </div>
             </div>
           </div>

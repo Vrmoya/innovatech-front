@@ -87,9 +87,10 @@ const rootReducer = (state = initialState, action) => {
         totalpages: action.payload
       }
       case ADD_TO_CART: 
+      const productFiltered = products.filter((product) => product.id == action.payload)
       return{
         ...state,
-        productAddToCart: action.payload
+        productAddToCart: productFiltered
       }
       case REMOVE_ONE_FROM_CART:
         return{
