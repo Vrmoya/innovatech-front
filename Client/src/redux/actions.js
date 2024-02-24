@@ -9,7 +9,7 @@ export const GET_PRODUCTS_BY_CATEGORIES = "GET_PRODUCTS_BY_CATEGORIES";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
-export const CLEAR_CART = "CLEAR_CART";
+export const INCREMENT_PRODUCT_IN_CART = 'INCREMENT_PRODUCT_IN_CART';
 
 export function postForm(payload) {
   return async function (dispatch) {
@@ -142,23 +142,7 @@ export const filterByModel = (model) => {
   };
 };
 
-// export const addToCart = (id) => ({ type: ADD_TO_CART, payload: id });
-// export const addToCart = ({id}) => {
-//     console.log(id)
-//     return async (dispatch) => {
-//         try {
-//           const { data } = await axios.get(`http://localhost:3001/products/${id}`);
-//           console.log(data);
-//           return dispatch({
-//             type: ADD_TO_CART,
-//             payload: data,
-//           });
-//         } catch (err) {
-//           console.log(err);
-//         }
-//       };
-//     };
-export const addToCart = ({id}) => {
+export const addToCart = (id) => {
   console.log(id)
   return{
     type: ADD_TO_CART,
@@ -173,13 +157,14 @@ export const removeFromCart = (id) => {
     payload: id
   }
 }
+export const incrementProductInCart = (id) => {
+  console.log(id)
+  return{
+    type: INCREMENT_PRODUCT_IN_CART,
+    payload: id
+  }
+}
 
-// export const removeFromCart = (id, all=false) => {
-//   console.log(id.id,all.all)
-  
-// }
-
-export const clearCart = () => ({type: CLEAR_CART}) 
 
 // return all
     // ? { type: REMOVE_ALL_FROM_CART, payload: id }

@@ -73,7 +73,8 @@ const Detail = () => {
 
   const handleAddToCart = () => {
     if (productById && productById.id) {
-      dispatch(addToCart({ id: productById.id }));
+      dispatch(addToCart(productById.id));
+      
     }
   }
   const handleAddToCart2 = () => {

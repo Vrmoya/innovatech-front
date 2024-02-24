@@ -9,7 +9,7 @@ import {
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
-  CLEAR_CART
+  INCREMENT_PRODUCT_IN_CART,
 } from "./actions";
 
 const initialState = {
@@ -19,11 +19,11 @@ const initialState = {
   order: null,
   model: null,
   totalpages: null,
-  pagenumber: '1',
+  pagenumber: "1",
   //******* */
   getProductById: {},
   filterByCategories: [],
-  cart: []
+  cart: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -36,20 +36,20 @@ const rootReducer = (state = initialState, action) => {
     case GET_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
-        filterByCategories: action.payload
-      }
+        filterByCategories: action.payload,
+      };
 
     case GET_CATEGORIES:
       return {
         ...state,
         categories: action.payload, // laptop, smarthphone,
-        pagenumber: '1'
+        pagenumber: "1",
       };
     case GET_ORDER:
       return {
         ...state,
         order: action.payload, // none // Price: Low to high // Price: High to low
-        pagenumber: '1'
+        pagenumber: "1",
       };
 
     case GET_PRODUCT_BY_ID:
@@ -72,32 +72,59 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
-    case 'CHANGE_MODEL':
+    case "CHANGE_MODEL":
       return {
         ...state,
         model: action.payload,
-        pagenumber: '1'
-      }
-
-    case 'SET_PAGE':
-      return { ...state, pagenumber: action.payload }
-    case 'TOTAL_PAGES':
-      return {
-        ...state,
-        totalpages: action.payload
-      }
-      case ADD_TO_CART: 
-      const productToAdd = state.products.find((product) => product.id === action.payload);
-      return {
-        ...state,
-        cart: [...state.cart, productToAdd]
+        pagenumber: "1",
       };
-      case REMOVE_ALL_FROM_CART:
-        const updatedCart = state.cart.filter((product) => product.id !== action.payload);
+
+    case "SET_PAGE":
+      return { ...state, pagenumber: action.payload };
+    case "TOTAL_PAGES":
+      return {
+        ...state,
+        totalpages: action.payload,
+      };
+    case ADD_TO_CART:
+      const productFound = state.cart.find(
+        (product) => product.id === action.payload
+      );
+      if (productFound) {
+        const updatedCart = state.cart.map((product) =>
+          product.id === action.payload
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
+        );
         return {
           ...state,
-          cart: updatedCart
+          cart: updatedCart,
         };
+      }
+      // Si el producto no está en el carrito, agregarlo con quantity: 1
+      const productToAdd = state.products.find(
+        (product) => product.id === action.payload
+      );
+      if (productToAdd) {
+        const updatedProduct = { ...productToAdd, quantity: 1 };
+        return {
+          ...state,
+          cart: [...state.cart, updatedProduct],
+        };
+      }
+    case REMOVE_ALL_FROM_CART:
+      const updatedCart = state.cart.filter(
+        (product) => product.id !== action.payload
+      );
+      return {
+        ...state,
+        cart: updatedCart,
+      };
+    case INCREMENT_PRODUCT_IN_CART:
+    // const productFound = state.cart.find((product) => product.id == action.payload)
+    // if(productFound){
+
+    // }
 
     default:
       return { ...state };

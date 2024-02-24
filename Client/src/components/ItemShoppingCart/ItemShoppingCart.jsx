@@ -1,22 +1,25 @@
 import { useSelector } from "react-redux";
 import style from "../ItemShoppingCart/ItemShoppingCart.module.css";
-import imageIpad from "../../assets/ipad-dorso-anverso.svg";
-import imageSamsung from "../../assets/tablet-samsung-anverso-dorso.svg";
 import { useEffect } from "react";
-import { removeFromCart } from "../../redux/actions";
+import { removeFromCart, incrementProductInCart, addToCart } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
 const ItemShoppingCart = () => {
   const itemProduct = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
 
   useEffect(() => {
 
   },[itemProduct])
-  const dispatch = useDispatch()
   
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id))
   };
+  const handleIncrementProductInCart = (id) => {
+    console.log(id)
+   dispatch(addToCart(id))
+  }
+
   return (
     <>
       <div className={style.containerItem}>
@@ -76,10 +79,10 @@ const ItemShoppingCart = () => {
                         </button>
                       </div>
                       <p className={style.counterProduct}>
-                        <span>1</span>
+                        <span>{product.quantity}</span>
                       </p>
                       <div>
-                        <button className={style.buttonPlus}>
+                        <button className={style.buttonPlus} onClick={() => handleIncrementProductInCart(product.id)}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
