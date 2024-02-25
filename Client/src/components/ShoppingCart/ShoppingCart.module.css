@@ -158,6 +158,10 @@
   padding-left: 5px;
   margin-left: 20px;
 }
+.containerTotal hr{
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
 .totalPrice{
   margin-bottom: .75rem;
   display: flex;

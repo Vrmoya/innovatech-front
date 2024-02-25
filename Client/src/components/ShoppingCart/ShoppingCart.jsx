@@ -58,8 +58,8 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
                   <p>Total</p>
                   <span> ${cart?.reduce((total, product) => total + product.total, 0)},00 USD</span>
                   </div>
-                </div>
                 <hr />
+                </div>
                 <button className={style.buttonCleanCart}>
                   Proceed to Checkout
                 </button>

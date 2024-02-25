@@ -145,6 +145,14 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           cart: updatedCart,
         };
+      } else if (productToRemove.quantity === 1) {
+        const updatedCart = state.cart.filter(
+          (product) => product.id !== productToRemove.id
+        )
+        return {
+          ...state,
+          cart: updatedCart,
+        };
       }
       case INJECT_CART_DATA:
         return{
