@@ -5,7 +5,7 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { useDispatch, useSelector } from 'react-redux';
 import { paymentGateway } from '../../redux/actions'
 
-const Home = () => {
+const Landing = () => {
   const dispatch = useDispatch()
   const paymentID = useSelector(state => state.paymentID)
 

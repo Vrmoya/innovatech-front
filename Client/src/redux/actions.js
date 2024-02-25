@@ -10,6 +10,26 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 export const INJECT_CART_DATA = 'INJECT_CART_DATA';
+export const PAYMENT_ID = 'PAYMENT_ID';
+
+export function paymentGateway() {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post("http://localhost:3001/create_preference", {
+                title: "Camiseta",
+                price: 500,
+                quantity: 1,
+                // currency_id: 'ARS'
+            })
+            console.log(response);
+            const { id } = response.data;
+            console.log(id);
+            dispatch({ type: PAYMENT_ID, payload: id })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 
 export function postForm(payload) {
   return async function (dispatch) {
