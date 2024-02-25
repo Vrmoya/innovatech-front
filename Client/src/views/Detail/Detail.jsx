@@ -4,7 +4,11 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
-import { getProductById, cleanProductById, addToCart } from "../../redux/actions";
+import {
+  getProductById,
+  cleanProductById,
+  addToCart,
+} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
@@ -14,7 +18,6 @@ const Detail = () => {
   const [images, setImages] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [showCart, setShowCart] = useState(false);
-
 
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
@@ -74,12 +77,12 @@ const Detail = () => {
   const handleAddToCart = () => {
     if (productById && productById.id) {
       dispatch(addToCart(productById.id));
-      
     }
-  }
-  const handleAddToCart2 = () => {
-    setShowCart(true);
   };
+  const scroll = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       {productoFiltrado && images && (
@@ -118,8 +121,8 @@ const Detail = () => {
                 </ul>
               </div>
               <div className={styles.divButtonCart}>
-                <button className={styles.buttonCart} onClick={handleAddToCart}>
-                    <PiPlusBold className={styles.iconPlus}/>
+                <button className={styles.buttonCart} onClick={handleAddToCart && scroll}>
+                  <PiPlusBold className={styles.iconPlus} />
                   Add To Cart
                 </button>
                 {showCart && <ShoppingCart />}
