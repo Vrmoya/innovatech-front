@@ -121,7 +121,7 @@ const rootReducer = (state = initialState, action) => {
     case REMOVE_ALL_FROM_CART:
       const updatedCart = state.cart.filter(
         (product) => product.id !== action.payload
-      );
+      )
       return {
         ...state,
         cart: updatedCart,

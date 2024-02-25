@@ -151,3 +151,19 @@
   align-items: center;
   justify-content: center;
 }
+.containerTotal{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+.totalPrice{
+  margin-bottom: .75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  padding-bottom: .25rem;
+  padding-top: .25rem;
+  font-size: .875rem;
+}

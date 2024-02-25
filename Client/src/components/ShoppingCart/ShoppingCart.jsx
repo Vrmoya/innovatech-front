@@ -48,6 +48,12 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
             ) : (
               <>
                 <ItemShoppingCart/>
+                <div className={style.containerTotal}>
+                  <div className={style.totalPrice}>
+                  <p>Total</p>
+                  <p> ${cart?.reduce((total, product) => total + product.total, 0).toFixed(2)} USD</p>
+                  </div>
+                </div>
                 <button className={style.buttonCleanCart}>
                   Proceed to Checkout
                 </button>
