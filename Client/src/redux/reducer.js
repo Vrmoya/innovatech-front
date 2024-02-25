@@ -88,11 +88,11 @@ const rootReducer = (state = initialState, action) => {
       };
     case ADD_TO_CART:
       const productFound = state.cart.find(
-        (product) => product.id === action.payload
+        (product) => product.id == action.payload
       )
       if (productFound) {
         const updatedCart = state.cart.map((product) =>
-          product.id === action.payload
+          product.id == action.payload
             ? {
                 ...product,
                 quantity: product.quantity + 1,
@@ -106,14 +106,14 @@ const rootReducer = (state = initialState, action) => {
         };
       }
       const productToAdd = state.products.find(
-        (product) => product.id === action.payload
+        (product) => product.id == action.payload
       );
       if (productToAdd) {
         const updatedProduct = {
           ...productToAdd,
           quantity: 1,
           total: productToAdd.price,
-        };
+        }
         return {
           ...state,
           cart: [...state.cart, updatedProduct],
