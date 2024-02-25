@@ -120,8 +120,8 @@ const Detail = () => {
                   )}
                 </ul>
               </div>
-              <div className={styles.divButtonCart}>
-                <button className={styles.buttonCart} onClick={handleAddToCart && scroll}>
+              <div className={styles.divButtonCart} onClick={scroll}>
+                <button className={styles.buttonCart} onClick={handleAddToCart}>
                   <PiPlusBold className={styles.iconPlus} />
                   Add To Cart
                 </button>
