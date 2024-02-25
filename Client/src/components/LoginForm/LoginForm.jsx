@@ -5,6 +5,7 @@ import password2 from '../../assets/password2.svg'
 import user2 from '../../assets/user2.svg'
 import loginValidator from './validation';
 import { Link } from 'react-router-dom'; 
+import axios from 'axios';
 
 
 const LoginForm = () => {
@@ -49,7 +50,19 @@ const handleBlur = () => {
 
 
   
-  
+const handleGoogleLogin = async () => {
+  try {
+    const response = await axios.get('http://localhost:3001/auth/google', {
+      withCredentials: true, // Incluir credenciales al hacer la solicitud CORS
+    });
+
+    console.log(response.data);
+    // Manejar la respuesta según sea necesario
+  } catch (error) {
+    console.error('Error:', error);
+    // Manejar errores
+  }
+};
   
 
   //Submit
@@ -169,7 +182,7 @@ const handleBlur = () => {
 <div className={style.forgotpassword}>Lost Password? <span>Click Here</span></div>
 <div className={style.containerButton}>
   <button className={style.button}
-  onClick={() => window.location.href = '/auth/google'}>Login</button>
+  onClick={handleGoogleLogin}>Login</button>
   <button className={style.button}>Sign Up</button>
 
 </div>
