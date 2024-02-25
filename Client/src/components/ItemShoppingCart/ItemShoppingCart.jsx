@@ -8,9 +8,9 @@ const ItemShoppingCart = () => {
   const itemProduct = useSelector((state) => state.cart)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-
-  },[itemProduct])
+  // useEffect(() => {
+  //   window.localStorage.setItem('cart', JSON.stringify(itemProduct))
+  // },[itemProduct])
   
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id))

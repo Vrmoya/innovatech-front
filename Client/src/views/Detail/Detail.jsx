@@ -22,6 +22,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
   const products = useSelector((state) => state.products);
+  const cart = useSelector((state) => state.cart)
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -57,6 +58,7 @@ const Detail = () => {
       }
     }
   }, [productById]);
+
 
   // useEffect(() => {
   //   if (

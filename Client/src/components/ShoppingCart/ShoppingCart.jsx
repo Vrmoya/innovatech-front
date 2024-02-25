@@ -6,7 +6,12 @@ import { IoMdCart } from "react-icons/io";
 
 const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
   const cart = useSelector((state) => state.cart);
-  useEffect(() => {}, [cart]);
+  // useEffect(() => {}, [cart]);
+  useEffect(() => {
+    window.localStorage.setItem('cart', JSON.stringify(cart))
+  },[cart])
+
+
 
   return (
     <>
@@ -51,9 +56,10 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
                 <div className={style.containerTotal}>
                   <div className={style.totalPrice}>
                   <p>Total</p>
-                  <p> ${cart?.reduce((total, product) => total + product.total, 0).toFixed(2)} USD</p>
+                  <span> ${cart?.reduce((total, product) => total + product.total, 0).toFixed(2)} USD</span>
                   </div>
                 </div>
+                <hr />
                 <button className={style.buttonCleanCart}>
                   Proceed to Checkout
                 </button>
