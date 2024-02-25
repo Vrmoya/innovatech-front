@@ -92,41 +92,59 @@ const rootReducer = (state = initialState, action) => {
       if (productFound) {
         const updatedCart = state.cart.map((product) =>
           product.id === action.payload
-            ? { ...product, quantity: product.quantity + 1 }
+            ? {
+                ...product,
+                quantity: product.quantity + 1,
+                total: product.price * (product.quantity + 1),
+              }
             : product
         )
         return {
           ...state,
           cart: updatedCart,
-        }
+        };
       }
       const productToAdd = state.products.find(
         (product) => product.id === action.payload
-      )
+      );
       if (productToAdd) {
-        const updatedProduct = { ...productToAdd, quantity: 1 }
+        const updatedProduct = {
+          ...productToAdd,
+          quantity: 1,
+          total: productToAdd.price,
+        };
         return {
           ...state,
           cart: [...state.cart, updatedProduct],
-        }
-      };
+        };
+      }
     case REMOVE_ALL_FROM_CART:
-      const updatedCart = state.cart.filter((product) => product.id !== action.payload)
+      const updatedCart = state.cart.filter(
+        (product) => product.id !== action.payload
+      );
       return {
         ...state,
         cart: updatedCart,
       };
-      case REMOVE_ONE_FROM_CART:
-        const productToRemove = state.cart.find((product) => product.id === action.payload)
-        if (productToRemove && productToRemove.quantity > 1) {
-          const updatedCart = state.cart.map((product) =>
-            product.id === action.payload ? { ...product, quantity: product.quantity - 1 } : product
-          )
-          return {
-            ...state,
-            cart: updatedCart
-          };
-        }
+    case REMOVE_ONE_FROM_CART:
+      const productToRemove = state.cart.find(
+        (product) => product.id === action.payload
+      )
+      if (productToRemove && productToRemove.quantity > 1) {
+        const updatedCart = state.cart.map((product) =>
+          product.id === action.payload
+            ? {
+                ...product,
+                quantity: product.quantity - 1,
+                total: product.price * (product.quantity - 1),
+              }
+            : product
+        )
+        return {
+          ...state,
+          cart: updatedCart,
+        };
+      }
     default:
       return { ...state };
   }

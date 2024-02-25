@@ -24,7 +24,6 @@ const ItemShoppingCart = () => {
     dispatch(removeOneFromCart(id))
   }
 
-
   return (
     <>
       <div className={style.containerItem}>
@@ -62,7 +61,7 @@ const ItemShoppingCart = () => {
                     <span>{product.model}</span>
                   </div>
                   <div className={style.priceProduct}>
-                    <p>${product.price},00USD</p>
+                    <p>${product.total},00USD</p>
                     <div className={style.divCounterProduct}>
                       <div>
                         <button className={style.buttonNegative} onClick={() => handleRemoveOneFromCart(product.id)}>
