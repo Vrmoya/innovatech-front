@@ -9,6 +9,7 @@ import {
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
+  INJECT_CART_DATA,
 } from "./actions";
 
 const initialState = {
@@ -145,6 +146,11 @@ const rootReducer = (state = initialState, action) => {
           cart: updatedCart,
         };
       }
+      case INJECT_CART_DATA:
+        return{
+          ...state,
+          cart: action.payload
+        }
     default:
       return { ...state };
   }

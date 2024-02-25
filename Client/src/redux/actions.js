@@ -9,6 +9,7 @@ export const GET_PRODUCTS_BY_CATEGORIES = "GET_PRODUCTS_BY_CATEGORIES";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
+export const INJECT_CART_DATA = 'INJECT_CART_DATA';
 
 export function postForm(payload) {
   return async function (dispatch) {
@@ -161,5 +162,11 @@ export const removeFromCart = (id) => {
   return{
     type: REMOVE_ALL_FROM_CART,
     payload: id
+  }
+}
+export const injectCartData = (data) =>{
+  return{
+    type: INJECT_CART_DATA,
+    payload: data
   }
 }

@@ -8,10 +8,10 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
   const cart = useSelector((state) => state.cart);
   // useEffect(() => {}, [cart]);
   useEffect(() => {
-    window.localStorage.setItem('cart', JSON.stringify(cart))
+    if(cart){
+      window.localStorage.setItem('cart', JSON.stringify(cart))
+    }
   },[cart])
-
-
 
   return (
     <>
