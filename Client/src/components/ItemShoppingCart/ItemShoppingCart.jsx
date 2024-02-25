@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import style from "../ItemShoppingCart/ItemShoppingCart.module.css";
 import { useEffect } from "react";
-import { removeFromCart, incrementProductInCart, addToCart } from "../../redux/actions";
+import { removeFromCart, addToCart, removeOneFromCart } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
 const ItemShoppingCart = () => {
@@ -16,9 +16,14 @@ const ItemShoppingCart = () => {
     dispatch(removeFromCart(id))
   };
   const handleIncrementProductInCart = (id) => {
-    console.log(id)
+    console.log('handler incrementar uno del ItemShopping', id)
    dispatch(addToCart(id))
   }
+  const handleRemoveOneFromCart = (id) => {
+    console.log('handler remover uno del ItemShopping', id)
+    dispatch(removeOneFromCart(id))
+  }
+
 
   return (
     <>
@@ -60,7 +65,7 @@ const ItemShoppingCart = () => {
                     <p>${product.price},00USD</p>
                     <div className={style.divCounterProduct}>
                       <div>
-                        <button className={style.buttonNegative}>
+                        <button className={style.buttonNegative} onClick={() => handleRemoveOneFromCart(product.id)}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

@@ -9,7 +9,6 @@ export const GET_PRODUCTS_BY_CATEGORIES = "GET_PRODUCTS_BY_CATEGORIES";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
-export const INCREMENT_PRODUCT_IN_CART = 'INCREMENT_PRODUCT_IN_CART';
 
 export function postForm(payload) {
   return async function (dispatch) {
@@ -143,9 +142,16 @@ export const filterByModel = (model) => {
 };
 
 export const addToCart = (id) => {
-  console.log(id)
+  console.log('add to cart',id)
   return{
     type: ADD_TO_CART,
+    payload: id
+  }
+}
+export const removeOneFromCart = (id) => {
+  console.log('remove one to cart', id)
+  return{
+    type: REMOVE_ONE_FROM_CART,
     payload: id
   }
 }
@@ -157,15 +163,3 @@ export const removeFromCart = (id) => {
     payload: id
   }
 }
-export const incrementProductInCart = (id) => {
-  console.log(id)
-  return{
-    type: INCREMENT_PRODUCT_IN_CART,
-    payload: id
-  }
-}
-
-
-// return all
-    // ? { type: REMOVE_ALL_FROM_CART, payload: id }
-//     : { type: REMOVE_ONE_FROM_CART, payload: id };
