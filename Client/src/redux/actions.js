@@ -12,23 +12,28 @@ export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 export const INJECT_CART_DATA = 'INJECT_CART_DATA';
 export const PAYMENT_ID = 'PAYMENT_ID';
 
-export function paymentGateway(props) {
-  console.log(props);
+export function paymentGateway(cart) {
+  // console.log(cart);
   return async function (dispatch) {
-      try {
-          // const products = props.map((prod) => ({title: prod.title, price: prod.price, quantity: prod.quantity}))
-          const response = await axios.post("http://localhost:3001/create_preference", {
-              title: props.model,
-              price: props.price,
-              quantity: props.quantity,
-              // currency_id: 'ARS'
-          })
-          // console.log(products);
-          const { id } = response.data;
-          dispatch({ type: PAYMENT_ID, payload: id })
-      } catch (error) {
-          console.log(error);
-      }
+    try {
+
+      const items = cart.map((prod) => ({
+        title: prod.model,
+        price: parseFloat(prod.price),
+        quantity: parseInt(prod.quantity),
+      }));
+
+      const response = await axios.post("http://localhost:3001/create_preference", {
+        items: items
+      })
+
+      console.log(items.price);
+
+      const { id } = response.data;
+      dispatch({ type: PAYMENT_ID, payload: id })
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

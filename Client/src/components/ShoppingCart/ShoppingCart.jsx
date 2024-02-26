@@ -24,7 +24,7 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
   });
 
   const handleBuy = () => {
-    dispatch(paymentGateway(cart[0]))
+    dispatch(paymentGateway(cart))
   }
 
   return (
