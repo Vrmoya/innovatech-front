@@ -3,10 +3,13 @@ import style from './LoginForm.module.css';
 import mail2 from '../../assets/mail2.svg'
 import password2 from '../../assets/password2.svg'
 import user2 from '../../assets/user2.svg'
+import google from '../../assets/google.svg'
+import github from '../../assets/github.svg'
 import loginValidator from './validation';
 import { signUpAction, LoginAction } from '../../redux/actions'; // Asegúrate de importar signUpAction desde el archivo correcto
 
 // import { Link } from 'react-router-dom'; 
+
 // import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux'; // Importar useDispatch
@@ -218,12 +221,26 @@ const handleBlur = () => {
 
 <div className={style.forgotpassword}>Lost Password? <span>Click Here</span></div>
 <div className={style.containerButton}>
+
+<button className={style.social}
+onClick={() => window.location.href = 'http://localhost:3001/auth/google'}>
+<img src={google} alt="" className={style.svg}/>
+</button>
+
+
+
+
 <button className={style.button}
   onClick={(e) => handleSubmit(e)}>{currentForm === 'login' ? 'Login' : 'Sign Up'}</button>
-  <button className={style.button}
+
+<button className={style.social}
+onClick={() => window.location.href = 'http://localhost:3001/auth/github'}>
+<img src={github} alt="" className={style.svg}/>
+</button>
+  {/* <button className={style.button}
   onClick={() => window.location.href = 'http://localhost:3001/auth/github'}>Github</button>
   <button className={style.button}
-  onClick={() => window.location.href = 'http://localhost:3001/auth/google'}>Google</button>
+  onClick={() => window.location.href = 'http://localhost:3001/auth/google'}>Google</button> */}
 
 </div>
         

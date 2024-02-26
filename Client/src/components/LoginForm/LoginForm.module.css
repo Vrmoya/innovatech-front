@@ -140,3 +140,10 @@ align-items: center;
             
             color: white;
     }
+    
+    .social {
+        background-color: black;
+        border: none;
+        outline: none; /* Esto elimina el contorno de enfoque cuando se presiona el botón */
+        padding: 0; /* Esto elimina el relleno predeterminado del botón */
+      }
