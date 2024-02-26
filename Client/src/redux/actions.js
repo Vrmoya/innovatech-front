@@ -6,19 +6,59 @@ export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_ORDER = 'GET_ORDER'
 export const GET_PRODUCTS_BY_CATEGORIES = 'GET_PRODUCTS_BY_CATEGORIES';
+export const CHANGE_FORM = 'CHANGE_FORM';
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
+export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
+export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
 
-export function postForm(payload) {
-    return async function (dispatch) {
-        try {
-            const response = await axios.post("http://localhost:3001/create", payload);
 
-            console.log(response)
-            return response;
-        } catch (error) {
-            console.log(error)
-        }
+export const BASE_URL = 'http://localhost:3001'; 
+
+export const LoginAction = ({  email, password }) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/api/signin`, {  email, password  });
+      dispatch({ type: 'SIGN_IN_SUCCESS', payload: response.data });
+    } catch (error) {
+      dispatch({ type: 'SIGN_IN_FAILURE', payload: error });
     }
+  };
 };
+
+export const signUpAction = ({ name, email, password }) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
+        dispatch({ type: 'SIGN_UP_SUCCESS', payload: response.data });
+      } catch (error) {
+        dispatch({ type: 'SIGN_UP_FAILURE', payload: error });
+      }
+    };
+  };
+
+
+
+export function changeForm(formType) {
+    return {
+      type: CHANGE_FORM,
+      payload: formType
+    };
+  };
+
+
+// export function postForm(payload) {
+//     return async function (dispatch) {
+//         try {
+//             const response = await axios.post("http://localhost:3001/create", payload);
+
+//             console.log(response)
+//             return response;
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+// };
 
 export const getProductsByCategories = (category, order, page, items) => {
     return async function (dispatch){

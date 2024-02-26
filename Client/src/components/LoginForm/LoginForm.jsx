@@ -4,18 +4,28 @@ import mail2 from '../../assets/mail2.svg'
 import password2 from '../../assets/password2.svg'
 import user2 from '../../assets/user2.svg'
 import loginValidator from './validation';
-import { Link } from 'react-router-dom'; 
-import axios from 'axios';
+import { signUpAction, LoginAction } from '../../redux/actions'; // Asegúrate de importar signUpAction desde el archivo correcto
+
+// import { Link } from 'react-router-dom'; 
+// import axios from 'axios';
+
+import { useSelector, useDispatch } from 'react-redux'; // Importar useDispatch
+
 
 
 const LoginForm = () => {
 
   const [errors, setErrors]=useState ({});
+
+  const currentForm = useSelector(state => state.currentForm);
+console.log("Current form in LoginForm:", currentForm);
+
+const dispatch = useDispatch(); // Obtener la función dispatch
   
   //capturo los datos del form en un estado local
   const [userData, setUserData]=useState ({
     email: "",
-    user: "",
+    name: "",
     password: "",
   });
   const [focusedField, setFocusedField] = useState(null); // Estado para el campo enfocado
@@ -49,41 +59,62 @@ const handleBlur = () => {
 };
 
 
-  
-const handleGoogleLogin = async () => {
-  try {
-    const response = await axios.get('http://localhost:3001/auth/google', {
-      withCredentials: true, // Incluir credenciales al hacer la solicitud CORS
-    });
 
-    console.log(response.data);
-    // Manejar la respuesta según sea necesario
-  } catch (error) {
-    console.error('Error:', error);
-    // Manejar errores
-  }
-};
   
 
   //Submit
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+
+  //   //validar formulario antes de hacer Submit
+  //   const formErrors = loginValidator(userData);
+  //   if (Object.keys(formErrors).length === 0) {
+
+  //     // Eliminar la propiedad 'name' si el formulario es de login
+  //   const formData = { ...userData };
+  //   if (currentForm === 'login') {
+  //     delete formData.name;
+  //   }
+  //     // Si no hay errores, enviar el formulario
+  //     console.log(formData);
+
+  //     //Acá se envían los datos del user
+  //     // dispatch(postUser(userData));
+  //     if (currentForm === 'login') {
+  //       dispatch(loginAction(formData)); // Dispatch de la acción de inicio de sesión
+  //     } else {
+  //       dispatch(signUpAction(formData)); // Dispatch de la acción de registro
+  //     }
+
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+  
+    // Desestructurar los campos necesarios de userData
+    const { name, email, password } = userData;
+  
+    // Validar el formulario antes de enviarlo
+    let formErrors = loginValidator(userData);
 
-    //validar formulario antes de hacer Submit
-    const formErrors = loginValidator(userData);
+    if (currentForm === 'login') {
+      // Omitir la validación del campo "name" en el formulario de inicio de sesión
+      formErrors = loginValidator(userData, true);
+  } else {
+      formErrors = loginValidator(userData, false); // Aplicar todas las validaciones en el formulario de registro
+  }
     if (Object.keys(formErrors).length === 0) {
-
-      // Si no hay errores, enviar el formulario
-      console.log(userData);
-
-      //Acá se envían los datos del user
-      // dispatch(postUser(userData));
+      // Enviar los datos al backend mediante la acción correspondiente
+      if (currentForm === 'login') {
+        dispatch(LoginAction({ email, password }));
+      } else {
+        dispatch(signUpAction({ name, email, password }));
+      }
+     
       alert("User success created!");
 
       //luego de hacer submit limpio los inputs del form
       setUserData({
-        user: "",
+        name: "",
         email: "",
         password: "",
 
@@ -100,12 +131,14 @@ const handleGoogleLogin = async () => {
   return (
     <div className={style.containerLoginForm}>
 
-      <h1 className={style.title}>Sign Up</h1>
+      <h1 className={style.title}>{currentForm === 'login' ? 'Login' : 'Sign Up'}</h1>
       <hr className={style.hr}/>
       
 
       <form className= {style.form}
       onSubmit= {(e)=> handleSubmit(e)}>
+
+{currentForm === 'signup' && (
     
         <div className={style.group}>
           <div className={style.option}>
@@ -113,21 +146,25 @@ const handleGoogleLogin = async () => {
         
         <input className={style.input}
         type="text" 
-        value= {userData.user}
-        name= "user"
+        value= {userData.name}
+        name= "name"
         onChange={(e)=>handleChange(e)}
-        placeholder='User'
-        onFocus={() => handleFocus('user')}
+        placeholder='User Name'
+        onFocus={() => handleFocus('name')}
               onBlur={handleBlur}
         /></div>
-        {focusedField === 'user' && errors.u1 && (
+        {focusedField === 'name' && errors.u1 && (
             <p className={style.error}>{errors.u1}</p>
           )}
-          {focusedField === 'user' && errors.u2 && (
+          {focusedField === 'name' && errors.u2 && (
             <p className={style.error}>{errors.u2}</p>
           )}
     
         </div> 
+        )}
+
+
+
     <div className={style.group}>
     <div className={style.option}>
         <img src={mail2} alt="" className={style.svg}/>
@@ -181,9 +218,12 @@ const handleGoogleLogin = async () => {
 
 <div className={style.forgotpassword}>Lost Password? <span>Click Here</span></div>
 <div className={style.containerButton}>
+<button className={style.button}
+  onClick={(e) => handleSubmit(e)}>{currentForm === 'login' ? 'Login' : 'Sign Up'}</button>
   <button className={style.button}
-  onClick={handleGoogleLogin}>Login</button>
-  <button className={style.button}>Sign Up</button>
+  onClick={() => window.location.href = 'http://localhost:3001/auth/github'}>Github</button>
+  <button className={style.button}
+  onClick={() => window.location.href = 'http://localhost:3001/auth/google'}>Google</button>
 
 </div>
         

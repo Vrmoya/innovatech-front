@@ -1,15 +1,16 @@
 
 
-const loginValidator = (data) => {
+const loginValidator = (data, isLoginForm) => {
     let errors = {};
     
     //validaciones campo usuario
-    if (!data.user.trim()) {
-        errors.u1 = '⚠ Complete the field with a User name';
-     
-    }  else if (data.user.length < 3 || data.user.length > 25) {
-        errors.u2 = '⚠ try between 3 and 15 characters';
-    }
+    if (!isLoginForm) {
+      if (!data.name.trim()) {
+          errors.u1 = '⚠ Complete the field with a User name';
+      } else if (data.name.length < 3 || data.name.length > 25) {
+          errors.u2 = '⚠ Try between 3 and 25 characters';
+      }
+  }
 
     //validaciones campo e-mail
 
