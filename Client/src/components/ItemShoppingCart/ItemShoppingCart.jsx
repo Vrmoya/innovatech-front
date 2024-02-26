@@ -11,13 +11,13 @@ const ItemShoppingCart = () => {
   // useEffect(() => {
   //   window.localStorage.setItem('cart', JSON.stringify(itemProduct))
   // },[itemProduct])
-  
+
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id))
   };
   const handleIncrementProductInCart = (id) => {
     console.log('handler incrementar uno del ItemShopping', id)
-   dispatch(addToCart(id))
+    dispatch(addToCart(id))
   }
   const handleRemoveOneFromCart = (id) => {
     console.log('handler remover uno del ItemShopping', id)
@@ -30,11 +30,10 @@ const ItemShoppingCart = () => {
         <ul className={style.listUL}>
           {itemProduct?.map((product) => (
             <>
-            {console.log(itemProduct)}
-              <li key={product.id}className={style.listLi}>
+              <li key={product.id} className={style.listLi}>
                 <div className={style.divProduct}>
                   <div>
-                    <div>
+                    <div className={style.mainContent}>
                       <button className={style.removeProduct} onClick={() => handleRemoveFromCart(product.id)}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -82,9 +81,12 @@ const ItemShoppingCart = () => {
                           </svg>
                         </button>
                       </div>
-                      <p className={style.counterProduct}>
-                        <span>{product.quantity}</span>
-                      </p>
+                      <div className={style.quantity}>
+                        <p className={style.counterProduct}>
+                          {product.quantity}
+                        </p>
+
+                      </div>
                       <div>
                         <button className={style.buttonPlus} onClick={() => handleIncrementProductInCart(product.id)}>
                           <svg

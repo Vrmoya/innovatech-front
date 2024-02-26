@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
+import {getProducts } from "../../redux/actions";
 
 const Detail = () => {
   const { id } = useParams();
@@ -23,6 +24,14 @@ const Detail = () => {
   const productById = useSelector((state) => state.getProductById);
   const products = useSelector((state) => state.products);
   const cart = useSelector((state) => state.cart)
+
+  const categories = useSelector(state => state.categories)
+  const order = useSelector(state => state.order)
+  const model = useSelector(state => state.model)
+  const pagenumber = useSelector(state => state.pagenumber)
+  useEffect(() => {
+    dispatch(getProducts(categories, order, pagenumber, "6", model));
+  }, [model, categories, order, pagenumber]);
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -53,7 +62,6 @@ const Detail = () => {
         thumbnail: img,
       }));
       if (data.length > 0) {
-        console.log(productById);
         setImages(data);
       }
     }
