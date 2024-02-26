@@ -21,7 +21,7 @@ export function paymentGateway(cart) {
         title: prod.model,
         price: parseFloat(prod.price),
         quantity: parseInt(prod.quantity),
-      }));
+    }));
 
       const response = await axios.post("http://localhost:3001/create_preference", {
         items: items
