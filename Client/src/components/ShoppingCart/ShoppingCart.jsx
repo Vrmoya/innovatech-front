@@ -70,7 +70,7 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
                 <div className={style.containerTotal}>
                   <div className={style.totalPrice}>
                     <p>Total</p>
-                    <span> ${cart?.reduce((total, product) => total + product.total, 0)},00 USD</span>
+                    <span>$ {cart?.reduce((total, product) => total + product.total, 0)},00 USD</span>
                   </div>
                   <hr />
                 </div>

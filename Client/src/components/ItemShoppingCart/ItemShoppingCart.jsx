@@ -60,7 +60,7 @@ const ItemShoppingCart = () => {
                     <span>{product.model}</span>
                   </div>
                   <div className={style.priceProduct}>
-                    <p>${product.total},00 USD</p>
+                    <p>$ {product.total},00 USD</p>
                     <div className={style.divCounterProduct}>
                       <div>
                         <button className={style.buttonNegative} onClick={() => handleRemoveOneFromCart(product.id)}>

@@ -65,7 +65,7 @@
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 15px;
-  padding: 1.5rem;
+  padding: 1rem;
   background-color: #fff;
 }
 .buttonX {
@@ -153,6 +153,7 @@
   padding-bottom: 1rem;
   font-size: 15px;
   line-height: 1.25rem;
+  font-weight: 600;
 }
 .containerTotal p{
   padding-left: 5px;
