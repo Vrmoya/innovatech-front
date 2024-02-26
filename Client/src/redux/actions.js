@@ -1,57 +1,60 @@
-import axios from "axios";
-export const GET_PRODUCTS = "GET_PRODUCTS";
-export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
-export const CLEAN_PRODUCT_BY_ID = "CLEAN_PRODUCT_BY_ID";
-export const FILTER_BY_MODEL = "FILTER_BY_MODEL";
-export const GET_CATEGORIES = "GET_CATEGORIES";
-export const GET_ORDER = "GET_ORDER";
-export const GET_PRODUCTS_BY_CATEGORIES = "GET_PRODUCTS_BY_CATEGORIES";
-export const ADD_TO_CART = "ADD_TO_CART";
-export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
-export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
-export const INJECT_CART_DATA = 'INJECT_CART_DATA';
-export const PAYMENT_ID = 'PAYMENT_ID';
+import axios from 'axios';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
+export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_ORDER = 'GET_ORDER'
+export const GET_PRODUCTS_BY_CATEGORIES = 'GET_PRODUCTS_BY_CATEGORIES';
+export const CHANGE_FORM = 'CHANGE_FORM';
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
+export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
+export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
 
-export function paymentGateway(cart) {
-  // console.log(cart);
-  return async function (dispatch) {
+export const BASE_URL = 'http://localhost:3001';
+
+export const LoginAction = ({  email, password }) => {
+  return async (dispatch) => {
     try {
-
-      const items = cart.map((prod) => ({
-        title: prod.model,
-        price: parseFloat(prod.price),
-        quantity: parseInt(prod.quantity),
-    }));
-
-      const response = await axios.post("http://localhost:3001/create_preference", {
-        items: items
-      })
-
-      console.log(items.price);
-
-      const { id } = response.data;
-      dispatch({ type: PAYMENT_ID, payload: id })
+      const response = await axios.post(`${BASE_URL}/api/signin`, {  email, password  });
+      dispatch({ type: 'SIGN_IN_SUCCESS', payload: response.data });
     } catch (error) {
-      console.log(error);
-    }
-  }
-}
-
-export function postForm(payload) {
-  return async function (dispatch) {
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/create",
-        payload
-      );
-
-      // console.log(response);
-      return response;
-    } catch (error) {
-      console.log(error);
+      dispatch({ type: 'SIGN_IN_FAILURE', payload: error });
     }
   };
-}
+};
+
+export const signUpAction = ({ name, email, password }) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
+      dispatch({ type: 'SIGN_UP_SUCCESS', payload: response.data });
+    } catch (error) {
+      dispatch({ type: 'SIGN_UP_FAILURE', payload: error });
+    }
+  };
+};
+
+export function changeForm(formType) {
+  return {
+    type: CHANGE_FORM,
+    payload: formType
+  };
+};
+
+export function postForm(payload) {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post("http://localhost:3001/create", payload);
+
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+};
 
 export const getProductsByCategories = (category, order, page, items) => {
   return async function (dispatch) {

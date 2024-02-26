@@ -11,6 +11,11 @@ import {
   REMOVE_ALL_FROM_CART,
   INJECT_CART_DATA,
   PAYMENT_ID,
+  CHANGE_FORM,
+  SIGN_IN_FAILURE,
+  SIGN_IN_SUCCESS,
+  SIGN_UP_FAILURE,
+  SIGN_UP_SUCCESS,
 } from "./actions";
 
 const initialState = {
@@ -26,7 +31,10 @@ const initialState = {
   filterByCategories: [],
   cart: [],
   filterByCategories: [],
-  paymentID: null
+  paymentID: null,
+  currentForm: "login",
+  user: null,
+  error: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -36,6 +44,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         paymentID: action.payload
       }
+
+
+    case CHANGE_FORM:
+      console.log("Changing form in reducer to:", action.payload);
+      return {
+        ...state,
+        currentForm: action.payload
+      };
+
+
 
     case GET_PRODUCTS:
       return {
@@ -168,6 +186,19 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           cart: action.payload
         }
+
+      case SIGN_IN_SUCCESS:
+  return { ...state, user: action.payload.user, error: null }
+
+case SIGN_IN_FAILURE:
+  return { ...state, error: action.payload }
+
+        case SIGN_UP_SUCCESS:
+          return { ...state, user: action.payload.user, error: null }
+        
+        case SIGN_UP_FAILURE:
+          return { ...state, error: action.payload };
+
     default:
       return { ...state };
   }
