@@ -11,7 +11,7 @@ export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
 export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
-export const BASE_URL = 'http://localhost:3001';
+export const BASE_URL = 'http://localhost:80';
 export const PAYMENT_ID = 'PAYMENT_ID';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
@@ -36,7 +36,7 @@ export function paymentGateway(cart) {
         totalPrice += total[i];
       }
 
-      const response = await axios.post("http://localhost:3001/create_preference", {
+      const response = await axios.post("http://localhost:80/create_preference", {
         items: items,
         total: totalPrice
       })
@@ -83,7 +83,7 @@ export function changeForm(formType) {
 export function postForm(payload) {
   return async function (dispatch) {
     try {
-      const response = await axios.post("http://localhost:3001/create", payload);
+      const response = await axios.post("http://localhost:80/create", payload);
 
       // console.log(response);
       return response;
@@ -96,7 +96,7 @@ export function postForm(payload) {
 export const getProductsByCategories = (category, order, page, items) => {
   return async function (dispatch) {
     try {
-      let url = "http://localhost:3001/products";
+      let url = "http://localhost:80/products";
       if (category || order || page || items) {
         url += "?";
         if (category) url += `category=${category}&`;
@@ -128,7 +128,7 @@ export const getProducts = (
 ) => {
   return async function (dispatch) {
     try {
-      let url = "http://localhost:3001/products";
+      let url = "http://localhost:80/products";
       if (category || order || page || items) {
         url += "?";
         if (category) url += `category=${category}&`;
@@ -173,7 +173,7 @@ export const getOrder = (order) => {
 export const getProductById = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+      const { data } = await axios.get(`http://localhost:80/products/${id}`);
       return dispatch({
         type: GET_PRODUCT_BY_ID,
         payload: data,
@@ -195,7 +195,7 @@ export const filterByModel = (model) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/model?model=${model}`
+        `http://localhost:80/model?model=${model}`
       );
       console.log(data);
       return dispatch({

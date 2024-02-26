@@ -16,6 +16,7 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_UP_FAILURE,
   SIGN_UP_SUCCESS,
+  signUpAction,
 } from "./actions";
 
 const initialState = {
@@ -188,6 +189,7 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case SIGN_IN_SUCCESS:
+      console.log(action.payload.user);
       return { ...state, user: action.payload.user, error: null }
 
     case SIGN_IN_FAILURE:

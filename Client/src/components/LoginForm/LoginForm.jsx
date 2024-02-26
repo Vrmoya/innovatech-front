@@ -19,6 +19,7 @@ import { useSelector, useDispatch } from 'react-redux'; // Importar useDispatch
 const LoginForm = () => {
 
   const [errors, setErrors]=useState ({});
+  
 
   const currentForm = useSelector(state => state.currentForm);
 console.log("Current form in LoginForm:", currentForm);
@@ -223,7 +224,7 @@ const handleBlur = () => {
 <div className={style.containerButton}>
 
 <button className={style.social}
-onClick={() => window.location.href = 'http://localhost:3001/auth/google'}>
+onClick={() => window.location.href = 'http://localhost:80/auth/google'}>
 <img src={google} alt="" className={style.svg}/>
 </button>
 
@@ -234,7 +235,7 @@ onClick={() => window.location.href = 'http://localhost:3001/auth/google'}>
   onClick={(e) => handleSubmit(e)}>{currentForm === 'login' ? 'Login' : 'Sign Up'}</button>
 
 <button className={style.social}
-onClick={() => window.location.href = 'http://localhost:3001/auth/github'}>
+onClick={() => window.location.href = 'http://localhost:80/auth/github'}>
 <img src={github} alt="" className={style.svg}/>
 </button>
   {/* <button className={style.button}
