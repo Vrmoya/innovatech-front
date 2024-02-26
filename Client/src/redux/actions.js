@@ -13,32 +13,48 @@ export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
 export const BASE_URL = 'http://localhost:3001';
 export const PAYMENT_ID = 'PAYMENT_ID';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
+export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
+export const INJECT_CART_DATA = 'INJECT_CART_DATA'
 
-export function paymentGateway() {
-    return async function (dispatch) {
-        try {
-            const response = await axios.post("http://localhost:3001/create_preference", {
-                title: "Camiseta",
-                price: 500,
-                quantity: 1,
-                // currency_id: 'ARS'
-            })
-            console.log(response);
-            const { id } = response.data;
-            console.log(id);
-            dispatch({ type: PAYMENT_ID, payload: id })
-        } catch (error) {
-            console.log(error);
-        }
+export function paymentGateway(cart) {
+  // console.log(cart);
+  return async function (dispatch) {
+    try {
+
+      const items = cart.map((prod) => ({
+        title: prod.model,
+        price: parseFloat(prod.price),
+        quantity: parseInt(prod.quantity),
+      }));
+
+      const total = cart.map((prod) => prod.total)
+      let totalPrice = 0;
+
+      for (let i = 0; i < total.length; i++) {
+        totalPrice += total[i];
+      }
+
+      const response = await axios.post("http://localhost:3001/create_preference", {
+        items: items,
+        total: totalPrice
+      })
+
+      const { id } = response.data;
+      dispatch({ type: PAYMENT_ID, payload: id })
+    } catch (error) {
+      console.log(error);
     }
+  }
 }
 
 
 
-export const LoginAction = ({  email, password }) => {
+export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${BASE_URL}/api/signin`, {  email, password  });
+      const response = await axios.post(`${BASE_URL}/api/signin`, { email, password });
       dispatch({ type: 'SIGN_IN_SUCCESS', payload: response.data });
     } catch (error) {
       dispatch({ type: 'SIGN_IN_FAILURE', payload: error });
@@ -65,17 +81,17 @@ export function changeForm(formType) {
 };
 
 export function postForm(payload) {
-    return async function (dispatch) {
-        try {
-            const response = await axios.post("http://localhost:3001/create", payload);
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("http://localhost:3001/create", payload);
 
-            console.log(response)
-            return response;
-        } catch (error) {
-            console.log(error)
-        }
+      // console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
     }
-};
+  };
+}
 
 export const getProductsByCategories = (category, order, page, items) => {
   return async function (dispatch) {
@@ -89,10 +105,10 @@ export const getProductsByCategories = (category, order, page, items) => {
         if (items) url += `items=${items}&`;
         url = url.replace(/&$/, "");
       }
-      // console.log("URL:", url);
+      console.log("URL:", url);
       const productsData = await axios.get(url);
       const products = productsData.data.data;
-      // console.log("melina", products);
+      console.log("melina", products);
       dispatch({
         type: GET_PRODUCTS_BY_CATEGORIES,
         payload: products,
@@ -123,8 +139,10 @@ export const getProducts = (
 
         url = url.replace(/&$/, "");
       }
+      console.log("URL:", url);
       const productsData = await axios.get(url);
       const products = productsData.data.data;
+      console.log(products)
 
       // console.log("Products:", products);
       dispatch({ type: "TOTAL_PAGES", payload: productsData.data.totalPages });
