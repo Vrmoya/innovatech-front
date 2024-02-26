@@ -12,23 +12,24 @@ export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 export const INJECT_CART_DATA = 'INJECT_CART_DATA';
 export const PAYMENT_ID = 'PAYMENT_ID';
 
-export function paymentGateway() {
-    return async function (dispatch) {
-        try {
-            const response = await axios.post("http://localhost:3001/create_preference", {
-                title: "Camiseta",
-                price: 500,
-                quantity: 1,
-                // currency_id: 'ARS'
-            })
-            console.log(response);
-            const { id } = response.data;
-            console.log(id);
-            dispatch({ type: PAYMENT_ID, payload: id })
-        } catch (error) {
-            console.log(error);
-        }
-    }
+export function paymentGateway(props) {
+  console.log(props);
+  return async function (dispatch) {
+      try {
+          // const products = props.map((prod) => ({title: prod.title, price: prod.price, quantity: prod.quantity}))
+          const response = await axios.post("http://localhost:3001/create_preference", {
+              title: props.model,
+              price: props.price,
+              quantity: props.quantity,
+              // currency_id: 'ARS'
+          })
+          // console.log(products);
+          const { id } = response.data;
+          dispatch({ type: PAYMENT_ID, payload: id })
+      } catch (error) {
+          console.log(error);
+      }
+  }
 }
 
 export function postForm(payload) {
@@ -39,7 +40,7 @@ export function postForm(payload) {
         payload
       );
 
-      console.log(response);
+      // console.log(response);
       return response;
     } catch (error) {
       console.log(error);
@@ -59,10 +60,10 @@ export const getProductsByCategories = (category, order, page, items) => {
         if (items) url += `items=${items}&`;
         url = url.replace(/&$/, "");
       }
-      console.log("URL:", url);
+      // console.log("URL:", url);
       const productsData = await axios.get(url);
       const products = productsData.data.data;
-      console.log("melina", products);
+      // console.log("melina", products);
       dispatch({
         type: GET_PRODUCTS_BY_CATEGORIES,
         payload: products,
@@ -93,10 +94,8 @@ export const getProducts = (
 
         url = url.replace(/&$/, "");
       }
-      console.log("URL:", url);
       const productsData = await axios.get(url);
       const products = productsData.data.data;
-      console.log(products)
 
       // console.log("Products:", products);
       dispatch({ type: "TOTAL_PAGES", payload: productsData.data.totalPages });
@@ -163,15 +162,15 @@ export const filterByModel = (model) => {
 };
 
 export const addToCart = (id) => {
-  console.log('add to cart',id)
-  return{
+  console.log('add to cart', id)
+  return {
     type: ADD_TO_CART,
     payload: id
   }
 }
 export const removeOneFromCart = (id) => {
   console.log('remove one to cart', id)
-  return{
+  return {
     type: REMOVE_ONE_FROM_CART,
     payload: id
   }
@@ -179,13 +178,13 @@ export const removeOneFromCart = (id) => {
 
 export const removeFromCart = (id) => {
   console.log(id)
-  return{
+  return {
     type: REMOVE_ALL_FROM_CART,
     payload: id
   }
 }
-export const injectCartData = (data) =>{
-  return{
+export const injectCartData = (data) => {
+  return {
     type: INJECT_CART_DATA,
     payload: data
   }

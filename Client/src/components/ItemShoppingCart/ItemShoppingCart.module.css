@@ -34,6 +34,12 @@
   margin-top: -0.5rem;
   margin-left: 55px;
 }
+
+.mainContent{
+  position: absolute;
+  z-index: 1;
+  display: flex;
+}
 .removeProduct {
   font-family: inherit;
   font-feature-settings: inherit;
@@ -52,11 +58,14 @@
   width: 17px;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
+  border-radius: 100%;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.2s;
   box-sizing: border-box;
+  border: none;
+  background-color: gray;
+  color: #fff;
 }
 .divImageProduct {
   position: relative;
@@ -163,16 +172,13 @@
   height: 1rem;
   width: 1rem;
 }
-.counterProduct {
-  margin: 0;
-  width: 1.5rem;
-  text-align: center;
+
+.quantity{
+  display: flex;
+  justify-content: center;
+  width: 2em;
 }
-.counterProduct span {
-  width: 100%;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
+
 .buttonPlus {
   font-size: 100%;
   margin: 0;
@@ -198,3 +204,4 @@
   height: 1rem; 
   width: 1rem; 
 }
+
