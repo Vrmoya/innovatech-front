@@ -121,10 +121,10 @@ const rootReducer = (state = initialState, action) => {
         const updatedCart = state.cart.map((product) =>
           product.id == action.payload
             ? {
-                ...product,
-                quantity: product.quantity + 1,
-                total: product.price * (product.quantity + 1),
-              }
+              ...product,
+              quantity: product.quantity + 1,
+              total: product.price * (product.quantity + 1),
+            }
             : product
         )
         return {
@@ -162,10 +162,10 @@ const rootReducer = (state = initialState, action) => {
         const updatedCart = state.cart.map((product) =>
           product.id === action.payload
             ? {
-                ...product,
-                quantity: product.quantity - 1,
-                total: product.price * (product.quantity - 1),
-              }
+              ...product,
+              quantity: product.quantity - 1,
+              total: product.price * (product.quantity - 1),
+            }
             : product
         )
         return {
@@ -181,23 +181,23 @@ const rootReducer = (state = initialState, action) => {
           cart: updatedCart,
         };
       }
-      case INJECT_CART_DATA:
-        return{
-          ...state,
-          cart: action.payload
-        }
+    case INJECT_CART_DATA:
+      return {
+        ...state,
+        cart: action.payload
+      }
 
-      case SIGN_IN_SUCCESS:
-  return { ...state, user: action.payload.user, error: null }
+    case SIGN_IN_SUCCESS:
+      return { ...state, user: action.payload.user, error: null }
 
-case SIGN_IN_FAILURE:
-  return { ...state, error: action.payload }
+    case SIGN_IN_FAILURE:
+      return { ...state, error: action.payload }
 
-        case SIGN_UP_SUCCESS:
-          return { ...state, user: action.payload.user, error: null }
-        
-        case SIGN_UP_FAILURE:
-          return { ...state, error: action.payload };
+    case SIGN_UP_SUCCESS:
+      return { ...state, user: action.payload.user, error: null }
+
+    case SIGN_UP_FAILURE:
+      return { ...state, error: action.payload };
 
     default:
       return { ...state };
