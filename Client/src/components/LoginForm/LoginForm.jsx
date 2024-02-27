@@ -6,15 +6,18 @@ import user2 from '../../assets/user2.svg'
 import google from '../../assets/google.svg'
 import github from '../../assets/github.svg'
 import loginValidator from './validation';
-import { signUpAction, LoginAction} from '../../redux/actions';
-
+import { signUpAction, LoginAction, changeForm} from '../../redux/actions';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const LoginForm = () => {
 
   const [errors, setErrors] = useState({});
-
-
+  const user = useSelector(state => state.user)
+  const navigate = useNavigate()
+  
   const currentForm = useSelector(state => state.currentForm);
   console.log("Current form in LoginForm:", currentForm);
 
@@ -71,12 +74,14 @@ const LoginForm = () => {
       // Enviar los datos al backend mediante la acción correspondiente
       if (currentForm === 'login') {
         dispatch(LoginAction({ email, password }));
+        navigate('/')
       } else {
         dispatch(signUpAction({ name, email, password }));
+        swal("User created success", "click ok to continue", "success")
+        dispatch(changeForm('login'))
       }
-
-      alert("User success created!");
-
+      
+      
       //luego de hacer submit limpio los inputs del form
       setUserData({
         name: "",
@@ -106,6 +111,8 @@ const LoginForm = () => {
     // const popup = window.open('http://localhost:80/auth/github',"targetWindow")
     window.location.href = 'http://localhost:80/auth/github';
   };
+
+  console.log(userData);
 
   return (
     <div className={style.containerLoginForm}>

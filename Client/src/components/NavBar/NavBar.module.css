@@ -148,6 +148,30 @@
     border: 1px solid #7471723a;
 }
 
+.isLoginContent{
+    display: flex;
+    justify-content: space-around;
+    margin-right: .5em;
+    width: 7em;
+    /* background-color: lightblue; */
+}
+
+.userImg{
+    width: 45px;
+    border-radius: 100%;
+    border: 2px solid rgb(44, 197, 44);
+}
+
+.buttonLogOut{
+    border: none;
+    background-color: transparent;
+}
+
+.imgLogout{
+    cursor: pointer;
+    width: 25px;
+}
+
 @media screen and (min-width: 768px){
     .mainContent{
         margin-left: 1.5em;

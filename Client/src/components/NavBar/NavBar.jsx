@@ -5,8 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 import PATHROURES from "../../helpers/PathRoutes";
 import SearchBar from "../SearchBar/SearchBar";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
-import { useDispatch } from 'react-redux';
-import { changeForm } from "../../redux/actions";
+import { useDispatch, useSelector } from 'react-redux';
+import { changeForm, logout } from "../../redux/actions";
+import imgLogout from '../../assets/logout.svg'
 
 
 const NavBar = () => {
@@ -14,9 +15,12 @@ const NavBar = () => {
   const [showShoppingCart, setShowShoppingCart] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user)
+
+  console.log(user);
 
 
-  if (location.pathname === PATHROURES.CREATE) {
+  if (location.pathname === PATHROURES.CREATE || location.pathname === PATHROURES.DASHBOARD) {
     return null;
   }
 
@@ -29,6 +33,12 @@ const NavBar = () => {
     console.log("Changing form to:", formType);
     dispatch(changeForm(formType));
   };
+
+  const logOut = () => {
+    setTimeout(() => {
+      dispatch(logout())
+    }, 500);
+  }
 
   const shoppingCart = () => {
     if (showShoppingCart === false) {
@@ -105,23 +115,43 @@ const NavBar = () => {
               Smartphones
             </Link>
             <div className={style.buttonContainerMobile}>
-              <button className={style.buttonLog}
-                onClick={() => handleChangeForm('login')}>Log In</button>
+              <Link to={'/login'}>
+                <button className={style.buttonLog}
+                  onClick={() => handleChangeForm('login')}>Log In</button>
+              </Link>
+
               <button className={style.buttonSign}
                 onClick={() => handleChangeForm('signup')}>Sign Up</button>
             </div>
+
+
           </div>
         </div>
         <div className={style.searchDeskContent}>
           <SearchBar></SearchBar>
         </div>
         <div className={style.cartContainer}>
-          <div className={style.buttonContainerDesk}>
-            <button className={style.buttonLog}
-              onClick={() => handleChangeForm('login')}>Log In</button>
-            <button className={style.buttonSign}
-              onClick={() => handleChangeForm('signup')}>Sign Up</button>
-          </div>
+          {user === null && (
+            <div className={style.buttonContainerDesk}>
+              <Link to={'/login'}>
+                <button className={style.buttonLog}
+                  onClick={() => handleChangeForm('login')}>Log In</button>
+              </Link>
+              <Link to={'/login'}>
+                <button className={style.buttonSign}
+                  onClick={() => handleChangeForm('signup')}>Sign Up</button>
+              </Link>
+            </div>
+          )}
+          {user !== null && (
+            <div className={style.isLoginContent}>
+              <img src={user?.image} alt="" className={style.userImg} />
+              <button onClick={() => logOut()} className={style.buttonLogOut}>
+                <img src={imgLogout} alt="" className={style.imgLogout} />
+              </button>
+            </div>
+          )}
+
           <button className={style.cartButton} onClick={() => shoppingCart()}>
             <svg
               className={style.cartSvg}

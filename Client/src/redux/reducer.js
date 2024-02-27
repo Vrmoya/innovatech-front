@@ -16,7 +16,8 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_UP_FAILURE,
   SIGN_UP_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  INJECT_USER
 } from "./actions";
 
 const initialState = {
@@ -36,10 +37,16 @@ const initialState = {
   currentForm: "login",
   user: null,
   error: null,
+  localUser: null,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case INJECT_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
     case "GET_INFO_GITHUB":
      console.log('soyreducer',action.payload);
       return {
@@ -205,13 +212,15 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case SIGN_IN_SUCCESS:
-      return { ...state, user: action.payload.user, error: null }
+      console.log(action.payload);
+      return { ...state, user: action.payload, error: null }
 
     case SIGN_IN_FAILURE:
       return { ...state, error: action.payload }
 
     case SIGN_UP_SUCCESS:
-      return { ...state, user: action.payload.user, error: null }
+      console.log(action.payload.user);
+      return { ...state}
 
     case SIGN_UP_FAILURE:
       return { ...state, error: action.payload };
