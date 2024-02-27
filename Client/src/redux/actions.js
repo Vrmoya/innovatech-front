@@ -17,6 +17,27 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
 export const INJECT_CART_DATA = 'INJECT_CART_DATA'
+export const LOGIN_START = 'LOGIN_START'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+
+
+export const loginStart = () => {
+  return {
+    type: LOGIN_START,
+  }
+};
+
+export const loginSuccess = () => {
+  return {
+    type: LOGIN_SUCCESS,
+  }
+};
+
+export const loginFailure = (error) => ({
+  type: LOGIN_FAILURE,
+  payload: error,
+});
 
 export function paymentGateway(cart) {
   // console.log(cart);
@@ -55,9 +76,9 @@ export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${BASE_URL}/api/signin`, { email, password });
-      dispatch({ type: 'SIGN_IN_SUCCESS', payload: response.data });
+      dispatch({ type: SIGN_IN_SUCCESS, payload: response.data });
     } catch (error) {
-      dispatch({ type: 'SIGN_IN_FAILURE', payload: error });
+      dispatch({ type: SIGN_IN_FAILURE, payload: error });
     }
   };
 };
@@ -66,9 +87,9 @@ export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
-      dispatch({ type: 'SIGN_UP_SUCCESS', payload: response.data });
+      dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
     } catch (error) {
-      dispatch({ type: 'SIGN_UP_FAILURE', payload: error });
+      dispatch({ type: SIGN_UP_FAILURE, payload: error });
     }
   };
 };

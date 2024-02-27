@@ -16,7 +16,7 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_UP_FAILURE,
   SIGN_UP_SUCCESS,
-  signUpAction,
+  LOGIN_SUCCESS,
 } from "./actions";
 
 const initialState = {
@@ -35,17 +35,30 @@ const initialState = {
   paymentID: null,
   currentForm: "login",
   user: null,
-  error: null
+  error: null,
+  isAuthenticated: false,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+      };
+  
     case PAYMENT_ID:
       return {
         ...state,
         paymentID: action.payload
       }
-
 
     case CHANGE_FORM:
       console.log("Changing form in reducer to:", action.payload);
@@ -189,7 +202,6 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case SIGN_IN_SUCCESS:
-      console.log(action.payload.user);
       return { ...state, user: action.payload.user, error: null }
 
     case SIGN_IN_FAILURE:
