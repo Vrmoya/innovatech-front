@@ -9,12 +9,14 @@
   box-sizing: border-box;
   border: 0 solid #e5e7eb;
   padding: 15px;
+  overflow: auto;
 }
 .listLi {
   display: flex;
   width: 100%;
   flex-direction: column;
   border-bottom-width: 1px;
+  
 }
 .divProduct {
   position: relative;
@@ -34,6 +36,7 @@
   z-index: 40;
   margin-top: -0.5rem;
   margin-left: 55px;
+  
 }
 
 .mainContent{
@@ -96,6 +99,7 @@
   padding-left: 0.25rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  
 }
 .containerItem hr {
   border: none;
@@ -148,6 +152,7 @@
   border-radius: 9999px;
   border-width: 1px;
   align-items: center;
+  overflow: auto;
 }
 .buttonNegative {
   font-size: 100%;
