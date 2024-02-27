@@ -16,6 +16,7 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_UP_FAILURE,
   SIGN_UP_SUCCESS,
+  LOGOUT
 } from "./actions";
 
 const initialState = {
@@ -30,7 +31,7 @@ const initialState = {
   getProductById: {},
   filterByCategories: [],
   cart: [],
-  filterByCategories: [],
+  isAuthenticated: false,
   paymentID: null,
   currentForm: "login",
   user: null,
@@ -46,18 +47,13 @@ const rootReducer = (state = initialState, action) => {
         isAuthenticated: true,
         user: action.payload,
       };
-    case 'LOGOUT':
+    case LOGOUT:
       return {
         ...state,
         isAuthenticated: false,
         user: null,
       };
-    case "GET_INFO_GITHUB":
-     console.log('soyreducer',action.payload);
-      return {
-        ...state,
-        user:action.payload
-      }
+   
 
       case "GET_INFO_GOOGLE":
      console.log('soyreducer',action.payload);
@@ -110,11 +106,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         getProductById: action.payload,
       };
-    case GET_PRODUCT_BY_ID:
-      return {
-        ...state,
-        getProductById: action.payload,
-      };
+    
     case CLEAN_PRODUCT_BY_ID:
       return {
         ...state,
@@ -141,8 +133,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case ADD_TO_CART:
       const productFound = state.cart.find(
-        (product) => product.id == action.payload
-      )
+        (product) => product.id == action.payload)
       if (productFound) {
         const updatedCart = state.cart.map((product) =>
           product.id == action.payload

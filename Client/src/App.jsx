@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { injectCartData } from './redux/actions.js'
-import LoginGitHub from "./components/LoginGitHub/LoginGitHub.jsx";
+import LoginGithub from "./components/LoginGitHub/LoginGithub.jsx";
 import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
         dispatch(injectCartData(JSON.parse(productsInCart)))
       }
     }
-  },[])
+  },[dispatch])
 
   return (
     <div>

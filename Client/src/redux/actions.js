@@ -17,6 +17,10 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
 export const INJECT_CART_DATA = 'INJECT_CART_DATA'
+export const LOGOUT = 'LOGOUT';
+
+
+
 
 export function paymentGateway(cart) {
   // console.log(cart);
@@ -95,15 +99,18 @@ export const signUpAction = ({ name, email, password }) => {
   };
 };
 
+export const logout = () => ({
+  type: LOGOUT,
+});
 export function changeForm(formType) {
   return {
     type: CHANGE_FORM,
     payload: formType
   };
-};
+}
 
 export function postForm(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
       const response = await axios.post("http://localhost:80/create", payload);
 
