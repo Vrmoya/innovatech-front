@@ -1,7 +1,7 @@
 import PATHROUTES from "./helpers/PathRoutes";
 import { Routes, Route } from 'react-router-dom';
 import {About, Dashboard, Detail, Error, Home, Landing, LoginView} from './views'
-import NavBar from "./components/NavBar/NavBar";
+import NavBar from './components/NavBar/NavBar.jsx'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { injectCartData } from './redux/actions.js'
