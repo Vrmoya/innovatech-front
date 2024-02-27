@@ -100,11 +100,12 @@ const LoginForm = () => {
     // Redireccionar
     window.location.href = 'http://localhost:80/auth/google';
   };
-
+  
   const handleGitHubSignIn = () => {
     // Despachar una acción de inicio de sesión
     dispatch(loginStart());
     // Redireccionar
+    // const popup = window.open('http://localhost:80/auth/github',"targetWindow")
     window.location.href = 'http://localhost:80/auth/github';
   };
 

@@ -69,7 +69,17 @@ export function paymentGateway(cart) {
     }
   }
 }
-
+export function getInfoGithub(codigoGithub) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:80/get/github/"+codigoGithub)
+      console.log(response.data);
+      dispatch({ type: "GET_INFO_GITHUB", payload: response.data })
+    }catch (error) {
+      console.log(error);
+    }
+}
+}
 
 
 export const LoginAction = ({ email, password }) => {
