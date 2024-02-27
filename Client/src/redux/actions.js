@@ -116,15 +116,18 @@ export const signUpAction = ({ name, email, password }) => {
   };
 };
 
+export const logout = () => ({
+  type: LOGOUT,
+});
 export function changeForm(formType) {
   return {
     type: CHANGE_FORM,
     payload: formType
   };
-};
+}
 
 export function postForm(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
       const response = await axios.post("http://localhost:80/create", payload);
 

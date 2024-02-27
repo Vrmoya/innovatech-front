@@ -21,4 +21,4 @@ const LoginGithub = () => {
     )
 }
 
-export default LoginGithub
+export default LoginGithub;

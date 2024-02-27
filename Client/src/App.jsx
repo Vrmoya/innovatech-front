@@ -23,7 +23,7 @@ function App() {
         dispatch(injectCartData(JSON.parse(productsInCart)))
       }
     }
-  },[])
+  },[dispatch])
 
   return (
     <div>
