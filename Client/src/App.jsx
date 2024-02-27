@@ -31,7 +31,7 @@ function App() {
         <Route path={PATHROUTES.HOME} element={<Home />}/>
         <Route path={PATHROUTES.LANDING} element={<Landing />}/>
         <Route path={PATHROUTES.LOGIN} element = {<LoginView/>}/>
-        <Route path={PATHROUTES.GITHUB} element = {<LoginGithub/>}/>
+        <Route path={PATHROUTES.GITHUB} element = {<LoginGitHub/>}/>
         <Route path={PATHROUTES.GOOGLE} element = {<LoginGoogle/>}/>
       </Routes>
       {/* <Footer /> */}
