@@ -5,19 +5,26 @@ import { Link, useLocation } from "react-router-dom";
 import PATHROURES from "../../helpers/PathRoutes";
 import SearchBar from "../SearchBar/SearchBar";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import { useDispatch } from "react-redux";
+import { changeForm } from "../../redux/actions";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+
   const [showNav, setShowNav] = useState(null);
   const [showShoppingCart, setShowShoppingCart] = useState(false);
   const location = useLocation();
 
-  if (location.pathname === PATHROURES.CREATE) {
+  if (location.pathname === PATHROURES.DASHBOARD) {
     return null;
   }
-
-    const toggleNav = () => {
-        setShowNav(!showNav);
-    };
+  const handleChangeForm = (formType) => {
+    console.log("Changing form to:", formType);
+    dispatch(changeForm(formType));
+  };
+  const toggleNav = () => {
+    setShowNav(!showNav);
+  };
 
   const shoppingCart = () => {
     if (showShoppingCart === false) {
@@ -94,8 +101,18 @@ const NavBar = () => {
               Smartphones
             </Link>
             <div className={style.buttonContainerMobile}>
-              <button className={style.buttonLog}>Log In</button>
-              <button className={style.buttonSign}>Sign Up</button>
+              <button
+                className={style.buttonLog}
+                onClick={() => handleChangeForm("login")}
+              >
+                Log In
+              </button>
+              <button
+                className={style.buttonSign}
+                onClick={() => handleChangeForm("signup")}
+              >
+                Sign Up
+              </button>
             </div>
           </div>
         </div>
@@ -104,8 +121,18 @@ const NavBar = () => {
         </div>
         <div className={style.cartContainer}>
           <div className={style.buttonContainerDesk}>
-            <button className={style.buttonLog}>Log In</button>
-            <button className={style.buttonSign}>Sign Up</button>
+            <button
+              className={style.buttonLog}
+              onClick={() => handleChangeForm("login")}
+            >
+              Log In
+            </button>
+            <button
+              className={style.buttonSign}
+              onClick={() => handleChangeForm("signup")}
+            >
+              Sign Up
+            </button>
           </div>
           <button className={style.cartButton} onClick={() => shoppingCart()}>
             <svg
@@ -120,11 +147,15 @@ const NavBar = () => {
               </g>
             </svg>
           </button>
-          {showShoppingCart && <ShoppingCart showShoppingCart={showShoppingCart} setShowShoppingCart={setShowShoppingCart}/>}
+          {showShoppingCart && (
+            <ShoppingCart
+              showShoppingCart={showShoppingCart}
+              setShowShoppingCart={setShowShoppingCart}
+            />
+          )}
         </div>
       </div>
     </nav>
   );
 };
 
-export default NavBar;

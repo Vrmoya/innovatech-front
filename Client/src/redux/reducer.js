@@ -6,6 +6,11 @@ import {
   GET_CATEGORIES,
   GET_ORDER,
   GET_PRODUCTS_BY_CATEGORIES,
+  CHANGE_FORM,
+  SIGN_IN_FAILURE,
+  SIGN_IN_SUCCESS,
+  SIGN_UP_FAILURE,
+  SIGN_UP_SUCCESS,
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
@@ -24,9 +29,11 @@ const initialState = {
   //******* */
   getProductById: {},
   filterByCategories: [],
+  currentForm: "login",
+  user: null,
+  error: null,
   cart: [],
-  filterByCategories: [],
-  paymentID: null
+  paymentID: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -36,6 +43,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         paymentID: action.payload
       }
+    case CHANGE_FORM:
+      console.log("Changing form in reducer to:", action.payload);
+      return {
+        ...state,
+        currentForm: action.payload,
+      };
 
     case GET_PRODUCTS:
       return {
@@ -95,10 +108,23 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         totalpages: action.payload,
       };
+
+    case SIGN_IN_SUCCESS:
+      return { ...state, user: action.payload.user, error: null };
+
+    case SIGN_IN_FAILURE:
+      return { ...state, error: action.payload };
+
+    case SIGN_UP_SUCCESS:
+      return { ...state, user: action.payload.user, error: null };
+
+    case SIGN_UP_FAILURE:
+      return { ...state, error: action.payload };
+
     case ADD_TO_CART:
       const productFound = state.cart.find(
         (product) => product.id == action.payload
-      )
+      );
       if (productFound) {
         const updatedCart = state.cart.map((product) =>
           product.id == action.payload
@@ -108,7 +134,7 @@ const rootReducer = (state = initialState, action) => {
                 total: product.price * (product.quantity + 1),
               }
             : product
-        )
+        );
         return {
           ...state,
           cart: updatedCart,
@@ -122,7 +148,7 @@ const rootReducer = (state = initialState, action) => {
           ...productToAdd,
           quantity: 1,
           total: productToAdd.price,
-        }
+        };
         return {
           ...state,
           cart: [...state.cart, updatedProduct],
@@ -131,7 +157,7 @@ const rootReducer = (state = initialState, action) => {
     case REMOVE_ALL_FROM_CART:
       const updatedCart = state.cart.filter(
         (product) => product.id !== action.payload
-      )
+      );
       return {
         ...state,
         cart: updatedCart,
@@ -139,7 +165,7 @@ const rootReducer = (state = initialState, action) => {
     case REMOVE_ONE_FROM_CART:
       const productToRemove = state.cart.find(
         (product) => product.id === action.payload
-      )
+      );
       if (productToRemove && productToRemove.quantity > 1) {
         const updatedCart = state.cart.map((product) =>
           product.id === action.payload
@@ -149,7 +175,7 @@ const rootReducer = (state = initialState, action) => {
                 total: product.price * (product.quantity - 1),
               }
             : product
-        )
+        );
         return {
           ...state,
           cart: updatedCart,
@@ -157,20 +183,19 @@ const rootReducer = (state = initialState, action) => {
       } else if (productToRemove.quantity === 1) {
         const updatedCart = state.cart.filter(
           (product) => product.id !== productToRemove.id
-        )
+        );
         return {
           ...state,
           cart: updatedCart,
         };
       }
-      case INJECT_CART_DATA:
-        return{
-          ...state,
-          cart: action.payload
-        }
+    case INJECT_CART_DATA:
+      return {
+        ...state,
+        cart: action.payload,
+      };
     default:
       return { ...state };
   }
 };
-
 export default rootReducer;

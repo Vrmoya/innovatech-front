@@ -1,11 +1,12 @@
 import PATHROUTES from "./helpers/PathRoutes";
 import { Routes, Route } from 'react-router-dom';
-import {About, Dashboard, Detail, Error, Home, Landing} from './views'
+import {About, Dashboard, Detail, Error, Home, Landing, LoginView} from './views'
 import NavBar from "./components/NavBar/NavBar";
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { injectCartData } from './redux/actions.js'
 import Footer from "./components/Footer/Footer";
+
 
 function App() {
   const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function App() {
         <Route path={PATHROUTES.ERROR} element={<Error />}/>
         <Route path={PATHROUTES.HOME} element={<Home />}/>
         <Route path={PATHROUTES.LANDING} element={<Landing />}/>
+        <Route path={PATHROUTES.LOGIN} element = {<LoginView/>}/>
       </Routes>
       {/* <Footer /> */}
     </div>
