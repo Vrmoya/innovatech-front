@@ -17,27 +17,6 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
 export const INJECT_CART_DATA = 'INJECT_CART_DATA'
-export const LOGIN_START = 'LOGIN_START'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAILURE = 'LOGIN_FAILURE'
-
-
-export const loginStart = () => {
-  return {
-    type: LOGIN_START,
-  }
-};
-
-export const loginSuccess = () => {
-  return {
-    type: LOGIN_SUCCESS,
-  }
-};
-
-export const loginFailure = (error) => ({
-  type: LOGIN_FAILURE,
-  payload: error,
-});
 
 export function paymentGateway(cart) {
   // console.log(cart);
@@ -69,7 +48,17 @@ export function paymentGateway(cart) {
     }
   }
 }
-
+export function getInfoGithub(codigoGithub) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:80/get/github/"+codigoGithub)
+      console.log(response.data);
+      dispatch({ type: "GET_INFO_GITHUB", payload: response.data })
+    }catch (error) {
+      console.log(error);
+    }
+}
+}
 
 
 export const LoginAction = ({ email, password }) => {

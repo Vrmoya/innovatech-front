@@ -6,7 +6,7 @@ import user2 from '../../assets/user2.svg'
 import google from '../../assets/google.svg'
 import github from '../../assets/github.svg'
 import loginValidator from './validation';
-import { signUpAction, LoginAction, loginStart} from '../../redux/actions';
+import { signUpAction, LoginAction} from '../../redux/actions';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -96,15 +96,14 @@ const LoginForm = () => {
 
   const handleGoogleSignIn = () => {
     // Despachar una acción de inicio de sesión
-    dispatch(loginStart());
     // Redireccionar
     window.location.href = 'http://localhost:80/auth/google';
   };
-
+  
   const handleGitHubSignIn = () => {
     // Despachar una acción de inicio de sesión
-    dispatch(loginStart());
     // Redireccionar
+    // const popup = window.open('http://localhost:80/auth/github',"targetWindow")
     window.location.href = 'http://localhost:80/auth/github';
   };
 
