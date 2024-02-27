@@ -1,21 +1,21 @@
 import style from './Landing.module.css'
 import Carousel from '../../components/Carousel/Carousel'
 import { Link } from 'react-router-dom'
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { useDispatch, useSelector } from 'react-redux';
-import { paymentGateway } from '../../redux/actions'
+import {getProducts } from "../../redux/actions";
+import { useEffect } from "react";
 
-const Home = () => {
+const Landing = () => {
   const dispatch = useDispatch()
-  const paymentID = useSelector(state => state.paymentID)
 
-  initMercadoPago('TEST-473413c2-ccef-459a-967d-2456c1ec2596', {
-    locale: "es-AR",
-  });
+  const categories = useSelector(state => state.categories)
+  const order = useSelector(state => state.order)
+  const model = useSelector(state => state.model)
+  const pagenumber = useSelector(state => state.pagenumber)
+  useEffect(() => {
+    dispatch(getProducts(categories, order, pagenumber, "6", model));
+  }, [model, categories, order, pagenumber]);
 
-  const handleBuy = async () => {
-    await dispatch(paymentGateway())
-  }
 
   const scroll = () => {
     window.scrollTo(0, 0);
@@ -57,4 +57,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default Landing;

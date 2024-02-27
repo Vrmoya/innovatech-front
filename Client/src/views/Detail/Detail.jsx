@@ -4,19 +4,34 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
-import { getProductById, cleanProductById } from "../../redux/actions";
+import {
+  getProductById,
+  cleanProductById,
+  addToCart,
+} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
+import {getProducts } from "../../redux/actions";
 
 const Detail = () => {
   const { id } = useParams();
   const [images, setImages] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [showCart, setShowCart] = useState(false);
 
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
   const products = useSelector((state) => state.products);
+  const cart = useSelector((state) => state.cart)
+
+  const categories = useSelector(state => state.categories)
+    const order = useSelector(state => state.order)
+    const model = useSelector(state => state.model)
+    const pagenumber = useSelector(state=> state.pagenumber)
+    useEffect(() => {
+        dispatch(getProducts(categories, order, pagenumber, "6",model));
+      }, [model,categories,order,pagenumber]);
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -53,21 +68,37 @@ const Detail = () => {
     }
   }, [productById]);
 
-  useEffect(() => {
-    if (
-      productById &&
-      Array.isArray(productById.categories) &&
-      productById.categories.length > 0
-    ) {
-      const category = productById.categories[0].name;
-      console.log(productById);
-      //   const productsFiltered = products.filter((product) => product.categories[0].name === category)
-      //   if(productsFiltered.length > 0){
-      //     console.log(productsFiltered)
-      //     setRelatedProducts(productsFiltered)
-      // }
+  const cleanData = () => {
+    const clean = cart?.map((product) => {
+      
+    })
+  }
+
+
+  // useEffect(() => {
+  //   if (
+  //     productById &&
+  //     Array.isArray(productById.categories) &&
+  //     productById.categories.length > 0
+  //   ) {
+  //     const category = productById.categories[0].name;
+  //     console.log(productById);
+  //     //   const productsFiltered = products.filter((product) => product.categories[0].name === category)
+  //     //   if(productsFiltered.length > 0){
+  //     //     console.log(productsFiltered)
+  //     //     setRelatedProducts(productsFiltered)
+  //     // }
+  //   }
+  // }, [productById]);
+
+  const handleAddToCart = () => {
+    if (productById && productById.id) {
+      dispatch(addToCart(productById.id));
     }
-  }, [productById]);
+  };
+  const scroll = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -80,7 +111,7 @@ const Detail = () => {
             <div className={styles.productInfo}>
               <h1 className={styles.productTittle}>{productoFiltrado.model}</h1>
               <button className={styles.productPrice}>
-                ${productoFiltrado.price} USD
+                ${productoFiltrado.price}.00 USD
               </button>
               <hr />
               <p className={styles.productDescription}>
@@ -106,13 +137,12 @@ const Detail = () => {
                   )}
                 </ul>
               </div>
-              <div className={styles.divButtonCart}>
-                <button className={styles.buttonCart}>
-                  <div className={styles.iconPlus}>
-                    <PiPlusBold />
-                  </div>
+              <div className={styles.divButtonCart} onClick={scroll}>
+                <button className={styles.buttonCart} onClick={handleAddToCart}>
+                  <PiPlusBold className={styles.iconPlus} />
                   Add To Cart
                 </button>
+                {showCart && <ShoppingCart />}
               </div>
             </div>
           </div>
