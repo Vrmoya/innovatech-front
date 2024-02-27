@@ -60,6 +60,18 @@ export function getInfoGithub(codigoGithub) {
 }
 }
 
+export function getInfoGoogle(codigoGoogle) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:80/get/google/"+codigoGoogle)
+      console.log(response.data);
+      dispatch({ type: "GET_INFO_GOOGLE", payload: response.data })
+    }catch (error) {
+      console.log(error);
+    }
+}
+}
+
 
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {

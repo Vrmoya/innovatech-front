@@ -6,7 +6,8 @@ const PATHROUTES = {
     DASHBOARD: '/dashboard',
     ABOUT: '/about',
     ERROR: '*',
-    GITHUB:'/github/*'
+    GITHUB:'/github/*',
+    GOOGLE: '/google/*'
 }
 
 export default PATHROUTES;
