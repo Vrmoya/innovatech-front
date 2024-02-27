@@ -43,6 +43,19 @@ const rootReducer = (state = initialState, action) => {
      console.log('soyreducer',action.payload);
       return {
         ...state,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+      };
+    case "GET_INFO_GITHUB":
+     console.log('soyreducer',action.payload);
+      return {
+        ...state,
         user:action.payload
       }
   
