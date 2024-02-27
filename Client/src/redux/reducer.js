@@ -16,6 +16,7 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_UP_FAILURE,
   SIGN_UP_SUCCESS,
+  LOGOUT
 } from "./actions";
 
 const initialState = {
@@ -46,7 +47,7 @@ const rootReducer = (state = initialState, action) => {
         isAuthenticated: true,
         user: action.payload,
       };
-    case 'LOGOUT':
+    case LOGOUT:
       return {
         ...state,
         isAuthenticated: false,
