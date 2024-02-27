@@ -5,9 +5,8 @@ import NavBar from "./components/NavBar/NavBar";
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { injectCartData } from './redux/actions.js'
-import Footer from "./components/Footer/Footer";
-import LoginGithub from "./components/LoginGithub/LoginGithub.jsx";
-
+import LoginGithub from "./components/LoginGitHub/LoginGithub.jsx";
+import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx"
 
 function App() {
   const dispatch = useDispatch()
@@ -33,6 +32,7 @@ function App() {
         <Route path={PATHROUTES.LANDING} element={<Landing />}/>
         <Route path={PATHROUTES.LOGIN} element = {<LoginView/>}/>
         <Route path={PATHROUTES.GITHUB} element = {<LoginGithub/>}/>
+        <Route path={PATHROUTES.GOOGLE} element = {<LoginGoogle/>}/>
       </Routes>
       {/* <Footer /> */}
     </div>

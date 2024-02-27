@@ -58,6 +58,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user:action.payload
       }
+
+      case "GET_INFO_GOOGLE":
+     console.log('soyreducer',action.payload);
+      return {
+        ...state,
+        user:action.payload
+      }
   
     case PAYMENT_ID:
       return {
