@@ -5,8 +5,8 @@ import NavBar from "./components/NavBar/NavBar";
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { injectCartData } from './redux/actions.js'
-import LoginGithub from "./components/LoginGitHub/LoginGithub.jsx";
-import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx"
+import LoginGitHub from "./components/LoginGitHub/LoginGitHub.jsx";
+import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx";
 
 function App() {
   const dispatch = useDispatch()
