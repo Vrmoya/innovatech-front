@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
+import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
 
 const Detail = () => {
   const { id } = useParams();
@@ -53,38 +54,29 @@ const Detail = () => {
         thumbnail: img,
       }));
       if (data.length > 0) {
-        console.log(productById);
         setImages(data);
       }
     }
   }, [productById]);
 
-  const cleanData = () => {
-    const clean = cart?.map((product) => {
-      
-    })
-  }
 
-
-  // useEffect(() => {
-  //   if (
-  //     productById &&
-  //     Array.isArray(productById.categories) &&
-  //     productById.categories.length > 0
-  //   ) {
-  //     const category = productById.categories[0].name;
-  //     console.log(productById);
-  //     //   const productsFiltered = products.filter((product) => product.categories[0].name === category)
-  //     //   if(productsFiltered.length > 0){
-  //     //     console.log(productsFiltered)
-  //     //     setRelatedProducts(productsFiltered)
-  //     // }
-  //   }
-  // }, [productById]);
+  useEffect(() => {
+    if (products && Array.isArray(products.categories) && products.categories.length > 0) 
+    { console.log('useEffect2',products.categories)
+    //   const category = productById.categories[0].name;
+    //   console.log(productById);
+    //     const productsFiltered = products.filter((product) => product.categories[0].name === category)
+    //     if(productsFiltered.length > 0){
+    //       console.log('useEffect2',productsFiltered)
+    //       setRelatedProducts(productsFiltered)
+    //   }
+    }
+  }, [products]);
 
   const handleAddToCart = () => {
     if (productById && productById.id) {
       dispatch(addToCart(productById.id));
+      setShowCart(true)
     }
   };
   const scroll = () => {
@@ -133,8 +125,8 @@ const Detail = () => {
                   <PiPlusBold className={styles.iconPlus} />
                   Add To Cart
                 </button>
-                {showCart && <ShoppingCart />}
               </div>
+                {showCart && <ShoppingCart />}
             </div>
           </div>
           <div>
