@@ -4,13 +4,18 @@ import {About, Dashboard, Detail, Error, Home, Landing, LoginView} from './views
 import NavBar from "./components/NavBar/NavBar";
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { injectCartData } from './redux/actions.js'
+import { injectCartData, injectUser } from './redux/actions.js'
 import LoginGitHub from "./components/LoginGitHub/LoginGitHub.jsx";
 import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx";
 
 function App() {
   const dispatch = useDispatch()
-  
+
+  useEffect(() => {
+    const user = window.localStorage.getItem('user')
+    if(user) dispatch(injectUser(JSON.parse(user)))
+  },[])
+
   useEffect(() => {
     const productsInCart = window.localStorage.getItem('cart')
     if(productsInCart){

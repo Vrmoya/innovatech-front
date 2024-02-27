@@ -10,11 +10,14 @@ const LoginGoogle = () => {
     const codigoGoogle = location.pathname.split('/')[2]
     console.log(location.pathname.split('/')[2])
     const navigate=useNavigate();
-    
+
     useEffect(()=>{
         dispatch(getInfoGoogle(codigoGoogle))
         navigate("/");
     })
+
+    
+
     return (
         <></>
     )

@@ -7,6 +7,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { useDispatch, useSelector } from 'react-redux';
 import { changeForm, logout } from "../../redux/actions";
+import imgLogout from '../../assets/logout.svg'
 
 
 const NavBar = () => {
@@ -16,10 +17,10 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
 
-  console.log(user?.image);
+  console.log(user);
 
 
-  if (location.pathname === PATHROURES.CREATE) {
+  if (location.pathname === PATHROURES.CREATE || location.pathname === PATHROURES.DASHBOARD) {
     return null;
   }
 
@@ -34,7 +35,9 @@ const NavBar = () => {
   };
 
   const logOut = () => {
-    dispatch(logout())
+    setTimeout(() => {
+      dispatch(logout())
+    }, 500);
   }
 
   const shoppingCart = () => {
@@ -144,12 +147,10 @@ const NavBar = () => {
             <div className={style.isLoginContent}>
               <img src={user?.image} alt="" className={style.userImg} />
               <button onClick={() => logOut()} className={style.buttonLogOut}>
-                logout
+                <img src={imgLogout} alt="" className={style.imgLogout} />
               </button>
             </div>
           )}
-
-
 
           <button className={style.cartButton} onClick={() => shoppingCart()}>
             <svg

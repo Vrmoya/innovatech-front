@@ -18,11 +18,22 @@ export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
 export const INJECT_CART_DATA = 'INJECT_CART_DATA'
 export const LOGOUT = 'LOGOUT';
+export const INJECT_USER = 'INJECT_USER';
 
+export const injectUser = (data) => {
+  return {
+    type: INJECT_USER,
+    payload: data
+  }
+}
 
-export const logout = () => ({
-  type: LOGOUT,
-});
+export const logout = () => {
+  window.localStorage.setItem('user', JSON.stringify(null))
+  return{
+    type: LOGOUT,
+  }
+
+};
 
 export function paymentGateway(cart) {
   // console.log(cart);
@@ -59,6 +70,7 @@ export function getInfoGithub(codigoGithub) {
     try {
       const response = await axios.get("http://localhost:80/get/github/"+codigoGithub)
       console.log(response.data);
+      window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GITHUB", payload: response.data })
     }catch (error) {
       console.log(error);
@@ -70,7 +82,8 @@ export function getInfoGoogle(codigoGoogle) {
   return async function (dispatch) {
     try {
       const response = await axios.get("http://localhost:80/get/google/"+codigoGoogle)
-      console.log(response.data);
+      // console.log(response.data);
+      window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GOOGLE", payload: response.data })
     }catch (error) {
       console.log(error);
@@ -82,8 +95,10 @@ export function getInfoGoogle(codigoGoogle) {
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${BASE_URL}/api/signin`, { email, password });
-      dispatch({ type: SIGN_IN_SUCCESS, payload: response.data });
+      const {data} = await axios.post(`${BASE_URL}/api/signin`, { email, password });
+      console.log(data);
+      window.localStorage.setItem('user', JSON.stringify(data))
+      dispatch({ type: SIGN_IN_SUCCESS, payload: data});
     } catch (error) {
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
     }
