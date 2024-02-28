@@ -1,4 +1,3 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./Detail.module.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -13,13 +12,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
-import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
 
 const Detail = () => {
   const { id } = useParams();
   const [images, setImages] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [showCart, setShowCart] = useState(false);
 
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);

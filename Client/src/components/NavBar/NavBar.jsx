@@ -13,7 +13,7 @@ const NavBar = () => {
 
   const [showNav, setShowNav] = useState(null);
   const location = useLocation();
-  const showShoppingCartState = useSelector((state) => state.showShoppingCart)
+  const showShoppingCartState = useSelector((state) => state.showShoppingCart);
 
   if (location.pathname === PATHROURES.DASHBOARD) {
     return null;
@@ -25,17 +25,10 @@ const NavBar = () => {
   const toggleNav = () => {
     setShowNav(!showNav);
   };
-  useEffect(() => {
-
-  },[showShoppingCartState])
+  useEffect(() => {}, [showShoppingCartState]);
 
   const shoppingCart = () => {
-   /* if (showShoppingCart === false) {
-      setShowShoppingCart(true);
-    } else {
-      setShowShoppingCart(false);
-    }*/
-    dispatch(showShoppingCart(true))
+    dispatch(showShoppingCart(true));
   };
 
   return (
@@ -138,6 +131,7 @@ const NavBar = () => {
               Sign Up
             </button>
           </div>
+          <div>
           <button className={style.cartButton} onClick={() => shoppingCart()}>
             <svg
               className={style.cartSvg}
@@ -150,16 +144,15 @@ const NavBar = () => {
                 <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
               </g>
             </svg>
+            <div className={style.countProducts}>
+              <span>0</span>
+            </div>
           </button>
-          {showShoppingCartState && (
-            <ShoppingCart
-              
-            />
-          )}
+          </div>
+          {showShoppingCartState && <ShoppingCart />}
         </div>
       </div>
     </nav>
   );
 };
 export default NavBar;
-

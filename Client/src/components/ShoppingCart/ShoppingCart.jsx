@@ -3,8 +3,8 @@ import ItemShoppingCart from "../ItemShoppingCart/ItemShoppingCart";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { IoMdCart } from "react-icons/io";
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-import { paymentGateway, showShoppingCart } from '../../redux/actions'
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { paymentGateway, showShoppingCart } from "../../redux/actions";
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
@@ -14,22 +14,22 @@ const ShoppingCart = () => {
   useEffect(() => {}, [showShoppingCartState]);
   useEffect(() => {
     if (cart) {
-      window.localStorage.setItem('cart', JSON.stringify(cart))
+      window.localStorage.setItem("cart", JSON.stringify(cart));
     }
-  }, [cart])
+  }, [cart]);
 
-  const paymentID = useSelector(state => state.paymentID)
+  const paymentID = useSelector((state) => state.paymentID);
 
-  initMercadoPago('TEST-473413c2-ccef-459a-967d-2456c1ec2596', {
+  initMercadoPago("TEST-473413c2-ccef-459a-967d-2456c1ec2596", {
     locale: "es-AR",
   });
 
   const handleBuy = () => {
-    dispatch(paymentGateway(cart))
-  }
+    dispatch(paymentGateway(cart));
+  };
   const notShowShopping = () => {
-    dispatch(showShoppingCart(false))
-  }
+    dispatch(showShoppingCart(false));
+  };
 
   return (
     <>
@@ -37,10 +37,7 @@ const ShoppingCart = () => {
         <div className={style.buyCart}>
           <div className={style.firstSection}>
             <p className={style.tittleCart}>My Cart</p>
-            <button
-              className={style.buttonX}
-              onClick={notShowShopping}
-            >
+            <button className={style.buttonX} onClick={notShowShopping}>
               <div className={style.divContainerFirstSection}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -74,14 +71,23 @@ const ShoppingCart = () => {
                 <div className={style.containerTotal}>
                   <div className={style.totalPrice}>
                     <p>Total</p>
-                    <span>$ {cart?.reduce((total, product) => total + product.total, 0)},00 USD</span>
+                    <span>
+                      ${" "}
+                      {cart?.reduce(
+                        (total, product) => total + product.total,
+                        0
+                      )}
+                      ,00 USD
+                    </span>
                   </div>
                   <hr />
                 </div>
                 <button className={style.buttonCleanCart} onClick={handleBuy}>
                   Proceed to Checkout
                 </button>
-                {paymentID && <Wallet initialization={{ preferenceId: paymentID }} />}
+                {paymentID && (
+                  <Wallet initialization={{ preferenceId: paymentID }} />
+                )}
               </>
             )}
           </div>
