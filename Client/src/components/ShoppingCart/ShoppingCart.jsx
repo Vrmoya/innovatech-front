@@ -4,13 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { IoMdCart } from "react-icons/io";
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-import { paymentGateway } from '../../redux/actions'
+import { paymentGateway, showShoppingCart } from '../../redux/actions'
 
-const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
+const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
+  const showShoppingCartState = useSelector((state) => state.showShoppingCart);
 
   const dispatch = useDispatch();
-  // useEffect(() => {}, [cart]);
+  useEffect(() => {}, [showShoppingCartState]);
   useEffect(() => {
     if (cart) {
       window.localStorage.setItem('cart', JSON.stringify(cart))
@@ -26,6 +27,9 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
   const handleBuy = () => {
     dispatch(paymentGateway(cart))
   }
+  const notShowShopping = () => {
+    dispatch(showShoppingCart(false))
+  }
 
   return (
     <>
@@ -35,7 +39,7 @@ const ShoppingCart = ({ showShoppingCart, setShowShoppingCart }) => {
             <p className={style.tittleCart}>My Cart</p>
             <button
               className={style.buttonX}
-              onClick={() => setShowShoppingCart(false)}
+              onClick={notShowShopping}
             >
               <div className={style.divContainerFirstSection}>
                 <svg

@@ -19,8 +19,17 @@ export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 export const INJECT_CART_DATA = "INJECT_CART_DATA";
 /* Type para la pasarela */
 export const PAYMENT_ID = "PAYMENT_ID";
+export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
 
-export const BASE_URL = "http://localhost:80";
+
+export const showShoppingCart = (data) => {
+  return {
+    type: SHOW_SHOPPING_CART,
+    payload: data
+  }
+}
+const BASE_URL = "http://localhost:80";
+export default BASE_URL;
 
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
@@ -52,8 +61,7 @@ export const signUpAction = ({ name, email, password }) => {
 };
 
 export function changeForm(formType) {
-  return {
-    type: CHANGE_FORM,
+  return {    type: CHANGE_FORM,
     payload: formType,
   };
 }

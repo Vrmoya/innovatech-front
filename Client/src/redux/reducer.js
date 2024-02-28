@@ -16,6 +16,7 @@ import {
   REMOVE_ALL_FROM_CART,
   INJECT_CART_DATA,
   PAYMENT_ID,
+  SHOW_SHOPPING_CART
 } from "./actions";
 
 const initialState = {
@@ -34,10 +35,16 @@ const initialState = {
   error: null,
   cart: [],
   paymentID: null,
+  showShoppingCart: false
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SHOW_SHOPPING_CART:
+      return {
+        ...state,
+        showShoppingCart: action.payload
+      }
     case PAYMENT_ID:
       return {
         ...state,

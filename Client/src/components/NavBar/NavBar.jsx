@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./NavBar.module.css";
 import logo from "../../../public/logo.png";
 import { Link, useLocation } from "react-router-dom";
 import PATHROURES from "../../helpers/PathRoutes";
 import SearchBar from "../SearchBar/SearchBar";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
-import { useDispatch } from "react-redux";
-import { changeForm } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { changeForm, showShoppingCart } from "../../redux/actions";
 
 const NavBar = () => {
   const dispatch = useDispatch();
 
   const [showNav, setShowNav] = useState(null);
-  const [showShoppingCart, setShowShoppingCart] = useState(false);
   const location = useLocation();
+  const showShoppingCartState = useSelector((state) => state.showShoppingCart)
 
   if (location.pathname === PATHROURES.DASHBOARD) {
     return null;
@@ -25,13 +25,17 @@ const NavBar = () => {
   const toggleNav = () => {
     setShowNav(!showNav);
   };
+  useEffect(() => {
+
+  },[showShoppingCartState])
 
   const shoppingCart = () => {
-    if (showShoppingCart === false) {
+   /* if (showShoppingCart === false) {
       setShowShoppingCart(true);
     } else {
       setShowShoppingCart(false);
-    }
+    }*/
+    dispatch(showShoppingCart(true))
   };
 
   return (
@@ -147,10 +151,9 @@ const NavBar = () => {
               </g>
             </svg>
           </button>
-          {showShoppingCart && (
+          {showShoppingCartState && (
             <ShoppingCart
-              showShoppingCart={showShoppingCart}
-              setShowShoppingCart={setShowShoppingCart}
+              
             />
           )}
         </div>

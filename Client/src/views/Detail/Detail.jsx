@@ -7,6 +7,7 @@ import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
 import {
   getProductById,
   cleanProductById,
+  showShoppingCart,
   addToCart,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -76,7 +77,7 @@ const Detail = () => {
   const handleAddToCart = () => {
     if (productById && productById.id) {
       dispatch(addToCart(productById.id));
-      setShowCart(true)
+      dispatch(showShoppingCart(true))
     }
   };
   const scroll = () => {
@@ -126,7 +127,6 @@ const Detail = () => {
                   Add To Cart
                 </button>
               </div>
-                {showCart && <ShoppingCart />}
             </div>
           </div>
           <div>
