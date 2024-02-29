@@ -6,19 +6,22 @@ export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_ORDER = 'GET_ORDER'
 export const GET_PRODUCTS_BY_CATEGORIES = 'GET_PRODUCTS_BY_CATEGORIES';
+/* Types para el form */
 export const CHANGE_FORM = 'CHANGE_FORM';
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
 export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
+export const LOGOUT = 'LOGOUT';
+export const INJECT_USER = 'INJECT_USER';
 export const BASE_URL = 'http://localhost:80';
+/* Type para la pasarela */
 export const PAYMENT_ID = 'PAYMENT_ID';
+/* Types para el carrito */
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
 export const INJECT_CART_DATA = 'INJECT_CART_DATA'
-export const LOGOUT = 'LOGOUT';
-export const INJECT_USER = 'INJECT_USER';
 export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
 
 
