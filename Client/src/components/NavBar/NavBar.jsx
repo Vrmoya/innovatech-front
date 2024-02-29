@@ -5,7 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 import PATHROURES from "../../helpers/PathRoutes";
 import SearchBar from "../SearchBar/SearchBar";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { changeForm, logout } from "../../redux/actions";
+import imgLogout from '../../assets/logout.svg'
 import { changeForm, showShoppingCart } from "../../redux/actions";
 
 const NavBar = () => {
@@ -13,15 +15,28 @@ const NavBar = () => {
 
   const [showNav, setShowNav] = useState(null);
   const location = useLocation();
+  const user = useSelector(state => state.user)
+
+  console.log(user);
+
   const showShoppingCartState = useSelector((state) => state.showShoppingCart);
 
+  if (location.pathname === PATHROURES.CREATE || location.pathname === PATHROURES.DASHBOARD) {
   if (location.pathname === PATHROURES.DASHBOARD) {
     return null;
   }
+
   const handleChangeForm = (formType) => {
     console.log("Changing form to:", formType);
     dispatch(changeForm(formType));
   };
+
+  const logOut = () => {
+    setTimeout(() => {
+      dispatch(logout())
+    }, 500);
+  }
+
   const toggleNav = () => {
     setShowNav(!showNav);
   };
@@ -98,6 +113,13 @@ const NavBar = () => {
               Smartphones
             </Link>
             <div className={style.buttonContainerMobile}>
+              <Link to={'/login'}>
+                <button className={style.buttonLog}
+                  onClick={() => handleChangeForm('login')}>Log In</button>
+              </Link>
+
+              <button className={style.buttonSign}
+                onClick={() => handleChangeForm('signup')}>Sign Up</button>
               <button
                 className={style.buttonLog}
                 onClick={() => handleChangeForm("login")}
@@ -111,12 +133,35 @@ const NavBar = () => {
                 Sign Up
               </button>
             </div>
+
+
           </div>
         </div>
         <div className={style.searchDeskContent}>
           <SearchBar></SearchBar>
         </div>
         <div className={style.cartContainer}>
+          {user === null && (
+            <div className={style.buttonContainerDesk}>
+              <Link to={'/login'}>
+                <button className={style.buttonLog}
+                  onClick={() => handleChangeForm('login')}>Log In</button>
+              </Link>
+              <Link to={'/login'}>
+                <button className={style.buttonSign}
+                  onClick={() => handleChangeForm('signup')}>Sign Up</button>
+              </Link>
+            </div>
+          )}
+          {user !== null && (
+            <div className={style.isLoginContent}>
+              <img src={user?.image} alt="" className={style.userImg} />
+              <button onClick={() => logOut()} className={style.buttonLogOut}>
+                <img src={imgLogout} alt="" className={style.imgLogout} />
+              </button>
+            </div>
+          )}
+
           <div className={style.buttonContainerDesk}>
             <button
               className={style.buttonLog}
@@ -154,5 +199,5 @@ const NavBar = () => {
       </div>
     </nav>
   );
-};
+}}
 export default NavBar;

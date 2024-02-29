@@ -6,16 +6,18 @@ import {
   GET_CATEGORIES,
   GET_ORDER,
   GET_PRODUCTS_BY_CATEGORIES,
-  CHANGE_FORM,
-  SIGN_IN_FAILURE,
-  SIGN_IN_SUCCESS,
-  SIGN_UP_FAILURE,
-  SIGN_UP_SUCCESS,
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
   INJECT_CART_DATA,
   PAYMENT_ID,
+  CHANGE_FORM,
+  SIGN_IN_FAILURE,
+  SIGN_IN_SUCCESS,
+  SIGN_UP_FAILURE,
+  SIGN_UP_SUCCESS,
+  LOGOUT,
+  INJECT_USER,
   SHOW_SHOPPING_CART
 } from "./actions";
 
@@ -30,32 +32,65 @@ const initialState = {
   //******* */
   getProductById: {},
   filterByCategories: [],
+  cart: [],
+  isAuthenticated: false,
+  paymentID: null,
   currentForm: "login",
   user: null,
   error: null,
-  cart: [],
-  paymentID: null,
+  localUser: null,
   showShoppingCart: false
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    
     case SHOW_SHOPPING_CART:
       return {
         ...state,
         showShoppingCart: action.payload
       }
+    case INJECT_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
+    case "GET_INFO_GITHUB":
+     console.log('soyreducer',action.payload);
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+      };
+   
+
+      case "GET_INFO_GOOGLE":
+     console.log('soyreducer',action.payload);
+      return {
+        ...state,
+        user:action.payload
+      }
+  
     case PAYMENT_ID:
       return {
         ...state,
         paymentID: action.payload
       }
+
     case CHANGE_FORM:
       console.log("Changing form in reducer to:", action.payload);
       return {
         ...state,
-        currentForm: action.payload,
+        currentForm: action.payload
       };
+
+
 
     case GET_PRODUCTS:
       return {
@@ -86,11 +121,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         getProductById: action.payload,
       };
-    case GET_PRODUCT_BY_ID:
-      return {
-        ...state,
-        getProductById: action.payload,
-      };
+    
     case CLEAN_PRODUCT_BY_ID:
       return {
         ...state,
@@ -115,33 +146,19 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         totalpages: action.payload,
       };
-
-    case SIGN_IN_SUCCESS:
-      return { ...state, user: action.payload.user, error: null };
-
-    case SIGN_IN_FAILURE:
-      return { ...state, error: action.payload };
-
-    case SIGN_UP_SUCCESS:
-      return { ...state, user: action.payload.user, error: null };
-
-    case SIGN_UP_FAILURE:
-      return { ...state, error: action.payload };
-
     case ADD_TO_CART:
       const productFound = state.cart.find(
-        (product) => product.id == action.payload
-      );
+        (product) => product.id == action.payload)
       if (productFound) {
         const updatedCart = state.cart.map((product) =>
           product.id == action.payload
             ? {
-                ...product,
-                quantity: product.quantity + 1,
-                total: product.price * (product.quantity + 1),
-              }
+              ...product,
+              quantity: product.quantity + 1,
+              total: product.price * (product.quantity + 1),
+            }
             : product
-        );
+        )
         return {
           ...state,
           cart: updatedCart,
@@ -155,7 +172,7 @@ const rootReducer = (state = initialState, action) => {
           ...productToAdd,
           quantity: 1,
           total: productToAdd.price,
-        };
+        }
         return {
           ...state,
           cart: [...state.cart, updatedProduct],
@@ -164,7 +181,7 @@ const rootReducer = (state = initialState, action) => {
     case REMOVE_ALL_FROM_CART:
       const updatedCart = state.cart.filter(
         (product) => product.id !== action.payload
-      );
+      )
       return {
         ...state,
         cart: updatedCart,
@@ -172,17 +189,17 @@ const rootReducer = (state = initialState, action) => {
     case REMOVE_ONE_FROM_CART:
       const productToRemove = state.cart.find(
         (product) => product.id === action.payload
-      );
+      )
       if (productToRemove && productToRemove.quantity > 1) {
         const updatedCart = state.cart.map((product) =>
           product.id === action.payload
             ? {
-                ...product,
-                quantity: product.quantity - 1,
-                total: product.price * (product.quantity - 1),
-              }
+              ...product,
+              quantity: product.quantity - 1,
+              total: product.price * (product.quantity - 1),
+            }
             : product
-        );
+        )
         return {
           ...state,
           cart: updatedCart,
@@ -190,7 +207,7 @@ const rootReducer = (state = initialState, action) => {
       } else if (productToRemove.quantity === 1) {
         const updatedCart = state.cart.filter(
           (product) => product.id !== productToRemove.id
-        );
+        )
         return {
           ...state,
           cart: updatedCart,
@@ -199,10 +216,26 @@ const rootReducer = (state = initialState, action) => {
     case INJECT_CART_DATA:
       return {
         ...state,
-        cart: action.payload,
-      };
+        cart: action.payload
+      }
+
+    case SIGN_IN_SUCCESS:
+      console.log(action.payload);
+      return { ...state, user: action.payload, error: null }
+
+    case SIGN_IN_FAILURE:
+      return { ...state, error: action.payload }
+
+    case SIGN_UP_SUCCESS:
+      console.log(action.payload.user);
+      return { ...state}
+
+    case SIGN_UP_FAILURE:
+      return { ...state, error: action.payload };
+
     default:
       return { ...state };
   }
 };
+
 export default rootReducer;

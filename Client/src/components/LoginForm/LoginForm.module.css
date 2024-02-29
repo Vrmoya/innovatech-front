@@ -1,29 +1,28 @@
-
-.containerLoginForm{
+.containerLoginForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-width: 30vw;
-height: 60vh;
-background-color: #000000;
-/* backdrop-filter: blur(3px); */
-  /* bordes  */
-  border-style: solid;
-  border-width: 3px;
- 
-  border-radius: 10px;
- 
-  box-shadow: #181515b9 0 3px 8px;
+
+    width: 30vw;
+    height: 60vh;
+    background-color: #000000;
+    /* backdrop-filter: blur(3px); */
+    /* bordes  */
+    border-style: solid;
+    border-width: 3px;
+
+    border-radius: 10px;
+
+    box-shadow: #181515b9 0 3px 8px;
 
 }
 
 
-.title{
-     font-family: "Public Sans", sans-serif;
-width: 30vw;
-height: 3vh;
+.title {
+    font-family: "Public Sans", sans-serif;
+    width: 30vw;
+    height: 3vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -33,59 +32,61 @@ height: 3vh;
 
 }
 
-.hr{
+.hr {
     width: 2vw;
     margin-top: 0px;
-    border: none; /* Elimina cualquier borde predeterminado */
-    border-top: 3.5px solid rgb(255, 252, 252); /* Agrega un borde superior de 2px de grosor y sólido */
+    border: none;
+    /* Elimina cualquier borde predeterminado */
+    border-top: 3.5px solid rgb(255, 252, 252);
+    /* Agrega un borde superior de 2px de grosor y sólido */
 
 }
 
 
-.form{
-    
+.form {
+
     font-family: "Public Sans", sans-serif;
     margin-top: 20px;
     /* background-color: blue; */
-width: 30vw;
-height:50vh;
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-align-items: center;
+    width: 30vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 
 
 }
 
-.group{
+.group {
     /* background-color: red; */
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    
+
     width: 30vw;
     height: 8vh;
 
 
 }
 
-.option{
+.option {
     /* background-color: green; */
     width: 15vw;
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-.input{
+.input {
     width: 10vw;
     height: 3.5vh;
-    
+
 }
 
-.containerButton{
+.containerButton {
 
     /* background-color: blue; */
     width: 25vw;
@@ -94,7 +95,7 @@ align-items: center;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    
+
 }
 
 .button {
@@ -108,35 +109,44 @@ align-items: center;
     width: 8vw;
     height: 5vh;
     cursor: pointer;
-    
+
 }
 
 
-    .svg{
-        width: 30px;
-        height: 30px;
-        filter: brightness(0) invert(1)
-    }
+.svg {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1)
+}
 
 
-    .forgotpassword{
+.forgotpassword {
 
-        color: #ffffff;
-        font-size: small;
-    }
+    color: #ffffff;
+    font-size: small;
+}
 
 
-    
-        .error{
-            /* background-color: aqua; */
-            display: flex;
-            
-            width: 35vw;
-            justify-content: center;
-            align-items:flex-start;
-        
-            height: 3vh;
-            font-size: 12px;
-            
-            color: white;
-    }
+
+.error {
+    /* background-color: aqua; */
+    display: flex;
+
+    width: 35vw;
+    justify-content: center;
+    align-items: flex-start;
+
+    height: 3vh;
+    font-size: 12px;
+
+    color: white;
+}
+
+.social {
+    background-color: black;
+    border: none;
+    outline: none;
+    /* Esto elimina el contorno de enfoque cuando se presiona el botón */
+    padding: 0;
+    /* Esto elimina el relleno predeterminado del botón */
+}

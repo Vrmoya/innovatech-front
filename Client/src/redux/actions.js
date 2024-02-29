@@ -1,24 +1,24 @@
-import axios from "axios";
-export const GET_PRODUCTS = "GET_PRODUCTS";
-export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
-export const CLEAN_PRODUCT_BY_ID = "CLEAN_PRODUCT_BY_ID";
-export const FILTER_BY_MODEL = "FILTER_BY_MODEL";
-export const GET_CATEGORIES = "GET_CATEGORIES";
-export const GET_ORDER = "GET_ORDER";
-export const GET_PRODUCTS_BY_CATEGORIES = "GET_PRODUCTS_BY_CATEGORIES";
-/* Types para el form */
-export const CHANGE_FORM = "CHANGE_FORM";
-export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
-export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
-export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
-export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
-/* Types para el carrito */
-export const ADD_TO_CART = "ADD_TO_CART";
-export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
-export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
-export const INJECT_CART_DATA = "INJECT_CART_DATA";
-/* Type para la pasarela */
-export const PAYMENT_ID = "PAYMENT_ID";
+import axios from 'axios';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
+export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_ORDER = 'GET_ORDER'
+export const GET_PRODUCTS_BY_CATEGORIES = 'GET_PRODUCTS_BY_CATEGORIES';
+export const CHANGE_FORM = 'CHANGE_FORM';
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
+export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
+export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
+export const BASE_URL = 'http://localhost:80';
+export const PAYMENT_ID = 'PAYMENT_ID';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
+export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
+export const INJECT_CART_DATA = 'INJECT_CART_DATA'
+export const LOGOUT = 'LOGOUT';
+export const INJECT_USER = 'INJECT_USER';
 export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
 
 
@@ -28,19 +28,87 @@ export const showShoppingCart = (data) => {
     payload: data
   }
 }
-const BASE_URL = "http://localhost:80";
-export default BASE_URL;
+export const injectUser = (data) => {
+  return {
+    type: INJECT_USER,
+    payload: data
+  }
+}
+
+export const logout = () => {
+  window.localStorage.setItem('user', JSON.stringify(null))
+  return{
+    type: LOGOUT,
+  }
+
+};
+
+export function paymentGateway(cart) {
+  // console.log(cart);
+  return async function (dispatch) {
+    try {
+
+      const items = cart.map((prod) => ({
+        title: prod.model,
+        price: parseFloat(prod.price),
+        quantity: parseInt(prod.quantity),
+      }));
+
+      const total = cart.map((prod) => prod.total)
+      let totalPrice = 0;
+
+      for (let i = 0; i < total.length; i++) {
+        totalPrice += total[i];
+      }
+
+      const response = await axios.post("http://localhost:80/create_preference", {
+        items: items,
+        total: totalPrice
+      })
+
+      const { id } = response.data;
+      dispatch({ type: PAYMENT_ID, payload: id })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+export function getInfoGithub(codigoGithub) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:80/get/github/"+codigoGithub)
+      console.log(response.data);
+      window.localStorage.setItem('user', JSON.stringify(response.data))
+      dispatch({ type: "GET_INFO_GITHUB", payload: response.data })
+    }catch (error) {
+      console.log(error);
+    }
+}
+}
+
+export function getInfoGoogle(codigoGoogle) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:80/get/google/"+codigoGoogle)
+      // console.log(response.data);
+      window.localStorage.setItem('user', JSON.stringify(response.data))
+      dispatch({ type: "GET_INFO_GOOGLE", payload: response.data })
+    }catch (error) {
+      console.log(error);
+    }
+}
+}
+
 
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${BASE_URL}/api/signin`, {
-        email,
-        password,
-      });
-      dispatch({ type: "SIGN_IN_SUCCESS", payload: response.data });
+      const {data} = await axios.post(`${BASE_URL}/api/signin`, { email, password });
+      console.log(data);
+      window.localStorage.setItem('user', JSON.stringify(data))
+      dispatch({ type: SIGN_IN_SUCCESS, payload: data});
     } catch (error) {
-      dispatch({ type: "SIGN_IN_FAILURE", payload: error });
+      dispatch({ type: SIGN_IN_FAILURE, payload: error });
     }
   };
 };
@@ -48,60 +116,31 @@ export const LoginAction = ({ email, password }) => {
 export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${BASE_URL}/api/signup`, {
-        name,
-        email,
-        password,
-      });
-      dispatch({ type: "SIGN_UP_SUCCESS", payload: response.data });
+      const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
+      dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
     } catch (error) {
-      dispatch({ type: "SIGN_UP_FAILURE", payload: error });
+      dispatch({ type: SIGN_UP_FAILURE, payload: error });
     }
   };
 };
 
+//export const logout = () => ({
+ // type: LOGOUT,
+//});
+
 export function changeForm(formType) {
-  return {    type: CHANGE_FORM,
-    payload: formType,
-  };
-}
-
-export function paymentGateway(cart) {
-  // console.log(cart);
-  return async function (dispatch) {
-    try {
-      const items = cart.map((prod) => ({
-        title: prod.model,
-        price: parseFloat(prod.price),
-        quantity: parseInt(prod.quantity),
-      }));
-
-      const response = await axios.post(
-        "http://localhost:80/create_preference",
-        {
-          items: items,
-        }
-      );
-
-      console.log(items.price);
-
-      const { id } = response.data;
-      dispatch({ type: PAYMENT_ID, payload: id });
-    } catch (error) {
-      console.log(error);
-    }
+  return {
+    type: CHANGE_FORM,
+    payload: formType
   };
 }
 
 export function postForm(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
-      const response = await axios.post(
-        "http://localhost:80/create",
-        payload
-      );
+      const response = await axios.post("http://localhost:80/create", payload);
 
-      console.log(response);
+      // console.log(response);
       return response;
     } catch (error) {
       console.log(error);
@@ -158,7 +197,7 @@ export const getProducts = (
       console.log("URL:", url);
       const productsData = await axios.get(url);
       const products = productsData.data.data;
-      console.log(products);
+      console.log(products)
 
       // console.log("Products:", products);
       dispatch({ type: "TOTAL_PAGES", payload: productsData.data.totalPages });
@@ -225,30 +264,30 @@ export const filterByModel = (model) => {
 };
 
 export const addToCart = (id) => {
-  console.log("add to cart", id);
+  console.log('add to cart', id)
   return {
     type: ADD_TO_CART,
-    payload: id,
-  };
-};
+    payload: id
+  }
+}
 export const removeOneFromCart = (id) => {
-  console.log("remove one to cart", id);
+  console.log('remove one to cart', id)
   return {
     type: REMOVE_ONE_FROM_CART,
-    payload: id,
-  };
-};
+    payload: id
+  }
+}
 
 export const removeFromCart = (id) => {
-  console.log(id);
+  console.log(id)
   return {
     type: REMOVE_ALL_FROM_CART,
-    payload: id,
-  };
-};
+    payload: id
+  }
+}
 export const injectCartData = (data) => {
   return {
     type: INJECT_CART_DATA,
-    payload: data,
-  };
-};
+    payload: data
+  }
+}

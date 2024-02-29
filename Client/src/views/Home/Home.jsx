@@ -3,8 +3,12 @@ import CardsContainer from '../../components/CardsContainer/CardsContainer';
 import Filter from '../../components/Filter/Filter'
 import Order from '../../components/Order/Order'
 import Paginated from '../../components/Paginated/Paginated'
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+
+    const user = useSelector(state => state.user)
+    console.log(user);
 
     return (
         <div className={style.container}>
