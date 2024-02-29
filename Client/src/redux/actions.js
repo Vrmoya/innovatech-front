@@ -27,13 +27,13 @@ export const injectUser = (data) => {
   }
 }
 
-// export const logout = () => {
-//   window.localStorage.setItem('user', JSON.stringify(null))
-//   return{
-//     type: LOGOUT,
-//   }
+export const logout = () => {
+  window.localStorage.setItem('user', JSON.stringify(null))
+  return{
+    type: LOGOUT,
+  }
 
-// };
+};
 
 export function paymentGateway(cart) {
   // console.log(cart);
@@ -116,9 +116,6 @@ export const signUpAction = ({ name, email, password }) => {
   };
 };
 
-export const logout = () => ({
-  type: LOGOUT,
-});
 export function changeForm(formType) {
   return {
     type: CHANGE_FORM,
