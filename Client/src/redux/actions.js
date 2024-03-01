@@ -19,6 +19,14 @@ export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
 export const INJECT_CART_DATA = 'INJECT_CART_DATA'
 export const LOGOUT = 'LOGOUT';
 export const INJECT_USER = 'INJECT_USER';
+export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
+
+export const showShoppingCart = (data) => {
+  return {
+    type: SHOW_SHOPPING_CART,
+    payload: data
+  }
+}
 
 export const injectUser = (data) => {
   return {

@@ -17,7 +17,8 @@ import {
   SIGN_UP_FAILURE,
   SIGN_UP_SUCCESS,
   LOGOUT,
-  INJECT_USER
+  INJECT_USER,
+  SHOW_SHOPPING_CART
 } from "./actions";
 
 const initialState = {
@@ -38,10 +39,17 @@ const initialState = {
   user: null,
   error: null,
   localUser: null,
+  showShoppingCart: false
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SHOW_SHOPPING_CART:
+      return {
+        ...state,
+        showShoppingCart: action.payload
+      }
+
     case INJECT_USER:
       return {
         ...state,

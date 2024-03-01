@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
-import {getProducts } from "../../redux/actions";
+import {getProducts, showShoppingCart } from "../../redux/actions";
 
 const Detail = () => {
   const { id } = useParams();
@@ -94,6 +94,7 @@ const Detail = () => {
   const handleAddToCart = () => {
     if (productById && productById.id) {
       dispatch(addToCart(productById.id));
+      dispatch(showShoppingCart(true))
     }
   };
   const scroll = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./NavBar.module.css";
 import logo from "../../../public/logo.png";
 import { Link, useLocation } from "react-router-dom";
@@ -6,18 +6,33 @@ import PATHROURES from "../../helpers/PathRoutes";
 import SearchBar from "../SearchBar/SearchBar";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { useDispatch, useSelector } from 'react-redux';
-import { changeForm, logout } from "../../redux/actions";
+import { changeForm, logout, showShoppingCart } from "../../redux/actions";
 import imgLogout from '../../assets/logout.svg'
 
 
 const NavBar = () => {
   const [showNav, setShowNav] = useState(null);
-  const [showShoppingCart, setShowShoppingCart] = useState(false);
+  const [quantityProductsCart, setQuantityProductsCart] = useState(0)
   const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
+  const cart = useSelector(state => state.cart)
+  const showShoppingCartState = useSelector((state) => state.showShoppingCart)
 
-  console.log(user);
+  useEffect(() => {
+    if (cart.length > 0) {
+      const quantityProducts = cart.reduce((total, product) => (
+        total + product.quantity
+      ), 0)
+      setQuantityProductsCart(quantityProducts);
+    } else{
+      setQuantityProductsCart(0);
+    }
+  }, [cart])
+
+  const shoppingCart = () => {
+    dispatch(showShoppingCart(true));
+  };
 
 
   if (location.pathname === PATHROURES.CREATE || location.pathname === PATHROURES.DASHBOARD) {
@@ -39,14 +54,6 @@ const NavBar = () => {
       dispatch(logout())
     }, 500);
   }
-
-  const shoppingCart = () => {
-    if (showShoppingCart === false) {
-      setShowShoppingCart(true);
-    } else {
-      setShowShoppingCart(false);
-    }
-  };
 
   return (
     <nav className={style.nav}>
@@ -164,8 +171,11 @@ const NavBar = () => {
                 <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
               </g>
             </svg>
+            <div className={style.countProducts}>
+              <span className={style.span}>{quantityProductsCart}</span>
+            </div>
           </button>
-          {showShoppingCart && <ShoppingCart showShoppingCart={showShoppingCart} setShowShoppingCart={setShowShoppingCart} />}
+          {showShoppingCartState && <ShoppingCart />}
         </div>
       </div>
     </nav>
