@@ -8,6 +8,7 @@ import { useEffect } from "react";
 const Landing = () => {
   const dispatch = useDispatch()
 
+
   const categories = useSelector(state => state.categories)
   const order = useSelector(state => state.order)
   const model = useSelector(state => state.model)
@@ -23,8 +24,6 @@ const Landing = () => {
 
   return (
     <div className={style.container}>
-      {/* <button className={style.button} onClick={handleBuy}>Buy</button>
-      {paymentID && <Wallet initialization={{ preferenceId: paymentID }} />} */}
       <div className={style.section}>
         <Link to={'/detail/29'} className={style.productOne} onClick={scroll}>
           <img className={style.productsFirst} src='https://res.cloudinary.com/dfhk5g0yv/image/upload/v1708216623/Innova%20Tech/b4p4ylte2mebs9yxm1cl.png' alt="" />
