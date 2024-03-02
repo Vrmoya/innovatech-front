@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.container{
+    display: flex;
+    margin: .5em;
+    padding: .5em;
+    /* background-color: blueviolet; */
+    border-bottom: 1px solid #7471723a;
+}
+
+.imgContent{
+    display: flex;
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border: 2px solid #2563eb;
+}
+
+.img{
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    /* overflow: hidden; */
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+}
+
+.p{
+    font-family: "Public Sans", sans-serif;
+}
+
+.button{
+    cursor: pointer;
+    border: none;
+    height: 2.2em;
+    border-radius: 3px;
+    margin-left: 1em;
+    background-color: #2563eb;
+    color: #fff;
+}
+
+.enable, .disable{
+    cursor: pointer;
+    border: none;
+    height: 2.2em;
+    border-radius: 3px;
+    margin-left: 1em;
+    color: #fff;
+}
+
+.enable{
+    background-color: green;
+}
+
+.disable{
+    background-color: red;
+}
