@@ -53,7 +53,7 @@ const UsersForm = () => {
 
 
 
-<div>
+<div className={style.option}>
    
 <input 
 onChange={handleChange}
@@ -61,19 +61,23 @@ placeholder='User Name'
 >
     
 </input>
+<button>Change username</button>
 </div>
 
-<div>
+<div className={style.option}>
     
 <input
 onChange={handleChange}
 placeholder='E-mail'></input>
+<button>Change e-mail</button>
 </div>
-<div>
+
+<div className={style.option}>
     
 <input
 onChange={handleChange}
 placeholder='NewPassword'></input>
+<button>Change Password</button>
 </div>
 
         </form>

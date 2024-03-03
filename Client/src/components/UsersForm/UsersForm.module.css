@@ -1,10 +1,15 @@
 .form{
+    width: 40vw;
+    height: 40vh;
 display: flex;
-justify-content: center;
+justify-content: space-around;
 align-items: center;
 flex-direction: column;
 }
-
+.option {
+    display:flex;
+    flex-direction: column;
+}
 .conatainerinput{
     display: flex;
 
