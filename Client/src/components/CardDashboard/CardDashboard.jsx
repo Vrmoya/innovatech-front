@@ -4,24 +4,28 @@ import swal from 'sweetalert';
 
 const CardDashboard = (props) => {
     const [enabled, setEnabled] = useState(false)
-
     const toggleEnabled = () => {
         setEnabled(!enabled);
         if (enabled === false) {
             swal("Producto Desactivado!", "You clicked the button!", "success");
-        } else{
+        } else {
             swal("Producto Activado!", "You clicked the button!", "success");
         }
     }
 
     return (
         <div className={style.container}>
-            <div className={style.imgContent}>
-                <img src={props.image} alt="Product" className={style.img} />
+            <div className={style.mainContent}>
+                <div className={style.imgContent}>
+                    <img src={props.image} alt="Product" className={style.img} />
+                </div>
+                <div className={style.info}>
+                    <p className={style.p}>{props.model}</p>
+                    <button className={style.button}>{`$${props.price} USD`}</button>
+                </div>
             </div>
-            <div className={style.info}>
-                <p className={style.p}>{props.model}</p>
-                <button className={style.button}>{`$${props.price} USD`}</button>
+
+            <div className={style.activeContent}>
                 {enabled ?
                     <button className={style.enable} onClick={toggleEnabled}>Enable</button> :
                     <button className={style.disable} onClick={toggleEnabled}>Disable</button>

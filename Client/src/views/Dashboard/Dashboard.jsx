@@ -17,17 +17,17 @@ const Dashboard = () => {
     return (
         <div className={style.container}>
             <div className={style.sideNavContent}>
-                <SideNavDashboard onNavItemChange={handleNavItemChange}/>
+                <SideNavDashboard onNavItemChange={handleNavItemChange} selectedNavItem={selectedNavItem}/>
             </div>
-            <div>
+            <div className={style.sectionContent}>
                 <div className={style.navContent}>
                     <NavDashboard />
                 </div>
                 <div className={style.mainContent}>
                     {selectedNavItem === 'home' && <HomeDashboard />}
-                    {selectedNavItem === 'createProduct' && <FormDashboard />}
+                    {selectedNavItem === 'newProduct' && <FormDashboard />}
                     {selectedNavItem === 'products' && <ProductsDashboard />}
-                    {selectedNavItem === 'users' && <UsersDashboard />}
+                    {selectedNavItem === 'customers' && <UsersDashboard />}
                 </div>
             </div>
         </div>

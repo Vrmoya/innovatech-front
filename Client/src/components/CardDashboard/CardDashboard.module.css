@@ -2,19 +2,24 @@
 
 .container{
     display: flex;
-    margin: .5em;
-    padding: .5em;
-    /* background-color: blueviolet; */
-    border-bottom: 1px solid #7471723a;
+    justify-content: space-between;
+    margin: .5em 0;
+    margin-right: 1em;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.mainContent{
+    display: flex;
 }
 
 .imgContent{
     display: flex;
-    border-radius: 100%;
+    border-radius: 8px;
     width: 70px;
     height: 70px;
     overflow: hidden;
-    border: 2px solid #2563eb;
+    padding: .5em;
 }
 
 .img{
@@ -22,26 +27,34 @@
     max-width: 100%;
     max-height: 100%;
     margin: auto;
+    border-radius: 12px;
     /* overflow: hidden; */
 }
 
 .info{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     margin-left: 1em;
 }
 
 .p{
     font-family: "Public Sans", sans-serif;
+    margin: .5em 0;
+    /* margin-top: ; */
+}
+
+.activeContent{
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
 }
 
 .button{
-    cursor: pointer;
     border: none;
     height: 2.2em;
-    border-radius: 3px;
-    margin-left: 1em;
-    background-color: #2563eb;
+    border-radius: 8px;
+    background-color: #34ccf7;
     color: #fff;
 }
 
@@ -49,8 +62,7 @@
     cursor: pointer;
     border: none;
     height: 2.2em;
-    border-radius: 3px;
-    margin-left: 1em;
+    border-radius: 8px;
     color: #fff;
 }
 
@@ -61,3 +73,20 @@
 .disable{
     background-color: red;
 }
+
+::-webkit-scrollbar {
+    width: 10px; /* Ancho del scrollbar */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #1f1f1f; /* Color del thumb */
+    border-radius: 3px; /* Bordes redondeados del thumb */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #1f1f1f; /* Color del thumb al pasar el cursor */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent; /* Color del track */
+  }

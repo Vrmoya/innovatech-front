@@ -1,63 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
 
-.sideNav{
+.sideNav {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 4vw;
     height: 100vh;
+    padding-top: 1em;
+    background-color: #1f1f1f;
 }
 
-.navContent{
-    display: flex;
-    flex-direction: column;
-    margin: 0 2em;
-    align-items: start;
-}
-
-.titleContent{
+.buttonNav {
     display: flex;
     align-items: center;
-    height: 12vh;
-    width: 100%;
-}
-
-.logo{
-    width: 35px;
-    height: 35px;
-}
-
-.titleLogo{
-    color: #fff;
-    padding-left: .5em;
-    font-family: "Anta", sans-serif;
-    font-size: .9em;
-}
-
-.buttonNav{
-    display: flex;
-    align-items: center; /* Centrar verticalmente */
-    justify-content: flex-start; /* Alinear el contenido a la izquierda */
-    width: 100%;
+    width: 80%;
     height: 45px;
     border: none;
+    margin: 1em auto;
     border-radius: 8px;
-    margin: .5em 0;
     cursor: pointer;
     background-color: transparent;
-    color: #fff;
-    font-weight: 900;
-    font-family: 'Public Sans', sans-serif;
 }
 
-.buttonNav:hover{
-    background-color: #8485873b;
+.selected{
+    background-color: #34ccf7;
+    color: #000;
 }
 
-.svg{
+.selected .svg{
+    filter: none;
+}
+
+.buttonNav:hover {
+    background-color: #34ccf7;
+    color: #000;
+}
+
+.buttonNav:hover .svg {
+    filter: none;
+}
+
+.svg {
     width: 30px;
-    filter: brightness(0) invert(1)
+    filter: brightness(0) invert(1);
 }
 
-.span{
-    padding-left: .5em;
+.buttonNav:nth-child(3) .svg {
+    padding-left: 5px;
+}
+
+.buttonNav:last-child .svg {
+    padding-left: 5px;
 }

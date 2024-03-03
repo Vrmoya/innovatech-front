@@ -3,14 +3,17 @@
 .container {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 1em;
+    padding: 1em 1em;
+    border-radius: 12px;
 }
 
 .categories {
     display: flex;
     align-items: center;
     height: 10%;
-    border-bottom: 1px solid #2c2c2c23;
-    margin: 0 1em;
 }
 
 .typeTitle {
@@ -18,12 +21,11 @@
 }
 
 .select {
-    height: 2.2em;
-    margin-left: 1em;
-    background-color: #2c2c2c;
+    height: 2.5em;
+    background-color: #1f1f1f;
     color: #fff;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 8px;
     width: 15em;
 }
 
@@ -31,9 +33,6 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 0 1em;
-    border-bottom: 1px solid #2c2c2c23;
-    height: 70%;
 }
 
 .inputContainer {
@@ -56,8 +55,9 @@
 
 .input {
     border: 1px solid #2c2c2c23;
-    border-radius: 3px;
+    border-radius: 8px;
     height: 2em;
+    width: 15em;
 }
 
 .input:focus {
@@ -77,30 +77,22 @@
     width: 100%;
 }
 
-.selectImg {
-    margin-left: 1em;
-}
-
-.buttonContent {
-    margin-right: 1em;
-}
-
 .inputSelect::-webkit-file-upload-button {
     height: 3em;
-    background-color: #2c2c2c;
+    background-color: #1f1f1f;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
 .buttonCreate {
     height: 3em;
     width: 5em;
-    background-color: #2c2c2c;
+    background-color: #1f1f1f;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
     cursor: pointer;
 }
 

@@ -193,7 +193,6 @@ const Create = () => {
     return (
         <form className={style.container} onSubmit={(e) => handleSubmitForm(e)}>
             <div className={style.categories}>
-                <h1 className={style.typeTitle}>Product Type</h1>
                 <select className={style.select} onChange={(e) => handleChangeCategory(e)}>
                     <option className={style.option} value="">Select category</option>
                     <option className={style.option} value="laptop">Laptop</option>
@@ -204,9 +203,6 @@ const Create = () => {
                 </select>{errors.category && <label className={style.error}>{errors.category}</label>}
             </div>
             <div className={style.detailContainer}>
-                <div>
-                    <h1 className={style.typeTitle}>Product Detail</h1>
-                </div>
                 <div className={style.inputContainer}>
                     <div className={style.inputContent}>
                         <h3 className={style.detail}>Product Name *</h3>
@@ -524,7 +520,6 @@ const Create = () => {
                 <div className={style.buttonContent}>
                     <button className={style.buttonCreate} type='submit'>Create</button>
                 </div>
-                
             </div>
         </form>
     )
