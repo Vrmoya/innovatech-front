@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Outfit:wght@100..900&display=swap');
 
 .nav{
     display: flex;
     flex-direction: column;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .mainContent{
@@ -19,7 +19,7 @@
 }
 
 .greeting{
-    font-family: "Madimi One", sans-serif;
+    font-family: "Outfit", sans-serif;
     color: #1f1f1f;
     font-size: 1.3em;
 }

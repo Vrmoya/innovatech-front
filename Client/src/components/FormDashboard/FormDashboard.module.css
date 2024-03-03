@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-.container {
+.container{
+    width: 100%;
+}
+
+.formContainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
     background-color: #fff;
     margin-bottom: 1em;
     padding: 1em 1em;
     border-radius: 12px;
+}
+
+.h1{
+    font-family: "Outfit", sans-serif;
+    color: #1f1f1f;
+    font-size: 2em;
 }
 
 .categories {
@@ -107,6 +116,7 @@
 }
 
 .img{
+    object-fit: contain;
     position: relative;
     width: 80px;
     height: 80px;
@@ -115,8 +125,8 @@
 
 .buttonDelete{
     position: absolute;
-    height: 2em;
-    width: 2em;
+    height: 1.7em;
+    width: 1.7em;
     background-color: rgb(211, 46, 46);
     color: #fff;
     border: none;

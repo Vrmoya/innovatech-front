@@ -19,7 +19,8 @@
     width: 70px;
     height: 70px;
     overflow: hidden;
-    padding: .5em;
+    margin: .5em;
+    background-color: #fff;
 }
 
 .img{
@@ -41,6 +42,7 @@
 .p{
     font-family: "Public Sans", sans-serif;
     margin: .5em 0;
+    color: #1f1f1f;
     /* margin-top: ; */
 }
 
@@ -74,19 +76,3 @@
     background-color: red;
 }
 
-::-webkit-scrollbar {
-    width: 10px; /* Ancho del scrollbar */
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: #1f1f1f; /* Color del thumb */
-    border-radius: 3px; /* Bordes redondeados del thumb */
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #1f1f1f; /* Color del thumb al pasar el cursor */
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: transparent; /* Color del track */
-  }
