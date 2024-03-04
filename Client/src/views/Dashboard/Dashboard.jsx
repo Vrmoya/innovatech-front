@@ -6,9 +6,21 @@ import HomeDashboard from '../../components/HomeDashboard/HomeDashboard'
 import ProductsDashboard from '../../components/ProductsDashboard/ProductsDashboard'
 import UsersDashboard from '../../components/UsersDashboard/UsersDashboard'
 import { useState } from 'react'
+import { getProducts } from "../../redux/actions";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 
 const Dashboard = () => {
     const [selectedNavItem, setSelectedNavItem] = useState('home');
+    const dispatch = useDispatch()
+
+    const categories = useSelector(state => state.categories)
+    const order = useSelector(state => state.order)
+    const model = useSelector(state => state.model)
+    const pagenumber = useSelector(state => state.pagenumber)
+    useEffect(() => {
+        dispatch(getProducts(categories, order, pagenumber, "", model));
+    }, [model, categories, order, pagenumber]);
 
     const handleNavItemChange = (navItem) => {
         setSelectedNavItem(navItem);
