@@ -1,17 +1,38 @@
+
+.containerform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 50vh;
+    background-color: transparent;
+    border: 2px solid;
+    border-radius: 30px;
+}
+
 .form{
     width: 40vw;
-    height: 40vh;
+    height: 45vh;
 display: flex;
 justify-content: space-around;
 align-items: center;
 flex-direction: column;
+background-color: transparent
 }
 .option {
     display:flex;
     flex-direction: column;
+    justify-content: space-around;
+align-items: center;
+width: 40vw;
+height: 10vh;
+
 }
-.conatainerinput{
+.input{
     display: flex;
+    width: 40vw;
+    height: 10vh;
 
 
 }

@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from "./UsersForm.module.css";
 import {useState} from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
 
 
 
 const UsersForm = () => {
 
-    //estados locales del form
+ 
+  const user = useSelector(state => state.user)
+  console.log("Datos del usuario:",  user);
+    
+  
+  //estados locales del form
 
 
     const [userData, setUserData] = useState({
@@ -44,7 +49,9 @@ const UsersForm = () => {
 
 
   return (
-    <div className={style.containerform}>UsersForm
+    <div className={style.containerform}>
+
+
 
         <form 
         className={style.form}
@@ -54,7 +61,7 @@ const UsersForm = () => {
 
 
 <div className={style.option}>
-   
+{user && <div>{user.name}</div>}
 <input 
 onChange={handleChange}
 placeholder='User Name'
@@ -65,7 +72,8 @@ placeholder='User Name'
 </div>
 
 <div className={style.option}>
-    
+
+{user && <div>{user.email}</div>}
 <input
 onChange={handleChange}
 placeholder='E-mail'></input>
@@ -73,7 +81,7 @@ placeholder='E-mail'></input>
 </div>
 
 <div className={style.option}>
-    
+
 <input
 onChange={handleChange}
 placeholder='NewPassword'></input>
