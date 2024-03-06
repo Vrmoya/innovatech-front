@@ -21,7 +21,7 @@ var data = {
     labels: ['Laptops', 'iPads', 'Smartphones', 'Headphones', 'Keyboards'],
     datasets: [
         {
-            label: 'Popularidad en Navidad',
+            label: 'Popularidad',
             data: [35, 20, 20, 15, 10],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

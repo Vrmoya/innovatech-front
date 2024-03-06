@@ -36,6 +36,7 @@ var misoptions = {
     scales: {
         y: {
             min: 0,
+            max:100,
             ticks: { color: '#1f1f1f' },
             grid: {color: 'transparent'}
         },

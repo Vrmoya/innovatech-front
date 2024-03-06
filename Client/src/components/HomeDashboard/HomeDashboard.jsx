@@ -9,11 +9,10 @@ import totalCustomers from '../../assets/total-customers.svg'
 import { useSelector } from 'react-redux';
 
 const HomeDashboard = () => {
-    const products = useSelector(state => state.products)
+    const products = useSelector(state => state.allProducts)
+    const users = useSelector(state => state.allUsers)
 
-    const length = products.length
-
-    console.log(length);
+    console.log(products);
 
 
     return (
@@ -41,7 +40,7 @@ const HomeDashboard = () => {
                         <div className={style.customersContent}>
                             <img src={totalCustomers} alt="" className={style.svg} />
                         </div>
-                        <h2 className={style.h2}>{products?.length}</h2>
+                        <h2 className={style.h2}>{users?.length}</h2>
                         <p className={style.p}>Total Customers</p>
                     </div>
                 </div>

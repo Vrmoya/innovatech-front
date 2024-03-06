@@ -3,7 +3,8 @@
 .container{
     display: flex;
     justify-content: space-between;
-    margin: .5em 0;
+    /* margin: .5em 0; */
+    margin-bottom: 1em;
     margin-right: 1em;
     background-color: #fff;
     border-radius: 8px;
@@ -66,6 +67,7 @@
     height: 2.2em;
     border-radius: 8px;
     color: #fff;
+    margin: 0 .5em;
 }
 
 .enable{

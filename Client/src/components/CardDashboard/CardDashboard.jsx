@@ -1,15 +1,23 @@
 import { useState } from 'react';
 import style from './CardDashboard.module.css'
 import swal from 'sweetalert';
+import { useDispatch } from 'react-redux';
+import { toggleProduct } from '../../redux/actions';
 
 const CardDashboard = (props) => {
-    const [enabled, setEnabled] = useState(false)
-    const toggleEnabled = () => {
-        setEnabled(!enabled);
-        if (enabled === false) {
-            swal("Producto Desactivado!", "You clicked the button!", "success");
+    const dispatch = useDispatch()
+
+    const [isActive, setIsActive] = useState(props.isActive);
+
+    const toggleHandler = (id) => {
+        if (isActive) {
+            swal("Deactivated Product", "Successful operation!", "success");
+            dispatch(toggleProduct(id));
+            setIsActive(false);
         } else {
-            swal("Producto Activado!", "You clicked the button!", "success");
+            swal("Activated Product", "Successful operation!", "success");
+            dispatch(toggleProduct(id));
+            setIsActive(true);
         }
     }
 
@@ -26,11 +34,12 @@ const CardDashboard = (props) => {
             </div>
 
             <div className={style.activeContent}>
-                {enabled ?
-                    <button className={style.enable} onClick={toggleEnabled}>Enable</button> :
-                    <button className={style.disable} onClick={toggleEnabled}>Disable</button>
+                {isActive === false ? (
+                    <button className={style.enable} onClick={() => toggleHandler(props.id)}>Enable</button>
+                ) : (
+                    <button className={style.disable} onClick={() => toggleHandler(props.id)}>Disable</button>
+                )}
 
-                }
             </div>
         </div>
     )

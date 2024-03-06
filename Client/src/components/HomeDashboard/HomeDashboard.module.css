@@ -109,6 +109,7 @@
     /* flex-grow: 1; */
     width: 300px;
     flex-grow: 1;
+    margin-right: 0;
 }
 
 .barsContent{
@@ -119,5 +120,4 @@
     height: 170px;
     width: 300px;
     flex-grow: 2;
-    margin-right: 1em;
 }
