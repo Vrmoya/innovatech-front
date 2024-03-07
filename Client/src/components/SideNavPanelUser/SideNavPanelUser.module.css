@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+
+.sideNav{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 50vh;
+    background-color: rgb(8, 2, 31);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.navContent{
+    display: flex;
+    flex-direction: column;
+    margin: 0 2em;
+    align-items: start;
+}
+
+.titleContent{
+    display: flex;
+    align-items: center;
+    height: 13vh;
+    width: 100%;
+}
+
+.logo{
+    width: 35px;
+    height: 35px;
+}
+
+.titleLogo{
+    color: #fff;
+    padding-left: .5em;
+    font-family: "Anta", sans-serif;
+    font-size: 20px
+}
+
+.buttonNav{
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: flex-start; /* Alinear el contenido a la izquierda */
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    margin: .5em 0;
+    cursor: pointer;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 900;
+    font-family: 'Public Sans', sans-serif;
+}
+
+.buttonNav:hover{
+    background-color: #8485873b;
+}
+
+.svg{
+    width: 30px;
+    filter: brightness(0) invert(1)
+}
+
+.span{
+    padding-left: .5em;
+    font-size: 16px;
+}

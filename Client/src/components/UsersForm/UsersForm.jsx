@@ -1,47 +1,88 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import style from "./UsersForm.module.css";
-import {useState} from 'react';
-import {  useSelector } from 'react-redux';
 
-
+import { useSelector } from 'react-redux';
 
 
 const UsersForm = () => {
+  const [editMode, setEditMode] = useState({
+    username: false,
+    email: false,
+    newPassword: false
+  });
 
- 
+  // Referencia al contenedor del formulario
+  const formRef = useRef();
+
+  // Función para cambiar al modo de edición cuando se hace clic en un span
+  const handleEditClick = (field) => {
+    setEditMode({
+      ...editMode,
+      [field]: true
+    });
+  };
+  // Función para manejar la cancelación de la edición
+  const handleCancelClick = () => {
+    setEditMode(false);
+  };
+
+
+  // Función para manejar el clic fuera del formulario
+  const handleClickOutside = (e) => {
+    if (formRef.current && !formRef.current.contains(e.target)) {
+      setEditMode({
+        username: false,
+        email: false,
+        newPassword: false
+      });
+    }
+  };
+
+  // Efecto para agregar el manejador de clic al documento cuando se está en modo de edición
+  useEffect(() => {
+    if (Object.values(editMode).some(mode => mode)) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [editMode]);
+
   const user = useSelector(state => state.user)
-  console.log("Datos del usuario:",  user);
-    
-  
+  console.log("Datos del usuario:", user);
+
+
   //estados locales del form
 
 
-    const [userData, setUserData] = useState({
-        username: 'Hola',
-        email: 'hola@correo.com',
-        oldPassword: '',
-        newPassword: ''
-      });
+  const [userData, setUserData] = useState({
+    username: 'Hola',
+    email: 'hola@correo.com',
+    oldPassword: '',
+    newPassword: ''
+  });
 
 
-//Manejo de errores
+  //Manejo de errores
 
 
-//Handler que maneja el cambio en los inputs
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUserData({
-          ...userData,
-          [name]: value
-        });
-      };
-    
-//Handler que despacha el cambio de una propiedad, ya sea email, contraseña o nameUser      
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        console.log('Datos actualizados:', userData);
-      };
+  //Handler que maneja el cambio en los inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value
+    });
+  };
+
+  //Handler que despacha el cambio de una propiedad, ya sea email, contraseña o nameUser      
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log('Datos actualizados:', userData);
+  };
 
 
 
@@ -53,42 +94,86 @@ const UsersForm = () => {
 
 
 
-        <form 
+      <form
         className={style.form}
         onSubmit={handleSubmit}
-        >
+        ref={formRef}
+      >
 
 
 
-<div className={style.option}>
-{user && <div>{user.name}</div>}
-<input 
-onChange={handleChange}
-placeholder='User Name'
->
-    
-</input>
-<button>Change username</button>
-</div>
+        <div className={style.option}>
+          <div className={style.containerspan}>
+            <div className={style.info}>
+              <h2 className={style.h2}>{user?.name}</h2>
+              <div className={style.data}>{editMode.username && (
+                <>
+                <input
+                className={style.input}
+                name="username"
+                value={userData.username}
+                onChange={handleChange}
+                placeholder='new username'/>
+                </>
+              )}</div>
+              
+            </div>
+            <div className={style.containerbutton}>
+            <button onClick={() => handleEditClick('username')}>Edit</button>
 
-<div className={style.option}>
 
-{user && <div>{user.email}</div>}
-<input
-onChange={handleChange}
-placeholder='E-mail'></input>
-<button>Change e-mail</button>
-</div>
+            </div>
+            
+            
+              
+            
+          </div>
 
-<div className={style.option}>
+        </div>
 
-<input
-onChange={handleChange}
-placeholder='NewPassword'></input>
-<button>Change Password</button>
-</div>
 
-        </form>
+        <div className={style.option}>
+
+          <div className={style.containerspan}><span >{user?.email}</span>
+            {editMode.email ? (
+              <input
+                className={style.input}
+                name="email"
+                value={userData.email}
+                onChange={handleChange}
+                placeholder='new email'>
+
+              </input>
+            ) : (
+              <div className={style.containerbutton}>
+                <button onClick={() => handleEditClick('email')}>Edit</button></div>
+            )}
+
+          </div>
+
+        </div>
+
+        <div className={style.option}>
+
+          <div className={style.containerspan}>
+            <span className={style.span}>Password</span>
+            {editMode.password ? (
+              <input
+                className={style.input}
+                name="password"
+                value={userData.password}
+                onChange={handleChange}
+                placeholder='new password'>
+
+              </input>
+            ) : (<div className={style.containerbutton}>
+              <button onClick={() => handleEditClick('password')}>Edit</button></div>
+            )}
+          </div>
+
+        </div>
+
+      </form>
 
 
 

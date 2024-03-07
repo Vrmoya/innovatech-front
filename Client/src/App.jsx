@@ -1,6 +1,6 @@
 import PATHROUTES from "./helpers/PathRoutes";
 import { Routes, Route } from 'react-router-dom';
-import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView} from './views'
+import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPassword} from './views'
 import NavBar from "./components/NavBar/NavBar";
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
@@ -40,6 +40,8 @@ function App() {
         <Route path={PATHROUTES.GITHUB} element = {<LoginGitHub/>}/>
         <Route path={PATHROUTES.GOOGLE} element = {<LoginGoogle/>}/>
         <Route path={PATHROUTES.USERS} element={<Users />}/>
+        <Route path={PATHROUTES.RESETPASSWORD} element={<ResetPassword />}/>
+ 
       </Routes>
       {/* <Footer /> */}
     </div>

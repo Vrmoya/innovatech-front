@@ -9,6 +9,7 @@ const PATHROUTES = {
     GITHUB:'/github/*',
     GOOGLE: '/google/*',
     USERS: '/users',
+    RESETPASSWORD: '/resetpassword'
 }
 
 export default PATHROUTES;
