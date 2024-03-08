@@ -10,9 +10,10 @@ import { useSelector } from 'react-redux';
 
 const HomeDashboard = () => {
     const products = useSelector(state => state.allProducts)
-    const users = useSelector(state => state.allUsers)
+    const users = useSelector(state => state.allUsers.filter(user => !user.isAdmin))
+    const users2 = useSelector(state => state.allUsers)
 
-    console.log(products);
+    console.log(users2);
 
 
     return (
@@ -33,8 +34,8 @@ const HomeDashboard = () => {
                         <div className={style.soldContent}>
                             <img src={sold} alt="" className={style.svg} />
                         </div>
-                        <h2 className={style.h2}>{products?.length}</h2>
-                        <p className={style.p}>Product Sold</p>
+                        <h2 className={style.h2}>0</h2>
+                        <p className={style.p}>Sold Products</p>
                     </div>
                     <div className={style.customersContainer}>
                         <div className={style.customersContent}>

@@ -10,9 +10,7 @@ const Create = () => {
     //estado local para el select de imágenes renderiza la URL de Cloudinary
     const [urlImage, setUrlImage] = useState(null);
     const [selectedImages, setSelectedImages] = useState([])
-    //estado local para el manejo de errores
     const [errors, setErrors] = useState({})
-    //para despachar el post en la ruta
     const dispatch = useDispatch()
 
     //estado local para select category y renderizado condicional de propiedades

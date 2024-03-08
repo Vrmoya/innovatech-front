@@ -20,7 +20,8 @@ import {
   INJECT_USER,
   SHOW_SHOPPING_CART,
   GET_ALL_USERS,
-  GET_ALL_PRODUCTS
+  GET_ALL_PRODUCTS,
+  GET_USER_BY_NAME
 } from "./actions";
 
 const initialState = {
@@ -48,6 +49,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_USER_BY_NAME:
+      return {
+        ...state,
+        allUsers: action.payload
+      }
+
     case GET_ALL_PRODUCTS:
       return {
         ...state,

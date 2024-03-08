@@ -61,7 +61,7 @@
     color: #fff;
 }
 
-.enable, .disable{
+.enable, .disable, .delete{
     cursor: pointer;
     border: none;
     height: 2.2em;
@@ -78,3 +78,6 @@
     background-color: red;
 }
 
+.delete{
+    background-color: #1f1f1f;
+}

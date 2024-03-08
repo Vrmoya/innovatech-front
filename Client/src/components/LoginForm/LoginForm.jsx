@@ -17,10 +17,10 @@ const LoginForm = () => {
   const [errors, setErrors] = useState({});
   const user = useSelector(state => state.user)
   const navigate = useNavigate()
-  
+  console.log(user);
+  if( user && user.isAdmin ===true) navigate('/dashboard')
+  else if (user) navigate('/')
   const currentForm = useSelector(state => state.currentForm);
-  console.log("Current form in LoginForm:", currentForm);
-
   const dispatch = useDispatch(); // Obtener la función dispatch
 
   //capturo los datos del form en un estado local
@@ -43,7 +43,7 @@ const LoginForm = () => {
 
     // Calcular los nuevos errores utilizando el valor actualizado de userData
     setErrors(loginValidator({ ...userData, [name]: value }));
-    console.log(userData)
+    // console.log(userData)
   };
 
   // Actualizar el campo enfocado cuando se enfoca o se desenfoca un campo
@@ -74,7 +74,7 @@ const LoginForm = () => {
       // Enviar los datos al backend mediante la acción correspondiente
       if (currentForm === 'login') {
         dispatch(LoginAction({ email, password }));
-        navigate('/')
+        
       } else {
         dispatch(signUpAction({ name, email, password }));
         swal("User created success", "click ok to continue", "success")
@@ -89,7 +89,7 @@ const LoginForm = () => {
         password: "",
 
       })
-      const [focusedField, setFocusedField] = useState(null); // Estado para el campo enfocado
+      
 
 
     } else {
@@ -112,7 +112,7 @@ const LoginForm = () => {
     window.location.href = 'http://localhost:80/auth/github';
   };
 
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <div className={style.containerLoginForm}>

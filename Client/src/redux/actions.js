@@ -22,6 +22,31 @@ export const INJECT_USER = 'INJECT_USER';
 export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_USER_BY_NAME = 'GET_USER_BY_NAME';
+
+
+export const getUserByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:80/get/user/${name}`)
+      console.log(response.data);
+      dispatch({ type: GET_USER_BY_NAME, payload: response.data })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+
+export const deleteProduct = (id) => {
+  return async function () {
+    try {
+      await axios.delete(`http://localhost:80/products/${id}`)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 
 
 export const getAllProducts = () => {
@@ -39,7 +64,7 @@ export const getAllProducts = () => {
 export const toggleProduct = (id) => {
   return async function () {
     try {
-      const response = await axios.post(`http://localhost:80/products/toggle?id=${id}`)
+      await axios.post(`http://localhost:80/products/toggle?id=${id}`)
     } catch (error) {
       console.log(error);
     }
