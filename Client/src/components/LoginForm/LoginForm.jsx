@@ -17,6 +17,7 @@ const LoginForm = () => {
   const [errors, setErrors] = useState({});
   const user = useSelector(state => state.user)
   const navigate = useNavigate()
+  if (user) navigate('/')
   
   const currentForm = useSelector(state => state.currentForm);
   console.log("Current form in LoginForm:", currentForm);
@@ -74,7 +75,7 @@ const LoginForm = () => {
       // Enviar los datos al backend mediante la acción correspondiente
       if (currentForm === 'login') {
         dispatch(LoginAction({ email, password }));
-        navigate('/')
+        
       } else {
         dispatch(signUpAction({ name, email, password }));
         swal("User created success", "click ok to continue", "success")

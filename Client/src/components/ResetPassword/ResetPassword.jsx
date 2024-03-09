@@ -36,7 +36,7 @@ const ResetPassword = () => {
         try {
           const response = await axios.post('http://localhost:80/forgot-password', { email });
           console.log(response.data);
-          alert('Revisa tu casilla de correo');
+          alert('Revisá tu casilla de correo');
         } catch (error) {
           console.error('Error:', error);
           alert('Envío fallido');
@@ -46,7 +46,7 @@ const ResetPassword = () => {
   return (
     <div className={style.containerForm}>
 
-        <h3>Soy un form</h3>
+        <h3>Reestablecimiento de constraseña</h3>
         
         <form onSubmit={handleSubmit}
         className={style.form}>
@@ -57,14 +57,8 @@ const ResetPassword = () => {
             className={style.input} 
             onChange={handleChange}/>
 
-            {/* <input 
-            type="text"
-            name= "code"
-            value={input.code}
-
-            className={style.input} 
-            onChange={handleChange}/> */}
-            <button type="submit">Reset Password</button>
+            
+            <button type="submit">Send Email</button>
             </form>
             
             </div>
