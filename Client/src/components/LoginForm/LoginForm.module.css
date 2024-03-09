@@ -1,10 +1,10 @@
 .containerLoginForm {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 30vw;
-    height: 60vh;
+    height: 430px;
     background-color: #000000;
     /* backdrop-filter: blur(3px); */
     /* bordes  */
@@ -30,7 +30,7 @@
 }
 
 .hr {
-    width: 2vw;
+    width: 40px;
     margin-top: 0px;
     border: none;
     /* Elimina cualquier borde predeterminado */
@@ -46,13 +46,11 @@
     margin-top: 20px;
     /* background-color: blue; */
     width: 100%;
-    height: 50vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    /* justify-content: space-around; */
     align-items: center;
-
-
 }
 
 .group {
@@ -62,35 +60,44 @@
     /* justify-content: center; */
     align-items: center;
     width: 100%;
-    height: 8vh;
-
-
+    margin-bottom: 2em;
+    height: 50px;
+    /* height: 8vh; */
 }
 
 .option {
+    background-color: #fff;
+    border-radius: 5px;
     width: 60%;
     display: flex;
     align-items: center;
+    padding: 5px;
 }
 
 .input {
     width: 300px;
-    height: 3.5vh;
+    height: 100%;
     border-radius: 3px;
     border: none;
     padding-left: .5em;
     margin-left: .5em;
+    background-color: transparent;
 }
+
+.input:focus{
+    outline: none;
+}
+
 
 .containerButton {
     /* background-color: blue; */
     width: 100%;
-    height: 20vh;
+    /* height: 20vh; */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
+    margin-bottom: 1em;
 }
 
 .button {
@@ -106,12 +113,17 @@
 }
 
 
-.svg {
-    width: 30px;
-    height: 30px;
-    filter: brightness(0) invert(1)
+.svg, .svgAuth {
+    width: 25px;
+    height: 25px;
 }
 
+.svgAuth{
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 100%;
+    /* filter: brightness(0) invert(1) */
+}
 
 .forgotpassword {
 
@@ -124,15 +136,12 @@
 .error {
     /* background-color: aqua; */
     display: flex;
-
     width: 35vw;
     justify-content: center;
     align-items: flex-start;
-
-    height: 3vh;
     font-size: 12px;
-
     color: white;
+    padding-bottom: 10px;
 }
 
 .social {

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import style from './LoginForm.module.css';
-import mail2 from '../../assets/mail2.svg'
-import password2 from '../../assets/password2.svg'
-import user2 from '../../assets/user2.svg'
-import google from '../../assets/google.svg'
-import github from '../../assets/github.svg'
+import mail2 from '../../assets/mail3.svg'
+import password2 from '../../assets/password3.svg'
+import user2 from '../../assets/user3.svg'
+import google from '../../assets/google2.svg'
+import github from '../../assets/github2.svg'
 import loginValidator from './validation';
 import { signUpAction, LoginAction, changeForm} from '../../redux/actions';
 import { useEffect } from 'react';
@@ -207,7 +207,7 @@ const LoginForm = () => {
 
         <button className={style.social}
           onClick={handleGoogleSignIn}>
-          <img src={google} alt="" className={style.svg} />
+          <img src={google} alt="" className={style.svgAuth} />
         </button>
 
         <button className={style.button}
@@ -215,7 +215,7 @@ const LoginForm = () => {
 
         <button className={style.social}
           onClick={handleGitHubSignIn}>
-          <img src={github} alt="" className={style.svg} />
+          <img src={github} alt="" className={style.svgAuth} />
         </button>
       </div>
 
