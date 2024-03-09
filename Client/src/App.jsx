@@ -1,12 +1,13 @@
 import PATHROUTES from "./helpers/PathRoutes";
 import { Routes, Route } from 'react-router-dom';
-import {About, Dashboard, Detail, Error, Home, Landing, LoginView} from './views'
+import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPassword, ChangePassword} from './views'
 import NavBar from "./components/NavBar/NavBar";
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { injectCartData, injectUser } from './redux/actions.js'
 import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx";
 import LoginGitHub from "./components/LoginGitHub/LoginGithub.jsx";
+
 
 function App() {
   const dispatch = useDispatch()
@@ -39,6 +40,10 @@ function App() {
         <Route path={PATHROUTES.LOGIN} element = {<LoginView/>}/>
         <Route path={PATHROUTES.GITHUB} element = {<LoginGitHub/>}/>
         <Route path={PATHROUTES.GOOGLE} element = {<LoginGoogle/>}/>
+        <Route path={PATHROUTES.USERS} element={<Users />}/>
+        <Route path={PATHROUTES.RESETPASSWORD} element={<ResetPassword />}/>
+        <Route path={PATHROUTES.CHANGEPASSWORD} element={<ChangePassword />}/>
+ 
       </Routes>
       {/* <Footer /> */}
     </div>

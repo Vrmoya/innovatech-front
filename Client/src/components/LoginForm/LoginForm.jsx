@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
 
@@ -201,8 +202,10 @@ const LoginForm = () => {
 
 
       </form>
-
-
+      
+      <div className={style.forgotpassword}>
+        Lost Password? <Link to="/resetpassword"><span>Click Here</span></Link>
+      </div>
       <div className={style.containerButton}>
         <div className={style.forgotpassword}>Lost Password? <span>Click Here</span></div>
         <div className={style.divLog}>
