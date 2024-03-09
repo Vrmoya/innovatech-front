@@ -152,7 +152,7 @@ const NavBar = () => {
           )}
           {user !== null && (
             <div className={style.isLoginContent}>
-              <img src={user?.image} alt="" className={style.userImg} />
+              <Link to="/users"><img src={user?.image} alt="" className={style.userImg} /></Link>
               <button onClick={() => logOut()} className={style.buttonLogOut}>
                 <img src={imgLogout} alt="" className={style.imgLogout} />
               </button>

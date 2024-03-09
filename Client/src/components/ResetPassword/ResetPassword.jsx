@@ -56,8 +56,6 @@ const ResetPassword = () => {
             value={input.email}
             className={style.input} 
             onChange={handleChange}/>
-
-            
             <button type="submit">Send Email</button>
             </form>
             
