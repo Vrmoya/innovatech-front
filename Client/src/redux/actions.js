@@ -123,6 +123,22 @@ export function paymentGateway(cart) {
         totalPrice += total[i];
       }
 
+      const valueLocal = JSON.parse(localStorage.getItem("user"))
+
+      const cartDB = {
+        idUserLocal: valueLocal.id,
+        cartItems: cart.map((prod) => ({
+          name: prod.model,
+          productId: prod.id,
+          price: parseFloat(prod.price),
+          quantity: parseInt(prod.quantity),
+        })),
+        total: totalPrice,
+        paymentMethod: "mercadopago"
+      }
+
+      const postCart = axios.post("http://localhost:80/cart", cartDB)
+
       const response = await axios.post("http://localhost:80/create_preference", {
         items: items,
         total: totalPrice
