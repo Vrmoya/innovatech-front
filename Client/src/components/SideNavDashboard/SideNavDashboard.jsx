@@ -3,14 +3,19 @@ import form from '../../assets/form.svg'
 import users from '../../assets/users.svg'
 import home from '../../assets/home.svg'
 import products from '../../assets/products.svg'
-import logout from '../../assets/logout.svg';
+import logoutsvg from '../../assets/logout.svg';
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../redux/actions'
 
 const SideNavDashboard = ({ onNavItemChange, selectedNavItem }) => {
     const navigate = useNavigate()
+    const admin = useSelector(state => state.user)
+    const dispatch = useDispatch()
 
     const handleChange = () => {
-        navigate('/')
+        dispatch(logout())
+        navigate('/login')
     }
 
     return (
@@ -29,7 +34,7 @@ const SideNavDashboard = ({ onNavItemChange, selectedNavItem }) => {
                     <img src={users} alt="" className={style.svg} />
                 </button>
                 <button className={style.buttonNav} onClick={handleChange}>
-                    <img src={logout} alt="" className={style.svg} />
+                    <img src={logoutsvg} alt="" className={style.svg} />
                 </button>
             </div>
         </div>

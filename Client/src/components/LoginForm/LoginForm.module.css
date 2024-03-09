@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 30vw;
+    /* width: 30vw; */
     height: 430px;
     background-color: #000000;
     /* backdrop-filter: blur(3px); */
@@ -145,7 +145,6 @@
 .error {
     /* background-color: aqua; */
     display: flex;
-    width: 35vw;
     justify-content: center;
     align-items: flex-start;
     font-size: 12px;
