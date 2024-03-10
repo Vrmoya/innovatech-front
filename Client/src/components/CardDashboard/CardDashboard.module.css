@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    /* margin: .5em 0; */
+    margin-bottom: 1em;
+    margin-right: 1em;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.mainContent{
+    display: flex;
+}
+
+.imgContent{
+    display: flex;
+    border-radius: 8px;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    margin: .5em;
+    background-color: #fff;
+}
+
+.img{
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    border-radius: 12px;
+    /* overflow: hidden; */
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 1em;
+}
+
+.p{
+    font-family: "Public Sans", sans-serif;
+    margin: .5em 0;
+    color: #1f1f1f;
+    /* margin-top: ; */
+}
+
+.activeContent{
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+}
+
+.button{
+    border: none;
+    height: 2.2em;
+    border-radius: 8px;
+    background-color: #34ccf7;
+    color: #fff;
+}
+
+.enable, .disable, .delete{
+    cursor: pointer;
+    border: none;
+    height: 2.2em;
+    border-radius: 8px;
+    color: #fff;
+    margin: 0 .5em;
+}
+
+.enable{
+    background-color: green;
+}
+
+.disable{
+    background-color: red;
+}
+
+.delete{
+    background-color: #1f1f1f;
+}

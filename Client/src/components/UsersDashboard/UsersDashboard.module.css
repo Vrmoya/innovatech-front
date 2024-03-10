@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Outfit:wght@100..900&display=swap');
+
+.container{
+    width: 100%;
+}
+
+.h1{
+    font-family: "Outfit", sans-serif;
+    color: #1f1f1f;
+    font-size: 2em;
+}
+
+.usersContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 1em;
+    align-items: center;
+    border-radius: 12px;
+    font-family: "Outfit", sans-serif;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.userID{
+    margin-left: 1em;
+    margin-right: .5em;
+}
+
+.userImg{
+    border-radius: 12px;
+    width: 60px;
+    margin: .5em;
+    background-color: #1f1f1f;
+}
+
+.userName{
+    font-size: 1em;
+    padding: 0 .5em;
+    color: #1f1f1fda;
+}
+
+.userEmail{
+    padding: 0 .5em;
+    font-size: 1em;
+    color: #1f1f1fda;
+}
+
+.buttonContent{
+    display: flex;
+    align-items: center;
+}
+
+.date{
+    font-size: 1em;
+}
+
+.button{
+    cursor: pointer;
+    border: none;
+    height: 2.2em;
+    border-radius: 8px;
+    color: #fff;
+    margin: 0 1em;
+    background-color: #1f1f1f;
+}

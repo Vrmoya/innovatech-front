@@ -2,7 +2,7 @@ import PATHROUTES from "./helpers/PathRoutes";
 import { Routes, Route, useLocation } from 'react-router-dom';
 import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPassword, ChangePassword} from './views'
 import NavBar from "./components/NavBar/NavBar";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { injectCartData, injectUser } from './redux/actions.js'
 import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx";
@@ -13,6 +13,7 @@ function App() {
   const dispatch = useDispatch()
   const location = useLocation(); // Obtener la ubicación actual
   const [hideNavbar, setHideNavbar] = useState(false); // Estado para ocultar la barra de navegación
+  const user = useSelector(state => state.user)
 
   useEffect(() => {
     const user = window.localStorage.getItem('user')
@@ -41,7 +42,7 @@ function App() {
 
       <Routes>
         <Route path={PATHROUTES.ABOUT} element={<About />}/>
-        <Route path={PATHROUTES.DASHBOARD} element={<Dashboard />}/>
+        {user && user.isAdmin && <Route path={PATHROUTES.DASHBOARD} element={<Dashboard />}/>}
         <Route path={PATHROUTES.DETAIL} element={<Detail />}/>
         <Route path={PATHROUTES.ERROR} element={<Error />}/>
         <Route path={PATHROUTES.HOME} element={<Home />}/>

@@ -8,11 +8,13 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { useDispatch, useSelector } from 'react-redux';
 import { changeForm, logout, showShoppingCart } from "../../redux/actions";
 import imgLogout from '../../assets/logout.svg'
+import imgAcount from '../../assets/user3.svg'
 
 
 const NavBar = () => {
   const [showNav, setShowNav] = useState(null);
   const [quantityProductsCart, setQuantityProductsCart] = useState(0)
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
@@ -25,7 +27,7 @@ const NavBar = () => {
         total + product.quantity
       ), 0)
       setQuantityProductsCart(quantityProducts);
-    } else{
+    } else {
       setQuantityProductsCart(0);
     }
   }, [cart])
@@ -55,6 +57,10 @@ const NavBar = () => {
     }, 500);
   }
 
+  const toggleUserDropdown = () => {
+    setShowUserDropdown(!showUserDropdown);
+  };
+
   return (
     <nav className={style.nav}>
       <div className={style.mainContent}>
@@ -71,25 +77,18 @@ const NavBar = () => {
             INNOVA TECH
           </Link>
           <Link
-            to={PATHROURES.HOME}
+            to={PATHROURES.LANDING}
             className={style.linkDesk}
             onClick={toggleNav}
           >
-            All
+            Home
           </Link>
           <Link
             to={PATHROURES.HOME}
             className={style.linkDesk}
             onClick={toggleNav}
           >
-            Laptops
-          </Link>
-          <Link
-            to={PATHROURES.HOME}
-            className={style.linkDesk}
-            onClick={toggleNav}
-          >
-            Smartphones
+            Products
           </Link>
           <div
             className={`${style.linkContentMobile} ${!showNav && style.hidden}`}
@@ -101,25 +100,18 @@ const NavBar = () => {
               <SearchBar></SearchBar>
             </div>
             <Link
-              to={PATHROURES.HOME}
-              className={style.link}
+              to={PATHROURES.LANDING}
+              className={style.linkDesk}
               onClick={toggleNav}
             >
-              All
+              Home
             </Link>
             <Link
               to={PATHROURES.HOME}
-              className={style.link}
+              className={style.linkDesk}
               onClick={toggleNav}
             >
-              Laptops
-            </Link>
-            <Link
-              to={PATHROURES.HOME}
-              className={style.link}
-              onClick={toggleNav}
-            >
-              Smartphones
+              Products
             </Link>
             <div className={style.buttonContainerMobile}>
               <Link to={'/login'}>
@@ -151,11 +143,17 @@ const NavBar = () => {
             </div>
           )}
           {user !== null && (
-            <div className={style.isLoginContent}>
-              <Link to="/users"><img src={user?.image} alt="" className={style.userImg} /></Link>
-              <button onClick={() => logOut()} className={style.buttonLogOut}>
-                <img src={imgLogout} alt="" className={style.imgLogout} />
-              </button>
+            <div className={style.isLoginContent} >
+              <img src={user?.image} alt="" className={style.userImg} onClick={toggleUserDropdown} />
+              {showUserDropdown && (
+                <div className={style.dropDown}>
+                  <Link to={'/users'} className={style.linkDrop} onClick={toggleUserDropdown}>Manage your Account</Link>
+                  <button onClick={() => logOut()} className={style.buttonLogOut}>
+                    <img src={imgLogout} alt="" className={style.svg} />
+                    Sign out
+                  </button>
+                </div>
+              )}
             </div>
           )}
 

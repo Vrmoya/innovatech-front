@@ -20,6 +20,68 @@ export const INJECT_CART_DATA = 'INJECT_CART_DATA'
 export const LOGOUT = 'LOGOUT';
 export const INJECT_USER = 'INJECT_USER';
 export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
+export const GET_ALL_USERS = 'GET_ALL_USERS'
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_USER_BY_NAME = 'GET_USER_BY_NAME';
+
+
+export const getUserByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:80/get/user/${name}`)
+      console.log(response.data);
+      dispatch({ type: GET_USER_BY_NAME, payload: response.data })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+
+export const deleteProduct = (id) => {
+  return async function () {
+    try {
+      await axios.delete(`http://localhost:80/products/${id}`)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+
+export const getAllProducts = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get('http://localhost:80/products?actives=true')
+      dispatch({ type: GET_ALL_PRODUCTS, payload: response.data.data })
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
+export const toggleProduct = (id) => {
+  return async function () {
+    try {
+      await axios.post(`http://localhost:80/products/toggle?id=${id}`)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+
+export const getAllUsers = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:80/users")
+      dispatch({ type: GET_ALL_USERS, payload: response.data })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 
 export const showShoppingCart = (data) => {
   return {
@@ -37,7 +99,7 @@ export const injectUser = (data) => {
 
 export const logout = () => {
   window.localStorage.setItem('user', JSON.stringify(null))
-  return{
+  return {
     type: LOGOUT,
   }
 
@@ -61,6 +123,22 @@ export function paymentGateway(cart) {
         totalPrice += total[i];
       }
 
+      const valueLocal = JSON.parse(localStorage.getItem("user"))
+
+      const cartDB = {
+        idUserLocal: valueLocal.id,
+        cartItems: cart.map((prod) => ({
+          name: prod.model,
+          productId: prod.id,
+          price: parseFloat(prod.price),
+          quantity: parseInt(prod.quantity),
+        })),
+        total: totalPrice,
+        paymentMethod: "mercadopago"
+      }
+
+      const postCart = axios.post("http://localhost:80/cart", cartDB)
+
       const response = await axios.post("http://localhost:80/create_preference", {
         items: items,
         total: totalPrice
@@ -76,37 +154,37 @@ export function paymentGateway(cart) {
 export function getInfoGithub(codigoGithub) {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:80/get/github/"+codigoGithub)
+      const response = await axios.get("http://localhost:80/get/github/" + codigoGithub)
       console.log(response.data);
       window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GITHUB", payload: response.data })
-    }catch (error) {
+    } catch (error) {
       console.log(error);
     }
-}
+  }
 }
 
 export function getInfoGoogle(codigoGoogle) {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:80/get/google/"+codigoGoogle)
+      const response = await axios.get("http://localhost:80/get/google/" + codigoGoogle)
       // console.log(response.data);
       window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GOOGLE", payload: response.data })
-    }catch (error) {
+    } catch (error) {
       console.log(error);
     }
-}
+  }
 }
 
 
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.post(`${BASE_URL}/api/signin`, { email, password });
+      const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
-      dispatch({ type: SIGN_IN_SUCCESS, payload: data});
+      dispatch({ type: SIGN_IN_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
     }

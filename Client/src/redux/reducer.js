@@ -18,7 +18,10 @@ import {
   SIGN_UP_SUCCESS,
   LOGOUT,
   INJECT_USER,
-  SHOW_SHOPPING_CART
+  SHOW_SHOPPING_CART,
+  GET_ALL_USERS,
+  GET_ALL_PRODUCTS,
+  GET_USER_BY_NAME
 } from "./actions";
 
 const initialState = {
@@ -39,11 +42,30 @@ const initialState = {
   user: null,
   error: null,
   localUser: null,
-  showShoppingCart: false
+  showShoppingCart: false,
+  allUsers: [],
+  allProducts: []
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_USER_BY_NAME:
+      return {
+        ...state,
+        allUsers: action.payload
+      }
+
+    case GET_ALL_PRODUCTS:
+      return {
+        ...state,
+        allProducts: action.payload
+      }
+
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload
+      }
     case SHOW_SHOPPING_CART:
       return {
         ...state,

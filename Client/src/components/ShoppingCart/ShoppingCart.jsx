@@ -15,7 +15,7 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   // useEffect(() => {}, [cart]);
 
-  useEffect(() => {}, [showShoppingCartState]);
+  useEffect(() => { }, [showShoppingCartState]);
 
   useEffect(() => {
     if (cart) {
@@ -30,7 +30,7 @@ const ShoppingCart = () => {
   });
 
   const handleBuy = () => {
-    if(user === null) swal("Login first", "To make a purchase you need to register", "error");
+    if (user === null) swal("Login first", "To make a purchase you need to register", "error");
     dispatch(paymentGateway(cart))
   }
 
@@ -89,7 +89,7 @@ const ShoppingCart = () => {
                   Proceed to Checkout
                 </button>
                 {user !== null && (
-                paymentID && <Wallet initialization={{ preferenceId: paymentID }} />
+                  paymentID && <Wallet initialization={{ preferenceId: paymentID }} />
                 )}
               </>
             )}

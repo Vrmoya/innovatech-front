@@ -3,31 +3,38 @@ import form from '../../assets/form.svg'
 import users from '../../assets/users.svg'
 import home from '../../assets/home.svg'
 import products from '../../assets/products.svg'
-import logo from '../../../public/logo-white.png'
+import logoutsvg from '../../assets/logout.svg';
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../redux/actions'
 
-const SideNavDashboard = () => {
+const SideNavDashboard = ({ onNavItemChange, selectedNavItem }) => {
+    const navigate = useNavigate()
+    const admin = useSelector(state => state.user)
+    const dispatch = useDispatch()
+
+    const handleChange = () => {
+        dispatch(logout())
+        navigate('/login')
+    }
+
     return (
         <div className={style.sideNav}>
-            <div className={style.navContent}>
-                <div className={style.titleContent}>
-                    <img src={logo} alt="" className={style.logo}/>
-                    <h2 className={style.titleLogo}>INNOVA TECH</h2>
-                </div>
-                <button className={style.buttonNav}>
+            <div className={style.buttonContent}>
+                <button className={`${style.buttonNav} ${selectedNavItem === 'home' && style.selected}`} onClick={() => onNavItemChange('home')}>
                     <img src={home} alt="" className={style.svg} />
-                    <span className={style.span}>Dashboard</span>
                 </button>
-                <button className={style.buttonNav}>
+                <button className={`${style.buttonNav} ${selectedNavItem === 'newProduct' && style.selected}`} onClick={() => onNavItemChange('newProduct')}>
                     <img src={form} alt="" className={style.svg} />
-                    <span className={style.span}>Create Product</span>
                 </button>
-                <button className={style.buttonNav}>
+                <button className={`${style.buttonNav} ${selectedNavItem === 'products' && style.selected}`} onClick={() => onNavItemChange('products')}>
                     <img src={products} alt="" className={style.svg} />
-                    <span className={style.span}>Products</span>
                 </button>
-                <button className={style.buttonNav}>
+                <button className={`${style.buttonNav} ${selectedNavItem === 'customers' && style.selected}`} onClick={() => onNavItemChange('customers')}>
                     <img src={users} alt="" className={style.svg} />
-                    <span className={style.span}>Users</span>
+                </button>
+                <button className={style.buttonNav} onClick={handleChange}>
+                    <img src={logoutsvg} alt="" className={style.svg} />
                 </button>
             </div>
         </div>
