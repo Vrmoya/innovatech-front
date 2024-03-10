@@ -4,9 +4,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 45vw;
-    height: 65vh;
-    
+    /* width: 45vw;
+    height: 65vh; */
+    margin-top: 10em;
     /* border: 2px solid;
     border-radius: 10px; */
     border-color:  rgb(8, 2, 31);
@@ -21,7 +21,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-background-color: rgb(8, 2, 31);
+background-color: rgba(221, 221, 221, 0.06);
 /* border: solid 3px */
 
 border-radius: 10px; 
