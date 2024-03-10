@@ -13,14 +13,20 @@ const SideNavPanelUser = ({ onOptionChange }) => {
     const handleOptionClick = (option) => {
         onOptionChange(option);
     };
+
+
+    const handleHomeClick = () => {
+        window.location.href = '/'
+    };
     
     return (
         <div className={style.sideNav}>
             <div className={style.navContent}>
                 <div className={style.titleContent}>
-                    <h2 className={style.titleLogo}>MY ACCOUNT</h2>
+                    <h2 className={style.titleLogo}>User Profile</h2>
                 </div>
-                <button className={style.buttonNav}>
+                <button className={style.buttonNav} onClick={handleHomeClick}>
+                
                     <img src={home} alt="" className={style.svg} />
                     <span className={style.span}>Home</span>
                 </button>
@@ -34,7 +40,7 @@ const SideNavPanelUser = ({ onOptionChange }) => {
                     <img src={shop} alt="" className={style.svg} />
                     <span className={style.span}>My Orders</span>
                 </button>
-                <button className={style.buttonNav}>
+                <button className={style.buttonNav}  onClick={() => handleOptionClick('settings')}>
                     <img src={settings} alt="" className={style.svg} />
                     <span className={style.span}>Settings</span>
                 </button>
@@ -44,3 +50,5 @@ const SideNavPanelUser = ({ onOptionChange }) => {
 }
 
 export default SideNavPanelUser
+
+

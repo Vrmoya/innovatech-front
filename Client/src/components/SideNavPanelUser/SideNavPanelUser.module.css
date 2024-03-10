@@ -5,9 +5,10 @@
     flex-direction: column;
     width: 20vw;
     height: 50vh;
-    background-color: rgb(8, 2, 31);
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+ background-color:rgb(8, 2, 31);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    backdrop-filter: blur(10px); /* Ajusta el valor de desenfoque según sea necesario */
 }
 
 .navContent{

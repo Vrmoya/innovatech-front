@@ -1,9 +1,9 @@
 import PATHROUTES from "./helpers/PathRoutes";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPassword, ChangePassword} from './views'
 import NavBar from "./components/NavBar/NavBar";
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { injectCartData, injectUser } from './redux/actions.js'
 import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx";
 import LoginGitHub from "./components/LoginGitHub/LoginGithub.jsx";
@@ -11,6 +11,8 @@ import LoginGitHub from "./components/LoginGitHub/LoginGithub.jsx";
 
 function App() {
   const dispatch = useDispatch()
+  const location = useLocation(); // Obtener la ubicación actual
+  const [hideNavbar, setHideNavbar] = useState(false); // Estado para ocultar la barra de navegación
 
   useEffect(() => {
     const user = window.localStorage.getItem('user')
@@ -26,9 +28,17 @@ function App() {
     }
   },[dispatch])
 
+  useEffect(() => {
+    // Actualizar el estado para ocultar la barra de navegación si estás en la vista de usuarios
+    setHideNavbar(location.pathname === PATHROUTES.USERS);
+  }, [location]);
+
   return (
     <div>
-      <NavBar />
+      {/* Renderiza la barra de navegación solo si hideNavbar es false */}
+      {!hideNavbar && <NavBar />}
+
+
       <Routes>
         <Route path={PATHROUTES.ABOUT} element={<About />}/>
         <Route path={PATHROUTES.DASHBOARD} element={<Dashboard />}/>

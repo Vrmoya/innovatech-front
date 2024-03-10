@@ -4,6 +4,7 @@ import UsersForm from '../../components/UsersForm/UsersForm';
 import SideNavPanelUser from '../../components/SideNavPanelUser/SideNavPanelUser';
 import OrdersUser from '../../components/OrdersUser/OrdersUser';
 import {  useSelector } from 'react-redux';
+import Settings from '../../components/Settings/Settings';
 
 
 const Users = () => {
@@ -26,6 +27,8 @@ const Users = () => {
         return <UsersForm />;
       case 'orders':
         return <OrdersUser />;
+        case 'settings':
+        return <Settings />;
       default:
         return null;
     }
@@ -38,7 +41,6 @@ const Users = () => {
       
       <div className={style.view}>
       
-      {user && user.image && <img className={style.image} src={user.image} alt="User Image" />}
       {renderComponent()}
       
       </div>

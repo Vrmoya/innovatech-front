@@ -91,6 +91,16 @@ const UsersForm = () => {
 
   return (
     <div className={style.containerform}>
+      
+      <div className={style.profile}>
+      <div>
+           {user && user.image && <img className={style.image} src={user.image} alt="User Image" />}
+           </div>
+        {/* <div 
+        className={style.item}>
+          <h3 className={style.h3}>Login with</h3>
+        </div> */}
+      </div>
 
 
 
@@ -105,7 +115,8 @@ const UsersForm = () => {
         <div className={style.option}>
           <div className={style.containerspan}>
             <div className={style.info}>
-              <h2 className={style.h2}>{user?.name}</h2>
+              <h3 className={style.h3}>Name:</h3>
+              <h3 className={style.h3}>{user?.name}</h3>
               <div className={style.data}>{editMode.username && (
                 <>
                 <input
@@ -120,56 +131,62 @@ const UsersForm = () => {
             </div>
             <div className={style.containerbutton}>
             <button onClick={() => handleEditClick('username')}>Edit</button>
-
-
-            </div>
-            
-            
-              
-            
+             </div>
+          </div>
           </div>
 
-        </div>
+          <hr />
 
 
         <div className={style.option}>
 
-          <div className={style.containerspan}><span >{user?.email}</span>
-            {editMode.email ? (
+          <div className={style.containerspan}>
+            <div className={style.info}>
+              <h3 className={style.h3}>E-mail:</h3>
+            <h3 className={style.h3}>{user?.email}</h3>
+            <div className={style.data}>
+            {editMode.email && (
+              <>
               <input
                 className={style.input}
                 name="email"
                 value={userData.email}
                 onChange={handleChange}
-                placeholder='new email'>
+                placeholder='new email'/>
+              </>
+            )}
+            </div>
 
-              </input>
-            ) : (
+
+            
+            </div>
+           
+           
+          
               <div className={style.containerbutton}>
                 <button onClick={() => handleEditClick('email')}>Edit</button></div>
-            )}
+           
 
           </div>
 
         </div>
+        <hr />
 
         <div className={style.option}>
 
-          <div className={style.containerspan}>
-            <span className={style.span}>Password</span>
-            {editMode.password ? (
-              <input
-                className={style.input}
-                name="password"
-                value={userData.password}
-                onChange={handleChange}
-                placeholder='new password'>
-
-              </input>
-            ) : (<div className={style.containerbutton}>
-              <button onClick={() => handleEditClick('password')}>Edit</button></div>
-            )}
-          </div>
+        <div className={style.containerspan}>
+            <div className={style.info}>
+              <h3 className={style.h3}>Register date:</h3>
+              <h3 className={style.h3}>{user?.createdAt}</h3>
+              <div className={style.data}>
+                <>
+              
+                </>
+              </div>
+              
+            </div>
+          
+        </div>
 
         </div>
 
