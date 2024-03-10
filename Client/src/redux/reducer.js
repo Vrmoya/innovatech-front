@@ -18,8 +18,9 @@ import {
   SIGN_UP_SUCCESS,
   LOGOUT,
   INJECT_USER,
-  SHOW_SHOPPING_CART
+  SHOW_SHOPPING_CART, 
 } from "./actions";
+import { SET_RECOVERY_MODE } from "./actions";
 
 const initialState = {
   //Variables de producto, podría juntarse todo en un objeto
@@ -39,7 +40,9 @@ const initialState = {
   user: null,
   error: null,
   localUser: null,
-  showShoppingCart: false
+  showShoppingCart: false,
+  //recupera contraseña
+  recoveryMode: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -235,7 +238,13 @@ const rootReducer = (state = initialState, action) => {
 
     default:
       return { ...state };
-  }
+
+      case SET_RECOVERY_MODE:
+        return {
+          ...state,
+          recoveryMode: action.payload,
+  };
+};
 };
 
 export default rootReducer;

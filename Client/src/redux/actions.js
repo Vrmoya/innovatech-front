@@ -20,6 +20,7 @@ export const INJECT_CART_DATA = 'INJECT_CART_DATA'
 export const LOGOUT = 'LOGOUT';
 export const INJECT_USER = 'INJECT_USER';
 export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
+export const SET_RECOVERY_MODE = 'SET_RECOVERY_MODE';
 
 export const showShoppingCart = (data) => {
   return {
@@ -123,13 +124,6 @@ export const signUpAction = ({ name, email, password }) => {
     }
   };
 };
-
-export function changeForm(formType) {
-  return {
-    type: CHANGE_FORM,
-    payload: formType
-  };
-}
 
 export function postForm(payload) {
   return async function () {
@@ -287,3 +281,52 @@ export const injectCartData = (data) => {
     payload: data
   }
 }
+
+// Recuperacion de contraseña
+
+export function changeForm(formType) {
+  return (dispatch) => {
+    dispatch({
+      type: CHANGE_FORM,
+      payload: formType,
+    });
+
+    if (formType === 'recovery') {
+      dispatch({ type: 'SET_RECOVERY_MODE', payload: true });
+    } else {
+      dispatch({ type: 'SET_RECOVERY_MODE', payload: false });
+    }
+  };
+}
+
+
+export const recoverPasswordAction = (email) => {
+  return async (dispatch) => {
+    try {
+      // Llama a tu API para solicitar la recuperación de contraseña
+      const response = await fetch('http://localhost:5173/api/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      // Maneja la respuesta del servidor
+      if (response.ok) {
+        // Puedes realizar acciones adicionales aquí después de un éxito
+        console.log('Password recovery email sent successfully');
+        dispatch(recoverPasswordSuccess()); // Puedes despachar otra acción si es necesario
+      } else {
+        console.error('Failed to recover password. Server response:', response.statusText);
+        dispatch(recoverPasswordFailure()); // Puedes despachar otra acción si es necesario
+      }
+    } catch (error) {
+      console.error('Error recovering password:', error);
+      dispatch(recoverPasswordFailure()); // Puedes despachar otra acción si es necesario
+    }
+  };
+};
+
+// Acciones de éxito y fracaso
+const recoverPasswordSuccess = () => ({ type: 'RECOVER_PASSWORD_SUCCESS' });
+const recoverPasswordFailure = () => ({ type: 'RECOVER_PASSWORD_FAILURE' });
