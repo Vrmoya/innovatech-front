@@ -202,12 +202,9 @@ const LoginForm = () => {
 
 
       </form>
-      
-      <div className={style.forgotpassword}>
-        Lost Password? <Link to="/resetpassword"><span>Click Here</span></Link>
-      </div>
+
       <div className={style.containerButton}>
-        <div className={style.forgotpassword}>Lost Password? <span>Click Here</span></div>
+        <div className={style.forgotpassword}>Lost Password? <Link to="/resetpassword"><span className={style.clickHere}>Click Here</span></Link></div>
         <div className={style.divLog}>
           <button className={style.social}
             onClick={handleGoogleSignIn}>

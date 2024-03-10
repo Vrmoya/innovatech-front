@@ -135,11 +135,13 @@
 }
 
 .forgotpassword {
-
-    color: #ffffff;
+    color: #fff;
     font-size: small;
 }
 
+.clickHere{
+    color: blueviolet;
+}
 
 
 .error {
