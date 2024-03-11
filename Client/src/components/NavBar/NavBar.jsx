@@ -21,6 +21,8 @@ const NavBar = () => {
   const cart = useSelector(state => state.cart)
   const showShoppingCartState = useSelector((state) => state.showShoppingCart)
 
+  console.log(user);
+
   useEffect(() => {
     if (cart.length > 0) {
       const quantityProducts = cart.reduce((total, product) => (
@@ -130,7 +132,7 @@ const NavBar = () => {
           <SearchBar></SearchBar>
         </div>
         <div className={style.cartContainer}>
-          {user === null && (
+        {user === null && (
             <div className={style.buttonContainerDesk}>
               <Link to={'/login'}>
                 <button className={style.buttonLog}

@@ -32,7 +32,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path={PATHROUTES.ABOUT} element={<About />}/>
-        {user && user.isAdmin && <Route path={PATHROUTES.DASHBOARD} element={<Dashboard />}/>}
+        <Route path={PATHROUTES.DASHBOARD} element={<Dashboard />}/>
+        
+        {/* {user && user.isAdmin && <Route path={PATHROUTES.DASHBOARD} element={<Dashboard />}/>} */}
         <Route path={PATHROUTES.DETAIL} element={<Detail />}/>
         <Route path={PATHROUTES.ERROR} element={<Error />}/>
         <Route path={PATHROUTES.HOME} element={<Home />}/>
