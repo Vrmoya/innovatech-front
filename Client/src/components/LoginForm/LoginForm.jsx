@@ -103,14 +103,16 @@ const LoginForm = () => {
   const handleGoogleSignIn = () => {
     // Despachar una acción de inicio de sesión
     // Redireccionar
-    window.location.href = 'http://localhost:80/auth/google';
+    // window.location.href = 'http://localhost:80/auth/google';
+    window.location.href = 'https://innovatech-back-production.up.railway.app/auth/google';
   };
 
   const handleGitHubSignIn = () => {
     // Despachar una acción de inicio de sesión
     // Redireccionar
     // const popup = window.open('http://localhost:80/auth/github',"targetWindow")
-    window.location.href = 'http://localhost:80/auth/github';
+    // window.location.href = 'http://localhost:80/auth/github';
+    window.location.href = 'https://innovatech-back-production.up.railway.app/auth/github';
   };
 
   // console.log(userData);

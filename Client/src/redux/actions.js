@@ -24,8 +24,6 @@ export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 export const GET_USER_BY_NAME = 'GET_USER_BY_NAME';
 
-'https://innovatech-back-production.up.railway.app/'
-
 
 export const getUserByName = (name) => {
   return async function (dispatch) {
@@ -165,7 +163,7 @@ export function getInfoGithub(codigoGithub) {
   return async function (dispatch) {
     try {
       // const response = await axios.get("http://localhost:80/get/github/" + codigoGithub)
-      const response = await axios.get("https://innovatech-back-production.up.railway.app/" + codigoGithub)
+      const response = await axios.get("https://innovatech-back-production.up.railway.app/get/github/" + codigoGithub)
       console.log(response.data);
       window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GITHUB", payload: response.data })
@@ -179,7 +177,7 @@ export function getInfoGoogle(codigoGoogle) {
   return async function (dispatch) {
     try {
       // const response = await axios.get("http://localhost:80/get/google/" + codigoGoogle)
-      const response = await axios.get("https://innovatech-back-production.up.railway.app/" + codigoGoogle)
+      const response = await axios.get("https://innovatech-back-production.up.railway.app/get/google/" + codigoGoogle)
       // console.log(response.data);
       window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GOOGLE", payload: response.data })
