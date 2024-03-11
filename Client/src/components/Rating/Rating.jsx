@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-
+import FormRating from "../FormRating/FormRating";
 
 const Rating = () => {
     const rating = useSelector((state) => state.rating)

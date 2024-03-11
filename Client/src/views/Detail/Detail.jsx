@@ -1,6 +1,6 @@
 import styles from "./Detail.module.css";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Form, useParams } from "react-router-dom";
 import { useState } from "react";
 import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
 import {
@@ -8,11 +8,13 @@ import {
   cleanProductById,
   addToCart,
   getRating,
+  createRating,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
 import {getProducts, showShoppingCart } from "../../redux/actions";
+import FormRating from '../../components/FormRating/FormRating';
 
 const Detail = () => {
   const { id } = useParams();
@@ -32,6 +34,7 @@ const Detail = () => {
     useEffect(() => {
         dispatch(getProducts(categories, order, pagenumber, "6",model));
         dispatch(getRating(id))
+        //dispatch(createRating())
       }, [model,categories,order,pagenumber]);
 
   useEffect(() => {
@@ -63,7 +66,7 @@ const Detail = () => {
         thumbnail: img,
       }));
       if (data.length > 0) {
-        console.log(productById);
+        //console.log(productById);
         setImages(data);
       }
     }
@@ -147,6 +150,9 @@ const Detail = () => {
                 {showCart && <ShoppingCart />}
               </div>
             </div>
+          </div>
+          <div>
+            <FormRating id={id}/>
           </div>
           <div>
             <CarouselDetail />

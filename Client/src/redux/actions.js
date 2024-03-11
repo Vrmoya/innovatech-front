@@ -23,15 +23,16 @@ export const INJECT_CART_DATA = 'INJECT_CART_DATA'
 export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
-/* Type para rating */
+/* Types para rating */
 export const GET_RATING = 'GET_RATING';
+export const CREATE_RATING = 'CREATE_RATING';
 
 export const getRating = (id) => {
-  console.log('id del rating',id)
+  //console.log('id del rating',id)
   return async function (dispatch){
     try{
       const { data } = await axios.get("http://localhost:80/get-rating/", { params: { productId: id }});
-      console.log(data)
+      //console.log(data)
       return dispatch({
         type: GET_RATING,
         payload: data
@@ -41,6 +42,23 @@ export const getRating = (id) => {
     }
   }
 }
+export const createRating = ({ productId, rating, commentary }) => {
+  return async function (dispatch) {
+    try{
+      const ratingCreated = await axios.post("http://localhost:80/create-rating", {
+        productId,
+        rating,
+        commentary,
+      })
+      //console.log('rating creado', ratingCreated)
+      if(ratingCreated){
+        return ratingCreated.data
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
+} 
 export const showShoppingCart = (data) => {
   return {
     type: SHOW_SHOPPING_CART,

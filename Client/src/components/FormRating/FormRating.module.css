@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.star{
+    cursor: pointer;
+}
+.input{
+    display: none;
+}
