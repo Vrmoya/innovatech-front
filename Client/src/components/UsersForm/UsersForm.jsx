@@ -11,6 +11,12 @@ const UsersForm = () => {
     newPassword: false
   });
 
+  const formatDate = (dateTimeString) => {
+    if (!dateTimeString) return ""; // Manejar el caso cuando no hay fecha
+    const [date, time] = dateTimeString.split('T');
+    return `${date.split('-').join('/')} ${time.slice(0, 8)}`;
+  };
+
   // Referencia al contenedor del formulario
   const formRef = useRef();
 
@@ -92,15 +98,12 @@ const UsersForm = () => {
   return (
     <div className={style.containerform}>
       
-      <div className={style.profile}>
-      <div>
+      
+      <div className={style.contImage}>
            {user && user.image && <img className={style.image} src={user.image} alt="User Image" />}
            </div>
-        {/* <div 
-        className={style.item}>
-          <h3 className={style.h3}>Login with</h3>
-        </div> */}
-      </div>
+        
+      
 
 
 
@@ -117,21 +120,9 @@ const UsersForm = () => {
             <div className={style.info}>
               <h3 className={style.h3}>Name:</h3>
               <h3 className={style.h3}>{user?.name}</h3>
-              <div className={style.data}>{editMode.username && (
-                <>
-                <input
-                className={style.input}
-                name="username"
-                value={userData.username}
-                onChange={handleChange}
-                placeholder='new username'/>
-                </>
-              )}</div>
               
             </div>
-            <div className={style.containerbutton}>
-            <button onClick={() => handleEditClick('username')}>Edit</button>
-             </div>
+            
           </div>
           </div>
 
@@ -143,19 +134,9 @@ const UsersForm = () => {
           <div className={style.containerspan}>
             <div className={style.info}>
               <h3 className={style.h3}>E-mail:</h3>
-            <h3 className={style.h3}>{user?.email}</h3>
-            <div className={style.data}>
-            {editMode.email && (
-              <>
-              <input
-                className={style.input}
-                name="email"
-                value={userData.email}
-                onChange={handleChange}
-                placeholder='new email'/>
-              </>
-            )}
-            </div>
+              <h3 className={style.h3}>{user?.email}</h3>
+            <div/>
+           
 
 
             
@@ -163,26 +144,22 @@ const UsersForm = () => {
            
            
           
-              <div className={style.containerbutton}>
-                <button onClick={() => handleEditClick('email')}>Edit</button></div>
+              {/* <div className={style.containerbutton}>
+                <button onClick={() => handleEditClick('email')}>Edit</button></div> */}
            
 
           </div>
 
         </div>
-        <hr />
 
-        <div className={style.option}>
+        <hr />
+         <div className={style.option}>
 
         <div className={style.containerspan}>
             <div className={style.info}>
-              <h3 className={style.h3}>Register date:</h3>
-              <h3 className={style.h3}>{user?.createdAt}</h3>
-              <div className={style.data}>
-                <>
+              <h3 className={style.h3}>Register timestamp:</h3>
+              <h3 className={style.h3}>{formatDate(user?.createdAt)}</h3>
               
-                </>
-              </div>
               
             </div>
           

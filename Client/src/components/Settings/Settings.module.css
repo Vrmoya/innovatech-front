@@ -1,14 +1,75 @@
 .container {
+   
+    
     display: flex;
    
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
-    width: 500px;
-    height: 100px;
-    background-color: transparent;
-    border: 5px solid;
+    width: 600px;
+    height: 300px;
+    
+    border: 2px solid;
     border-radius: 10px;
-    border-color:  rgb(8, 2, 31);
+    border-color:  white;
+}
 
+.option{
+    display:flex;
+    flex-direction: row ;
+    align-items: center;
+    justify-content: space-between;
+    
+    background-color: rgba(221, 221, 221, 0.06);
+    
+    width: 80%;
+    height: 40px;
+    border: solid 1px;
+    border-color: white;
+    border-radius: 10px;
+}
+
+.h3{
+    color:white;
+    font-size: 15px;
+}
+
+.text{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   
+    background-color: rgba(137, 43, 226, 0.322);
+    
+    border-radius: 10px;
+    height: 100%;
+    width: 15%;
+}
+
+.contButton{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+    /* background-color: rgba(190, 209, 15, 0.884); */
+    /* background-color: yellowgreen; */
+    border-radius: 10px;
+    
+}
+
+.button{
+    height: 70%;
+    width: 80%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    /* background-color: black; */
+    color: black;
+    font-size: 0.7em;
+    
+   
 }
