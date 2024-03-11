@@ -68,7 +68,8 @@ export const toggleProduct = (id) => {
   return async function () {
     try {
       // await axios.post(`http://localhost:80/products/toggle?id=${id}`)
-      await axios.post(`https://innovatech-back-production.up.railway.app/toggle?id=${id}`)
+      const response = await axios.post(`https://innovatech-back-production.up.railway.app/products/toggle?id=${id}`)
+      console.log(response);
     } catch (error) {
       console.log(error);
     }

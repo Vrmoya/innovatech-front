@@ -115,6 +115,7 @@ const NavBar = () => {
             >
               Products
             </Link>
+            <h3>Hola</h3>
             <div className={style.buttonContainerMobile}>
               <Link to={'/login'}>
                 <button className={style.buttonLog}
