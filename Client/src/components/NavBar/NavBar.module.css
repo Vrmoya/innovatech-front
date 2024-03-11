@@ -1,151 +1,169 @@
-@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anta&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
-.nav{
-    display: flex;
-    align-items: center;
-    height: 10vh;
-    padding-top: .5em;
-    margin-bottom: 1em;
+.countProducts{
+  background-color: #000;
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.countProducts span{
+  font-size: 12px;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+  padding-top: 0.5em;
+  margin-bottom: 1em;
 }
 
-.mainContent{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 1em;
-    height: 100%;
-    width: 100%;
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1em;
+  height: 100%;
+  width: 100%;
 }
 
-.mobileButtonClose, .mobileButtonOpen{
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.5em;
-    border: 1px solid #7471723a;
-    background-color: transparent;
-    cursor: pointer;
+.mobileButtonClose,
+.mobileButtonOpen {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.5em;
+  border: 1px solid #7471723a;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.mobileButtonOpen{
-    font-size: 1em;
+.mobileButtonOpen {
+  font-size: 1em;
 }
 
-.mobileButtonClose{
-    margin-top: 1em;
+.mobileButtonClose {
+  margin-top: 1em;
 }
 
-.linkContainer{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+.linkContainer {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
-.img{
-    width: 35px;
-    height: 35px;
+.img {
+  width: 35px;
+  height: 35px;
 }
 
-.title{
-    color: #000;
-    text-decoration: none;
-    font-size: .9em;
-    padding-left: .5em;
-    font-weight: bold;
-    font-family: "Anta", sans-serif;
+.title {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.9em;
+  padding-left: 0.5em;
+  font-weight: bold;
+  font-family: "Anta", sans-serif;
 }
 
-.linkDesk{
-    display: none;
-    border-bottom: 1px solid transparent;
+.linkDesk {
+  display: none;
+  border-bottom: 1px solid transparent;
 }
 
-.linkContentMobile{
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 0 1em;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 2;
+.linkContentMobile {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0 1em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
 }
 
-.searchMobileContent{
-    margin: 1em 0;
-    width: 100%;
+.searchMobileContent {
+  margin: 1em 0;
+  width: 100%;
 }
 
-.link{
-    color: #000;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding-top: 1em;
+.link {
+  color: #000;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding-top: 1em;
 }
 
-.searchDeskContent{
-    display: none;
+.searchDeskContent {
+  display: none;
 }
 
-.buttonContainerDesk{
-    display: none;
-    justify-content: space-around;
+.buttonContainerDesk {
+  display: none;
+  justify-content: space-around;
 }
 
-.cartButton{
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 8px;
-    border: 1px solid #7471723a;
-    background-color: transparent;
-    cursor: pointer;
-    background-color: #fff;
+.cartButton {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 8px;
+  border: 1px solid #7471723a;
+  background-color: transparent;
+  cursor: pointer;
+  background-color: #fff;
 }
 
-.cartSvg{
-    cursor: pointer;
-    height: 1.5em;
-    fill: #000;
+.cartSvg {
+  cursor: pointer;
+  height: 1.5em;
+  fill: #000;
 }
 
 .linkContentMobile.hidden {
-    display: none;
+  display: none;
 }
 
-.svgMobile{
-    height: 1.5em;
-    fill: #000;
+.svgMobile {
+  height: 1.5em;
+  fill: #000;
 }
 
-.buttonContainerMobile{
-    margin-top: 2em;
+.buttonContainerMobile {
+  margin-top: 2em;
 }
 
-.buttonLog, .buttonSign{
-    border: none;
-    border-radius: 5px;
-    margin-right: 1em;
-    cursor: pointer;
-    height: 2.5em;
-    font-size: 1.1em;
-    background-color: #000;
-    color: #fff;
-    font-family: "Public Sans", sans-serif;
-    transition: .5s;
-    border: 1px solid transparent;
+.buttonLog,
+.buttonSign {
+  border: none;
+  border-radius: 5px;
+  margin-right: 1em;
+  cursor: pointer;
+  height: 2.5em;
+  font-size: 1.1em;
+  background-color: #000;
+  color: #fff;
+  font-family: "Public Sans", sans-serif;
+  transition: 0.5s;
+  border: 1px solid transparent;
 }
 
 .buttonLog:hover,
-.buttonSign:hover{
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #7471723a;
+.buttonSign:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #7471723a;
 }
 
 .isLoginContent{
@@ -172,77 +190,73 @@
     width: 25px;
 }
 
-.countProducts{
-    background-color: #000;
-    color: #fff;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-
-  .span{
-    font-size: 12px;
-  }
-
 @media screen and (min-width: 768px){
     .mainContent{
         margin-left: 1.5em;
         margin-right: 1.5em;
     }
 
-    .mobileButtonContent{
-        display: none;
-    }
+  .mobileButtonContent {
+    display: none;
+  }
 
-    .linkContentMobile{
-        display: none;
-    }
+  .linkContentMobile {
+    display: none;
+  }
 
-    .linkDesk{
-        display: block;
-        text-decoration: none;
-        margin-left: 1.5em;
-        color: #747172;
-        font-size: .9em;
-        font-weight: 600;
-    }
+  .linkDesk {
+    display: block;
+    text-decoration: none;
+    margin-left: 1.5em;
+    color: #747172;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
 
-    .linkDesk:hover{
-        color: #292929;
-        border-bottom: 1px solid #292929;
-    }
+  .linkDesk:hover {
+    color: #292929;
+    border-bottom: 1px solid #292929;
+  }
 
-    .searchDeskContent{
-        display: block;
-        width: 400px;
-    }
+  .searchDeskContent {
+    display: block;
+    width: 400px;
+  }
 
-    .buttonContainerDesk{
-        display: block;
-    }
-    
-    .cartContainer{
-        display: flex;
-        align-items: center;
-    }
+  .buttonContainerDesk {
+    display: block;
+  }
 
-    .buttonLog, .buttonSign{
-        font-size: .9em;
-    }
+  .cartContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .buttonLog,
+  .buttonSign {
+    font-size: 0.9em;
+  }
 }
 
-@media screen and (max-width: 1024px) and (min-width: 768px){
-    .title{
-        display: none;
-    }
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .title {
+    display: none;
+  }
 
-    .searchDeskContent{
-        width: 250px;
-    }
+  .searchDeskContent {
+    width: 250px;
+  }
+}
+.badge {
+  position: absolute;
+  right: 0;
+  height: 4px;
+  width: 4px;
+  border-radius: 9999px;
+  background-color: #3182ce;
+  font-size: 11px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  line-height: 1;
 }

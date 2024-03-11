@@ -1,4 +1,3 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./Detail.module.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -7,18 +6,18 @@ import CarouselDetail from "../../components/CarouselDetail/CarouselDetail";
 import {
   getProductById,
   cleanProductById,
+  showShoppingCart,
   addToCart,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
-import {getProducts, showShoppingCart } from "../../redux/actions";
+import {getProducts } from "../../redux/actions";
 
 const Detail = () => {
   const { id } = useParams();
   const [images, setImages] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [showCart, setShowCart] = useState(false);
 
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
@@ -62,34 +61,24 @@ const Detail = () => {
         thumbnail: img,
       }));
       if (data.length > 0) {
-        console.log(productById);
         setImages(data);
       }
     }
   }, [productById]);
 
-  const cleanData = () => {
-    const clean = cart?.map((product) => {
-      
-    })
-  }
 
-
-  // useEffect(() => {
-  //   if (
-  //     productById &&
-  //     Array.isArray(productById.categories) &&
-  //     productById.categories.length > 0
-  //   ) {
-  //     const category = productById.categories[0].name;
-  //     console.log(productById);
-  //     //   const productsFiltered = products.filter((product) => product.categories[0].name === category)
-  //     //   if(productsFiltered.length > 0){
-  //     //     console.log(productsFiltered)
-  //     //     setRelatedProducts(productsFiltered)
-  //     // }
-  //   }
-  // }, [productById]);
+  useEffect(() => {
+    if (products && Array.isArray(products.categories) && products.categories.length > 0) 
+    { console.log('useEffect2',products.categories)
+    //   const category = productById.categories[0].name;
+    //   console.log(productById);
+    //     const productsFiltered = products.filter((product) => product.categories[0].name === category)
+    //     if(productsFiltered.length > 0){
+    //       console.log('useEffect2',productsFiltered)
+    //       setRelatedProducts(productsFiltered)
+    //   }
+    }
+  }, [products]);
 
   const handleAddToCart = () => {
     if (productById && productById.id) {
@@ -143,7 +132,6 @@ const Detail = () => {
                   <PiPlusBold className={styles.iconPlus} />
                   Add To Cart
                 </button>
-                {showCart && <ShoppingCart />}
               </div>
             </div>
           </div>
