@@ -82,6 +82,7 @@
 }
 
 .link{
+    /* display: none; */
     color: #000;
     text-decoration: none;
     font-size: 1.2em;
@@ -268,6 +269,10 @@
 
     .buttonLog, .buttonSign{
         font-size: .9em;
+    }
+
+    .link{
+        display: none;
     }
 }
 
