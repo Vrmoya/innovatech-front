@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import style from './ResetPassword.module.css';
 
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 
 
 
@@ -36,18 +36,19 @@ const ResetPassword = () => {
         try {
           const response = await axios.post('http://localhost:80/forgot-password', { email });
           console.log(response.data);
-          alert('Revisá tu casilla de correo');
+          swal("E-mail sent successfully", "click ok to continue", "success");
         } catch (error) {
           console.error('Error:', error);
-          alert('Envío fallido');
+          swal("Error sending e-mail", "Please check fields data and try again later", "error");
         }
       };
 
   return (
     <div className={style.containerForm}>
 
-        <h3>Reestablecimiento de constraseña</h3>
-        
+        <div className={style.txt}>Reset Password</div>
+        <hr />
+        <div className={style.info}>Please enter a registered email to receive a password reset email.</div>
         <form onSubmit={handleSubmit}
         className={style.form}>
             <input 
@@ -56,7 +57,8 @@ const ResetPassword = () => {
             value={input.email}
             className={style.input} 
             onChange={handleChange}/>
-            <button type="submit">Send Email</button>
+            <button className={style.button}
+            type="submit">Send Email</button>
             </form>
             
             </div>

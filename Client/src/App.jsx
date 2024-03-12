@@ -1,6 +1,6 @@
 import PATHROUTES from "./helpers/PathRoutes";
 import { Routes, Route, useLocation } from 'react-router-dom';
-import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPassword, ChangePassword} from './views'
+import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ChangePassword, ResetPasswordView} from './views'
 import NavBar from "./components/NavBar/NavBar";
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -9,10 +9,11 @@ import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx";
 import LoginGitHub from "./components/LoginGitHub/LoginGithub.jsx";
 
 
+
 function App() {
   const dispatch = useDispatch()
-  const location = useLocation(); // Obtener la ubicación actual
-  const [hideNavbar, setHideNavbar] = useState(false); // Estado para ocultar la barra de navegación
+  const location = useLocation(); 
+  const [hideNavbar, setHideNavbar] = useState(false); 
   const user = useSelector(state => state.user)
 
   useEffect(() => {
@@ -30,13 +31,13 @@ function App() {
   },[dispatch])
 
   useEffect(() => {
-    // Actualizar el estado para ocultar la barra de navegación si estás en la vista de usuarios
+   
     setHideNavbar(location.pathname === PATHROUTES.USERS);
   }, [location]);
 
   return (
     <div>
-      {/* Renderiza la barra de navegación solo si hideNavbar es false */}
+      
       {!hideNavbar && <NavBar />}
 
 
@@ -51,7 +52,8 @@ function App() {
         <Route path={PATHROUTES.GITHUB} element = {<LoginGitHub/>}/>
         <Route path={PATHROUTES.GOOGLE} element = {<LoginGoogle/>}/>
         <Route path={PATHROUTES.USERS} element={<Users />}/>
-        <Route path={PATHROUTES.RESETPASSWORD} element={<ResetPassword />}/>
+        <Route path={PATHROUTES.RESETPASSWORD} element= {<ResetPasswordView/>}/>
+        
         <Route path={PATHROUTES.CHANGEPASSWORD} element={<ChangePassword />}/>
  
       </Routes>

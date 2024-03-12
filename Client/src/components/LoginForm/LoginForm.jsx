@@ -31,20 +31,20 @@ const LoginForm = () => {
     password: "",
   });
 
-  const [focusedField, setFocusedField] = useState(null); // Estado para el campo enfocado
+  const [focusedField, setFocusedField] = useState(null); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Actualizar el estado de userData
+    
     setUserData((prevUserData) => ({
       ...prevUserData,
       [name]: value,
     }));
 
-    // Calcular los nuevos errores utilizando el valor actualizado de userData
+    
     setErrors(loginValidator({ ...userData, [name]: value }));
-    // console.log(userData)
+    
   };
 
   // Actualizar el campo enfocado cuando se enfoca o se desenfoca un campo
@@ -83,7 +83,7 @@ const LoginForm = () => {
       }
 
 
-      //luego de hacer submit limpio los inputs del form
+      
       setUserData({
         name: "",
         email: "",
@@ -92,24 +92,20 @@ const LoginForm = () => {
       })
 
 
-
     } else {
       console.log("Formulario no enviado debido a errores:", formErrors);
-      alert("Corrige los errores antes de enviar el formulario.");
+      swal("Please complete all fields correctly before submitting the form", "", "error");
 
     }
   }
 
   const handleGoogleSignIn = () => {
-    // Despachar una acción de inicio de sesión
-    // Redireccionar
+   
     window.location.href = 'http://localhost:80/auth/google';
   };
 
   const handleGitHubSignIn = () => {
-    // Despachar una acción de inicio de sesión
-    // Redireccionar
-    // const popup = window.open('http://localhost:80/auth/github',"targetWindow")
+    
     window.location.href = 'http://localhost:80/auth/github';
   };
 

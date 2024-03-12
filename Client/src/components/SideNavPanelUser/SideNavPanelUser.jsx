@@ -5,11 +5,17 @@ import home from '../../assets/home.svg'
 import settings from '../../assets/settings.svg'
 import logo from '../../../public/logo-white.png'
 import user2 from '../../assets/user2.svg'
-
+import { logout } from '../../redux/actions'
+import { useDispatch } from 'react-redux'
 
 import React from 'react'
 
+
+
 const SideNavPanelUser = ({ onOptionChange }) => {
+
+
+    const dispatch= useDispatch();
     const handleOptionClick = (option) => {
         onOptionChange(option);
     };
@@ -18,6 +24,13 @@ const SideNavPanelUser = ({ onOptionChange }) => {
     const handleHomeClick = () => {
         window.location.href = '/'
     };
+
+    
+    
+  const handleLogOut = () => {
+    dispatch(logout());
+    window.location.href = 'http://localhost:5173/';
+  };
     
     return (
         <div className={style.sideNav}>
@@ -40,9 +53,9 @@ const SideNavPanelUser = ({ onOptionChange }) => {
                     <img src={shop} alt="" className={style.svg} />
                     <span className={style.span}>My Orders</span>
                 </button>
-                <button className={style.buttonNav}  onClick={() => handleOptionClick('settings')}>
+                <button className={style.buttonNav}  onClick={() => handleOptionClick(handleLogOut)}>
                     <img src={settings} alt="" className={style.svg} />
-                    <span className={style.span}>Settings</span>
+                    <span className={style.span}>Logout</span>
                 </button>
             </div>
         </div>
