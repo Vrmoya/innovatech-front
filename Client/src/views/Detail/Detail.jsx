@@ -8,13 +8,13 @@ import {
   cleanProductById,
   addToCart,
   getRating,
-  createRating,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
 import {getProducts, showShoppingCart } from "../../redux/actions";
 import FormRating from '../../components/FormRating/FormRating';
+import Ratings from "../../components/Ratings/Ratings";
 
 const Detail = () => {
   const { id } = useParams();
@@ -34,7 +34,6 @@ const Detail = () => {
     useEffect(() => {
         dispatch(getProducts(categories, order, pagenumber, "6",model));
         dispatch(getRating(id))
-        //dispatch(createRating())
       }, [model,categories,order,pagenumber]);
 
   useEffect(() => {
@@ -66,7 +65,6 @@ const Detail = () => {
         thumbnail: img,
       }));
       if (data.length > 0) {
-        //console.log(productById);
         setImages(data);
       }
     }
@@ -154,6 +152,9 @@ const Detail = () => {
           <div className={styles.containerRating} >
             <FormRating id={id}/>
           <hr />
+          </div>
+          <div>
+            <Ratings />          
           </div>
           <div>
             <CarouselDetail />

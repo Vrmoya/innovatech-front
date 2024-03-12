@@ -24,7 +24,6 @@ const FormRating = ({ id }) => {
     })
  }
  const handleChangeCommentary = (event) => {
-    //const { value } = event.target;
     setRating({
         ...rating,
         commentary: event.target.value
@@ -37,7 +36,6 @@ const FormRating = ({ id }) => {
   return (
     <form onSubmit={handleSubmit}>
     <div className={style.container}>
-      <h2>Opine sobre el producto</h2>
       <div className={style.containerStars}>
         {[...Array(5)].map((star, index) => {
             const ratingValue = index + 1

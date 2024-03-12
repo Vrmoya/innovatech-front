@@ -8,6 +8,8 @@
 .containerStars{
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
+    margin-top: 25px;
 }
 .star{
     cursor: pointer;
@@ -24,6 +26,7 @@
     padding-left: 2px;
     padding-right: 2px;
     width: 400px;
+    height: 30px;
 }
 .buttonSubmit{
     border: none;
