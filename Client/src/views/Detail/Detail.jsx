@@ -151,8 +151,9 @@ const Detail = () => {
               </div>
             </div>
           </div>
-          <div>
+          <div className={styles.containerRating} >
             <FormRating id={id}/>
+          <hr />
           </div>
           <div>
             <CarouselDetail />

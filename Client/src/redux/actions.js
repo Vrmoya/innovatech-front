@@ -43,6 +43,7 @@ export const getRating = (id) => {
   }
 }
 export const createRating = ({ productId, rating, commentary }) => {
+  console.log('Propiedades recibidas del Form:', productId, rating, commentary)
   return async function (dispatch) {
     try{
       const ratingCreated = await axios.post("http://localhost:80/create-rating", {
@@ -50,10 +51,10 @@ export const createRating = ({ productId, rating, commentary }) => {
         rating,
         commentary,
       })
-      //console.log('rating creado', ratingCreated)
-      if(ratingCreated){
-        return ratingCreated.data
-      }
+      console.log('rating creado', ratingCreated)
+      //if(ratingCreated){
+       // return ratingCreated.data
+     // }
     }catch(err){
       console.log(err)
     }
