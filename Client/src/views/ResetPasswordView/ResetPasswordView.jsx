@@ -6,7 +6,8 @@ import ResetPassword from '../../components/ResetPassword/ResetPassword';
 
 const ResetPasswordView = () => {
   return (
-    <div className={style.container}><ResetPassword></ResetPassword>
+    <div className={style.container}>
+      <ResetPassword></ResetPassword>
     </div>
   )
 }

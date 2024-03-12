@@ -22,32 +22,32 @@ const LoginForm = () => {
   if (user && user.isAdmin === true) navigate('/dashboard')
   else if (user) navigate('/')
   const currentForm = useSelector(state => state.currentForm);
-  const dispatch = useDispatch(); // Obtener la función dispatch
+  const dispatch = useDispatch()
 
-  //capturo los datos del form en un estado local
+
   const [userData, setUserData] = useState({
     email: "",
     name: "",
     password: "",
   });
 
-  const [focusedField, setFocusedField] = useState(null); 
+  const [focusedField, setFocusedField] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    
+
     setUserData((prevUserData) => ({
       ...prevUserData,
       [name]: value,
     }));
 
-    
+
     setErrors(loginValidator({ ...userData, [name]: value }));
-    
+
   };
 
-  // Actualizar el campo enfocado cuando se enfoca o se desenfoca un campo
+
   const handleFocus = (fieldName) => {
     setFocusedField(fieldName);
   };
@@ -66,50 +66,53 @@ const LoginForm = () => {
     let formErrors = loginValidator(userData);
 
     if (currentForm === 'login') {
-      // Omitir la validación del campo "name" en el formulario de inicio de sesión
+
       formErrors = loginValidator(userData, true);
     } else {
-      formErrors = loginValidator(userData, false); // Aplicar todas las validaciones en el formulario de registro
+      formErrors = loginValidator(userData, false);
     }
     if (Object.keys(formErrors).length === 0) {
-      // Enviar los datos al backend mediante la acción correspondiente
-      if (currentForm === 'login') {
-        dispatch(LoginAction({ email, password }));
+      try {
+        if (currentForm === 'login') {
+          dispatch(LoginAction({ email, password }));
+        } else {
+          dispatch(signUpAction({ name, email, password }));
+        }
+        setUserData({
+          name: '',
+          email: '',
+          password: '',
+        });
+        if (currentForm === 'signup') {
 
-      } else {
-        dispatch(signUpAction({ name, email, password }));
-        swal("User created success", "click ok to continue", "success")
-        dispatch(changeForm('login'))
+          dispatch(changeForm('login'));
+        } else {
+          if (user && user.isAdmin === true) {
+            navigate('/dashboard');
+          } else if (user) {
+            navigate('/');
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        swal("Error", "An error occurred", "error");
       }
-
-
-      
-      setUserData({
-        name: "",
-        email: "",
-        password: "",
-
-      })
-
-
     } else {
-      console.log("Formulario no enviado debido a errores:", formErrors);
       swal("Please complete all fields correctly before submitting the form", "", "error");
-
     }
-  }
+  };
 
   const handleGoogleSignIn = () => {
-   
+
     window.location.href = 'http://localhost:80/auth/google';
   };
 
   const handleGitHubSignIn = () => {
-    
+
     window.location.href = 'http://localhost:80/auth/github';
   };
 
-  // console.log(userData);
+
 
   return (
     <div className={style.containerLoginForm}>
