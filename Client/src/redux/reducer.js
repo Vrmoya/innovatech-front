@@ -19,7 +19,9 @@ import {
   LOGOUT,
   INJECT_USER,
   SHOW_SHOPPING_CART,
-  GET_RATING
+  GET_RATING,
+  RATING_MESSAGE_APPROVE,
+  RATING_MESSAGE_ERROR
 } from "./actions";
 
 const initialState = {
@@ -41,11 +43,23 @@ const initialState = {
   error: null,
   localUser: null,
   showShoppingCart: false,
-  rating: []
+  rating: [],
+  ratingMessageApprove: '',
+  ratingMessageError:''
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case RATING_MESSAGE_APPROVE:
+      return{
+        ...state,
+        ratingMessageApprove: action.payload
+      }
+      case RATING_MESSAGE_ERROR:
+        return{
+          ...state,
+          ratingMessageError: action.payload
+        }
     case GET_RATING:
       return {
         ...state,
