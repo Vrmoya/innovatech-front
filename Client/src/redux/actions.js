@@ -25,6 +25,18 @@ export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 export const GET_USER_BY_NAME = 'GET_USER_BY_NAME';
 
 
+export const toggleUser = (id) => {
+  return async function () {
+    try {
+      const response = await axios.post(`https://innovatech-back-production.up.railway.app/user`, {id: id})
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+
 export const getUserByName = (name) => {
   return async function (dispatch) {
     try {
@@ -148,7 +160,7 @@ export function paymentGateway(cart) {
       const postCart = axios.post("https://innovatech-back-production.up.railway.app/cart", cartDB)
 
       // const response = await axios.post("http://localhost:80/create_preference", {
-        const response = await axios.post("https://innovatech-back-production.up.railway.app/create_preference", {
+      const response = await axios.post("https://innovatech-back-production.up.railway.app/create_preference", {
         items: items,
         total: totalPrice
       })
