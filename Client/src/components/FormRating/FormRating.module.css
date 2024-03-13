@@ -4,6 +4,14 @@
     margin-left: 10px; 
     margin-right: 10px;
 }
+@media screen and (max-width: 744px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
 .containerStars{
     display: flex;
     align-items: center;
