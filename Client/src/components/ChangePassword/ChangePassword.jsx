@@ -29,7 +29,7 @@ const ChangePassword = () => {
     e.preventDefault();
     const password = input.password
     try {
-      const response = await axios.post(`http://localhost:80/reset-password/${token}`, { password });
+      const response = await axios.post(`https://innovatech-back-production.up.railway.app/reset-password/${token}`, { password });
       console.log(response.data);
       alert('Contraseña cambiada');
     } catch (error) {
@@ -55,7 +55,7 @@ const ChangePassword = () => {
           <div className={style.option}>
             <h3 className={style.text}>Enter your new password</h3>
         <input
-          type="text"
+          type="password"
           name="password"
           value={input.password}
           className={style.input}
@@ -65,7 +65,7 @@ const ChangePassword = () => {
           <div className={style.option}>
           <h3 className={style.text}>Confirm your new password</h3>
         <input
-          type="text"
+          type="password"
           name="password"
           
           className={style.input}
