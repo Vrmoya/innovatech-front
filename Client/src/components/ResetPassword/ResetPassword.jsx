@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import style from './ResetPassword.module.css';
+import validator from './validation';
 
 import swal from 'sweetalert';
 
@@ -17,24 +18,40 @@ const ResetPassword = () => {
     }
   );
 
+  const [errors, setErrors] = useState({});
+
 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+  
     setInput({
       ...input,
       [name]: value
     });
-    console.log(input);
+  
+    // Llama al validador solo con el campo que ha cambiado y actualiza los errores
+    console.log(input); // Verifica aquí si la estructura de input es como se espera
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: validator({ [name]: value })[name] // Accede directamente al error específico
+    }));
   };
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+// Verificar si hay errores antes de enviar el formulario
+if (Object.keys(errors).some((key) => errors[key])) {
+  // Mostrar mensaje de error si hay errores
+  swal('Error', 'Please fix the errors before submitting the form', 'error');
+  return;
+}
+
     const email = input.email
     try {
-      const response = await axios.post('http://localhost:80/forgot-password', { email });
+      const response = await axios.post('http://localhost:80/forgot-password' , { email });
       console.log(response.data);
       swal("E-mail sent successfully", "click ok to continue", "success");
     } catch (error) {
@@ -57,6 +74,7 @@ const ResetPassword = () => {
           value={input.email}
           className={style.input}
           onChange={handleChange} />
+          {errors.email && <p className={style.error}>{errors.email}</p>}
         <button className={style.button}
           type="submit">Send Email</button>
       </form>

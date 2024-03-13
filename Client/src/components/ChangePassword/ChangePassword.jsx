@@ -3,6 +3,7 @@ import style from './ChangePassword.module.css';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const ChangePassword = () => {
 
@@ -11,6 +12,7 @@ const ChangePassword = () => {
   const [input, setInput] = useState(
     {
       password: '',
+      confirmPassword: '' 
     }
   );
 
@@ -27,14 +29,21 @@ const ChangePassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const password = input.password
+
+    if (input.password !== input.confirmPassword) {
+      swal("The passwords do not match", "", "error");
+      return;
+    }
+
     try {
-      const response = await axios.post(`http://localhost:80/reset-password/${token}`, { password });
+      const response = await axios.post(`http://localhost:80/reset-password/${token}`,{
+        password: input.password
+      });
       console.log(response.data);
-      alert('Contraseña cambiada');
+      swal("Send Failed", "", "success");
     } catch (error) {
       console.error('Error:', error);
-      alert('Envío fallido');
+      swal("Send Failed", "", "error");
     }
   };
 
@@ -55,7 +64,7 @@ const ChangePassword = () => {
           <div className={style.option}>
             <h3 className={style.text}>Enter your new password</h3>
         <input
-          type="text"
+          type="password"
           name="password"
           value={input.password}
           className={style.input}
@@ -65,8 +74,9 @@ const ChangePassword = () => {
           <div className={style.option}>
           <h3 className={style.text}>Confirm your new password</h3>
         <input
-          type="text"
-          name="password"
+          type="password"
+          name="confirmPassword"
+          value={input.confirmPassword}
           
           className={style.input}
           onChange={handleChange} />
