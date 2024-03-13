@@ -11,6 +11,12 @@ const UsersForm = () => {
     newPassword: false
   });
 
+  const formatDate = (dateTimeString) => {
+    if (!dateTimeString) return ""; // Manejar el caso cuando no hay fecha
+    const [date, time] = dateTimeString.split('T');
+    return `${date.split('-').join('/')} ${time.slice(0, 8)}`;
+  };
+
   // Referencia al contenedor del formulario
   const formRef = useRef();
 
@@ -91,6 +97,13 @@ const UsersForm = () => {
 
   return (
     <div className={style.containerform}>
+      
+      
+      <div className={style.contImage}>
+           {user && user.image && <img className={style.image} src={user.image} alt="User Image" />}
+           </div>
+        
+      
 
 
 
@@ -105,71 +118,52 @@ const UsersForm = () => {
         <div className={style.option}>
           <div className={style.containerspan}>
             <div className={style.info}>
-              <h2 className={style.h2}>{user?.name}</h2>
-              <div className={style.data}>{editMode.username && (
-                <>
-                <input
-                className={style.input}
-                name="username"
-                value={userData.username}
-                onChange={handleChange}
-                placeholder='new username'/>
-                </>
-              )}</div>
+              <h3 className={style.h3}>Name:</h3>
+              <h3 className={style.h3}>{user?.name}</h3>
               
             </div>
-            <div className={style.containerbutton}>
-            <button onClick={() => handleEditClick('username')}>Edit</button>
-
-
-            </div>
-            
-            
-              
             
           </div>
-
-        </div>
-
-
-        <div className={style.option}>
-
-          <div className={style.containerspan}><span >{user?.email}</span>
-            {editMode.email ? (
-              <input
-                className={style.input}
-                name="email"
-                value={userData.email}
-                onChange={handleChange}
-                placeholder='new email'>
-
-              </input>
-            ) : (
-              <div className={style.containerbutton}>
-                <button onClick={() => handleEditClick('email')}>Edit</button></div>
-            )}
-
           </div>
 
-        </div>
+          <hr />
+
 
         <div className={style.option}>
 
           <div className={style.containerspan}>
-            <span className={style.span}>Password</span>
-            {editMode.password ? (
-              <input
-                className={style.input}
-                name="password"
-                value={userData.password}
-                onChange={handleChange}
-                placeholder='new password'>
+            <div className={style.info}>
+              <h3 className={style.h3}>E-mail:</h3>
+              <h3 className={style.h3}>{user?.email}</h3>
+            <div/>
+           
 
-              </input>
-            ) : (<div className={style.containerbutton}>
-              <button onClick={() => handleEditClick('password')}>Edit</button></div>
-            )}
+
+            
+            </div>
+           
+           
+          
+              {/* <div className={style.containerbutton}>
+                <button onClick={() => handleEditClick('email')}>Edit</button></div> */}
+           
+
           </div>
+
+        </div>
+
+        <hr />
+         <div className={style.option}>
+
+        <div className={style.containerspan}>
+            <div className={style.info}>
+              <h3 className={style.h3}>Register timestamp:</h3>
+              <h3 className={style.h3}>{formatDate(user?.createdAt)}</h3>
+              
+              
+            </div>
+          
+        </div>
 
         </div>
 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import swal from 'sweetalert';
 export const BASE_URL = 'http://localhost:80';
 export const GET_ORDER = 'GET_ORDER'
 export const GET_PRODUCTS = 'GET_PRODUCTS';
@@ -247,8 +248,11 @@ export const LoginAction = ({ email, password }) => {
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
+      
     } catch (error) {
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
+      // Mostrar una SweetAlert al usuario con el mensaje de error
+      swal("Authentication failed", "Please check your credentials", "error");
     }
   };
 };
@@ -261,6 +265,7 @@ export const signUpAction = ({ name, email, password }) => {
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
     } catch (error) {
       dispatch({ type: SIGN_UP_FAILURE, payload: error });
+      swal("Signup Failed", "Please check your credentials", "error");
     }
   };
 };

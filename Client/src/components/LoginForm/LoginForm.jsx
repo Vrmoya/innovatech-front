@@ -22,32 +22,32 @@ const LoginForm = () => {
   if (user && user.isAdmin === true) navigate('/dashboard')
   else if (user) navigate('/')
   const currentForm = useSelector(state => state.currentForm);
-  const dispatch = useDispatch(); // Obtener la función dispatch
+  const dispatch = useDispatch()
 
-  //capturo los datos del form en un estado local
+
   const [userData, setUserData] = useState({
     email: "",
     name: "",
     password: "",
   });
 
-  const [focusedField, setFocusedField] = useState(null); // Estado para el campo enfocado
+  const [focusedField, setFocusedField] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Actualizar el estado de userData
+
     setUserData((prevUserData) => ({
       ...prevUserData,
       [name]: value,
     }));
 
-    // Calcular los nuevos errores utilizando el valor actualizado de userData
+
     setErrors(loginValidator({ ...userData, [name]: value }));
-    // console.log(userData)
+
   };
 
-  // Actualizar el campo enfocado cuando se enfoca o se desenfoca un campo
+
   const handleFocus = (fieldName) => {
     setFocusedField(fieldName);
   };
@@ -66,39 +66,41 @@ const LoginForm = () => {
     let formErrors = loginValidator(userData);
 
     if (currentForm === 'login') {
-      // Omitir la validación del campo "name" en el formulario de inicio de sesión
+
       formErrors = loginValidator(userData, true);
     } else {
-      formErrors = loginValidator(userData, false); // Aplicar todas las validaciones en el formulario de registro
+      formErrors = loginValidator(userData, false);
     }
     if (Object.keys(formErrors).length === 0) {
-      // Enviar los datos al backend mediante la acción correspondiente
-      if (currentForm === 'login') {
-        dispatch(LoginAction({ email, password }));
+      try {
+        if (currentForm === 'login') {
+          dispatch(LoginAction({ email, password }));
+        } else {
+          dispatch(signUpAction({ name, email, password }));
+        }
+        setUserData({
+          name: '',
+          email: '',
+          password: '',
+        });
+        if (currentForm === 'signup') {
 
-      } else {
-        dispatch(signUpAction({ name, email, password }));
-        swal("User created success", "click ok to continue", "success")
-        dispatch(changeForm('login'))
+          dispatch(changeForm('login'));
+        } else {
+          if (user && user.isAdmin === true) {
+            navigate('/dashboard');
+          } else if (user) {
+            navigate('/');
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        swal("Error", "An error occurred", "error");
       }
-
-
-      //luego de hacer submit limpio los inputs del form
-      setUserData({
-        name: "",
-        email: "",
-        password: "",
-
-      })
-
-
-
     } else {
-      console.log("Formulario no enviado debido a errores:", formErrors);
-      alert("Corrige los errores antes de enviar el formulario.");
-
+      swal("Please complete all fields correctly before submitting the form", "", "error");
     }
-  }
+  };
 
   const handleGoogleSignIn = () => {
     // Despachar una acción de inicio de sesión
@@ -115,7 +117,7 @@ const LoginForm = () => {
     window.location.href = 'https://innovatech-back-production.up.railway.app/auth/github';
   };
 
-  // console.log(userData);
+
 
   return (
     <div className={style.containerLoginForm}>
