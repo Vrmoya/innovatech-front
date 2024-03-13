@@ -1,13 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Outfit:wght@100..900&display=swap');
+
 .nav{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.mainContent{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
-    height: 12vh;
+    width: 100%;
 }
 
-.svg{
-    cursor: pointer;
-    width: 35px;
-    filter: brightness(0) invert(1)
+.userContent{
+    display: flex;
+    align-items: center;
+}
+
+.greeting{
+    font-family: "Outfit", sans-serif;
+    color: #1f1f1f;
+    font-size: 1.3em;
+}
+
+.userImg{
+    width: 45px;
+    border-radius: 12px;
+    margin-left: 1em;
 }

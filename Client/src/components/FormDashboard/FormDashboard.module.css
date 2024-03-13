@@ -1,16 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-.container {
+.container{
+    width: 100%;
+}
+
+.formContainer {
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    margin-bottom: 1em;
+    padding: 1em 1em;
+    border-radius: 12px;
+    min-height: 400px;
+}
+
+.h1{
+    font-family: "Outfit", sans-serif;
+    color: #1f1f1f;
+    font-size: 2em;
 }
 
 .categories {
     display: flex;
     align-items: center;
     height: 10%;
-    border-bottom: 1px solid #2c2c2c23;
-    margin: 0 1em;
 }
 
 .typeTitle {
@@ -18,12 +31,11 @@
 }
 
 .select {
-    height: 2.2em;
-    margin-left: 1em;
-    background-color: #2c2c2c;
+    height: 2.5em;
+    background-color: #1f1f1f;
     color: #fff;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 8px;
     width: 15em;
 }
 
@@ -31,9 +43,6 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 0 1em;
-    border-bottom: 1px solid #2c2c2c23;
-    height: 70%;
 }
 
 .inputContainer {
@@ -55,9 +64,10 @@
 }
 
 .input {
-    border: 1px solid #2c2c2c23;
-    border-radius: 3px;
+    border: 1px solid #75686823;
+    border-radius: 8px;
     height: 2em;
+    width: 15em;
 }
 
 .input:focus {
@@ -77,30 +87,22 @@
     width: 100%;
 }
 
-.selectImg {
-    margin-left: 1em;
-}
-
-.buttonContent {
-    margin-right: 1em;
-}
-
 .inputSelect::-webkit-file-upload-button {
     height: 3em;
-    background-color: #2c2c2c;
+    background-color: #1f1f1f;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
 .buttonCreate {
     height: 3em;
     width: 5em;
-    background-color: #2c2c2c;
+    background-color: #1f1f1f;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -115,6 +117,7 @@
 }
 
 .img{
+    object-fit: contain;
     position: relative;
     width: 80px;
     height: 80px;
@@ -123,8 +126,8 @@
 
 .buttonDelete{
     position: absolute;
-    height: 2em;
-    width: 2em;
+    height: 1.7em;
+    width: 1.7em;
     background-color: rgb(211, 46, 46);
     color: #fff;
     border: none;

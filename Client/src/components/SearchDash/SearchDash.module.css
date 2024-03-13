@@ -10,16 +10,16 @@
     width: 100%;
     padding-left: 1em;
     border: 1px solid #7471723a;
-    border-radius: 8px;
+    border-radius: 12px;
     outline: none;
-    background-color: #8485873b;
-    color: #fff;
+    background-color: #fff;
+    color: #1f1f1f;
     transition: .3s ease;
     padding-left: 3em;
 }
 
 .input::placeholder {
-    color: #fff;
+    color: #1f1f1f;
 }
 
 .input:focus,
@@ -30,7 +30,7 @@
 .icon {
     position: absolute;
     /* right: 0; */
-    fill: #fff;
+    fill: #1f1f1f;
     padding-left: 1em;
     width: 1rem;
     height: 1rem;

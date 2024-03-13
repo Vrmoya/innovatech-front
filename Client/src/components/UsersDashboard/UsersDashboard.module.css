@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Outfit:wght@100..900&display=swap');
+
+.container {
+    width: 100%;
+}
+
+.h1 {
+    font-family: "Outfit", sans-serif;
+    color: #1f1f1f;
+    font-size: 2em;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 460px;
+}
+
+.usersContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 99%;
+    background-color: #fff;
+    margin-bottom: 1em;
+    align-items: center;
+    border-radius: 12px;
+    font-family: "Outfit", sans-serif;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.userID {
+    margin-left: 1em;
+    margin-right: .5em;
+}
+
+.userImg {
+    border-radius: 12px;
+    width: 60px;
+    margin: .5em;
+    background-color: #1f1f1f;
+}
+
+.userName {
+    font-size: 1em;
+    padding: 0 .5em;
+    color: #1f1f1fda;
+}
+
+.userEmail {
+    padding: 0 .5em;
+    font-size: 1em;
+    color: #1f1f1fda;
+}
+
+.buttonContent {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    font-size: 1em;
+}
+
+.button {
+    cursor: pointer;
+    border: none;
+    height: 2.2em;
+    border-radius: 8px;
+    color: #fff;
+    margin: 0 1em;
+    background-color: #1f1f1f;
+}
+
+.mainContent::-webkit-scrollbar {
+    width: 10px;
+    /* Ancho del scrollbar */
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+    background-color: #1f1f1f;
+    /* Color del thumb */
+    border-radius: 3px;
+    /* Bordes redondeados del thumb */
+}
+
+.mainContent::-webkit-scrollbar-thumb:hover {
+    background-color: #1f1f1f;
+    /* Color del thumb al pasar el cursor */
+}
+
+.mainContent::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Color del track */
+}
+
+.enable,
+.disable {
+    cursor: pointer;
+    border: none;
+    height: 2.2em;
+    border-radius: 8px;
+    color: #fff;
+    margin: 0 .5em;
+}
+
+.enable {
+    background-color: green;
+}
+
+.disable {
+    background-color: #1f1f1f;
+}
