@@ -1,26 +1,61 @@
-import { useSelector } from "react-redux";
-import FormRating from "../FormRating/FormRating";
 import style from '../Ratings/Ratings.module.css';
-import { FcRightDown2 } from "react-icons/fc";
 import { useEffect } from "react";
-
+import { useSelector } from "react-redux";
+/* Importacion de iconos */
+import { FcRightDown2 } from "react-icons/fc";
+import { FaStar } from "react-icons/fa";
+import { PiSmileySadLight } from "react-icons/pi";
+import { VscAccount } from "react-icons/vsc";
 
 const Rating = () => {
-  const rating = useSelector((state) => state.rating);
+  const ratings = useSelector((state) => state.rating);
 
   useEffect(() => {
-  },[rating])
+  },[ratings])
 
   return (
     <>
-    <div className={style.containerRatings}>
-      {rating.length === 0 && <p>There are no reviews for this product</p>}
-      {rating.length > 1 && <p> Product reviews <FcRightDown2 style={{ fontSize: '20px', verticalAlign: 'text-bottom' }}/></p>}
-    </div>
-      <div>
-
+      <div className={style.containerRatings}>
+        <div>
+          {ratings.length === 0 && <p>There are no reviews for this product <PiSmileySadLight style={{ fontSize: '22px', verticalAlign: 'text-bottom' }}/></p>}
+          {ratings.length > 1 && <p> Product reviews <FcRightDown2 style={{ fontSize: '20px', verticalAlign: 'text-bottom' }}/></p>}
+        </div>
+        <div>
+          {ratings.length > 1 && (
+            ratings.reverse().map((rating) => (
+              <div className={style.boxRating}>
+                <div className={style.ratingInfo}>
+                  <div className={style.userInfo}>
+                    <VscAccount  style={{ fontSize: '30px'}}/>
+                    <p>{rating.commentary}</p>
+                  </div>
+                  <div className={style.containerStars}>
+                    {[...Array(5)].map((star, index) => (
+                      <label key={index}>
+                        <input
+                          className={style.input}
+                          type="radio"
+                          name="rating"
+                        />
+                        <FaStar
+                          key={index}
+                          className={style.star}
+                          style={{ fontSize: '22px'}}
+                          color={
+                            index < rating.rating
+                              ? "#ffc107"
+                              : "#e4e5e9"
+                          }
+                        />
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </>
-  );
-};
+  )}
 export default Rating;

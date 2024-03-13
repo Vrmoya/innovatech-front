@@ -13,6 +13,10 @@
 .star{
     cursor: pointer;
     width: 40px;
+    transition: color 0.3s ease;
+}
+.star:hover {
+    color: #ffc107; 
 }
 
 .input{

@@ -80,7 +80,7 @@ const FormRating = ({ id }) => {
         <div className={style.divTextarea}>
           <textarea
             className={style.textarea}
-            placeholder="Enter your feedback..."
+            placeholder="Enter your feedback this product..."
             onChange={handleChangeCommentary}
             value={rating.commentary}
           ></textarea>

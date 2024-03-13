@@ -26,15 +26,14 @@ export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
 /* Types para rating */
 export const GET_RATING = 'GET_RATING';
 export const CREATE_RATING = 'CREATE_RATING';
-export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
+export const UPDATE_RATINGS = 'UPDATE_RATINGS';
 export const RATING_MESSAGE_ERROR = 'RATING_MESSAGE_ERROR';
+export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
 
 export const getRating = (id) => {
-  //console.log('id del rating',id)
   return async function (dispatch){
     try{
       const { data } = await axios.get("http://localhost:80/get-rating/", { params: { productId: id }});
-      //console.log(data)
       return dispatch({
         type: GET_RATING,
         payload: data
@@ -45,7 +44,6 @@ export const getRating = (id) => {
   }
 }
 export const createRating = ({ productId, rating, commentary }) => {
-  console.log('Propiedades recibidas del Form:', productId, rating, commentary)
   return async function (dispatch) {
     try{
       const ratingCreated = await axios.post("http://localhost:80/create-rating", {
@@ -55,8 +53,8 @@ export const createRating = ({ productId, rating, commentary }) => {
       })
       if(ratingCreated){
         return dispatch({
-          type: RATING_MESSAGE_APPROVE,
-          payload: 'Review successfully submitted!'
+          type: UPDATE_RATINGS,
+          payload: ratingCreated.data
         })
       }
     }catch(err){

@@ -21,7 +21,8 @@ import {
   SHOW_SHOPPING_CART,
   GET_RATING,
   RATING_MESSAGE_APPROVE,
-  RATING_MESSAGE_ERROR
+  RATING_MESSAGE_ERROR,
+  UPDATE_RATINGS
 } from "./actions";
 
 const initialState = {
@@ -50,10 +51,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case RATING_MESSAGE_APPROVE:
+    case UPDATE_RATINGS:
       return{
         ...state,
-        ratingMessageApprove: action.payload
+        rating: [...state.rating, action.payload],
+        ratingMessageApprove: 'Review successfully submitted!'
       }
       case RATING_MESSAGE_ERROR:
         return{

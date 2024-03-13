@@ -1,4 +1,46 @@
-.containerRatings{
-    margin-left: 10px; 
-    margin-right: 10px;
+.containerRatings {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.boxRating {
+  background-color: #fff;
+  width: 500px;
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  overflow: hidden; /* Evita que el contenido se desborde fuera del contenedor */
+}
+
+.boxRating p {
+  margin: 0; /* Elimina el margen predeterminado del párrafo */
+  padding: 10px; /* Añade un espacio interno alrededor del texto */
+  word-wrap: break-word; /* Permite que el texto se divida en palabras cuando sea necesario */
+}
+.input {
+  display: none;
+}
+
+.ratingInfo {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userInfo p {
+  margin-left: 10px;
+}
+
+.containerStars {
+  display: flex;
+}
+
+.star {
+  width: 17px;
 }
