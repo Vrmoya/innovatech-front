@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+.containerform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45vw;
+    height: 65vh;
+    
+    /* border: 2px solid;
+    border-radius: 10px; */
+    border-color:  rgb(8, 2, 31);
+    
+}
+
+.form{
+    width: 40vw;
+    height: 330px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color: rgb(8, 2, 31);
+/* border: solid 3px */
+
+border-radius: 10px; 
+
+}
+.option {
+    display:flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-around;
+align-items: space-around;
+/* align-content: space-around; */
+width: 100%;
+/* height: 12vh; */
+background-color: red;
+border: 2px solid;
+border-top: 0.5px;
+border-color: white;
+/* padding-left: 20px; */
+
+
+
+}
+.input{
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    /* width: 20vw; */
+    /* height: 10vh; */
+
+
+}
+
+.containerspan{
+    width: 100%;
+    background-color: aqua;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    display: flex;
+    /* flex-direction: flex-start; */
+    align-content: center;
+    /* margin-right: auto; */
+
+    font-size: 20px;
+    font:  url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+color:white;
+/* padding-left: 20px; */
+
+}
+
+.containerbutton {
+    /* height: 40vh; */
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 5vw; */
+    /* margin-left: auto; Mueve el botón "Edit" al extremo derecho */
+
+}
+
+ 
+.h2{
+    margin: 0;
+}
+
+  .info{
+    /* height: 100%; */
+
+    display:flex;
+    flex-direction: column;
+    background-color: yellow;
+  }
+
+  .data{
+    background-color: green;
+    width: 100%;
+    height: 50px;
+  }

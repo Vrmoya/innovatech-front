@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import style from './LoginForm.module.css';
-import mail2 from '../../assets/mail2.svg'
-import password2 from '../../assets/password2.svg'
-import user2 from '../../assets/user2.svg'
-import google from '../../assets/google.svg'
-import github from '../../assets/github.svg'
+import mail2 from '../../assets/mail3.svg'
+import password2 from '../../assets/password3.svg'
+import user2 from '../../assets/user3.svg'
+import google from '../../assets/google2.svg'
+import github from '../../assets/github2.svg'
 import loginValidator from './validation';
-import { signUpAction, LoginAction, changeForm} from '../../redux/actions';
+import { signUpAction, LoginAction, changeForm } from '../../redux/actions';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
 
   const [errors, setErrors] = useState({});
   const user = useSelector(state => state.user)
   const navigate = useNavigate()
-  
+  console.log(user);
+  if (user && user.isAdmin === true) navigate('/dashboard')
+  else if (user) navigate('/')
   const currentForm = useSelector(state => state.currentForm);
-  console.log("Current form in LoginForm:", currentForm);
-
   const dispatch = useDispatch(); // Obtener la función dispatch
 
   //capturo los datos del form en un estado local
@@ -29,7 +30,7 @@ const LoginForm = () => {
     name: "",
     password: "",
   });
-  
+
   const [focusedField, setFocusedField] = useState(null); // Estado para el campo enfocado
 
   const handleChange = (e) => {
@@ -43,7 +44,7 @@ const LoginForm = () => {
 
     // Calcular los nuevos errores utilizando el valor actualizado de userData
     setErrors(loginValidator({ ...userData, [name]: value }));
-    console.log(userData)
+    // console.log(userData)
   };
 
   // Actualizar el campo enfocado cuando se enfoca o se desenfoca un campo
@@ -74,14 +75,14 @@ const LoginForm = () => {
       // Enviar los datos al backend mediante la acción correspondiente
       if (currentForm === 'login') {
         dispatch(LoginAction({ email, password }));
-        navigate('/')
+
       } else {
         dispatch(signUpAction({ name, email, password }));
         swal("User created success", "click ok to continue", "success")
         dispatch(changeForm('login'))
       }
-      
-      
+
+
       //luego de hacer submit limpio los inputs del form
       setUserData({
         name: "",
@@ -89,7 +90,7 @@ const LoginForm = () => {
         password: "",
 
       })
-      const [focusedField, setFocusedField] = useState(null); // Estado para el campo enfocado
+
 
 
     } else {
@@ -102,24 +103,26 @@ const LoginForm = () => {
   const handleGoogleSignIn = () => {
     // Despachar una acción de inicio de sesión
     // Redireccionar
-    window.location.href = 'http://localhost:80/auth/google';
+    // window.location.href = 'http://localhost:80/auth/google';
+    window.location.href = 'https://innovatech-back-production.up.railway.app/auth/google';
   };
-  
+
   const handleGitHubSignIn = () => {
     // Despachar una acción de inicio de sesión
     // Redireccionar
     // const popup = window.open('http://localhost:80/auth/github',"targetWindow")
-    window.location.href = 'http://localhost:80/auth/github';
+    // window.location.href = 'http://localhost:80/auth/github';
+    window.location.href = 'https://innovatech-back-production.up.railway.app/auth/github';
   };
 
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <div className={style.containerLoginForm}>
-
-      <h1 className={style.title}>{currentForm === 'login' ? 'Login' : 'Sign Up'}</h1>
-      <hr className={style.hr} />
-
+      <div>
+        <h1 className={style.title}>{currentForm === 'login' ? 'Login' : 'Sign Up'}</h1>
+        <hr className={style.hr} />
+      </div>
 
       <form className={style.form}
         onSubmit={(e) => handleSubmit(e)}>
@@ -202,21 +205,22 @@ const LoginForm = () => {
 
       </form>
 
-      <div className={style.forgotpassword}>Lost Password? <span>Click Here</span></div>
       <div className={style.containerButton}>
+        <div className={style.forgotpassword}>Lost Password? <Link to="/resetpassword"><span className={style.clickHere}>Click Here</span></Link></div>
+        <div className={style.divLog}>
+          <button className={style.social}
+            onClick={handleGoogleSignIn}>
+            <img src={google} alt="" className={style.svgAuth} />
+          </button>
 
-        <button className={style.social}
-          onClick={handleGoogleSignIn}>
-          <img src={google} alt="" className={style.svg} />
-        </button>
+          <button className={style.button}
+            onClick={(e) => handleSubmit(e)}>{currentForm === 'login' ? 'Login' : 'Sign Up'}</button>
 
-        <button className={style.button}
-          onClick={(e) => handleSubmit(e)}>{currentForm === 'login' ? 'Login' : 'Sign Up'}</button>
-
-        <button className={style.social}
-          onClick={handleGitHubSignIn}>
-          <img src={github} alt="" className={style.svg} />
-        </button>
+          <button className={style.social}
+            onClick={handleGitHubSignIn}>
+            <img src={github} alt="" className={style.svgAuth} />
+          </button>
+        </div>
       </div>
 
     </div>

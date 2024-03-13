@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 /* Importacion action */
-import { createRating } from "../../redux/actions.js";
+import { createRating, cleanRatings } from "../../redux/actions.js";
 
 const FormRating = ({ id }) => {
   const dispatch = useDispatch();

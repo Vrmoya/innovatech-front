@@ -1,22 +1,22 @@
 .container{
     display: flex;
-    background-color: #1f1f1f;
+    /* background-color: #eef2f5; */
+    background-color: #f1f1f1;
 }
 
-.navContent{
-    margin-right: 2em;
-}
-
-.sideNavContent{
-    min-width: 17vw;
+.sectionContent{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 0 2em;
 }
 
 .mainContent{
     display: flex;
-    flex-grow: 1;
-    margin-right: 2em;
+    max-height: 85vh;
     min-height: 85vh;
-    background-color: #fafafa;
+    width: 100%;
+    /* background: blueviolet; */
     border-radius: 8px;
 }
 

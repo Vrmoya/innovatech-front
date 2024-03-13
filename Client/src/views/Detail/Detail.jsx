@@ -8,6 +8,7 @@ import {
   cleanProductById,
   addToCart,
   getRating,
+  cleanRatings
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
@@ -41,6 +42,7 @@ const Detail = () => {
 
     return () => {
       dispatch(cleanProductById());
+      dispatch(cleanRatings())
     };
   }, [id]);
 

@@ -168,26 +168,60 @@
 
 .isLoginContent{
     display: flex;
-    justify-content: space-around;
-    margin-right: .5em;
+    justify-content: flex-end;
+    margin-right: 1em;
     width: 7em;
-    /* background-color: lightblue; */
 }
 
 .userImg{
+    cursor: pointer;
     width: 45px;
     border-radius: 100%;
-    border: 2px solid rgb(44, 197, 44);
 }
+
+.dropDown{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    background-color: #1f1f1f;
+    border-radius: 12px 0 12px 12px;
+    width: 180px;
+    height: 70px;
+    z-index: 1;
+    margin-top: 3.5em;
+    margin-right: 1em;
+    padding: 1em;
+  }
+
+  .linkDrop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1em;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 12px;
+  }
 
 .buttonLogOut{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
     border: none;
     background-color: transparent;
+    color: #fff;
+    font-size: 1em;
+    /* background-color: lightblue; */
 }
 
-.imgLogout{
+.svg{
     cursor: pointer;
     width: 25px;
+    filter: brightness(0) invert(1);
 }
 
 @media screen and (min-width: 768px){

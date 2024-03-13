@@ -5,5 +5,8 @@ import Error from './Error/Error'
 import Home from './Home/Home'
 import Landing from './Landing/Landing'
 import LoginView from './Login/LoginView'
+import Users from './Users/Users'
+import ResetPassword from '../components/ResetPassword/ResetPassword'
+import ChangePassword from './ChangePassword/ChangePassword'
 
-export {About, Dashboard, Detail, Error, Home, Landing, LoginView}
+export {About, Dashboard, Detail, Error, Home, Landing, LoginView, Users, ResetPassword, ChangePassword}
