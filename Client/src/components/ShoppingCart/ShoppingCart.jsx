@@ -25,13 +25,14 @@ const ShoppingCart = () => {
 
   const paymentID = useSelector(state => state.paymentID)
 
-  initMercadoPago('TEST-473413c2-ccef-459a-967d-2456c1ec2596', {
+  // initMercadoPago('TEST-473413c2-ccef-459a-967d-2456c1ec2596', {
+  initMercadoPago('TEST-79fadd8b-5ada-477b-bbe4-c4dec444e95c', {
     locale: "es-AR",
   });
 
   const handleBuy = () => {
     if (user === null) swal("Login first", "To make a purchase you need to register", "error");
-    dispatch(paymentGateway(cart))
+    dispatch(paymentGateway(cart,user.email))
   }
 
   const notShowShopping = () => {

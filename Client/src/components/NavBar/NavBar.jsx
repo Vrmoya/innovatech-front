@@ -103,14 +103,14 @@ const NavBar = () => {
             </div>
             <Link
               to={PATHROURES.LANDING}
-              className={style.linkDesk}
+              className={style.link}
               onClick={toggleNav}
             >
               Home
             </Link>
             <Link
               to={PATHROURES.HOME}
-              className={style.linkDesk}
+              className={style.link}
               onClick={toggleNav}
             >
               Products
@@ -132,7 +132,7 @@ const NavBar = () => {
           <SearchBar></SearchBar>
         </div>
         <div className={style.cartContainer}>
-        {user === null && (
+          {user === null && (
             <div className={style.buttonContainerDesk}>
               <Link to={'/login'}>
                 <button className={style.buttonLog}

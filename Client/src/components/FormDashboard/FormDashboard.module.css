@@ -11,6 +11,7 @@
     margin-bottom: 1em;
     padding: 1em 1em;
     border-radius: 12px;
+    min-height: 400px;
 }
 
 .h1{
