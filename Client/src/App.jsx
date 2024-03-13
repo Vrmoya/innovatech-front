@@ -1,7 +1,7 @@
 import PATHROUTES from "./helpers/PathRoutes";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar.jsx'
-import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPassword, ChangePassword} from './views'
+import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPasswordView, ChangePassword} from './views'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { injectCartData, injectUser } from './redux/actions.js'
@@ -12,7 +12,7 @@ import LoginGitHub from "./components/LoginGitHub/LoginGithub.jsx";
 
 function App() {
   const dispatch = useDispatch()
-  const location = useLocation(); 
+  const location = useLocation()
   const [hideNavbar, setHideNavbar] = useState(false); 
   const user = useSelector(state => state.user)
 
