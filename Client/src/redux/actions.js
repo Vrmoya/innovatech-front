@@ -43,8 +43,8 @@ export const logout = () => {
 
 };
 
-export function paymentGateway(cart) {
-  // console.log(cart);
+export function paymentGateway(cart,email) {
+  console.log(`user email: ${email}`);
   return async function (dispatch) {
     try {
 
@@ -52,6 +52,7 @@ export function paymentGateway(cart) {
         title: prod.model,
         price: parseFloat(prod.price),
         quantity: parseInt(prod.quantity),
+        productId:prod.id,
       }));
 
       const total = cart.map((prod) => prod.total)
@@ -79,7 +80,8 @@ export function paymentGateway(cart) {
 
       const response = await axios.post("http://localhost:80/create_preference", {
         items: items,
-        total: totalPrice
+        total: totalPrice,
+        email: email
       })
 
       const { id } = response.data;
