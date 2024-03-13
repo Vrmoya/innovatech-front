@@ -18,9 +18,9 @@ const Rating = () => {
       <div className={style.containerRatings}>
         <div>
           {ratings.length === 0 && <p>There are no reviews for this product <PiSmileySadLight style={{ fontSize: '22px', verticalAlign: 'text-bottom' }}/></p>}
-          {ratings.length > 1 && <h3 > Product reviews <FcRightDown2 style={{ fontSize: '20px', verticalAlign: 'text-bottom' }}/></h3>}
+          {ratings.length !== 0 && <h3 > Product reviews <FcRightDown2 style={{ fontSize: '20px', verticalAlign: 'text-bottom' }}/></h3>}
         </div>
-        <div>
+        <div className={style.boxContainerRating}>
           {ratings && (
             ratings.reverse().map((rating) => (
               <div className={style.boxRating}>

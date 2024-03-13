@@ -2,6 +2,19 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+@media screen and (max-width: 744px) {
+    .containerRatings{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .boxContainerRating {
+       display: flex;
+       align-items: center;
+       width: 100%;
+      }
+    
+}
 
 .boxRating {
   background-color: #fff;
