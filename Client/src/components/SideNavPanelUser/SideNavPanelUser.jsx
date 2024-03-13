@@ -5,22 +5,41 @@ import home from '../../assets/home.svg'
 import settings from '../../assets/settings.svg'
 import logo from '../../../public/logo-white.png'
 import user2 from '../../assets/user2.svg'
-
+import { logout } from '../../redux/actions'
+import { useDispatch } from 'react-redux'
 
 import React from 'react'
 
+
+
 const SideNavPanelUser = ({ onOptionChange }) => {
+
+
+    const dispatch= useDispatch();
     const handleOptionClick = (option) => {
         onOptionChange(option);
     };
+
+
+    const handleHomeClick = () => {
+        window.location.href = '/'
+    };
+
+    
+    
+  const handleLogOut = () => {
+    dispatch(logout());
+    window.location.href = 'http://localhost:5173/';
+  };
     
     return (
         <div className={style.sideNav}>
             <div className={style.navContent}>
                 <div className={style.titleContent}>
-                    <h2 className={style.titleLogo}>MY ACCOUNT</h2>
+                    <h2 className={style.titleLogo}>User Profile</h2>
                 </div>
-                <button className={style.buttonNav}>
+                <button className={style.buttonNav} onClick={handleHomeClick}>
+                
                     <img src={home} alt="" className={style.svg} />
                     <span className={style.span}>Home</span>
                 </button>
@@ -34,9 +53,9 @@ const SideNavPanelUser = ({ onOptionChange }) => {
                     <img src={shop} alt="" className={style.svg} />
                     <span className={style.span}>My Orders</span>
                 </button>
-                <button className={style.buttonNav}>
+                <button className={style.buttonNav}  onClick={() => handleOptionClick(handleLogOut)}>
                     <img src={settings} alt="" className={style.svg} />
-                    <span className={style.span}>Settings</span>
+                    <span className={style.span}>Logout</span>
                 </button>
             </div>
         </div>
@@ -44,3 +63,5 @@ const SideNavPanelUser = ({ onOptionChange }) => {
 }
 
 export default SideNavPanelUser
+
+

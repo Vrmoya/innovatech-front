@@ -2,12 +2,56 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 40vw;
-    height: 65vh;
+    width: 900px;
+    
     background-color: transparent;
     border: 5px solid;
-    border-radius: 30px;
+    border-radius: 10px;
     border-color:  rgb(8, 2, 31);
+}
+.miscompras{
+    width: 100%;
+    height: 60px;
+
+    display:flex;
+    justify-content: center;
+    background-color: rgb(177, 241, 49);
+    border-radius: 10px 10px 0 0;
+}
+
+.items{
+    background-color: rgb(8, 2, 31); 
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item{
+    display:flex;
+    color: white;
+}
+
+.order {
+    background-color: rgba(137, 43, 226, 0.637);
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.info {
+    display:flex;
+    color: white;
+    
+}
+
+.order:last-child {
+    border-radius: 0 0 10px 10px;
 }

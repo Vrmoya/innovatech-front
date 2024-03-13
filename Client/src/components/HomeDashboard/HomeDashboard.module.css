@@ -1,23 +1,24 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 }
 
-.h1{
+.h1 {
     font-family: "Outfit", sans-serif;
     color: #1f1f1f;
     font-size: 2em;
 }
 
-.mainContent{
+.mainContent {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    width: 70%;
+    width: 80%;
 }
 
-.section{
+.section {
     display: flex;
     justify-content: center;
     background-color: #fff;
@@ -26,13 +27,19 @@
     flex-grow: 1;
     padding-right: 0;
     margin-right: 1em;
+    margin-bottom: 2em;
 }
 
-.productContainer, .soldContainer, .customersContainer{
+.productContainer,
+.soldContainer,
+.disabledContainer,
+.customersContainer,
+.adminContainer,
+.blockContainer {
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
-    height: 120px;
+    height: 150px;
     width: 150px;
     flex-grow: 1;
     margin: 0 1em;
@@ -41,51 +48,82 @@
     padding: .5em;
 }
 
-.productContainer{
-    background-color: #ffeecd;
+.productContainer {
+    background-color: #B784B7;
 }
 
-.soldContainer{
-    background-color: #c0fdd5;
+.soldContainer {
+    background-color: #4CCD99;
+}
+
+.disabledContainer {
+    background-color: #7E6363;
 }
 
 .customersContainer{
-    background-color: #e2c0fd;
+    background-color: #EEE4B1;
 }
 
-.productContent, .soldContent, .customersContent{
+.adminContainer{
+    background-color: #40679E;
+}
+
+.blockContainer{
+    background-color: #B47B84;
+}
+
+.productContent,
+.soldContent,
+.disabledContent,
+.customersContent,
+.adminContent,
+.blockContent {
     display: flex;
     justify-content: center;
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     border-radius: 100%;
 }
 
-.productContent{
-    background-color: #ff977f;
+.productContent {
+    background-color: #8E7AB5;
 }
 
-.soldContent{
-    background-color: #36d84d;
+.soldContent {
+    background-color: #007F73;
+}
+
+.disabledContent {
+    background-color: #503C3C;
 }
 
 .customersContent{
-    background-color: #c083fc;
+    background-color: #8C6A5D;
 }
 
-.svg{
+.adminContent{
+    background-color: #1B3C73;
+}
+
+.blockContent{
+    background-color: #944E63;
+}
+
+.svg {
+    margin: 0 auto;
     object-fit: contain;
     width: 30px;
     filter: brightness(0) invert(1);
+    /* background-color: white; */
 }
 
-.h2{
+.h2 {
     margin: 0;
     margin-top: .5em;
     color: #1f1f1f;
 }
 
-.p{ 
+.p {
     margin: 0;
     margin-top: .2em;
     font-family: "Outfit", sans-serif;

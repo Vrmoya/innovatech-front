@@ -1,5 +1,5 @@
 .cartContainer {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 9999;
@@ -7,7 +7,8 @@
   height: 100%;
   margin-top: 0 auto;
   border: 2px solid #e5e7eb;
-  background-color: #fff;
+  background-color: #fff; 
+  overflow-y: auto;
 }
 @media screen and (max-width: 744px) {
   .cartContainer {

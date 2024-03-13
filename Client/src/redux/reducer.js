@@ -21,7 +21,11 @@ import {
   SHOW_SHOPPING_CART,
   GET_ALL_USERS,
   GET_ALL_PRODUCTS,
-  GET_USER_BY_NAME
+  GET_USER_BY_NAME,
+  GET_RATING,
+  RATING_MESSAGE_ERROR,
+  UPDATE_RATINGS,
+  CLEAN_RATINGS
 } from "./actions";
 
 const initialState = {
@@ -44,7 +48,10 @@ const initialState = {
   localUser: null,
   showShoppingCart: false,
   allUsers: [],
-  allProducts: []
+  allProducts: [],
+  rating: [],
+  ratingMessageApprove: '',
+  ratingMessageError:''
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -65,6 +72,29 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload
+      }
+      case CLEAN_RATINGS:
+        return{
+          ...state,
+          rating: [],
+          ratingMessageApprove:'',
+          ratingMessageError: ''
+        }
+    case UPDATE_RATINGS:
+      return{
+        ...state,
+        rating: [...state.rating, action.payload],
+        ratingMessageApprove: 'Review successfully submitted!'
+      }
+      case RATING_MESSAGE_ERROR:
+        return{
+          ...state,
+          ratingMessageError: action.payload
+        }
+    case GET_RATING:
+      return {
+        ...state,
+        rating: action.payload
       }
     case SHOW_SHOPPING_CART:
       return {

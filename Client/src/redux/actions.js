@@ -1,29 +1,39 @@
 import axios from 'axios';
+import swal from 'sweetalert';
+export const BASE_URL = 'http://localhost:80';
+export const GET_ORDER = 'GET_ORDER'
 export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const CLEAN_PRODUCT_BY_ID = 'CLEAN_PRODUCT_BY_ID';
-export const FILTER_BY_MODEL = 'FILTER_BY_MODEL';
-export const GET_CATEGORIES = 'GET_CATEGORIES';
-export const GET_ORDER = 'GET_ORDER'
 export const GET_PRODUCTS_BY_CATEGORIES = 'GET_PRODUCTS_BY_CATEGORIES';
+/* Types para el form */
+export const LOGOUT = 'LOGOUT';
+export const INJECT_USER = 'INJECT_USER';
 export const CHANGE_FORM = 'CHANGE_FORM';
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
 export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
-export const BASE_URL = 'http://localhost:80';
+/* Type para la pasarela */
 export const PAYMENT_ID = 'PAYMENT_ID';
+/* Types para el carrito */
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const INJECT_CART_DATA = 'INJECT_CART_DATA'
+export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART,';
-export const INJECT_CART_DATA = 'INJECT_CART_DATA'
-export const LOGOUT = 'LOGOUT';
-export const INJECT_USER = 'INJECT_USER';
-export const SHOW_SHOPPING_CART = 'SHOW_SHOPPING_CART';
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 export const GET_USER_BY_NAME = 'GET_USER_BY_NAME';
-
+/* Types para rating */
+export const GET_RATING = 'GET_RATING';
+export const CREATE_RATING = 'CREATE_RATING';
+export const UPDATE_RATINGS = 'UPDATE_RATINGS';
+export const RATING_MESSAGE_ERROR = 'RATING_MESSAGE_ERROR';
+export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
+export const CLEAN_RATINGS = 'CLEAN_RATINGS';
 
 export const toggleUser = (id) => {
   return async function () {
@@ -101,6 +111,48 @@ export const getAllUsers = () => {
   }
 }
 
+
+export const getRating = (id) => {
+  return async function (dispatch){
+    try{
+      const { data } = await axios.get("https://innovatech-back-production.up.railway.app/get-rating/", { params: { productId: id }});
+      return dispatch({
+        type: GET_RATING,
+        payload: data
+      })
+    }catch(err){   
+      console.log(err)        
+    }
+  }
+}
+export const createRating = ({ productId, rating, commentary }) => {
+  return async function (dispatch) {
+    try{
+      const ratingCreated = await axios.post("https://innovatech-back-production.up.railway.app/create-rating", {
+        productId,
+        rating,
+        commentary,
+      })
+      if(ratingCreated){
+        return dispatch({
+          type: UPDATE_RATINGS,
+          payload: ratingCreated.data
+        })
+      }
+    }catch(err){
+      return dispatch({
+        type: RATING_MESSAGE_ERROR,
+        payload: 'An error occurred while submitting the review'
+      })
+    }
+  }
+} 
+export const cleanRatings = () => {
+  return{
+    type: CLEAN_RATINGS,
+    payload: []
+  }
+}
 export const showShoppingCart = (data) => {
   return {
     type: SHOW_SHOPPING_CART,
@@ -211,8 +263,11 @@ export const LoginAction = ({ email, password }) => {
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
+      
     } catch (error) {
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
+      // Mostrar una SweetAlert al usuario con el mensaje de error
+      swal("Authentication failed", "Please check your credentials", "error");
     }
   };
 };
@@ -225,6 +280,7 @@ export const signUpAction = ({ name, email, password }) => {
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
     } catch (error) {
       dispatch({ type: SIGN_UP_FAILURE, payload: error });
+      swal("Signup Failed", "Please check your credentials", "error");
     }
   };
 };
