@@ -34,7 +34,7 @@ const ResetPassword = () => {
     e.preventDefault();
     const email = input.email
     try {
-      const response = await axios.post('http://localhost:80/forgot-password', { email });
+      const response = await axios.post('https://innovatech-back-production.up.railway.app/forgot-password', { email });
       console.log(response.data);
       swal("E-mail sent successfully", "click ok to continue", "success");
     } catch (error) {
