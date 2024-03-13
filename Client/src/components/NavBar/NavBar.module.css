@@ -79,18 +79,18 @@
   border-bottom: 1px solid transparent;
 }
 
-.linkContentMobile {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding: 0 1em;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
+.linkContentMobile{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0 1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
 }
 
 .searchMobileContent {
@@ -98,11 +98,12 @@
   width: 100%;
 }
 
-.link {
-  color: #000;
-  text-decoration: none;
-  font-size: 1.2em;
-  padding-top: 1em;
+.link{
+    /* display: none; */
+    color: #000;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding-top: 1em;
 }
 
 .searchDeskContent {
@@ -188,7 +189,7 @@
     border-radius: 12px 0 12px 12px;
     width: 180px;
     height: 70px;
-    z-index: 1;
+    z-index: 2;
     margin-top: 3.5em;
     margin-right: 1em;
     padding: 1em;
@@ -215,7 +216,6 @@
     background-color: transparent;
     color: #fff;
     font-size: 1em;
-    /* background-color: lightblue; */
 }
 
 .svg{
@@ -223,6 +223,28 @@
     width: 25px;
     filter: brightness(0) invert(1);
 }
+
+.countProducts{
+    background-color: #000;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .span{
+    font-size: 12px;
+  }
+
+  .cartContainer{
+    display: flex;
+  }
 
 @media screen and (min-width: 768px){
     .mainContent{
@@ -266,10 +288,13 @@
     align-items: center;
   }
 
-  .buttonLog,
-  .buttonSign {
-    font-size: 0.9em;
-  }
+    .buttonLog, .buttonSign{
+        font-size: .9em;
+    }
+
+    .link{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {

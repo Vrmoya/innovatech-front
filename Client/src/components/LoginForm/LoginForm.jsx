@@ -21,9 +21,8 @@ const LoginForm = () => {
   console.log(user);
   if (user && user.isAdmin === true) navigate('/dashboard')
   else if (user) navigate('/')
-  const currentForm = useSelector(state => state.currentForm);
-  const dispatch = useDispatch()
-
+    const currentForm = useSelector(state => state.currentForm);
+  const dispatch = useDispatch(); // Obtener la función dispatch
 
   const [userData, setUserData] = useState({
     email: "",

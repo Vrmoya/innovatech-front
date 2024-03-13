@@ -35,6 +35,18 @@ export const RATING_MESSAGE_ERROR = 'RATING_MESSAGE_ERROR';
 export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
 export const CLEAN_RATINGS = 'CLEAN_RATINGS';
 
+export const toggleUser = (id) => {
+  return async function () {
+    try {
+      const response = await axios.post(`https://innovatech-back-production.up.railway.app/user`, {id: id})
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+
 export const getUserByName = (name) => {
   return async function (dispatch) {
     try {
@@ -78,7 +90,8 @@ export const toggleProduct = (id) => {
   return async function () {
     try {
       // await axios.post(`http://localhost:80/products/toggle?id=${id}`)
-      await axios.post(`https://innovatech-back-production.up.railway.app/toggle?id=${id}`)
+      const response = await axios.post(`https://innovatech-back-production.up.railway.app/products/toggle?id=${id}`)
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -162,8 +175,8 @@ export const logout = () => {
 
 };
 
-export function paymentGateway(cart) {
-  // console.log(cart);
+export function paymentGateway(cart,email) {
+  console.log(`user email: ${email}`);
   return async function (dispatch) {
     try {
 
@@ -171,6 +184,7 @@ export function paymentGateway(cart) {
         title: prod.model,
         price: parseFloat(prod.price),
         quantity: parseInt(prod.quantity),
+        productId:prod.id,
       }));
 
       const total = cart.map((prod) => prod.total)
@@ -199,9 +213,10 @@ export function paymentGateway(cart) {
       const postCart = axios.post("https://innovatech-back-production.up.railway.app/cart", cartDB)
 
       // const response = await axios.post("http://localhost:80/create_preference", {
-        const response = await axios.post("https://innovatech-back-production.up.railway.app/create_preference", {
+      const response = await axios.post("https://innovatech-back-production.up.railway.app/create_preference", {
         items: items,
-        total: totalPrice
+        total: totalPrice,
+        email: email
       })
 
       const { id } = response.data;

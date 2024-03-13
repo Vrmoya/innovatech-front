@@ -45,19 +45,6 @@ const HomeDashboard = () => {
                         <p className={style.p}>Total Customers</p>
                     </div>
                 </div>
-                <div className={style.barsContent}>
-                    <Bars></Bars>
-                </div>
-            </div>
-            <div>
-            </div>
-            <div className={style.graphicsContainer}>
-                <div className={style.lineChart}>
-                    <LineChart></LineChart>
-                </div>
-                <div className={style.piesChart}>
-                    <Pies></Pies>
-                </div>
             </div>
         </div>
     )
