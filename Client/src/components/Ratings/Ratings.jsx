@@ -18,7 +18,7 @@ const Rating = () => {
       <div className={style.containerRatings}>
         <div>
           {ratings.length === 0 && <p>There are no reviews for this product <PiSmileySadLight style={{ fontSize: '22px', verticalAlign: 'text-bottom' }}/></p>}
-          {ratings.length > 1 && <p > Product reviews <FcRightDown2 style={{ fontSize: '20px', verticalAlign: 'text-bottom' }}/></p>}
+          {ratings.length > 1 && <h3 > Product reviews <FcRightDown2 style={{ fontSize: '20px', verticalAlign: 'text-bottom' }}/></h3>}
         </div>
         <div>
           {ratings && (
