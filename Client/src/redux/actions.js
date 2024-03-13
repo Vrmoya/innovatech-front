@@ -101,7 +101,7 @@ export const getAllUsers = () => {
 export const getRating = (id) => {
   return async function (dispatch){
     try{
-      const { data } = await axios.get("http://localhost:80/get-rating/", { params: { productId: id }});
+      const { data } = await axios.get("https://innovatech-back-production.up.railway.app/get-rating/", { params: { productId: id }});
       return dispatch({
         type: GET_RATING,
         payload: data
@@ -114,7 +114,7 @@ export const getRating = (id) => {
 export const createRating = ({ productId, rating, commentary }) => {
   return async function (dispatch) {
     try{
-      const ratingCreated = await axios.post("http://localhost:80/create-rating", {
+      const ratingCreated = await axios.post("https://innovatech-back-production.up.railway.app/create-rating", {
         productId,
         rating,
         commentary,
