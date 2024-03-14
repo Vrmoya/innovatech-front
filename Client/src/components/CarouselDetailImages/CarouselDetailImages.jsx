@@ -4,7 +4,7 @@ import styles from './../CarouselDetailImages/CarouselDetailImages.module.css';
 
 const CarouselDetailImages = ({images}) => {
     return (
-        <div>
+        <div className={styles.container}>
             {images && (
                 <ImageGallery
                     items={images}
