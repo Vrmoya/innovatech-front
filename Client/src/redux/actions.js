@@ -1,5 +1,4 @@
 import axios from 'axios';
-import swal from 'sweetalert';
 export const BASE_URL = 'http://localhost:80';
 export const GET_ORDER = 'GET_ORDER'
 export const GET_PRODUCTS = 'GET_PRODUCTS';
@@ -34,14 +33,7 @@ export const UPDATE_RATINGS = 'UPDATE_RATINGS';
 export const RATING_MESSAGE_ERROR = 'RATING_MESSAGE_ERROR';
 export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
 export const CLEAN_RATINGS = 'CLEAN_RATINGS';
-export const SHOW_FORM_RATING = 'SHOW_FORM_RATING';
 
-export const showFormRating = () => {
-  return{
-    type: SHOW_FORM_RATING,
-    payload: true
-  }
-}
 export const toggleUser = (id) => {
   return async function () {
     try {
@@ -271,14 +263,12 @@ export const LoginAction = ({ email, password }) => {
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
-      
     } catch (error) {
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
-      // Mostrar una SweetAlert al usuario con el mensaje de error
-      swal("Authentication failed", "Please check your credentials", "error");
     }
   };
-}; 
+};
+
 export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {
@@ -287,7 +277,6 @@ export const signUpAction = ({ name, email, password }) => {
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
     } catch (error) {
       dispatch({ type: SIGN_UP_FAILURE, payload: error });
-      swal("Signup Failed", "Please check your credentials", "error");
     }
   };
 };
