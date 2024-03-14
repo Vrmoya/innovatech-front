@@ -265,11 +265,12 @@ export function getInfoGoogle(codigoGoogle) {
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      // const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
-      const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+      const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
+      // const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
+      
       
     } catch (error) {
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
@@ -281,9 +282,10 @@ export const LoginAction = ({ email, password }) => {
 export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {
-      // const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
-      const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
+      const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
+      // const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
+      swal("The user has been registered", "Please check your credentials", "success");
     } catch (error) {
       dispatch({ type: SIGN_UP_FAILURE, payload: error });
       swal("Signup Failed", "Please check your credentials", "error");

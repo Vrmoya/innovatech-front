@@ -1,7 +1,33 @@
 import React from 'react'
 import style from "./OrdersUser.module.css";
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const OrdersUser = () => {
+
+
+  const user = useSelector(state => state.user)
+  console.log("Data:", user);
+
+
+// Supongamos que "userId" contiene el ID del usuario para el que deseas obtener el historial de compras
+const userId = '123';
+
+// Realizar la solicitud GET a la ruta proporcionando el ID del usuario como parte de la URL
+
+// axios.get(`http://localhost:80/getCartById/${userId}`)
+//   .then(response => {
+//     // Manejar la respuesta del servidor aquí
+//     const historialDeCompras = response.data;
+//     console.log(historialDeCompras);
+//   })
+//   .catch(error => {
+//     // Manejar errores en caso de que la solicitud falle
+//     console.error('Error al obtener el historial de compras:', error);
+//   });
+
+
+
   return (
     <div className={style.container}>
       <div className={style.miscompras}>
