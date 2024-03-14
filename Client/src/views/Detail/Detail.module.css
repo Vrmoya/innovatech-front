@@ -5,12 +5,10 @@
 
 .detailContainer {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between; /* ajusta el espacio entre los elementos */
   align-items: center;
-  justify-content: center;
   padding: 2rem;
   border: 1px solid #e5e7eb;
-  height: auto;
   border-radius: 10px;
   background-color: #fff;
 }

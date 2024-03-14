@@ -34,7 +34,14 @@ export const UPDATE_RATINGS = 'UPDATE_RATINGS';
 export const RATING_MESSAGE_ERROR = 'RATING_MESSAGE_ERROR';
 export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
 export const CLEAN_RATINGS = 'CLEAN_RATINGS';
+export const SHOW_FORM_RATING = 'SHOW_FORM_RATING';
 
+export const showFormRating = () => {
+  return{
+    type: SHOW_FORM_RATING,
+    payload: true
+  }
+}
 export const toggleUser = (id) => {
   return async function () {
     try {
@@ -270,8 +277,7 @@ export const LoginAction = ({ email, password }) => {
       swal("Authentication failed", "Please check your credentials", "error");
     }
   };
-};
-
+}; 
 export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {

@@ -72,13 +72,6 @@ const Detail = () => {
     }
   }, [productById]);
 
-  const cleanData = () => {
-    const clean = cart?.map((product) => {
-      
-    })
-  }
-
-
   // useEffect(() => {
   //   if (
   //     productById &&
