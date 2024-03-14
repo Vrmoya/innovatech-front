@@ -27,10 +27,11 @@ const Detail = () => {
   const productById = useSelector((state) => state.getProductById);
   const products = useSelector((state) => state.products);
   const cart = useSelector((state) => state.cart)
-  const userLogueado = useSelector((state) => state.user)
-  const paymentId = useSelector((state) => state.paymentID)
+  /* Estados para las review */
   const [canReview, setCanReview] = useState(false);
   const [alreadyReviewed, setAlreadyReviewed] = useState(false);
+  const userLogueado = useSelector((state) => state.user)
+  const paymentId = useSelector((state) => state.paymentID)
 
   const categories = useSelector(state => state.categories)
     const order = useSelector(state => state.order)
