@@ -124,10 +124,11 @@ export const getRating = (id) => {
     }
   }
 }
-export const createRating = ({ productId, rating, commentary }) => {
+export const createRating = ({ productId, rating, commentary }, {id}) => {
   return async function (dispatch) {
     try{
       const ratingCreated = await axios.post("https://innovatech-back-production.up.railway.app/create-rating", {
+        userId: id,
         productId,
         rating,
         commentary,
