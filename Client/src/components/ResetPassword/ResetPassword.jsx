@@ -30,11 +30,11 @@ const ResetPassword = () => {
       [name]: value
     });
   
-    // Llama al validador solo con el campo que ha cambiado y actualiza los errores
-    console.log(input); // Verifica aquí si la estructura de input es como se espera
+    
+    console.log(input); 
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: validator({ [name]: value })[name] // Accede directamente al error específico
+      [name]: validator({ [name]: value })[name] 
     }));
   };
 
@@ -42,9 +42,9 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-// Verificar si hay errores antes de enviar el formulario
+
 if (Object.keys(errors).some((key) => errors[key])) {
-  // Mostrar mensaje de error si hay errores
+  
   swal('Error', 'Please fix the errors before submitting the form', 'error');
   return;
 }
