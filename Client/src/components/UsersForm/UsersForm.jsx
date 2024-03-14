@@ -57,7 +57,7 @@ const UsersForm = () => {
   }, [editMode]);
 
   const user = useSelector(state => state.user)
-  console.log("Datos del usuario:", user);
+  console.log("Data", user);
 
 
   //estados locales del form

@@ -263,6 +263,7 @@ export const LoginAction = ({ email, password }) => {
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
+      
     } catch (error) {
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
     }
@@ -275,6 +276,7 @@ export const signUpAction = ({ name, email, password }) => {
       // const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
       const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
+      swal("The user has been registered", "Please check your credentials", "success");
     } catch (error) {
       dispatch({ type: SIGN_UP_FAILURE, payload: error });
     }
