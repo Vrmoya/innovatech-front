@@ -265,8 +265,8 @@ export function getInfoGoogle(codigoGoogle) {
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
-      // const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+      // const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
+      const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
