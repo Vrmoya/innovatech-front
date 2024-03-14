@@ -27,6 +27,11 @@ const Detail = () => {
   const productById = useSelector((state) => state.getProductById);
   const products = useSelector((state) => state.products);
   const cart = useSelector((state) => state.cart)
+  /* Estados para las review */
+  const [canReview, setCanReview] = useState(false);
+  const [alreadyReviewed, setAlreadyReviewed] = useState(false);
+  const userLogueado = useSelector((state) => state.user)
+  const paymentId = useSelector((state) => state.paymentID)
 
   const categories = useSelector(state => state.categories)
     const order = useSelector(state => state.order)
@@ -45,6 +50,21 @@ const Detail = () => {
       dispatch(cleanRatings())
     };
   }, [id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://innovatech-back-production.up.railway.app/check/user-product?userId=${userLogueado.id}&productId=${id}`);
+        setCanReview(response.data.canReview);
+        setAlreadyReviewed(response.data.alreadyReviewed);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, [userLogueado, id, paymentId]);
+
+
 
   let productoFiltrado;
   if (productById) {
@@ -141,13 +161,20 @@ const Detail = () => {
                   Add To Cart
                 </button>
                 {showCart && <ShoppingCart />}
-              </div>
+                </div>
             </div>
           </div>
+          {canReview && !alreadyReviewed && (
           <div className={styles.containerRating} >
             <FormRating id={id}/>
           <hr />
           </div>
+          )}
+           {alreadyReviewed && 
+          <div> 
+            <p>You have already left a review for this product</p>
+          </div>
+          }
           <div>
             <Ratings />          
           </div>

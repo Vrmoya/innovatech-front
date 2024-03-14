@@ -20,7 +20,7 @@
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 250px;
+  max-width: 300px;
   margin: 0 auto 20px;
   text-align: center;
   cursor: pointer;
@@ -70,4 +70,32 @@ padding-bottom: 15px;
 .linkDetail{
 text-decoration: none;
 color: inherit;
+}
+.info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #2563eb;
+  border: 1px solid #7471723a;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 1em;
+  max-width: 270px; /* Limita el ancho máximo */
+}
+
+.button {
+  border: none;
+  border-radius: 30px;
+  margin: 5px;
+  padding: 5px;
+  background-color: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+
+.p {
+  font-size: .7em;
+  font-weight: bold;
+  margin: 5px;
+  padding: 5px;
 }
