@@ -1,16 +1,19 @@
 import PATHROUTES from "./helpers/PathRoutes";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar.jsx'
-import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPassword, ChangePassword} from './views'
+import {Users, About, Dashboard, Detail, Error, Home, Landing, LoginView, ResetPasswordView, ChangePassword} from './views'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { injectCartData, injectUser } from './redux/actions.js'
 import LoginGoogle from "./components/LoginGoogle/LoginGoogle.jsx";
 import LoginGitHub from "./components/LoginGitHub/LoginGithub.jsx";
 
 
+
 function App() {
   const dispatch = useDispatch()
+  const location = useLocation()
+  const [hideNavbar, setHideNavbar] = useState(false); 
   const user = useSelector(state => state.user)
 
   useEffect(() => {
@@ -27,9 +30,17 @@ function App() {
     }
   },[dispatch])
 
+  useEffect(() => {
+   
+    setHideNavbar(location.pathname === PATHROUTES.USERS);
+  }, [location]);
+
   return (
     <div>
-      <NavBar />
+      
+      {!hideNavbar && <NavBar />}
+
+
       <Routes>
         <Route path={PATHROUTES.ABOUT} element={<About />}/>
         <Route path={PATHROUTES.DASHBOARD} element={<Dashboard />}/>
@@ -43,7 +54,8 @@ function App() {
         <Route path={PATHROUTES.GITHUB} element = {<LoginGitHub/>}/>
         <Route path={PATHROUTES.GOOGLE} element = {<LoginGoogle/>}/>
         <Route path={PATHROUTES.USERS} element={<Users />}/>
-        <Route path={PATHROUTES.RESETPASSWORD} element={<ResetPassword />}/>
+        <Route path={PATHROUTES.RESETPASSWORD} element= {<ResetPasswordView/>}/>
+        
         <Route path={PATHROUTES.CHANGEPASSWORD} element={<ChangePassword />}/>
  
       </Routes>

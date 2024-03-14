@@ -25,7 +25,8 @@ import {
   GET_RATING,
   RATING_MESSAGE_ERROR,
   UPDATE_RATINGS,
-  CLEAN_RATINGS
+  CLEAN_RATINGS,
+  SHOW_FORM_RATING
 } from "./actions";
 
 const initialState = {
@@ -51,11 +52,17 @@ const initialState = {
   allProducts: [],
   rating: [],
   ratingMessageApprove: '',
-  ratingMessageError:''
+  ratingMessageError:'',
+  showFormRating: false
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SHOW_FORM_RATING:
+      return{
+        ...state,
+        showFormRating: action.payload
+      }
     case GET_USER_BY_NAME:
       return {
         ...state,
