@@ -2,69 +2,81 @@ import React from 'react'
 import { useEffect } from 'react';
 import style from "./OrdersUser.module.css";
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserSolds } from '../../redux/actions';
+
 
 const OrdersUser = () => {
-  
- 
+
+
+  const dispatch = useDispatch()
+
 
   let user = useSelector(state => state.user)
-  console.log("vamos con esas compras", user);
+  const orders = useSelector(state => state.userOrders)
 
-  
-console.log("Este es el userId:", user.id)
+  useEffect(() => {
+    dispatch(getUserSolds(user?.id))
 
+  }, [])
 
-const sendGetRequest = async (id) => {
-  
-  try {
-    const response = await axios.get(`https://innovatech-back-production.up.railway.app/cart/${id}`);  
-    console.log("historial de compras", response.data)
-    handleResponse(response.data); // Llamar a la función handleResponse con la data de la respuesta
-  } catch (error) {
-    console.error('Error al obtener el historial de compras:', error);
-  }
-};
+  console.log(orders)
+  const normalizeCartItems = (orders) => {
+    const normalizedItems = [];
+    orders.forEach(order => {
+      if (order.cartItems) {
+        order.cartItems.forEach(item => {
+          normalizedItems.push({
+            orderId: order.id,
+            orderDate: order.createdAt, 
+            itemName: item.name,
+            productId: item.productId,
+            quantity: item.quantity,
+            price: item.price,
+            total: order.total, 
+          });
+        });
+      }
+    });
+    return normalizedItems;
+  };
 
+  const normalizedItems = normalizeCartItems(orders);
+  const formatDate = (dateTimeString) => {
+    const date = new Date(dateTimeString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
+    const year = date.getFullYear();
 
-
-sendGetRequest()
-
-
-
-
-
-
-
+    return `${day}/${month}/${year}`;
+  };
 
   return (
+    
     <div className={style.container}>
-      <div className={style.info}><h3>{user.name}</h3></div>
+      
       <div className={style.miscompras}>
-        <h3 className={style.h3}>My Orders</h3>
+        <h3 className={style.h3}>My Shopping History</h3>
       </div>
       <div className={style.items}>
         <div className={style.item}>Date</div>
         <div className={style.item}>Products</div>
-        <div className={style.item}>Order Code</div>
-        <div className={style.item}>Total</div>
-      </div>
-      <div className={style.order}>
-      <div className={style.info}>22/02/2024</div>
-        <div className={style.info}>Iphone 13</div>
-        <div className={style.info}>ZXt765678879NZ</div>
-        <div className={style.info}>$1999</div>
-      </div>
-      <div className={style.order}>
-      <div className={style.info}>15/10/2023</div>
-        <div className={style.info}>Samsung s23</div>
-        <div className={style.info}>WXt76586878NZ</div>
-        <div className={style.info}>$1200</div>
+        <div className={style.item}>Order Code Id</div>
+        <div className={style.item}>Price</div>
       </div>
 
-      
-      </div>
-  )
-}
-
+      {normalizedItems.map((item, index) => (
+  <div key={item.orderId + item.productId} className={style.order}>
+    <div className={style.info}>{formatDate(item.orderDate)}</div>
+    <div className={style.info}>{item.quantity}/ {item.itemName}</div>
+    <div className={style.info}>{item.orderId}</div>
+    <div className={style.info}>${item.price}</div>
+    
+   
+    {index !== normalizedItems.length - 1 && <div className={style.items}></div>}
+  </div>
+))}
+    </div>
+  );
+};
 export default OrdersUser
