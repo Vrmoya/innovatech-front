@@ -12,7 +12,7 @@ const UsersForm = () => {
   });
 
   const formatDate = (dateTimeString) => {
-    if (!dateTimeString) return ""; // Manejar el caso cuando no hay fecha
+    if (!dateTimeString) return ""; 
     const [date, time] = dateTimeString.split('T');
     return `${date.split('-').join('/')} ${time.slice(0, 8)}`;
   };

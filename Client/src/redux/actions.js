@@ -44,6 +44,7 @@ export const getUserSolds = (id) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(`https://innovatech-back-production.up.railway.app/cart/${id}`)
+      
       dispatch({ type: GET_USER_SOLDS, payload: response.data })
       console.log(response.data);
     } catch (error) {

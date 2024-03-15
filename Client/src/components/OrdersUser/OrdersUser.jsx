@@ -1,12 +1,13 @@
 import React from 'react'
 import { useEffect } from 'react';
 import style from "./OrdersUser.module.css";
-import axios from 'axios';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserSolds } from '../../redux/actions';
 
 
 const OrdersUser = () => {
+
 
 
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ const OrdersUser = () => {
     const normalizedItems = [];
     orders.forEach(order => {
       if (order.cartItems) {
+        const orderTotal = parseFloat(order.total); 
         order.cartItems.forEach(item => {
           normalizedItems.push({
             orderId: order.id,
@@ -33,7 +35,7 @@ const OrdersUser = () => {
             productId: item.productId,
             quantity: item.quantity,
             price: item.price,
-            total: order.total, 
+            total: orderTotal, 
           });
         });
       }
@@ -56,7 +58,7 @@ const OrdersUser = () => {
     <div className={style.container}>
       
       <div className={style.miscompras}>
-        <h3 className={style.h3}>My Shopping History</h3>
+        <h3 className={style.h3}>My Bought Items</h3>
       </div>
       <div className={style.items}>
         <div className={style.item}>Date</div>
@@ -72,10 +74,13 @@ const OrdersUser = () => {
     <div className={style.info}>{item.orderId}</div>
     <div className={style.info}>${item.price}</div>
     
+    
    
-    {index !== normalizedItems.length - 1 && <div className={style.items}></div>}
+    
   </div>
 ))}
+
+
     </div>
   );
 };
