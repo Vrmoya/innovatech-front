@@ -255,11 +255,11 @@ export function paymentGateway(cart,email) {
       }
 
 
-      const postCart = axios.post("http://localhost:80/cart", cartDB)
-      // const postCart = axios.post("https://innovatech-back-production.up.railway.app/cart", cartDB)
+      // const postCart = axios.post("http://localhost:80/cart", cartDB)
+      const postCart = axios.post("https://innovatech-back-production.up.railway.app/cart", cartDB)
 
-      const response = await axios.post("http://localhost:80/create_preference", {
-      // const response = await axios.post("https://innovatech-back-production.up.railway.app/create_preference", {
+      // const response = await axios.post("http://localhost:80/create_preference", {
+      const response = await axios.post("https://innovatech-back-production.up.railway.app/create_preference", {
         items: items,
         total: totalPrice,
         email: email
@@ -275,8 +275,8 @@ export function paymentGateway(cart,email) {
 export function getInfoGithub(codigoGithub) {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:80/get/github/" + codigoGithub)
-      // const response = await axios.get("https://innovatech-back-production.up.railway.app/get/github/" + codigoGithub)
+      // const response = await axios.get("http://localhost:80/get/github/" + codigoGithub)
+      const response = await axios.get("https://innovatech-back-production.up.railway.app/get/github/" + codigoGithub)
       console.log(response.data);
       window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GITHUB", payload: response.data })
@@ -289,8 +289,8 @@ export function getInfoGithub(codigoGithub) {
 export function getInfoGoogle(codigoGoogle) {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:80/get/google/" + codigoGoogle)
-      // const response = await axios.get("https://innovatech-back-production.up.railway.app/get/google/" + codigoGoogle)
+      // const response = await axios.get("http://localhost:80/get/google/" + codigoGoogle)
+      const response = await axios.get("https://innovatech-back-production.up.railway.app/get/google/" + codigoGoogle)
       // console.log(response.data);
       window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GOOGLE", payload: response.data })
