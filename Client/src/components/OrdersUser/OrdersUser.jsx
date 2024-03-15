@@ -14,8 +14,9 @@ const OrdersUser = () => {
   
 console.log("Este es el userId:", user.id)
 
-const id=user.id
+
 const sendGetRequest = async (id) => {
+  
   try {
     const response = await axios.get(`https://innovatech-back-production.up.railway.app/cart/${id}`);  
     console.log("historial de compras", response.data)
