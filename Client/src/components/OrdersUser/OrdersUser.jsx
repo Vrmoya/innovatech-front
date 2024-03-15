@@ -14,40 +14,18 @@ const OrdersUser = () => {
   
 console.log("Este es el userId:", user.id)
 
-
-const sendGetRequest = async () => {
+const id=user.id
+const sendGetRequest = async (id) => {
   try {
-    const response = await axios.get(`http://localhost:80/cart/${user.id}`);
+    const response = await axios.get(`https://innovatech-back-production.up.railway.app/cart/${id}`);  
     console.log("historial de compras", response.data)
-    // handleResponse(response.data); // Llamar a la función handleResponse con la data de la respuesta
+    handleResponse(response.data); // Llamar a la función handleResponse con la data de la respuesta
   } catch (error) {
     console.error('Error al obtener el historial de compras:', error);
   }
 };
 
 
-// const handleResponse = (response) => {
-
-//   if (response === undefined) {
-    
-//     return;
-//   }
-
-//   if (response.length === 0) {
-   
-
-//       alert('El historial de compras está vacío.');
-//     } else {
-//       response.forEach(item => {
-//         console.log('ID:', item.id);
-//         console.log('Nombre:', item.name);
-//         console.log('ID del producto:', item.productId);
-//         console.log('Precio:', item.price);
-//         console.log('Cantidad:', item.quantity);
-//         console.log('--------------------');
-//       });
-//     }
-//   };
 
 sendGetRequest()
 
