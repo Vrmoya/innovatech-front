@@ -265,30 +265,36 @@ export function getInfoGoogle(codigoGoogle) {
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
-      // const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+      // const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
+      const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
+      const successMessage = response.data.message;
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
+      swal("You have been login", successMesage, "success");
       
       
     } catch (error) {
+      const errorMessage= error.response.data.message;
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
       // Mostrar una SweetAlert al usuario con el mensaje de error
-      swal("Authentication failed", "Please check your credentials", "error");
+      swal("Authentication failed", errorMessage, "error");
     }
   };
 }; 
 export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
-      // const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
+      // const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
+      const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
+      const successMessage = response.data.message
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
-      swal("The user has been registered", "Please check your credentials", "success");
+      swal("The user has been registered", successMesage, "success");
     } catch (error) {
+
+      const errorMessage= error.response.data.message;
       dispatch({ type: SIGN_UP_FAILURE, payload: error });
-      swal("Signup Failed", "Please check your credentials", "error");
+      swal("Signup Failed", errorMessage, "error");
     }
   };
 };
