@@ -132,10 +132,11 @@ export const getRating = (id) => {
     }
   }
 }
-export const createRating = ({ productId, rating, commentary }) => {
+export const createRating = ({ productId, rating, commentary }, {id}) => {
   return async function (dispatch) {
     try{
       const ratingCreated = await axios.post("https://innovatech-back-production.up.railway.app/create-rating", {
+        userId: id,
         productId,
         rating,
         commentary,
@@ -267,11 +268,13 @@ export const LoginAction = ({ email, password }) => {
     try {
       // const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
       const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+      // const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
+      const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
       console.log(data);
       window.localStorage.setItem('user', JSON.stringify(data))
       const successMessage = response.data.message;
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
-      swal("You have been login", successMesage, "success");
+      swal("You have been login", successMessage, "success");
       
       
     } catch (error) {
@@ -289,7 +292,7 @@ export const signUpAction = ({ name, email, password }) => {
       const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
       const successMessage = response.data.message
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
-      swal("The user has been registered", successMesage, "success");
+      swal("The user has been registered", successMessage, "success");
     } catch (error) {
 
       const errorMessage= error.response.data.message;

@@ -14,6 +14,7 @@ const FormRating = ({ id }) => {
   const dispatch = useDispatch();
   const ratingMessageApprove = useSelector((state) => state.ratingMessageApprove);
   const ratingMessageError = useSelector((state) => state.ratingMessageError);
+  const userLogueado = useSelector((state) => state.user) 
 
   const [rating, setRating] = useState({
     productId: id,
@@ -39,7 +40,7 @@ const FormRating = ({ id }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createRating(rating));
+    dispatch(createRating(rating, userLogueado));
     setRating({
         productId: id,
         rating: -1,
