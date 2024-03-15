@@ -38,6 +38,7 @@ const Detail = () => {
     const order = useSelector(state => state.order)
     const model = useSelector(state => state.model)
     const pagenumber = useSelector(state=> state.pagenumber)
+    
     useEffect(() => {
         dispatch(getProducts(categories, order, pagenumber, "6",model));
         dispatch(getRating(id))
@@ -55,6 +56,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log('Id del user que esta logueado',userLogueado.id)
         const response = await axios.get(`https://innovatech-back-production.up.railway.app/check/user-product?userId=${userLogueado.id}&productId=${id}`);
         setCanReview(response.data.canReview);
         setAlreadyReviewed(response.data.alreadyReviewed);
@@ -68,6 +70,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       const timer = setTimeout(async () => {
+        console.log('Id del user que esta logueado', userLogueado.id)
           const response = await axios.get(`https://innovatech-back-production.up.railway.app/check/user-product?userId=${userLogueado.id}&productId=${id}`);
           setCanReview(response.data.canReview);
           setAlreadyReviewed(response.data.alreadyReviewed);
