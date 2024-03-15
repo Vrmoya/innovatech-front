@@ -16,6 +16,7 @@ import { PiPlusBold } from "react-icons/pi";
 import {getProducts, showShoppingCart } from "../../redux/actions";
 import FormRating from '../../components/FormRating/FormRating';
 import Ratings from "../../components/Ratings/Ratings";
+import axios from "axios";
 
 const Detail = () => {
   const { id } = useParams();
