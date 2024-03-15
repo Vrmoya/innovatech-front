@@ -13,16 +13,17 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CarouselDetailImages from "../../components/CarouselDetailImages/CarouselDetailImages";
 import { PiPlusBold } from "react-icons/pi";
+import { IoCheckmarkDone } from "react-icons/io5";
 import {getProducts, showShoppingCart } from "../../redux/actions";
 import FormRating from '../../components/FormRating/FormRating';
 import Ratings from "../../components/Ratings/Ratings";
+import axios from "axios";
 
 const Detail = () => {
   const { id } = useParams();
   const [images, setImages] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [showCart, setShowCart] = useState(false);
-
   const dispatch = useDispatch();
   const productById = useSelector((state) => state.getProductById);
   const products = useSelector((state) => state.products);
@@ -32,7 +33,7 @@ const Detail = () => {
   const [alreadyReviewed, setAlreadyReviewed] = useState(false);
   const userLogueado = useSelector((state) => state.user)
   const paymentId = useSelector((state) => state.paymentID)
-
+  const ratings = useSelector((state) => state.rating)
   const categories = useSelector(state => state.categories)
     const order = useSelector(state => state.order)
     const model = useSelector(state => state.model)
@@ -64,6 +65,17 @@ const Detail = () => {
     fetchData();
   }, [userLogueado, id, paymentId]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const timer = setTimeout(async () => {
+          const response = await axios.get(`https://innovatech-back-production.up.railway.app/check/user-product?userId=${userLogueado.id}&productId=${id}`);
+          setCanReview(response.data.canReview);
+          setAlreadyReviewed(response.data.alreadyReviewed);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+    fetchData();
+  }, [ratings]);
 
 
   let productoFiltrado;
@@ -171,8 +183,8 @@ const Detail = () => {
           </div>
           )}
            {alreadyReviewed && 
-          <div> 
-            <p>You have already left a review for this product</p>
+          <div className={styles.containerP}> 
+            <p>You have already left a review for this product <IoCheckmarkDone style={{ fontSize: '25px', verticalAlign: 'text-bottom' }}/></p>
           </div>
           }
           <div>

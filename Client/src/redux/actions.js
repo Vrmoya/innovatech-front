@@ -33,7 +33,21 @@ export const UPDATE_RATINGS = 'UPDATE_RATINGS';
 export const RATING_MESSAGE_ERROR = 'RATING_MESSAGE_ERROR';
 export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
 export const CLEAN_RATINGS = 'CLEAN_RATINGS';
+export const SHOW_FORM_RATING = 'SHOW_FORM_RATING';
+export const CLEAN_MESSAGES_RATING = 'CLEAN_MESSAGES_RATING';
 
+export const cleanMessagesRating = () => {
+  return{
+    type: CLEAN_MESSAGES_RATING,
+    payload: ''
+  }
+}
+export const showFormRating = () => {
+  return{
+    type: SHOW_FORM_RATING,
+    payload: true
+  }
+}
 export const toggleUser = (id) => {
   return async function () {
     try {
@@ -254,35 +268,34 @@ export function getInfoGoogle(codigoGoogle) {
   }
 }
 
-
+// const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+// const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      // const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
-      const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
-      console.log(data);
-      window.localStorage.setItem('user', JSON.stringify(data))
+       const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+      window.localStorage.setItem('user', JSON.stringify(data));
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
-      
+      swal("You have been logged in", "Welcome back!", "success");
     } catch (error) {
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
+      swal("Authentication failed", "Invalid email or password", "error");
     }
   };
-};
+}; 
 
 export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {
-      // const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
-      const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
+       const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
-      swal("The user has been registered", "Please check your credentials", "success");
+      swal("User registered", "Welcome to our platform!", "success");
     } catch (error) {
       dispatch({ type: SIGN_UP_FAILURE, payload: error });
+      swal("Signup Failed", "Please check your information and try again", "error");
     }
   };
 };
-
 export function changeForm(formType) {
   return {
     type: CHANGE_FORM,

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 /* Importacion action */
-import { createRating, cleanRatings } from "../../redux/actions.js";
+import { createRating, cleanRatings, cleanMessagesRating } from "../../redux/actions.js";
 
 const FormRating = ({ id }) => {
   const dispatch = useDispatch();
@@ -22,6 +22,15 @@ const FormRating = ({ id }) => {
     commentary: "",
   });
   const [hover, setHover] = useState(null);
+  useEffect(() => {
+    if (ratingMessageApprove || ratingMessageError) {
+      const timer = setTimeout(() => {
+        dispatch(cleanMessagesRating());
+      }, 3000); 
+      return () => clearTimeout(timer); 
+    }
+  }, [ratingMessageApprove, ratingMessageError]);
+
 
   useEffect(() => {
   },[ratingMessageApprove, ratingMessageError])
@@ -51,6 +60,10 @@ const FormRating = ({ id }) => {
     <form onSubmit={handleSubmit}>
       <div className={style.container}>
         <div className={style.containerStars}>
+          <div className={style.containerFeedback}>
+            <p>Please, enter your feedback this product!</p>
+          </div>
+          <div className={style.containerStar}>
           {[...Array(5)].map((star, index) => {
             const ratingValue = index + 1;
             return (
@@ -77,11 +90,11 @@ const FormRating = ({ id }) => {
               </label>
             );
           })}
+          </div>
         </div>
         <div className={style.divTextarea}>
           <textarea
             className={style.textarea}
-            placeholder="Enter your feedback this product..."
             onChange={handleChangeCommentary}
             value={rating.commentary}
           ></textarea>

@@ -29,7 +29,7 @@ const SideNavPanelUser = ({ onOptionChange }) => {
     
   const handleLogOut = () => {
     dispatch(logout());
-    window.location.href = 'http://localhost:5173/';
+    window.location.href = 'https://innovatechok.vercel.app/';
   };
     
     return (

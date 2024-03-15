@@ -26,7 +26,8 @@ import {
   RATING_MESSAGE_ERROR,
   UPDATE_RATINGS,
   CLEAN_RATINGS,
-  SHOW_FORM_RATING
+  SHOW_FORM_RATING,
+  CLEAN_MESSAGES_RATING
 } from "./actions";
 
 const initialState = {
@@ -58,6 +59,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CLEAN_MESSAGES_RATING:
+      return{
+        ...state,
+        ratingMessageApprove: '',
+        ratingMessageError: ''
+      }
     case SHOW_FORM_RATING:
       return{
         ...state,
