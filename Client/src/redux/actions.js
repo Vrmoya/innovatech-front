@@ -62,11 +62,11 @@ export const cleanMessagesRating = () => {
 
 
 export const getAllSolds = () => {
-  return async function () {
+  return async function (dispatch) {
     try {
       const response = await axios.get('https://innovatech-back-production.up.railway.app/cart')
-      // dispatch({ type: GET_ALL_SOLDS, payload: response.data })
-      console.log(response.data);
+      dispatch({ type: GET_ALL_SOLDS, payload: response.data })
+      // console.log(response.data);
     } catch (error) {
       console.log(error);
     }

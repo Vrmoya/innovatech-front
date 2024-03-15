@@ -17,6 +17,7 @@ const HomeDashboard = () => {
     const disabledProductsCount = useSelector(state => state.allProducts.filter(product => !product.isActive).length)
     const adminUsersCount = useSelector(state => state.allUsers.filter(user => user.isAdmin).length)
     const blockUserCount = useSelector(state => state.allUsers.filter(user => !user.isActive).length)
+    const solds = useSelector(state => state.allSolds)
 
 
     return (
@@ -37,7 +38,7 @@ const HomeDashboard = () => {
                         <div className={style.soldContent}>
                             <img src={sold} alt="" className={style.svg} />
                         </div>
-                        <h2 className={style.h2}>0</h2>
+                        <h2 className={style.h2}>{solds?.length}</h2>
                         <p className={style.p}>Sold Products</p>
                     </div>
                     <div className={style.disabledContainer}>

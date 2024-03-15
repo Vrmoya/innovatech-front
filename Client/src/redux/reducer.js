@@ -28,7 +28,8 @@ import {
   CLEAN_RATINGS,
   SHOW_FORM_RATING,
   CLEAN_MESSAGES_RATING,
-  GET_USER_SOLDS
+  GET_USER_SOLDS,
+  GET_ALL_SOLDS
 } from "./actions";
 
 const initialState = {
@@ -56,7 +57,9 @@ const initialState = {
   ratingMessageApprove: '',
   ratingMessageError:'',
   showFormRating: false,
-  userOrders: []
+  userOrders: [],
+  showFormRating: false,
+  allSolds: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -70,6 +73,11 @@ const rootReducer = (state = initialState, action) => {
 
 
 
+    case GET_ALL_SOLDS:
+      return{
+        ...state,
+        allSolds: action.payload
+      }
     case CLEAN_MESSAGES_RATING:
       return{
         ...state,

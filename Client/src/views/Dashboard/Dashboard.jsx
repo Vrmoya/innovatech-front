@@ -15,10 +15,6 @@ const Dashboard = () => {
     const [selectedNavItem, setSelectedNavItem] = useState('home');
     const dispatch = useDispatch()
 
-    const categories = useSelector(state => state.categories)
-    const order = useSelector(state => state.order)
-    const model = useSelector(state => state.model)
-    const pagenumber = useSelector(state => state.pagenumber)
     useEffect(() => {
         dispatch(getAllUsers())
         dispatch(getAllProducts());
