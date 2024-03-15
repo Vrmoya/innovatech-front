@@ -3,6 +3,7 @@ import form from '../../assets/form.svg'
 import users from '../../assets/users.svg'
 import home from '../../assets/home.svg'
 import products from '../../assets/products.svg'
+import solds from '../../assets/solds.svg';
 import logoutsvg from '../../assets/logout.svg';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -29,6 +30,9 @@ const SideNavDashboard = ({ onNavItemChange, selectedNavItem }) => {
                 </button>
                 <button className={`${style.buttonNav} ${selectedNavItem === 'products' && style.selected}`} onClick={() => onNavItemChange('products')}>
                     <img src={products} alt="" className={style.svg} />
+                </button>
+                <button className={`${style.buttonNav} ${selectedNavItem === 'solds' && style.selected}`} onClick={() => onNavItemChange('solds')}>
+                    <img src={solds} alt="" className={style.svg} />
                 </button>
                 <button className={`${style.buttonNav} ${selectedNavItem === 'customers' && style.selected}`} onClick={() => onNavItemChange('customers')}>
                     <img src={users} alt="" className={style.svg} />

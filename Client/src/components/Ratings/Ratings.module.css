@@ -1,7 +1,4 @@
-.containerRatings {
-  margin-left: 10px;
-  margin-right: 10px;
-}
+
 @media screen and (max-width: 744px) {
     .containerRatings{
         display: flex;

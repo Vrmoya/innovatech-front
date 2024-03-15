@@ -1,68 +1,66 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px; 
-    margin-right: 10px;
+.container {
+  display: flex;
+  flex-direction: column;
 }
 @media screen and (max-width: 744px) {
-    .container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-}
-.containerStars{
+  .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 5px;
-    margin-top: 25px;
+  }
 }
-.star{
-    cursor: pointer;
-    width: 40px;
-    transition: color 0.3s ease;
+.containerStars {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  margin-top: 25px;
+}
+.containerFeedback p {
+  font-weight: 600;
+}
+.star {
+  cursor: pointer;
+  width: 40px;
+  transition: color 0.3s ease;
 }
 .star:hover {
-    color: #ffc107; 
+  color: #ffc107;
 }
 
-.input{
-    display: none;
+.input {
+  display: none;
 }
 
-.textarea{
-    border: 1px solid #e5e7eb;
-    border-radius: 5px;
-    padding-left: 2px;
-    padding-right: 2px;
-    width: 430px;
-    height: 30px;
+.textarea {
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 430px;
+  height: 30px;
 }
-.buttonSubmit{
-    border: none;
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    cursor: pointer;
-    font-family: "Public Sans", sans-serif;
-    background-color: #2563eb;
-    color:white;
+.buttonSubmit {
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  font-family: "Public Sans", sans-serif;
+  background-color: #2563eb;
+  color: white;
 }
 .buttonSubmit:disabled {
-    background-color: #e4e5e9;
-    color: #999; 
-    cursor: not-allowed; 
+  background-color: #e4e5e9;
+  color: #999;
+  cursor: not-allowed;
 }
-.divTextarea{
-    display: flex;
-    flex-direction: row;
-    max-width: 100%;
+.divTextarea {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
 }
-.containerMessage{
-    margin-left: 10px; 
-    margin-right: 10px;
-    font-weight: 600;
+.containerMessage {
+  font-weight: 600;
 }
