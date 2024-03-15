@@ -1,5 +1,4 @@
 import axios from 'axios';
-import swal from 'sweetalert';
 export const BASE_URL = 'http://localhost:80';
 export const GET_ORDER = 'GET_ORDER'
 export const GET_PRODUCTS = 'GET_PRODUCTS';
@@ -35,6 +34,14 @@ export const RATING_MESSAGE_ERROR = 'RATING_MESSAGE_ERROR';
 export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
 export const CLEAN_RATINGS = 'CLEAN_RATINGS';
 export const SHOW_FORM_RATING = 'SHOW_FORM_RATING';
+export const CLEAN_MESSAGES_RATING = 'CLEAN_MESSAGES_RATING';
+
+export const cleanMessagesRating = () => {
+  return{
+    type: CLEAN_MESSAGES_RATING,
+    payload: ''
+  }
+}
 export const GET_ALL_SOLDS = 'GET_ALL_SOLDS';
 
 
