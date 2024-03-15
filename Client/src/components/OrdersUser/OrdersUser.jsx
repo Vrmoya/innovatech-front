@@ -14,6 +14,8 @@ const OrdersUser = () => {
   
 console.log("Este es el userId:", user.id)
 
+  const id = user.id
+
 
 const sendGetRequest = async (id) => {
   
@@ -28,7 +30,7 @@ const sendGetRequest = async (id) => {
 
 
 
-sendGetRequest()
+sendGetRequest(2)
 
 
 

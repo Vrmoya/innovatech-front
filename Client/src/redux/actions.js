@@ -35,6 +35,7 @@ export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
 export const CLEAN_RATINGS = 'CLEAN_RATINGS';
 export const SHOW_FORM_RATING = 'SHOW_FORM_RATING';
 export const CLEAN_MESSAGES_RATING = 'CLEAN_MESSAGES_RATING';
+export const GET_ALL_SOLDS = 'GET_ALL_SOLDS';
 
 export const cleanMessagesRating = () => {
   return{
@@ -42,14 +43,13 @@ export const cleanMessagesRating = () => {
     payload: ''
   }
 }
-export const GET_ALL_SOLDS = 'GET_ALL_SOLDS';
 
 
 export const getAllSolds = () => {
   return async function () {
     try {
       const response = await axios.get('https://innovatech-back-production.up.railway.app/cart')
-      // dispatch({ type: GET_ALL_SOLDS, payload: response.data })
+      dispatch({ type: GET_ALL_SOLDS, payload: response.data })
       console.log(response.data);
     } catch (error) {
       console.log(error);
