@@ -50,7 +50,7 @@ const sendGetRequest = async () => {
 //   };
 
 sendGetRequest()
-handleResponse()
+
 
 
 
