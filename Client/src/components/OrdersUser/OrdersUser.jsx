@@ -1,35 +1,55 @@
 import React from 'react'
+import { useEffect } from 'react';
 import style from "./OrdersUser.module.css";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 const OrdersUser = () => {
+  
+ 
+
+  let user = useSelector(state => state.user)
+  console.log("vamos con esas compras", user);
+
+  
+console.log("Este es el userId:", user.id)
 
 
-  const user = useSelector(state => state.user)
-  console.log("Data:", user);
+const sendGetRequest = async () => {
+  try {
+    const response = await axios.get(`http://localhost:80/cart/${user.id}`);
+    handleResponse(response.data); // Llamar a la función handleResponse con la data de la respuesta
+  } catch (error) {
+    console.error('Error al obtener el historial de compras:', error);
+  }
+};
 
 
-// Supongamos que "userId" contiene el ID del usuario para el que deseas obtener el historial de compras
-const userId = '123';
+const handleResponse = (response) => {
+  if (response === undefined) {
+    
+    return;
+  }
 
-// Realizar la solicitud GET a la ruta proporcionando el ID del usuario como parte de la URL
+  if (response.length === 0) {
+    alert('El historial de compras está vacío.');
+  } else {
+    console.log('Historial de compras:', response);
+  }
+};
 
-// axios.get(`http://localhost:80/getCartById/${userId}`)
-//   .then(response => {
-//     // Manejar la respuesta del servidor aquí
-//     const historialDeCompras = response.data;
-//     console.log(historialDeCompras);
-//   })
-//   .catch(error => {
-//     // Manejar errores en caso de que la solicitud falle
-//     console.error('Error al obtener el historial de compras:', error);
-//   });
+sendGetRequest()
+handleResponse()
+
+
+
+
 
 
 
   return (
     <div className={style.container}>
+      <div className={style.info}><h3>{user.name}</h3></div>
       <div className={style.miscompras}>
         <h3 className={style.h3}>My Orders</h3>
       </div>
