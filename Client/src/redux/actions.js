@@ -262,46 +262,34 @@ export function getInfoGoogle(codigoGoogle) {
   }
 }
 
-
+// const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+// const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-     
-      
-      // const { data } = await axios.post(`${BASE_URL}/api/signin`, { email, password });
-      const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
-      console.log(data);
-      window.localStorage.setItem('user', JSON.stringify(data))
-      const successMessage = response.data.message;
+       const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+      window.localStorage.setItem('user', JSON.stringify(data));
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
-      swal("You have been login", successMessage, "success");
-      
-      
+      swal("You have been logged in", "Welcome back!", "success");
     } catch (error) {
-      const errorMessage= error.response.data.message;
       dispatch({ type: SIGN_IN_FAILURE, payload: error });
-      // Mostrar una SweetAlert al usuario con el mensaje de error
-      swal("Authentication failed", errorMessage, "error");
+      swal("Authentication failed", "Invalid email or password", "error");
     }
   };
 }; 
+
 export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {
-      // const response = await axios.post(`${BASE_URL}/api/signup`, { name, email, password });
-      const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
-      const successMessage = response.data.message
+       const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
-      swal("The user has been registered", successMessage, "success");
+      swal("User registered", "Welcome to our platform!", "success");
     } catch (error) {
-
-      const errorMessage= error.response.data.message;
       dispatch({ type: SIGN_UP_FAILURE, payload: error });
-      swal("Signup Failed", errorMessage, "error");
+      swal("Signup Failed", "Please check your information and try again", "error");
     }
   };
 };
-
 export function changeForm(formType) {
   return {
     type: CHANGE_FORM,
