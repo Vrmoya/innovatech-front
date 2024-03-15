@@ -142,7 +142,7 @@ const Create = () => {
             }
             try {
                 // Realizar la llamada al backend para enviar los datos utilizando axios
-                const response = await axios.post('http://localhost:3001/products', input);
+                const response = await axios.post('https://innovatech-back-production.up.railway.app/products', input);
 
                 // Una vez que los datos se han enviado exitosamente, mostrar una alerta
                 // alert("¡Producto agregado con éxito!");
