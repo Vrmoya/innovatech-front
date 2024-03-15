@@ -5,8 +5,9 @@ import SideNavDashboard from '../../components/SideNavDashboard/SideNavDashboard
 import HomeDashboard from '../../components/HomeDashboard/HomeDashboard'
 import ProductsDashboard from '../../components/ProductsDashboard/ProductsDashboard'
 import UsersDashboard from '../../components/UsersDashboard/UsersDashboard'
+import SoldsDashboard from '../../components/SoldsDashboard/SoldsDashboard'
 import { useState } from 'react'
-import { getProducts, getAllUsers, getAllProducts } from "../../redux/actions";
+import { getProducts, getAllUsers, getAllProducts,getAllSolds } from "../../redux/actions";
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -21,6 +22,7 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getAllUsers())
         dispatch(getAllProducts());
+        dispatch(getAllSolds());
     }, []);
 
     const handleNavItemChange = (navItem) => {
@@ -41,6 +43,7 @@ const Dashboard = () => {
                     {selectedNavItem === 'newProduct' && <FormDashboard />}
                     {selectedNavItem === 'products' && <ProductsDashboard />}
                     {selectedNavItem === 'customers' && <UsersDashboard />}
+                    {selectedNavItem === 'solds' && <SoldsDashboard />}
                 </div>
             </div>
         </div>
