@@ -35,7 +35,14 @@ export const RATING_MESSAGE_ERROR = 'RATING_MESSAGE_ERROR';
 export const RATING_MESSAGE_APPROVE = 'RATING_MESSAGE_APPROVE';
 export const CLEAN_RATINGS = 'CLEAN_RATINGS';
 export const SHOW_FORM_RATING = 'SHOW_FORM_RATING';
+export const CLEAN_MESSAGES_RATING = 'CLEAN_MESSAGES_RATING';
 
+export const cleanMessagesRating = () => {
+  return{
+    type: CLEAN_MESSAGES_RATING,
+    payload: ''
+  }
+}
 export const showFormRating = () => {
   return{
     type: SHOW_FORM_RATING,
