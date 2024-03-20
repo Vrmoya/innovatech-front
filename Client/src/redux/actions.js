@@ -267,6 +267,7 @@ export function paymentGateway(cart,email) {
 
       const { id } = response.data;
       dispatch({ type: PAYMENT_ID, payload: id })
+      window.localStorage.removeItem('cart')
     } catch (error) {
       console.log(error);
     }
