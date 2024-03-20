@@ -10,6 +10,7 @@
   border: 0 solid #e5e7eb;
   padding: 15px;
   overflow: auto;
+  overflow-x: hidden;
 }
 .listLi {
   display: flex;
