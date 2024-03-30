@@ -21,7 +21,9 @@
 }
 
 .productInfo {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
   margin-left: 2rem;
   font-family: "Public Sans", sans-serif;
 }
@@ -176,6 +178,7 @@
 .productInfo hr{
   border: none; 
   border-top: 1px solid #e5e7eb;
+  width: 100%;
 }
 
 .containerSpecs{
@@ -190,10 +193,20 @@
 .containerRating hr{
   border: none; 
   border-top: 1px solid #e5e7eb;
-  width: 510px;
+  width: 100%;
   float: left; 
 }
 .containerP{
   margin-top: 25px;
   font-weight: 600
+}
+
+@media screen and (max-width: 1000px) {
+  .detailContainer{
+    flex-direction: column;
+  }
+
+  .productInfo{
+    margin-left: 0;
+  }
 }
