@@ -116,13 +116,15 @@ const NavBar = () => {
               Products
             </Link>
             <div className={style.buttonContainerMobile}>
-              <Link to={'/login'}>
+              <Link to={'/login'} onClick={toggleNav}>
                 <button className={style.buttonLog}
                   onClick={() => handleChangeForm('login')}>Log In</button>
               </Link>
 
-              <button className={style.buttonSign}
-                onClick={() => handleChangeForm('signup')}>Sign Up</button>
+              <Link onClick={toggleNav}>
+                <button className={style.buttonSign}
+                  onClick={() => handleChangeForm('signup')}>Sign Up</button>
+              </Link>
             </div>
 
 
