@@ -61,10 +61,8 @@ if (Object.keys(errors).some((key) => errors[key])) {
   };
 
   return (
-    <div className={style.containerForm}>
-
+    <div className={style.container}>
       <div className={style.txt}>Reset Password</div>
-      <hr />
       <div className={style.info}>Please enter a registered email to receive a password reset email.</div>
       <form onSubmit={handleSubmit}
         className={style.form}>

@@ -64,6 +64,7 @@
   padding: 2rem;
   text-align: center;
 }
+
 .tittle{
 padding-bottom: 15px;
 }
@@ -98,4 +99,10 @@ color: inherit;
   font-weight: bold;
   margin: 5px;
   padding: 5px;
+}
+
+@media screen and (max-width: 810px) {
+  .contenedor{
+    display: none;
+  }
 }

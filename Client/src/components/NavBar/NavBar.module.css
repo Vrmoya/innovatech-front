@@ -36,6 +36,9 @@
 
 .mobileButtonClose,
 .mobileButtonOpen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 45px;
   height: 45px;
   border: none;
@@ -44,6 +47,7 @@
   border: 1px solid #7471723a;
   background-color: transparent;
   cursor: pointer;
+  color: #1f1f1f;
 }
 
 .mobileButtonOpen {
@@ -177,7 +181,7 @@
 .userImg{
     cursor: pointer;
     width: 45px;
-    border-radius: 100%;
+    border-radius: 8px;
 }
 
 .dropDown{
@@ -187,8 +191,8 @@
     position: absolute;
     background-color: #1f1f1f;
     border-radius: 12px 0 12px 12px;
-    width: 180px;
-    height: 70px;
+    /* width: 180px; */
+    /* height: 70px; */
     z-index: 2;
     margin-top: 3.5em;
     margin-right: 1em;

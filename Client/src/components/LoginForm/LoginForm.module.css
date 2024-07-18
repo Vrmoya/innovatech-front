@@ -1,174 +1,118 @@
-.containerLoginForm {
+.container{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    /* width: 30vw; */
-    height: 430px;
-    background-color: #000000;
-    /* backdrop-filter: blur(3px); */
-    /* bordes  */
-    border-style: solid;
-    border-width: 3px;
-    border-radius: 10px;
-    box-shadow: #181515b9 0 3px 8px;
-
-}
-
-
-.title {
-    font-family: "Public Sans", sans-serif;
-    width: 30vw;
-    height: 3vh;
-    display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    padding-top: 15px;
-    color: white;
-
+    width: 100%;
 }
-
-.hr {
-    width: 40px;
-    margin-top: 0px;
-    border: none;
-    /* Elimina cualquier borde predeterminado */
-    border-top: 3.5px solid rgb(255, 252, 252);
-    /* Agrega un borde superior de 2px de grosor y sólido */
-
-}
-
 
 .form {
-
-    font-family: "Public Sans", sans-serif;
-    margin-top: 20px;
-    /* background-color: blue; */
-    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    /* justify-content: space-around; */
-    align-items: center;
-}
-
-.group {
-    /* background-color: red; */
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    width: 100%;
-    margin-bottom: 2em;
-    height: 50px;
-    /* height: 8vh; */
-}
-
-.option {
-    background-color: #fff;
-    border-radius: 5px;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-}
-
-.input {
-    width: 300px;
-    height: 100%;
-    border-radius: 3px;
-    border: none;
-    padding-left: .5em;
-    margin-left: .5em;
-    background-color: transparent;
-}
-
-.input:focus{
-    outline: none;
-}
-
-
-.containerButton {
-    /* background-color: blue; */
-    width: 100%;
-    /* height: 20vh; */
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-around; */
-    align-items: center;
-    margin-bottom: 1em;
-   
-}
-
-.divLog{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    margin: .5em;
-    align-items: center;
-}
-
-.button {
-    font-family: "Public Sans", sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    border: none;
+    gap: 10px;
     background-color: #ffffff;
-    border-radius: 30px;
-    height: 5vh;
+    padding: 30px;
+    width: 450px;
+    border-radius: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  ::placeholder {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .inputForm {
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+    padding-left: 10px;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .input {
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 85%;
+    height: 100%;
+  }
+  
+  .input:focus {
+    outline: none;
+  }
+  
+  .inputForm:focus-within {
+    border: 1.5px solid #2d79f3;
+  }
+  
+  .flex_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  
+  .span {
+    font-size: 14px;
+    margin-left: 5px;
+    color: #2d79f3;
+    font-weight: 500;
     cursor: pointer;
-    padding: 0 1em;
-}
-
-
-.svg, .svgAuth {
-    width: 25px;
-    height: 25px;
-}
-
-.svgAuth{
-    background-color: #fff;
-    padding: 5px;
-    border-radius: 100%;
-    /* filter: brightness(0) invert(1) */
-}
-
-.forgotpassword {
-    color: #fff;
-    font-size: small;
-}
-
-.clickHere{
-    color: blueviolet;
-}
-
-
-.error {
-    /* background-color: aqua; */
+    border: none;
+    background: transparent;
+    text-decoration: none;
+  }
+  
+  .button_submit {
+    margin: 20px 0 10px 0;
+    background-color: #151717;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .button_submit:hover {
+    background-color: #252727;
+  }
+  
+  .p {
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    font-size: 12px;
-    color: white;
-    margin: 0;
-    margin-top: 4px;
-    /* padding-bottom: 10px; */
-}
-
-.social {
+    align-items: center;
+    font-weight: 500;
+    gap: 10px;
+    border: 1px solid #ededef;
+    background-color: white;
     cursor: pointer;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    /* Esto elimina el contorno de enfoque cuando se presiona el botón */
-    padding: 0;
-    /* Esto elimina el relleno predeterminado del botón */
-}
-
-
-@media screen and (max-width: 768px) {
-    .containerLoginForm{
-        width: 70vw;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .btn:hover {
+    border: 1px solid #2d79f3;
+    ;
+  }
+  
+@media screen and (max-width: 810px) {
+    .form{
+        margin: 0 5%;
+        width: 100%;
     }
 }

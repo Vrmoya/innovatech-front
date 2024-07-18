@@ -146,7 +146,7 @@ const CarouselDetail = () => {
     <>
       <div className={style.contenedor}>
         <h1 className={style.tittle}>Related Products</h1>
-        <Carousel responsive={responsive}>
+        <Carousel className={style.carousel} responsive={responsive}>
           {productosCategoria &&
             productosCategoria.map((product) => (
               <section key={product.id} className={style.sectionContainer}>

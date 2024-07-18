@@ -1,11 +1,21 @@
 .containerView{
-
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 4em 0;
     /* height: 100vh; */
-    /* width: 100vw; */
-    /* background: linear-gradient(to bottom, #ffffff 30%, #6d6d6d62 100%); */
+    min-height: 100vh;
+    gap: 32px;
+    padding: 32px 0;
+    background: linear-gradient(to left, #161616 30%, #161616 100%);
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    gap: 5px;
+    /* background-color: blueviolet; */
 }

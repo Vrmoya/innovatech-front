@@ -39,7 +39,7 @@ const NavBar = () => {
   };
 
 
-  if (location.pathname === PATHROURES.CREATE || location.pathname === PATHROURES.DASHBOARD) {
+  if (location.pathname === PATHROURES.CREATE || location.pathname === PATHROURES.DASHBOARD || location.pathname === PATHROURES.LOGIN || location.pathname === PATHROURES.RESETPASSWORD) {
     return null;
   }
 
@@ -96,7 +96,7 @@ const NavBar = () => {
             className={`${style.linkContentMobile} ${!showNav && style.hidden}`}
           >
             <button className={style.mobileButtonClose} onClick={toggleNav}>
-              ✘
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
             </button>
             <div className={style.searchMobileContent}>
               <SearchBar></SearchBar>
@@ -121,7 +121,7 @@ const NavBar = () => {
                   onClick={() => handleChangeForm('login')}>Log In</button>
               </Link>
 
-              <Link onClick={toggleNav}>
+              <Link onClick={toggleNav} to={'/login'}>
                 <button className={style.buttonSign}
                   onClick={() => handleChangeForm('signup')}>Sign Up</button>
               </Link>
@@ -151,7 +151,7 @@ const NavBar = () => {
               <img src={user?.image} alt="" className={style.userImg} onClick={toggleUserDropdown} />
               {showUserDropdown && (
                 <div className={style.dropDown}>
-                  <Link to={'/users'} className={style.linkDrop} onClick={toggleUserDropdown}>Manage your Account</Link>
+                  {/* <Link to={'/users'} className={style.linkDrop} onClick={toggleUserDropdown}>Manage your Account</Link> */}
                   <button onClick={() => logOut()} className={style.buttonLogOut}>
                     <img src={imgLogout} alt="" className={style.svg} />
                     Sign out
@@ -162,17 +162,10 @@ const NavBar = () => {
           )}
 
           <button className={style.cartButton} onClick={() => shoppingCart()}>
-            <svg
-              className={style.cartSvg}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <g>
-                <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
-              </g>
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
             </svg>
+
             <div className={style.countProducts}>
               <span className={style.span}>{quantityProductsCart}</span>
             </div>

@@ -26,6 +26,7 @@
   max-width: 100%;
   margin-left: 2rem;
   font-family: "Public Sans", sans-serif;
+  width: 70%;
 }
 
 .productTittle {
@@ -70,6 +71,18 @@
   .buttonCart{
     height: 40px;
     font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .detailContainer{
+    margin: 0;
+    padding: 0;
+    padding-bottom: 16px;
+  }
+
+  .productInfo{
+    width: 95%;
   }
 }
 
@@ -167,7 +180,8 @@
   justify-content: space-between;
 }
 .contenedorGallery {
-  width: 50vw;
+  width: 80%;
+  /* width: 50vw; */
 }
 
 @media screen and (max-width: 744) {

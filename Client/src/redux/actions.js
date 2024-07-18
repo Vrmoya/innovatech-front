@@ -38,12 +38,15 @@ export const CLEAN_MESSAGES_RATING = 'CLEAN_MESSAGES_RATING';
 export const GET_ALL_SOLDS = 'GET_ALL_SOLDS';
 export const GET_USER_SOLDS = 'GET_USER_SOLDS';
 
+const localhost = 'http://localhost:80'
+const deploy = 'https://innovatech-back-production.up.railway.app'
+
 
 
 export const getUserSolds = (id) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`https://innovatech-back-production.up.railway.app/cart/${id}`)
+      const response = await axios.get(`${deploy}/cart/${id}`)
       
       dispatch({ type: GET_USER_SOLDS, payload: response.data })
       console.log(response.data);
@@ -65,7 +68,7 @@ export const cleanMessagesRating = () => {
 export const getAllSolds = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get('https://innovatech-back-production.up.railway.app/cart')
+      const response = await axios.get(`${deploy}/cart`)
       dispatch({ type: GET_ALL_SOLDS, payload: response.data })
       // console.log(response.data);
     } catch (error) {
@@ -83,7 +86,7 @@ export const showFormRating = () => {
 export const toggleUser = (id) => {
   return async function () {
     try {
-      const response = await axios.post(`https://innovatech-back-production.up.railway.app/user`, {id: id})
+      const response = await axios.post(`${deploy}/user`, {id: id})
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -95,8 +98,8 @@ export const toggleUser = (id) => {
 export const getUserByName = (name) => {
   return async function (dispatch) {
     try {
-      // const response = await axios.get(`http://localhost:80/get/user/${name}`)
-      const response = await axios.get(`https://innovatech-back-production.up.railway.app/get/user/${name}`)
+      const response = await axios.get(`${deploy}/get/user/${name}`)
+      // const response = await axios.get(`https://innovatech-back-production.up.railway.app/get/user/${name}`)
       console.log(response.data);
       dispatch({ type: GET_USER_BY_NAME, payload: response.data })
     } catch (error) {
@@ -109,8 +112,8 @@ export const getUserByName = (name) => {
 export const deleteProduct = (id) => {
   return async function () {
     try {
-      // await axios.delete(`http://localhost:80/products/${id}`)
-      await axios.delete(`https://innovatech-back-production.up.railway.app/${id}`)
+      await axios.delete(`${deploy}/products/${id}`)
+      // await axios.delete(`https://innovatech-back-production.up.railway.app/${id}`)
     } catch (error) {
       console.log(error);
     }
@@ -121,8 +124,8 @@ export const deleteProduct = (id) => {
 export const getAllProducts = () => {
   return async function (dispatch) {
     try {
-      // const response = await axios.get('http://localhost:80/products?actives=true')
-      const response = await axios.get('https://innovatech-back-production.up.railway.app/products?actives=true')
+      const response = await axios.get(`${deploy}/products?actives=true`)
+      // const response = await axios.get('https://innovatech-back-production.up.railway.app/products?actives=true')
       dispatch({ type: GET_ALL_PRODUCTS, payload: response.data.data })
     } catch (error) {
       console.log(error);
@@ -134,8 +137,8 @@ export const getAllProducts = () => {
 export const toggleProduct = (id) => {
   return async function () {
     try {
-      // await axios.post(`http://localhost:80/products/toggle?id=${id}`)
-      const response = await axios.post(`https://innovatech-back-production.up.railway.app/products/toggle?id=${id}`)
+      await axios.post(`${deploy}/products/toggle?id=${id}`)
+      // const response = await axios.post(`https://innovatech-back-production.up.railway.app/products/toggle?id=${id}`)
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -147,8 +150,8 @@ export const toggleProduct = (id) => {
 export const getAllUsers = () => {
   return async function (dispatch) {
     try {
-      // const response = await axios.get("http://localhost:80/users")
-      const response = await axios.get("https://innovatech-back-production.up.railway.app/users")
+      const response = await axios.get(`${deploy}/users`)
+      // const response = await axios.get("https://innovatech-back-production.up.railway.app/users")
       dispatch({ type: GET_ALL_USERS, payload: response.data })
     } catch (error) {
       console.log(error);
@@ -160,7 +163,7 @@ export const getAllUsers = () => {
 export const getRating = (id) => {
   return async function (dispatch){
     try{
-      const { data } = await axios.get("https://innovatech-back-production.up.railway.app/get-rating/", { params: { productId: id }});
+      const { data } = await axios.get(`${deploy}/get-rating/`, { params: { productId: id }});
       return dispatch({
         type: GET_RATING,
         payload: data
@@ -173,7 +176,7 @@ export const getRating = (id) => {
 export const createRating = ({ productId, rating, commentary }, {id}) => {
   return async function (dispatch) {
     try{
-      const ratingCreated = await axios.post("https://innovatech-back-production.up.railway.app/create-rating", {
+      const ratingCreated = await axios.post(`${deploy}/create-rating`, {
         userId: id,
         productId,
         rating,
@@ -256,10 +259,10 @@ export function paymentGateway(cart,email) {
 
 
       // const postCart = axios.post("http://localhost:80/cart", cartDB)
-      const postCart = axios.post("https://innovatech-back-production.up.railway.app/cart", cartDB)
+      const postCart = axios.post(`${deploy}/cart`, cartDB)
 
       // const response = await axios.post("http://localhost:80/create_preference", {
-      const response = await axios.post("https://innovatech-back-production.up.railway.app/create_preference", {
+      const response = await axios.post(`${deploy}/create_preference`, {
         items: items,
         total: totalPrice,
         email: email
@@ -277,7 +280,7 @@ export function getInfoGithub(codigoGithub) {
   return async function (dispatch) {
     try {
       // const response = await axios.get("http://localhost:80/get/github/" + codigoGithub)
-      const response = await axios.get("https://innovatech-back-production.up.railway.app/get/github/" + codigoGithub)
+      const response = await axios.get(`${deploy}/get/github/` + codigoGithub)
       console.log(response.data);
       window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GITHUB", payload: response.data })
@@ -291,7 +294,7 @@ export function getInfoGoogle(codigoGoogle) {
   return async function (dispatch) {
     try {
       // const response = await axios.get("http://localhost:80/get/google/" + codigoGoogle)
-      const response = await axios.get("https://innovatech-back-production.up.railway.app/get/google/" + codigoGoogle)
+      const response = await axios.get(`${deploy}/get/google/` + codigoGoogle)
       // console.log(response.data);
       window.localStorage.setItem('user', JSON.stringify(response.data))
       dispatch({ type: "GET_INFO_GOOGLE", payload: response.data })
@@ -306,7 +309,7 @@ export function getInfoGoogle(codigoGoogle) {
 export const LoginAction = ({ email, password }) => {
   return async (dispatch) => {
     try {
-       const { data } = await axios.post('https://innovatech-back-production.up.railway.app/api/signin', { email, password });
+       const { data } = await axios.post(`${deploy}/api/signin`, { email, password });
       window.localStorage.setItem('user', JSON.stringify(data));
       dispatch({ type: SIGN_IN_SUCCESS, payload: data });
       swal("You have been logged in", "Welcome back!", "success");
@@ -320,7 +323,7 @@ export const LoginAction = ({ email, password }) => {
 export const signUpAction = ({ name, email, password }) => {
   return async (dispatch) => {
     try {
-       const response = await axios.post('https://innovatech-back-production.up.railway.app/api/signup', { name, email, password });
+       const response = await axios.post(`${deploy}/api/signup`, { name, email, password });
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
       swal("User registered", "Welcome to our platform!", "success");
     } catch (error) {
@@ -339,8 +342,8 @@ export function changeForm(formType) {
 export function postForm(payload) {
   return async function () {
     try {
-      // const response = await axios.post("http://localhost:80/create", payload);
-      const response = await axios.post("https://innovatech-back-production.up.railway.app/create", payload);
+      const response = await axios.post(`${deploy}/create`, payload);
+      // const response = await axios.post("https://innovatech-back-production.up.railway.app/create", payload);
 
       // console.log(response);
       return response;
@@ -353,8 +356,8 @@ export function postForm(payload) {
 export const getProductsByCategories = (category, order, page, items) => {
   return async function (dispatch) {
     try {
-      // let url = "http://localhost:80/products";
-      let url = "https://innovatech-back-production.up.railway.app/products";
+      let url = `${deploy}/products`;
+      // let url = "https://innovatech-back-production.up.railway.app/products";
       if (category || order || page || items) {
         url += "?";
         if (category) url += `category=${category}&`;
@@ -386,8 +389,8 @@ export const getProducts = (
 ) => {
   return async function (dispatch) {
     try {
-      // let url = "http://localhost:80/products";
-      let url = "https://innovatech-back-production.up.railway.app/products";
+      let url = `${deploy}/products`;
+      // let url = "https://innovatech-back-production.up.railway.app/products";
       if (category || order || page || items) {
         url += "?";
         if (category) url += `category=${category}&`;
@@ -432,8 +435,8 @@ export const getOrder = (order) => {
 export const getProductById = (id) => {
   return async (dispatch) => {
     try {
-      // const { data } = await axios.get(`http://localhost:80/products/${id}`);
-      const { data } = await axios.get(`https://innovatech-back-production.up.railway.app/products/${id}`);
+      const { data } = await axios.get(`${deploy}/products/${id}`);
+      // const { data } = await axios.get(`https://innovatech-back-production.up.railway.app/products/${id}`);
       return dispatch({
         type: GET_PRODUCT_BY_ID,
         payload: data,
@@ -454,12 +457,12 @@ export const filterByModel = (model) => {
   console.log(model);
   return async (dispatch) => {
     try {
-      // const { data } = await axios.get(
-      //   `http://localhost:80/model?model=${model}`
-      // );
       const { data } = await axios.get(
-        `https://innovatech-back-production.up.railway.app/model?model=${model}`
+        `${deploy}/model?model=${model}`
       );
+      // const { data } = await axios.get(
+      //   `https://innovatech-back-production.up.railway.app/model?model=${model}`
+      // );
       console.log(data);
       return dispatch({
         type: FILTER_BY_MODEL,

@@ -35,14 +35,13 @@
 }
 
 .clearButton{
+    display: flex;
+    align-items: center;
     cursor: pointer;
     position: absolute;
-    width: 1.5rem;
-    height: 1.3rem;
     right: 0;
     margin-right: 3em;
     border: none;
     background-color: transparent;
     color: #292929;
-    font-weight: 900;
 }
